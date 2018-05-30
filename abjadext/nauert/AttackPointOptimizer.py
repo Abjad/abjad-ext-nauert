@@ -1,16 +1,17 @@
 import abc
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class AttackPointOptimizer(AbjadObject):
-    r'''Abstract attack-point optimizer.
+class AttackPointOptimizer(abjad.AbjadObject):
+    """
+    Abstract attack-point optimizer.
 
     Attack-point optimizers may alter the number, order, and individual
     durations of leaves in a logical tie, but may not alter the overall
     duration of that logical tie.
 
     They effectively "clean up" notation, post-quantization.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

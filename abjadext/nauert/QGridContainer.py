@@ -1,5 +1,5 @@
 from abjadext.nauert.QGridLeaf import QGridLeaf
-from abjad.tools.rhythmtreetools.RhythmTreeContainer import RhythmTreeContainer
+from abjad.rhythmtree.RhythmTreeContainer import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):

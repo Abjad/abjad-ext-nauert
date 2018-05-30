@@ -1,6 +1,5 @@
 import copy
 from abjad.tools import datastructuretools
-from abjad.tools import scoretools
 from abjadext.nauert.QTarget import QTarget
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import select

@@ -1,6 +1,6 @@
+import abjad
 import bisect
 import copy
-from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import select
@@ -109,7 +109,7 @@ class QGrid(AbjadObject):
         result = self.root_node(beatspan)
         result_leaves = []
         for x in result:
-            if isinstance(x, scoretools.Container):
+            if isinstance(x, abjad.Container):
                 leaves = select(x).leaves()
                 result_leaves.extend(leaves)
             else:

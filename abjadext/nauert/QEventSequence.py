@@ -5,7 +5,6 @@ import numbers
 from abjad import indicators as abjad_indicators
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
-from abjad.tools import scoretools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 

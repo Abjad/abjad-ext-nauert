@@ -1,6 +1,6 @@
 import uqbar.containers
 from abjad.tools import systemtools
-from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
+from abjad.rhythmtree.RhythmTreeMixin import RhythmTreeMixin
 
 
 class QGridLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):

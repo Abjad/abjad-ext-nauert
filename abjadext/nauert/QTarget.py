@@ -2,7 +2,6 @@ import abc
 import bisect
 from abjad import indicators as abjad_indicators
 from abjad.tools import datastructuretools
-from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach

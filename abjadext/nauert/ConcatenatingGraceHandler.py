@@ -1,4 +1,4 @@
-from abjad.tools import scoretools
+import abjad
 from abjadext.nauert.GraceHandler import GraceHandler
 
 
@@ -43,17 +43,17 @@ class ConcatenatingGraceHandler(GraceHandler):
             pitches = ()
 
         if grace_events:
-            grace_container = scoretools.GraceContainer()
+            grace_container = abjad.GraceContainer()
             for q_event in grace_events:
                 if isinstance(q_event, abjadext.nauert.PitchedQEvent):
                     if len(q_event.pitches) == 1:
-                        leaf = scoretools.Note(
+                        leaf = abjad.Note(
                             q_event.pitches[0], self.grace_duration)
                     else:
-                        leaf = scoretools.Chord(
+                        leaf = abjad.Chord(
                             q_event.pitches, self.grace_duration)
                 else:
-                    leaf = scoretools.Rest(self.grace_duration)
+                    leaf = abjad.Rest(self.grace_duration)
                 grace_container.append(leaf)
         else:
             grace_container = None
