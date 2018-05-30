@@ -2,8 +2,8 @@ import collections
 import copy
 import itertools
 import numbers
+from abjad import indicators as abjad_indicators
 from abjad.tools import datastructuretools
-from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
@@ -453,7 +453,7 @@ class QEventSequence(AbjadObject):
         import abjad
         import abjadext.nauert
         durations = [abjad.Duration(x) for x in durations]
-        assert isinstance(tempo, indicatortools.MetronomeMark)
+        assert isinstance(tempo, abjad_indicators.MetronomeMark)
         durations = [
             x for x in
             abjad.sequence(durations).sum_by_sign(sign=[-1])

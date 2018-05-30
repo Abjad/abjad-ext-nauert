@@ -1,4 +1,4 @@
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools import systemtools
 from abjadext.nauert.QSchema import QSchema
 
@@ -225,10 +225,11 @@ class MeasurewiseQSchema(QSchema):
         self._search_tree = search_tree
         tempo = keywords.get('tempo', ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = indicatortools.MetronomeMark(*tempo)
+            tempo = abjad_indicators.MetronomeMark(*tempo)
         self._tempo = tempo
-        self._time_signature = indicatortools.TimeSignature(
-            keywords.get('time_signature', (4, 4)))
+        self._time_signature = abjad_indicators.TimeSignature(
+            keywords.get('time_signature', (4, 4))
+            )
         self._use_full_measure = bool(keywords.get('use_full_measure'))
         QSchema.__init__(self, *arguments, **keywords)
 

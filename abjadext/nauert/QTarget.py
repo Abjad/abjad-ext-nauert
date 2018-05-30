@@ -1,9 +1,8 @@
 import abc
 import bisect
+from abjad import indicators as abjad_indicators
 from abjad.tools import datastructuretools
-from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -177,7 +176,7 @@ class QTarget(AbjadObject):
                     tie._append(new_leaf)
             if leaf._has_indicator(abjad.MetronomeMark):
                 tempo = leaf._get_indicator(abjad.MetronomeMark)
-                abjad.detach(indicatortools.MetronomeMark, leaf)
+                abjad.detach(abjad_indicators.MetronomeMark, leaf)
                 abjad.attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):

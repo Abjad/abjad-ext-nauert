@@ -1,4 +1,4 @@
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjadext.nauert.QSchemaItem import QSchemaItem
 
 
@@ -68,7 +68,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             tempo=tempo,
             )
         if time_signature is not None:
-            time_signature = indicatortools.TimeSignature(time_signature)
+            time_signature = abjad_indicators.TimeSignature(time_signature)
         self._time_signature = time_signature
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)

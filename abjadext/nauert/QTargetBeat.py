@@ -1,4 +1,4 @@
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -76,10 +76,10 @@ class QTargetBeat(AbjadObject):
         if search_tree is None:
             search_tree = abjadext.nauert.UnweightedSearchTree()
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
-        tempo = tempo or indicatortools.MetronomeMark((1, 4), 60)
-        #tempo = indicatortools.MetronomeMark(tempo)
+        tempo = tempo or abjad_indicators.MetronomeMark((1, 4), 60)
+        #tempo = abjad_indicators.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
-            tempo = indicatortools.MetronomeMark(*tempo)
+            tempo = abjad_indicators.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
 
         q_events = []

@@ -1,4 +1,4 @@
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools import systemtools
 from abjadext.nauert.QSchema import QSchema
 
@@ -258,7 +258,7 @@ class BeatwiseQSchema(QSchema):
         self._search_tree = search_tree
         tempo = keywords.get('tempo', ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = indicatortools.MetronomeMark(*tempo)
+            tempo = abjad_indicators.MetronomeMark(*tempo)
         self._tempo = tempo
         QSchema.__init__(self, *arguments, **keywords)
 

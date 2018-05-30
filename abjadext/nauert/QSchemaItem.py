@@ -1,5 +1,5 @@
 import abc
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -28,12 +28,9 @@ class QSchemaItem(AbjadObject):
         if search_tree is not None:
             assert isinstance(search_tree, abjadext.nauert.SearchTree)
         self._search_tree = search_tree
-        #if tempo is not None:
-        #    tempo = indicatortools.MetronomeMark(tempo)
-        #    assert not tempo.is_imprecise
         if tempo is not None:
             if isinstance(tempo, tuple):
-                tempo = indicatortools.MetronomeMark(*tempo)
+                tempo = abjad_indicators.MetronomeMark(*tempo)
             assert not tempo.is_imprecise
         self._tempo = tempo
 
