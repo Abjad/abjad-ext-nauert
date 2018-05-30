@@ -1,8 +1,7 @@
-from abjad.tools import metertools
+from abjad import meter as abjad_meter
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import mutate
-from abjadext.nauert.AttackPointOptimizer \
-    import AttackPointOptimizer
+from .AttackPointOptimizer import AttackPointOptimizer
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
@@ -64,7 +63,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         Returns none.
         '''
         assert isinstance(argument, scoretools.Measure)
-        meter = metertools.Meter(argument)
+        meter = abjad_meter.Meter(argument)
         mutate(argument[:]).rewrite_meter(
             meter,
             boundary_depth=1,
