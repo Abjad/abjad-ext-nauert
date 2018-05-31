@@ -1,12 +1,9 @@
 import abjad
 import bisect
 import copy
-from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import select
 
 
-class QGrid(AbjadObject):
+class QGrid(abjad.AbjadObject):
     r'''Q-grid.
 
     Rhythm-tree-based model for how millisecond attack points collapse onto the
@@ -110,7 +107,7 @@ class QGrid(AbjadObject):
         result_leaves = []
         for x in result:
             if isinstance(x, abjad.Container):
-                leaves = select(x).leaves()
+                leaves = abjad.select(x).leaves()
                 result_leaves.extend(leaves)
             else:
                 result_leaves.append(x)
@@ -121,7 +118,7 @@ class QGrid(AbjadObject):
                 q_events.sort(
                     key=lambda x: 0 if x.index is None else x.index)
                 annotation = {'q_events': tuple(q_events)}
-                attach(annotation, result_leaf)
+                abjad.attach(annotation, result_leaf)
         return result
 
     def __copy__(self, *arguments):
@@ -152,9 +149,8 @@ class QGrid(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):

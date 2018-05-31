@@ -1,16 +1,9 @@
 import abc
+import abjad
 import bisect
-from abjad import indicators as abjad_indicators
-from abjad.tools import datastructuretools
-from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 
 
-class QTarget(AbjadObject):
+class QTarget(abjad.AbjadObject):
     r'''Abstract q-target.
 
     ``QTarget`` is created by a concrete ``QSchema`` instance, and represents
@@ -49,7 +42,6 @@ class QTarget(AbjadObject):
         ):
         r'''Calls q-target.
         '''
-
         import abjadext.nauert
 
         assert isinstance(q_event_sequence, abjadext.nauert.QEventSequence)
@@ -133,7 +125,6 @@ class QTarget(AbjadObject):
         grace_handler=None,
         voice=None,
         ):
-        import abjad
         for leaf in abjad.iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
@@ -175,11 +166,10 @@ class QTarget(AbjadObject):
                     tie._append(new_leaf)
             if leaf._has_indicator(abjad.MetronomeMark):
                 tempo = leaf._get_indicator(abjad.MetronomeMark)
-                abjad.detach(abjad_indicators.MetronomeMark, leaf)
+                abjad.detach(abjad.MetronomeMark, leaf)
                 abjad.attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
-        import abjad
         beats = self.beats
         for one, two in abjad.sequence(beats).nwise():
             one_q_events = one.q_grid.next_downbeat.q_event_proxies

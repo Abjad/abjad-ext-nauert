@@ -1,8 +1,7 @@
-from abjad import indicators as abjad_indicators
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class QTargetMeasure(AbjadObject):
+class QTargetMeasure(abjad.AbjadObject):
     r'''Q-target measure.
 
     Represents a single measure in a measurewise quantization target.
@@ -91,7 +90,6 @@ class QTargetMeasure(AbjadObject):
         tempo=None,
         use_full_measure=False,
         ):
-        import abjad
         import abjadext.nauert
 
         offset_in_ms = offset_in_ms or 0
@@ -100,13 +98,13 @@ class QTargetMeasure(AbjadObject):
         if search_tree is None:
             search_tree = abjadext.nauert.UnweightedSearchTree()
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
-        tempo = tempo or abjad_indicators.MetronomeMark((1, 4), 60)
-        #tempo = abjad_indicators.MetronomeMark(tempo)
+        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
+        #tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
-            tempo = abjad_indicators.MetronomeMark(*tempo)
+            tempo = abjad.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
         time_signature = time_signature or (4, 4)
-        time_signature = abjad_indicators.TimeSignature(time_signature)
+        time_signature = abjad.TimeSignature(time_signature)
         use_full_measure = bool(use_full_measure)
 
         beats = []
@@ -152,9 +150,8 @@ class QTargetMeasure(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PUBLIC PROPERTIES ###

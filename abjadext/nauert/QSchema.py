@@ -1,11 +1,10 @@
 import abc
+import abjad
 import bisect
 import copy
-from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class QSchema(AbjadObject):
+class QSchema(abjad.AbjadObject):
     r'''Abstract Q-schema.
 
     ``QSchema`` allows for the specification of quantization settings
@@ -39,14 +38,14 @@ class QSchema(AbjadObject):
             items = copy.deepcopy(arguments[0].items)
         elif 1 == len(arguments) and isinstance(arguments[0], dict):
             items = list(arguments[0].items())
-            if mathtools.all_are_pairs_of_types(items, int, dict):
+            if abjad.mathtools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
-            assert mathtools.all_are_pairs_of_types(
+            assert abjad.mathtools.all_are_pairs_of_types(
                 items, int, self.item_class)
             items = dict(items)
-        elif mathtools.all_are_pairs_of_types(arguments, int, self.item_class):
+        elif abjad.mathtools.all_are_pairs_of_types(arguments, int, self.item_class):
             items = dict(arguments)
-        elif mathtools.all_are_pairs_of_types(arguments, int, dict):
+        elif abjad.mathtools.all_are_pairs_of_types(arguments, int, dict):
             items = [(x, self.item_class(**y)) for x, y in arguments]
             items = dict(items)
         elif all(isinstance(x, self.item_class) for x in arguments):
@@ -88,9 +87,8 @@ class QSchema(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):

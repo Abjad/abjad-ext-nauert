@@ -33,13 +33,13 @@ def test_QuantizationJob_pickle_01():
     pickled = pickle.loads(pickle.dumps(job))
 
     assert pickled is not job
-    assert format(pickled) == format(job), \
-        systemtools.TestManager.diff(pickled, job, 'Diff:')
+    assert format(pickled) == format(job), abjad.TestManager.diff(
+        pickled, job, 'Diff:')
 
     job()
 
     pickled = pickle.loads(pickle.dumps(job))
 
     assert pickled is not job
-    assert format(pickled) == format(job), \
-        systemtools.TestManager.diff(pickled, job, 'Diff:')
+    assert format(pickled) == format(job), abjad.TestManager.diff(
+        pickled, job, 'Diff:')

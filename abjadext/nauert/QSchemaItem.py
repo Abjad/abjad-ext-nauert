@@ -1,9 +1,8 @@
 import abc
-from abjad import indicators as abjad_indicators
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class QSchemaItem(AbjadObject):
+class QSchemaItem(abjad.AbjadObject):
     '''Abstract q-schema item.
 
     Represents a change of state in the timeline of a quantization process.
@@ -30,7 +29,7 @@ class QSchemaItem(AbjadObject):
         self._search_tree = search_tree
         if tempo is not None:
             if isinstance(tempo, tuple):
-                tempo = abjad_indicators.MetronomeMark(*tempo)
+                tempo = abjad.MetronomeMark(*tempo)
             assert not tempo.is_imprecise
         self._tempo = tempo
 
@@ -44,9 +43,8 @@ class QSchemaItem(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PUBLIC PROPERTIES ###

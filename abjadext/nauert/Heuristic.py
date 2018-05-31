@@ -1,8 +1,8 @@
 import abc
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class Heuristic(AbjadObject):
+class Heuristic(abjad.AbjadObject):
     r'''Abstract heuristic.
 
     Heuristics rank Q-grids according to the criteria they encapsulate.

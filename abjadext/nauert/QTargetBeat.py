@@ -1,8 +1,7 @@
-from abjad import indicators as abjad_indicators
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class QTargetBeat(AbjadObject):
+class QTargetBeat(abjad.AbjadObject):
     r'''Q-target beat.
 
     Represents a single beat in a quantization target.
@@ -76,10 +75,10 @@ class QTargetBeat(AbjadObject):
         if search_tree is None:
             search_tree = abjadext.nauert.UnweightedSearchTree()
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
-        tempo = tempo or abjad_indicators.MetronomeMark((1, 4), 60)
-        #tempo = abjad_indicators.MetronomeMark(tempo)
+        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
+        #tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
-            tempo = abjad_indicators.MetronomeMark(*tempo)
+            tempo = abjad.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
 
         q_events = []
@@ -125,9 +124,8 @@ class QTargetBeat(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PUBLIC PROPERTIES ###

@@ -1,5 +1,4 @@
-from abjad import indicators as abjad_indicators
-from abjad.tools import systemtools
+import abjad
 from abjadext.nauert.QSchema import QSchema
 
 
@@ -225,9 +224,9 @@ class MeasurewiseQSchema(QSchema):
         self._search_tree = search_tree
         tempo = keywords.get('tempo', ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = abjad_indicators.MetronomeMark(*tempo)
+            tempo = abjad.MetronomeMark(*tempo)
         self._tempo = tempo
-        self._time_signature = abjad_indicators.TimeSignature(
+        self._time_signature = abjad.TimeSignature(
             keywords.get('time_signature', (4, 4))
             )
         self._use_full_measure = bool(keywords.get('use_full_measure'))
@@ -236,7 +235,7 @@ class MeasurewiseQSchema(QSchema):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),
             storage_format_kwargs_names=[

@@ -1,8 +1,8 @@
 import abc
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class GraceHandler(AbjadObject):
+class GraceHandler(abjad.AbjadObject):
     r'''Abstract grace-handler.
 
     Determines what pitch, if any, will be selected from a list of

@@ -1,9 +1,8 @@
 import abc
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class QEvent(AbjadObject):
+class QEvent(abjad.AbjadObject):
     r'''Abstract Q-event.
 
     Represents an attack point to be quantized.
@@ -45,12 +44,12 @@ class QEvent(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatManager(self)
+        agent = abjad.StorageFormatManager(self)
         names = agent.signature_keyword_names
         for name in ('attachments',):
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_kwargs_names=names,

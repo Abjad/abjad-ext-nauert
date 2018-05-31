@@ -1,7 +1,7 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class QuantizationJob(AbjadObject):
+class QuantizationJob(abjad.AbjadObject):
     r'''Quantization job.
 
     Copiable, picklable class for generating all ``QGrids`` which are valid

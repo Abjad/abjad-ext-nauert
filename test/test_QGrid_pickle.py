@@ -33,5 +33,4 @@ def test_QGrid_pickle_01():
 
     assert format(pickled) == format(q_grid)
     assert pickled is not q_grid
-    assert pickled != q_grid, \
-        systemtools.TestManager.diff(pickled, q_grid, 'Diff:')
+    assert pickled != q_grid, abjad.TestManager.diff(pickled, q_grid, 'Diff:')

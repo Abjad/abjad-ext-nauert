@@ -1,5 +1,5 @@
+import abjad
 from abjad import indicators as abjad_indicators
-from abjad.tools import systemtools
 from abjadext.nauert.QSchema import QSchema
 
 
@@ -265,7 +265,7 @@ class BeatwiseQSchema(QSchema):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),
             storage_format_kwargs_names=[

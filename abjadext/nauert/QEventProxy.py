@@ -1,8 +1,7 @@
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class QEventProxy(AbjadObject):
+class QEventProxy(abjad.AbjadObject):
     r'''Q-event proxy.
 
     Maps Q-event offset with the range of its beatspan to the range 0-1.
@@ -86,9 +85,8 @@ class QEventProxy(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
@@ -108,7 +106,7 @@ class QEventProxy(AbjadObject):
             values.append(self.q_event)
         if self.offset:
             values.append(self.offset)
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=values,
             )

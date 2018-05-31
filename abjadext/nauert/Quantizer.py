@@ -1,7 +1,7 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class Quantizer(AbjadObject):
+class Quantizer(abjad.AbjadObject):
     r'''Quantizer.
 
     ..  container:: example

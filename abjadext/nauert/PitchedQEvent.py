@@ -1,5 +1,5 @@
-from abjad.tools import pitchtools
-from abjadext.nauert.QEvent import QEvent
+import abjad
+from .QEvent import QEvent
 
 
 class PitchedQEvent(QEvent):
@@ -39,7 +39,7 @@ class PitchedQEvent(QEvent):
     def __init__(self, offset=0, pitches=None, attachments=None, index=None):
         QEvent.__init__(self, offset=offset, index=index)
         pitches = pitches or []
-        pitches = tuple([pitchtools.NamedPitch(x) for x in pitches])
+        pitches = tuple([abjad.NamedPitch(x) for x in pitches])
         if attachments is None:
             attachments = ()
         else:

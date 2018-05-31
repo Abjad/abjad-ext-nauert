@@ -1,8 +1,8 @@
 import abc
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
-class JobHandler(AbjadObject):
+class JobHandler(abjad.AbjadObject):
     r'''Abstact job-handler.
 
     ``JobHandlers`` control how ``QuantizationJob`` instances are

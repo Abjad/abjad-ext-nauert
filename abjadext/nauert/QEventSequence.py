@@ -1,15 +1,12 @@
+import abjad
 import collections
 import copy
 import itertools
 import numbers
 from abjad import indicators as abjad_indicators
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class QEventSequence(AbjadObject):
+class QEventSequence(abjad.AbjadObject):
     r'''Q-event sequence.
 
     Contains only pitched q-events and silent q-events, and terminates with a
@@ -157,9 +154,8 @@ class QEventSequence(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
@@ -199,7 +195,7 @@ class QEventSequence(AbjadObject):
         values = []
         if self.sequence:
             values.append(self.sequence)
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
@@ -257,7 +253,7 @@ class QEventSequence(AbjadObject):
                 ]
         else:
             durations = milliseconds
-        offsets = mathtools.cumulative_sums([abs(x) for x in durations])
+        offsets = abjad.mathtools.cumulative_sums([abs(x) for x in durations])
         q_events = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
@@ -394,7 +390,7 @@ class QEventSequence(AbjadObject):
                 duration = sum(x[0] for x in group)
                 groups.append((duration, None))
         # find offsets
-        offsets = mathtools.cumulative_sums([abs(x[0]) for x in groups])
+        offsets = abjad.mathtools.cumulative_sums([abs(x[0]) for x in groups])
         # build QEvents
         q_events = []
         for pair in zip(offsets, groups):
@@ -459,7 +455,7 @@ class QEventSequence(AbjadObject):
             if x
             ]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
-        offsets = mathtools.cumulative_sums([abs(_) for _ in durations])
+        offsets = abjad.mathtools.cumulative_sums([abs(_) for _ in durations])
         q_events = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])

@@ -1,11 +1,9 @@
 import abc
+import abjad
 import copy
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SearchTree(AbjadObject):
+class SearchTree(abjad.AbjadObject):
     r'''Abstract search tree.
 
     ``SearchTrees`` encapsulate strategies for generating collections of
@@ -76,7 +74,6 @@ class SearchTree(AbjadObject):
         # including QEvents attached to the next leaf
         # It may be prudent to actually store QEvents in two lists:
         # before_offset and after_offset
-        import abjad
         indices, subdivisions = [], []
         leaves = list(q_grid.leaves)
         i = 0
@@ -108,7 +105,7 @@ class SearchTree(AbjadObject):
             self._find_divisible_leaf_indices_and_subdivisions(q_grid)
         if not indices:
             return ()
-        enumerator = mathtools.Enumerator(subdivisions)
+        enumerator = abjad.mathtools.Enumerator(subdivisions)
         combinations = enumerator.yield_outer_product()
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
