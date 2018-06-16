@@ -1,8 +1,8 @@
+import abjad
 from abjadext.nauert.QGridLeaf import QGridLeaf
-from abjad.rhythmtree.RhythmTreeContainer import RhythmTreeContainer
 
 
-class QGridContainer(RhythmTreeContainer):
+class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
     r'''Q-grid container.
 
     ..  container:: example
