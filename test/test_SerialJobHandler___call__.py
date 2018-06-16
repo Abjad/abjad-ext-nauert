@@ -2,7 +2,7 @@ import abjad
 import abjadext.nauert
 
 
-class Job(abjad.abctools.AbjadObject):
+class Job(abjad.system.AbjadObject):
 
     ### INITIALIZER ###
 
