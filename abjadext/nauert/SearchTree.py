@@ -105,7 +105,7 @@ class SearchTree(abjad.AbjadObject):
             self._find_divisible_leaf_indices_and_subdivisions(q_grid)
         if not indices:
             return ()
-        enumerator = abjad.mathtools.Enumerator(subdivisions)
+        enumerator = abjad.utilities.Enumerator(subdivisions)
         combinations = enumerator.yield_outer_product()
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
