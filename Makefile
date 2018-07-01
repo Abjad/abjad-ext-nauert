@@ -11,6 +11,8 @@ clean:
 	rm -Rif build/
 
 release:
+	git checkout master
+	git pull
 	make clean
 	make build
 	twine upload dist/*.tar.gz
