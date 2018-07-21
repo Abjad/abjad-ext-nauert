@@ -20,6 +20,7 @@ before_install:
 - pip install -U https://github.com/josiah-wolf-oberholtzer/uqbar/archive/master.zip
 - pip install --no-deps --target /tmp/typehints https://github.com/Abjad/abjad/archive/master.zip
 - pip install --no-deps --target /tmp/typehints https://github.com/josiah-wolf-oberholtzer/uqbar/archive/master.zip
+- pip install --no-deps --target /tmp/typehints abjad-ext-tonality>=3.0.0a0
 - export MYPYPATH=/tmp/typehints
 
 install:
