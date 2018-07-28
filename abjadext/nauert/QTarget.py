@@ -161,7 +161,7 @@ class QTarget(abjad.AbjadObject):
                         leaf.written_duration,
                         )
                 abjad.mutate(leaf).replace(new_leaf)
-                tie = abjad.inspect(previous_leaf).get_spanner(abjad.Tie)
+                tie = abjad.inspect(previous_leaf).spanner(abjad.Tie)
                 if tie is not None:
                     tie._append(new_leaf)
             if leaf._has_indicator(abjad.MetronomeMark):

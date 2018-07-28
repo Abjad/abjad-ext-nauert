@@ -79,7 +79,7 @@ def test_Quantizer___call___03():
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
     assert isinstance(result, abjad.Voice)
-    assert abjad.inspect(result).get_duration() == 2
+    assert abjad.inspect(result).duration() == 2
 
     score = abjad.Score([abjad.Staff([result])])
 

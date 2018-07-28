@@ -18,7 +18,7 @@ def test_QGrid___call___01():
     assert len(result) == 1
     assert format(result[0]) == "c'4"
 
-    annotation = abjad.inspect(result[0]).get_indicator(dict)
+    annotation = abjad.inspect(result[0]).indicator(dict)
     q_events = annotation['q_events']
 
     assert isinstance(q_events, tuple) and len(q_events) == 4
@@ -62,17 +62,17 @@ def test_QGrid___call___02():
 
     leaves = abjad.select(result[0]).leaves()
     leaf = leaves[0]
-    annotation = abjad.inspect(leaf).get_indicator(dict)
+    annotation = abjad.inspect(leaf).indicator(dict)
     q_events = annotation['q_events']
     assert isinstance(q_events, tuple) and len(q_events) == 2
     assert q_events[0].attachments == ('A',)
     assert q_events[1].attachments == ('B',)
 
     leaf = leaves[1]
-    assert not abjad.inspect(leaf).get_indicator(dict)
+    assert not abjad.inspect(leaf).indicator(dict)
 
     leaf = leaves[2]
-    annotation = abjad.inspect(leaf).get_indicator(dict)
+    annotation = abjad.inspect(leaf).indicator(dict)
     q_events = annotation['q_events']
 
     assert isinstance(q_events, tuple) and len(q_events) == 3
@@ -81,7 +81,7 @@ def test_QGrid___call___02():
     assert q_events[2].attachments == ('E',)
 
     for leaf in leaves[3:6]:
-        assert not abjad.inspect(leaf).get_indicators(dict)
+        assert not abjad.inspect(leaf).indicators(dict)
 
 
 def test_QGrid___call___03():

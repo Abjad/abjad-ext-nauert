@@ -33,7 +33,7 @@ class MeasurewiseQTarget(QTarget):
         if attach_tempos:
             tempo = copy.deepcopy(q_target_measure.tempo)
             #abjad.attach(tempo, measure)
-            leaf = abjad.inspect(measure).get_leaf(0)
+            leaf = abjad.inspect(measure).leaf(0)
             abjad.attach(tempo, leaf)
         voice.append(measure)
 
@@ -47,7 +47,7 @@ class MeasurewiseQTarget(QTarget):
                 attach_tempos):
                 tempo = copy.deepcopy(q_target_measure_two.tempo)
                 #abjad.attach(tempo, measure)
-                leaf = abjad.inspect(measure).get_leaf(0)
+                leaf = abjad.inspect(measure).leaf(0)
                 abjad.attach(tempo, leaf)
             voice.append(measure)
 
