@@ -1,3 +1,6 @@
+"""
+Extension for quantizing rhythm, based on Paul Nauert's Q-Grid technique.
+"""
 from .AttackPointOptimizer import AttackPointOptimizer
 from .QSchema import QSchema
 from .BeatwiseQSchema import BeatwiseQSchema
