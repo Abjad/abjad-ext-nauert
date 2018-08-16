@@ -167,6 +167,7 @@ class QTarget(abjad.AbjadObject):
             if leaf._has_indicator(abjad.MetronomeMark):
                 tempo = leaf._get_indicator(abjad.MetronomeMark)
                 abjad.detach(abjad.MetronomeMark, leaf)
+                abjad.detach(abjad.MetronomeMark, new_leaf)
                 abjad.attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
