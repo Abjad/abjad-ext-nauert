@@ -3,7 +3,8 @@ from .AttackPointOptimizer import AttackPointOptimizer
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
-    r'''Measurewise attack-point optimizer.
+    r'''
+    Measurewise attack-point optimizer.
 
     Attempts to optimize attack points in an expression with regard to the
     effective time signature of that expression.
@@ -56,13 +57,16 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls measurewise attack-point optimizer.
+        """
+        Calls measurewise attack-point optimizer.
 
         Returns none.
-        '''
-        assert isinstance(argument, abjad.Measure)
-        meter = abjad.Meter(argument)
+        """
+        assert isinstance(argument, abjad.Container)
+        leaf = abjad.inspect(argument).leaf(0)
+        time_signature = abjad.inspect(leaf).indicator(abjad.TimeSignature)
+        assert time_signature is not None, repr(time_signature)
         abjad.mutate(argument[:]).rewrite_meter(
-            meter,
+            time_signature,
             boundary_depth=1,
             )

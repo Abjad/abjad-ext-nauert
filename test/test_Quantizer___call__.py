@@ -18,18 +18,18 @@ def test_Quantizer___call___01():
             {
                 \new Voice
                 {
-                    {   % measure
-                        \time 4/4
+                    {
                         \tempo 4=60
+                        \time 4/4
                         c'4.
                         c'4.
                         r4
-                    }   % measure
+                    }
                 }
             }
         >>
         '''
-        ), format(score)
+        ), print(format(score))
 
 
 def test_Quantizer___call___02():
@@ -52,21 +52,21 @@ def test_Quantizer___call___02():
             {
                 \new Voice
                 {
-                    {   % measure
-                        \time 4/4
+                    {
                         \tempo 4=60
+                        \time 4/4
                         c'8.
                         c'16
                         ~
                         c'8
                         r8
                         r2
-                    }   % measure
+                    }
                 }
             }
         >>
         '''
-        ), format(score)
+        ), print(format(score))
 
 
 def test_Quantizer___call___03():
@@ -91,9 +91,9 @@ def test_Quantizer___call___03():
             {
                 \new Voice
                 {
-                    {   % measure
-                        \time 4/4
+                    {
                         \tempo 4=60
+                        \time 4/4
                         c'4
                         ~
                         c'8
@@ -104,8 +104,8 @@ def test_Quantizer___call___03():
                         c'8
                         c'8
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         c'8
                         r8
                         r8
@@ -115,12 +115,12 @@ def test_Quantizer___call___03():
                         r8
                         r8
                         c'8
-                    }   % measure
+                    }
                 }
             }
         >>
         '''
-        ), format(score)
+        ), print(format(score))
 
 
 def test_Quantizer___call___04():
@@ -142,9 +142,9 @@ def test_Quantizer___call___04():
             {
                 \new Voice
                 {
-                    {   % measure
-                        \time 4/4
+                    {
                         \tempo 4=60
+                        \time 4/4
                         c'16
                         c'16
                         ~
@@ -164,12 +164,12 @@ def test_Quantizer___call___04():
                         c'16
                         ~
                         c'8
-                    }   % measure
+                    }
                 }
             }
         >>
         '''
-        ), format(score)
+        ), print(format(score))
 
 
 def test_Quantizer___call___05():
@@ -243,4 +243,4 @@ def test_Quantizer___call___05():
             }
         >>
         '''
-        ), format(score)
+        ), print(format(score))

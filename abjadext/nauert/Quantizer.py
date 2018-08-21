@@ -35,20 +35,21 @@ class Quantizer(abjad.AbjadObject):
                 {
                     \new Voice
                     {
-                        {   % measure
-                            \time 4/4
+                        {
                             \tempo 4=60
+                            \time 4/4
                             c'4
                             cs'4
                             d'4
                             ef'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 4/4
                             e'4
                             f'4
                             fs'4
                             g'4
-                        }   % measure
+                        }
                     }
                 }
             >>
@@ -85,9 +86,9 @@ class Quantizer(abjad.AbjadObject):
                 {
                     \new Voice
                     {
-                        {   % measure
-                            \time 2/4
+                        {
                             \tempo 4=78
+                            \time 2/4
                             c'4
                             ~
                             \times 4/5 {
@@ -95,9 +96,8 @@ class Quantizer(abjad.AbjadObject):
                                 cs'8..
                                 ~
                             }
-                        }   % measure
-                        {   % measure
-                            \time 5/4
+                        }
+                        {
                             \times 4/7 {
                                 \tempo 8=57
                                 cs'16.
@@ -140,7 +140,7 @@ class Quantizer(abjad.AbjadObject):
                                 r16
                             }
                             r4
-                        }   % measure
+                        }
                     }
                 }
             >>
