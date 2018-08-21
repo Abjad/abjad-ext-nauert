@@ -1,9 +1,11 @@
+import abjad
 from abjad import indicators as abjad_indicators
 from abjadext.nauert.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
-    '''Measurewise q-schema item.
+    """
+    Measurewise q-schema item.
 
     Represents a change of state in the timeline of a metered quantization
     process.
@@ -44,7 +46,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         >>> q_schema_item.beatspan
         Duration(1, 8)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -78,11 +80,11 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def beatspan(self):
-        r'''The beatspan duration, if a time signature was defined.
+        """
+        The beatspan duration, if a time signature was defined.
 
         Returns duration or none.
-        '''
-        import abjad
+        """
         if self.time_signature is not None:
             if self.use_full_measure:
                 return self.time_signature.duration

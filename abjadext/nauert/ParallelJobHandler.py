@@ -4,11 +4,12 @@ from abjadext.nauert.JobHandler import JobHandler
 
 
 class ParallelJobHandler(JobHandler):
-    r'''Parallel job-handler.
+    """
+    Parallel job-handler.
 
     Processes ``QuantizationJob`` instances in parallel, based on the number of
     CPUs available.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -17,8 +18,9 @@ class ParallelJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):
-        r'''Calls parallel job handler.
-        '''
+        """
+        Calls parallel job handler.
+        """
         import abjadext.nauert
         finished_jobs = []
         job_queue = multiprocessing.JoinableQueue()

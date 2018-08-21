@@ -3,7 +3,8 @@ import uqbar.containers
 
 
 class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
-    r'''Q-grid leaf.
+    """
+    Q-grid leaf.
 
     ..  container:: example
 
@@ -15,7 +16,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
             )
 
     Used internally by ``QGrid``.
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -41,10 +42,11 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
     ### SPECIAL METHODS ###
 
     def __call__(self, pulse_duration):
-        r'''Calls q-grid leaf.
+        """
+        Calls q-grid leaf.
 
         Returns selection of notes.
-        '''
+        """
         import abjad
         pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
@@ -52,10 +54,11 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         return maker(0, total_duration)
 
     def __graph__(self, **keywords):
-        r'''Graphviz graph of q-grid leaf.
+        """
+        Graphviz graph of q-grid leaf.
 
         Returns Graphviz graph.
-        '''
+        """
         import uqbar.graphs
         graph = uqbar.graphs.Graph(name='G')
         node = uqbar.graphs.Node(
@@ -92,9 +95,10 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     @property
     def is_divisible(self):
-        r'''Flag for whether the node may be further divided
+        """
+        Flag for whether the node may be further divided
         under some search tree.
-        '''
+        """
         return self._is_divisible
 
     @is_divisible.setter
@@ -103,10 +107,11 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     @property
     def preceding_q_event_proxies(self):
-        r'''Preceding q-event proxies of q-grid leaf.
+        """
+        Preceding q-event proxies of q-grid leaf.
 
         Returns list.
-        '''
+        """
         return [
             x for x in self._q_event_proxies
             if x.offset < self.start_offset
@@ -114,22 +119,25 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     @property
     def q_event_proxies(self):
-        r'''Q-event proxies of q-grid leaf.
-        '''
+        """
+        Q-event proxies of q-grid leaf.
+        """
         return self._q_event_proxies
 
     @property
     def rtm_format(self):
-        r'''RTM format of q-grid leaf.
-        '''
+        """
+        RTM format of q-grid leaf.
+        """
         return str(self.preprolated_duration)
 
     @property
     def succeeding_q_event_proxies(self):
-        r'''Succeeding q-event proxies of q-grid leaf.
+        """
+        Succeeding q-event proxies of q-grid leaf.
 
         Returns list.
-        '''
+        """
         return [
             x for x in self._q_event_proxies
             if self.start_offset <= x.offset

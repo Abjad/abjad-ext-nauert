@@ -3,10 +3,11 @@ import abjad
 
 
 class QSchemaItem(abjad.AbjadObject):
-    '''Abstract q-schema item.
+    """
+    Abstract q-schema item.
 
     Represents a change of state in the timeline of a quantization process.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -36,13 +37,14 @@ class QSchemaItem(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats q schema item.
+        """
+        Formats q schema item.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
@@ -51,16 +53,18 @@ class QSchemaItem(abjad.AbjadObject):
 
     @property
     def search_tree(self):
-        r'''The optionally defined search tree.
+        """
+        The optionally defined search tree.
 
         Returns search tree or none.
-        '''
+        """
         return self._search_tree
 
     @property
     def tempo(self):
-        r'''The optionally defined tempo.
+        """
+        The optionally defined tempo.
 
         Returns tempo or none.
-        '''
+        """
         return self._tempo

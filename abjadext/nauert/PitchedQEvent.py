@@ -3,7 +3,8 @@ from .QEvent import QEvent
 
 
 class PitchedQEvent(QEvent):
-    r'''Pitched q-event.
+    """
+    Pitched q-event.
 
     Indicates the onset of a period of pitched material in a q-event sequence.
 
@@ -21,7 +22,7 @@ class PitchedQEvent(QEvent):
                 ),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -50,12 +51,13 @@ class PitchedQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a pitched q-event with offset, pitches,
+        """
+        Is true when `argument` is a pitched q-event with offset, pitches,
         attachments and index equal to those of this pitched q-event. Otherwise
         false.
 
         Returns true or false.
-        '''
+        """
         if (type(self) == type(argument) and
             self.offset == argument.offset and
             self.pitches == argument.pitches and
@@ -65,24 +67,27 @@ class PitchedQEvent(QEvent):
         return False
 
     def __hash__(self):
-        r'''Hashes pitched q-event.
+        """
+        Hashes pitched q-event.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(PitchedQEvent, self).__hash__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def attachments(self):
-        r'''Attachments of pitched q-event.
-        '''
+        """
+        Attachments of pitched q-event.
+        """
         return self._attachments
 
     @property
     def pitches(self):
-        r'''Pitches of pitched q-event.
-        '''
+        """
+        Pitches of pitched q-event.
+        """
         return self._pitches

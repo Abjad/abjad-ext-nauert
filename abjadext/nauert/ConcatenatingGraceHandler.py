@@ -3,14 +3,15 @@ from abjadext.nauert.GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):
-    r'''Concatenating grace-handler.
+    """
+    Concatenating grace-handler.
 
     Concatenates all but the final ``QEvent`` attached to a ``QGrid`` offset
     into a ``GraceContainer``, using a fixed leaf duration ``duration``.
 
     When called, it returns pitch information of final ``QEvent``, and the
     generated ``GraceContainer``, if any.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -31,8 +32,9 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
-        r'''Calls concatenating grace handler.
-        '''
+        """
+        Calls concatenating grace handler.
+        """
         import abjadext.nauert
 
         grace_events, final_event = q_events[:-1], q_events[-1]
@@ -64,8 +66,9 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     @property
     def grace_duration(self):
-        r'''Grace duration of concantenating grace handler.
+        """
+        Grace duration of concantenating grace handler.
 
         Returns duration.
-        '''
+        """
         return self._grace_duration

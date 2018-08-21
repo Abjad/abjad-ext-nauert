@@ -3,7 +3,7 @@ from .AttackPointOptimizer import AttackPointOptimizer
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
-    r'''
+    """
     Measurewise attack-point optimizer.
 
     Attempts to optimize attack points in an expression with regard to the
@@ -48,7 +48,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         >>> abjad.show(result) # doctest: +SKIP
 
     Only acts on measures.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

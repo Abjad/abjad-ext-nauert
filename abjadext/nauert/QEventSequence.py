@@ -7,7 +7,8 @@ from abjad import indicators as abjad_indicators
 
 
 class QEventSequence(abjad.AbjadObject):
-    r'''Q-event sequence.
+    r"""
+    Q-event sequence.
 
     Contains only pitched q-events and silent q-events, and terminates with a
     single terminal q-event.
@@ -55,7 +56,7 @@ class QEventSequence(abjad.AbjadObject):
             offset=abjad.Offset(4000, 1),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -92,24 +93,27 @@ class QEventSequence(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when q-event sequence contains `argument`. Otherwise false.
+        """
+        Is true when q-event sequence contains `argument`. Otherwise false.
 
         Returns true or false.
-        '''
+        """
         return argument in self._sequence
 
     def __eq__(self, argument):
-        r'''Is true when q-event sequence equals `argument`. Otherwise false.
+        """
+        Is true when q-event sequence equals `argument`. Otherwise false.
 
         Returns true or false.
-        '''
+        """
         if type(self) == type(argument):
             if self.sequence == argument.sequence:
                 return True
         return False
 
     def __format__(self, format_specification=''):
-        r'''Formats q-event sequence.
+        r"""
+        Formats q-event sequence.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -153,40 +157,44 @@ class QEventSequence(abjad.AbjadObject):
             )
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by `argument`.
 
         Returns item or slice.
-        '''
+        """
         return self._sequence.__getitem__(argument)
 
     def __hash__(self):
-        r'''Hashes q-event sequence.
+        """
+        Hashes q-event sequence.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(QEventSequence, self).__hash__()
 
     def __iter__(self):
-        r'''Iterates q-event sequence.
+        """
+        Iterates q-event sequence.
 
         Yields items.
-        '''
+        """
         for x in self._sequence:
             yield x
 
     def __len__(self):
-        r'''Length of q-event sequence.
+        """
+        Length of q-event sequence.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self._sequence)
 
     ### PRIVATE METHODS ###
@@ -205,7 +213,8 @@ class QEventSequence(abjad.AbjadObject):
 
     @classmethod
     def from_millisecond_durations(class_, milliseconds, fuse_silences=False):
-        r'''Convert a sequence of millisecond durations ``durations`` into
+        r"""
+        Convert a sequence of millisecond durations ``durations`` into
         a ``QEventSequence``:
 
         >>> durations = [-250, 500, -1000, 1250, -1000]
@@ -242,7 +251,7 @@ class QEventSequence(abjad.AbjadObject):
             )
 
         Returns ``QEventSequence`` instance.
-        '''
+        """
         import abjad
         import abjadext.nauert
         if fuse_silences:
@@ -270,7 +279,8 @@ class QEventSequence(abjad.AbjadObject):
 
     @classmethod
     def from_millisecond_offsets(class_, offsets):
-        r'''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
+        r"""
+        Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
 
         >>> offsets = [0, 250, 750, 1750, 3000, 4000]
         >>> sequence = \
@@ -315,7 +325,7 @@ class QEventSequence(abjad.AbjadObject):
             )
 
         Returns ``QEventSequence`` instance.
-        '''
+        """
         import abjadext.nauert
         q_events = [abjadext.nauert.PitchedQEvent(x, [0])
             for x in offsets[:-1]]
@@ -324,7 +334,8 @@ class QEventSequence(abjad.AbjadObject):
 
     @classmethod
     def from_millisecond_pitch_pairs(class_, pairs):
-        r'''Convert millisecond-duration:pitch pairs ``pairs`` into a
+        r"""
+        Convert millisecond-duration:pitch pairs ``pairs`` into a
         ``QEventSequence``:
 
         >>> durations = [250, 500, 1000, 1250, 1000]
@@ -367,7 +378,7 @@ class QEventSequence(abjad.AbjadObject):
             )
 
         Returns ``QEventSequence`` instance.
-        '''
+        """
         import abjad
         import abjadext.nauert
         assert isinstance(pairs, collections.Iterable)
@@ -409,7 +420,8 @@ class QEventSequence(abjad.AbjadObject):
 
     @classmethod
     def from_tempo_scaled_durations(class_, durations, tempo=None):
-        r'''Convert ``durations``, scaled by ``tempo``
+        r"""
+        Convert ``durations``, scaled by ``tempo``
         into a ``QEventSequence``:
 
         >>> tempo = abjad.MetronomeMark((1, 4), 174)
@@ -444,7 +456,7 @@ class QEventSequence(abjad.AbjadObject):
             )
 
         Returns ``QEventSequence`` instance.
-        '''
+        """
         import abjad
         import abjadext.nauert
         durations = [abjad.Duration(x) for x in durations]
@@ -473,7 +485,8 @@ class QEventSequence(abjad.AbjadObject):
 
     @classmethod
     def from_tempo_scaled_leaves(class_, leaves, tempo=None):
-        r'''Convert ``leaves``, optionally with ``tempo`` into a
+        r"""
+        Convert ``leaves``, optionally with ``tempo`` into a
         ``QEventSequence``:
 
         >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
@@ -517,7 +530,7 @@ class QEventSequence(abjad.AbjadObject):
         by its effective tempo.
 
         Return ``QEventSequence`` instance.
-        '''
+        """
         import abjad
         assert abjad.select(leaves).are_contiguous_logical_voice()
         assert len(leaves)
@@ -573,7 +586,8 @@ class QEventSequence(abjad.AbjadObject):
 
     @property
     def duration_in_ms(self):
-        r'''Duration in milliseconds of the ``QEventSequence``:
+        r"""
+        Duration in milliseconds of the ``QEventSequence``:
 
         >>> durations = (1000, -500, 1250, -500, 750)
         >>> sequence = \
@@ -584,13 +598,14 @@ class QEventSequence(abjad.AbjadObject):
         Duration(4000, 1)
 
         Return ``Duration`` instance.
-        '''
+        """
         import abjad
         return abjad.Duration(self[-1].offset)
 
     @property
     def sequence(self):
-        r'''Sequence of q-events.
+        r"""
+        Sequence of q-events.
 
         >>> durations = (1000, -500, 1250, -500, 750)
         >>> sequence = \
@@ -629,5 +644,5 @@ class QEventSequence(abjad.AbjadObject):
             )
 
         Returns tuple.
-        '''
+        """
         return self._sequence

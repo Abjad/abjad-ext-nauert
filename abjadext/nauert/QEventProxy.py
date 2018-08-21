@@ -2,7 +2,8 @@ import abjad
 
 
 class QEventProxy(abjad.AbjadObject):
-    r'''Q-event proxy.
+    """
+    Q-event proxy.
 
     Maps Q-event offset with the range of its beatspan to the range 0-1.
 
@@ -26,7 +27,7 @@ class QEventProxy(abjad.AbjadObject):
     Not composer-safe.
 
     Used internally by ``Quantizer``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -66,11 +67,12 @@ class QEventProxy(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a q-event proxy with offset and q-event
+        """
+        Is true when `argument` is a q-event proxy with offset and q-event
         equal to those of this q-event proxy. Otherwise false.
 
         Returns true or false.
-        '''
+        """
         if type(self) == type(argument):
             if self.offset == argument.offset:
                 if self.q_event == argument.q_event:
@@ -78,24 +80,26 @@ class QEventProxy(abjad.AbjadObject):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Formats q-event.
+        """
+        Formats q-event.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
-        r'''Hashes q-event proxy.
+        """
+        Hashes q-event proxy.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(QEventProxy, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -115,18 +119,21 @@ class QEventProxy(abjad.AbjadObject):
 
     @property
     def index(self):
-        r'''Index of q-event proxy.
-        '''
+        """
+        Index of q-event proxy.
+        """
         return self._q_event.index
 
     @property
     def offset(self):
-        r'''Offset of q-event proxy.
-        '''
+        """
+        Offset of q-event proxy.
+        """
         return self._offset
 
     @property
     def q_event(self):
-        r'''Q-event of q-event proxy.
-        '''
+        """
+        Q-event of q-event proxy.
+        """
         return self._q_event

@@ -3,14 +3,15 @@ import abjad
 
 
 class QEvent(abjad.AbjadObject):
-    r'''Abstract Q-event.
+    """
+    Abstract Q-event.
 
     Represents an attack point to be quantized.
 
     All ``QEvents`` possess a rational offset in milliseconds, and an optional
     index for disambiguating events which fall on the same offset in a
     ``QGrid``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -31,11 +32,12 @@ class QEvent(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __lt__(self, argument):
-        r'''Is true when `epxr` is a q-event with offset greater than that of this
+        """
+        Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
 
         Returns true or false.
-        '''
+        """
         if type(self) == type(self):
             if self.offset < argument.offset:
                 return True
@@ -59,12 +61,14 @@ class QEvent(abjad.AbjadObject):
 
     @property
     def index(self):
-        r'''The optional index, for sorting QEvents with identical offsets.
-        '''
+        """
+        The optional index, for sorting QEvents with identical offsets.
+        """
         return self._index
 
     @property
     def offset(self):
-        r'''The offset in milliseconds of the event.
-        '''
+        """
+        The offset in milliseconds of the event.
+        """
         return self._offset

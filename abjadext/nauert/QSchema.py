@@ -5,7 +5,8 @@ import copy
 
 
 class QSchema(abjad.AbjadObject):
-    r'''Abstract Q-schema.
+    """
+    Abstract Q-schema.
 
     ``QSchema`` allows for the specification of quantization settings
     diachronically, at any time-step of the quantization process.
@@ -21,7 +22,7 @@ class QSchema(abjad.AbjadObject):
     all of their parameters.
 
     `QSchema` is abstract.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -64,8 +65,9 @@ class QSchema(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, duration):
-        r'''Calls QSchema on `duration`.
-        '''
+        """
+        Calls QSchema on `duration`.
+        """
         import abjad
         target_items = []
         idx, current_offset = 0, 0
@@ -80,20 +82,22 @@ class QSchema(abjad.AbjadObject):
         return self.target_class(target_items)
 
     def __format__(self, format_specification=''):
-        r'''Formats q-event.
+        """
+        Formats q-event.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
-        '''
+        """
+        Gets item or slice identified by `argument`.
+        """
         assert isinstance(argument, int) and 0 <= argument
         result = {}
         for field in self._lookups:
@@ -128,36 +132,42 @@ class QSchema(abjad.AbjadObject):
 
     @abc.abstractproperty
     def item_class(self):
-        r'''The schema's item class.
-        '''
+        """
+        The schema's item class.
+        """
         raise NotImplementedError
 
     @property
     def items(self):
-        r'''The item dictionary.
-        '''
+        """
+        The item dictionary.
+        """
         return self._items
 
     @property
     def search_tree(self):
-        r'''The default search tree.
-        '''
+        """
+        The default search tree.
+        """
         return self._search_tree
 
     @abc.abstractproperty
     def target_class(self):
-        r'''The schema's target class.
-        '''
+        """
+        The schema's target class.
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def target_item_class(self):
-        r'''The schema's target class' item class.
-        '''
+        """
+        The schema's target class' item class.
+        """
         raise NotImplementedError
 
     @property
     def tempo(self):
-        r'''The default tempo.
-        '''
+        """
+        The default tempo.
+        """
         return self._tempo

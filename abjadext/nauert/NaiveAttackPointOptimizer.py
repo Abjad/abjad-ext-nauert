@@ -1,16 +1,17 @@
-from abjadext.nauert.AttackPointOptimizer \
-    import AttackPointOptimizer
+import abjad
+from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
-    r'''Naive attack-point optimizer.
+    """
+    Naive attack-point optimizer.
 
     Optimizes attack points by fusing tie leaves within logical ties with leaf
     durations decreasing monotonically.
 
     Logical ties will be partitioned into sub-logical-ties if leaves are found
     with metronome marks attached.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -19,11 +20,11 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls naive attack-point optimizer.
+        """
+        Calls naive attack-point optimizer.
 
         Returns none.
-        '''
-        import abjad
+        """
         for logical_tie in abjad.iterate(argument).logical_ties(
             grace_notes=False,
             reverse=True,

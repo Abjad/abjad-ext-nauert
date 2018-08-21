@@ -3,7 +3,8 @@ from abjadext.nauert.QGridLeaf import QGridLeaf
 
 
 class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
-    r'''Q-grid container.
+    """
+    Q-grid container.
 
     ..  container:: example
 
@@ -15,15 +16,15 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
             )
 
     Used internally by ``QGrid``.
-    '''
+    """
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def leaves(self):
-        '''
+        """
         Get leaves.
-        '''
+        """
         return tuple(
             _ for _ in self.depth_first()
             if isinstance(_, QGridLeaf)

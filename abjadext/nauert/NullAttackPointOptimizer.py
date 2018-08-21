@@ -1,12 +1,12 @@
-from abjadext.nauert.AttackPointOptimizer \
-    import AttackPointOptimizer
+from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
 
 
 class NullAttackPointOptimizer(AttackPointOptimizer):
-    r'''Null attack-point optimizer.
+    """
+    Null attack-point optimizer.
 
     Performs no attack point optimization.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -15,6 +15,7 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls null attack-point optimizer.
-        '''
+        """
+        Calls null attack-point optimizer.
+        """
         pass

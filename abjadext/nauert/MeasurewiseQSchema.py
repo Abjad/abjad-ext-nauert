@@ -3,7 +3,8 @@ from abjadext.nauert.QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
-    r'''Measurewise q-schema.
+    r"""
+    Measurewise q-schema.
 
     Treats measures as its timestep unit.
 
@@ -192,7 +193,7 @@ class MeasurewiseQSchema(QSchema):
         ...     (6, {'time_signature': abjad.TimeSignature((5, 8))}),
         ...     )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -250,43 +251,48 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def item_class(self):
-        r'''Item class of measurewise q-schema.
+        """
+        Item class of measurewise q-schema.
 
         Returns ``MeasurewiseQSchemaItem``.
-        '''
+        """
         import abjadext.nauert
         return abjadext.nauert.MeasurewiseQSchemaItem
 
     @property
     def target_class(self):
-        r'''Target class of measurewise q-schema.
+        """
+        Target class of measurewise q-schema.
 
         Returns ``MeasurewiseQTarget``.
-        '''
+        """
         import abjadext.nauert
         return abjadext.nauert.MeasurewiseQTarget
 
     @property
     def target_item_class(self):
-        r'''Target item class of measurewise q-schema.
+        """
+        Target item class of measurewise q-schema.
 
         Returns ``QTargetMeasure``.
-        '''
+        """
         import abjadext.nauert
         return abjadext.nauert.QTargetMeasure
 
     @property
     def time_signature(self):
-        r'''Default time signature of measurewise q-schema.
+        """
+        Default time signature of measurewise q-schema.
 
         Returns time signature.
-        '''
+        """
         return self._time_signature
 
     @property
     def use_full_measure(self):
-        r'''The full-measure-as-beatspan default.
+        """
+        The full-measure-as-beatspan default.
 
         Returns true or false.
-        '''
+        """
         return self._use_full_measure

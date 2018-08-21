@@ -2,7 +2,8 @@ import abjad
 
 
 class QTargetMeasure(abjad.AbjadObject):
-    r'''Q-target measure.
+    """
+    Q-target measure.
 
     Represents a single measure in a measurewise quantization target.
 
@@ -65,7 +66,7 @@ class QTargetMeasure(abjad.AbjadObject):
     Not composer-safe.
 
     Used internally by ``Quantizer``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -143,13 +144,14 @@ class QTargetMeasure(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats q-event.
+        """
+        Formats q-event.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
@@ -158,7 +160,8 @@ class QTargetMeasure(abjad.AbjadObject):
 
     @property
     def beats(self):
-        r'''Gets the tuple of ``QTargetBeats`` contained by the
+        """
+        Gets the tuple of ``QTargetBeats`` contained by the
         ``QTargetMeasure``.
 
         ..  container:: example
@@ -227,12 +230,13 @@ class QTargetMeasure(abjad.AbjadObject):
                 )
 
         Returns tuple.
-        '''
+        """
         return self._beats
 
     @property
     def duration_in_ms(self):
-        r'''The duration in milliseconds of the ``QTargetMeasure``:
+        """
+        The duration in milliseconds of the ``QTargetMeasure``:
 
         ..  container:: example
 
@@ -251,13 +255,14 @@ class QTargetMeasure(abjad.AbjadObject):
             Duration(4000, 1)
 
         Returns duration.
-        '''
+        """
         return self.tempo.duration_to_milliseconds(
             self.time_signature.duration)
 
     @property
     def offset_in_ms(self):
-        r'''The offset in milliseconds of the ``QTargetMeasure``:
+        """
+        The offset in milliseconds of the ``QTargetMeasure``:
 
         ..  container:: example
 
@@ -276,12 +281,13 @@ class QTargetMeasure(abjad.AbjadObject):
             Offset(1000, 1)
 
         Returns offset.
-        '''
+        """
         return self._offset_in_ms
 
     @property
     def search_tree(self):
-        r'''The search tree of the ``QTargetMeasure``:
+        """
+        The search tree of the ``QTargetMeasure``:
 
         ..  container:: example
 
@@ -300,12 +306,13 @@ class QTargetMeasure(abjad.AbjadObject):
             UnweightedSearchTree(definition={2: None})
 
         Returns search tree.
-        '''
+        """
         return self._search_tree
 
     @property
     def tempo(self):
-        r'''The tempo of the ``QTargetMeasure``:
+        """
+        The tempo of the ``QTargetMeasure``:
 
         ..  container:: example
 
@@ -324,12 +331,13 @@ class QTargetMeasure(abjad.AbjadObject):
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
 
         Returns metronome mark.
-        '''
+        """
         return self._tempo
 
     @property
     def time_signature(self):
-        r'''The time signature of the ``QTargetMeasure``:
+        """
+        The time signature of the ``QTargetMeasure``:
 
         ..  container:: example
 
@@ -348,12 +356,13 @@ class QTargetMeasure(abjad.AbjadObject):
             TimeSignature((4, 4))
 
         Returns time signature.
-        '''
+        """
         return self._time_signature
 
     @property
     def use_full_measure(self):
-        r'''The ``use_full_measure`` flag of the ``QTargetMeasure``:
+        """
+        The ``use_full_measure`` flag of the ``QTargetMeasure``:
 
         ..  container:: example
 
@@ -372,5 +381,5 @@ class QTargetMeasure(abjad.AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         return self._use_full_measure

@@ -4,12 +4,13 @@ from abjadext.nauert.QTarget import QTarget
 
 
 class BeatwiseQTarget(QTarget):
-    r'''Beatwise q-target.
+    """
+    Beatwise q-target.
 
     Not composer-safe.
 
     Used internally by ``Quantizer``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -63,13 +64,15 @@ class BeatwiseQTarget(QTarget):
 
     @property
     def beats(self):
-        r'''Beats of beatwise q-target.
-        '''
+        """
+        Beats of beatwise q-target.
+        """
         return tuple(self.items)
 
     @property
     def item_class(self):
-        r'''Item class of beatwise q-target.
-        '''
+        """
+        Item class of beatwise q-target.
+        """
         import abjadext
         return abjadext.nauert.QTargetBeat

@@ -3,11 +3,12 @@ import abjad
 
 
 class JobHandler(abjad.AbjadObject):
-    r'''Abstact job-handler.
+    """
+    Abstact job-handler.
 
     ``JobHandlers`` control how ``QuantizationJob`` instances are
     processed by the ``Quantizer``, either serially or in parallel.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -22,6 +23,7 @@ class JobHandler(abjad.AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, jobs):
-        r'''Calls job handler.
-        '''
+        """
+        Calls job handler.
+        """
         raise NotImplementedError

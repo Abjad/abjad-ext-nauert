@@ -2,7 +2,8 @@ from abjadext.nauert.QSchemaItem import QSchemaItem
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
-    '''Beatwise q-schema item.
+    """
+    Beatwise q-schema item.
 
     Represents a change of state in the timeline of an unmetered quantization
     process.
@@ -38,7 +39,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
             beatspan=abjad.Duration(1, 8),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -71,8 +72,9 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     @property
     def beatspan(self):
-        r'''The optionally defined beatspan duration.
+        """
+        The optionally defined beatspan duration.
 
         Returns duration or none.
-        '''
+        """
         return self._beatspan

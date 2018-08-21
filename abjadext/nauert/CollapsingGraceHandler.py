@@ -2,11 +2,12 @@ from abjadext.nauert.GraceHandler import GraceHandler
 
 
 class CollapsingGraceHandler(GraceHandler):
-    r'''Collapsing grace-handler.
+    """
+    Collapsing grace-handler.
 
     Collapses pitch information into a single chord rather than creating a
     grace container.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -15,8 +16,9 @@ class CollapsingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
-        r'''Calls collapsing grace handler.
-        '''
+        """
+        Calls collapsing grace handler.
+        """
         import abjadext.nauert
         pitches = []
         for q_event in q_events:

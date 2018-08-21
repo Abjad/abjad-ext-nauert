@@ -4,7 +4,8 @@ from abjadext.nauert.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):
-    r'''Beatwise q-schema.
+    r"""
+    Beatwise q-schema.
 
     Treats beats as timestep unit.
 
@@ -226,7 +227,7 @@ class BeatwiseQSchema(QSchema):
         ...     (4, {'search_tree': abjadext.nauert.UnweightedSearchTree({3: None})}),
         ...     )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -279,33 +280,37 @@ class BeatwiseQSchema(QSchema):
 
     @property
     def beatspan(self):
-        r'''Default beatspan of beatwise q-schema.
-        '''
+        """
+        Default beatspan of beatwise q-schema.
+        """
         return self._beatspan
 
     @property
     def item_class(self):
-        r'''The schema's item class.
+        """
+        The schema's item class.
 
         Returns beatwise q-schema item.
-        '''
+        """
         import abjadext.nauert
         return abjadext.nauert.BeatwiseQSchemaItem
 
     @property
     def target_class(self):
-        r'''Target class of beatwise q-schema.
+        """
+        Target class of beatwise q-schema.
 
         Returns beatwise q-target.
-        '''
+        """
         import abjadext.nauert
         return abjadext.nauert.BeatwiseQTarget
 
     @property
     def target_item_class(self):
-        r'''Target item class of beatwise q-schema.
+        """
+        Target item class of beatwise q-schema.
 
         Returns q-target beat.
-        '''
+        """
         import abjadext.nauert
         return abjadext.nauert.QTargetBeat

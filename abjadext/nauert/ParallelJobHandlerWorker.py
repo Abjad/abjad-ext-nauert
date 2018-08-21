@@ -3,14 +3,15 @@ import pickle
 
 
 class ParallelJobHandlerWorker(multiprocessing.Process):
-    r'''Parallel job-handler worker.
+    """
+    Parallel job-handler worker.
 
     Worker process which runs ``QuantizationJobs``.
 
     Not composer-safe.
 
     Used internally by ``ParallelJobHandler``.
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -24,10 +25,11 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
     ### PUBLIC METHODS ###
 
     def run(self):
-        r'''Runs parallel job handler worker.
+        """
+        Runs parallel job handler worker.
 
         Returns none.
-        '''
+        """
         while True:
             job = self.job_queue.get()
             if job is None:

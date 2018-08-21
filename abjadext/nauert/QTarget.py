@@ -4,7 +4,8 @@ import bisect
 
 
 class QTarget(abjad.AbjadObject):
-    r'''Abstract q-target.
+    """
+    Abstract q-target.
 
     ``QTarget`` is created by a concrete ``QSchema`` instance, and represents
     the mold into which the timepoints contained by a ``QSequence`` instance
@@ -13,7 +14,7 @@ class QTarget(abjad.AbjadObject):
     Not composer-safe.
 
     Used internally by the ``Quantizer``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -40,8 +41,9 @@ class QTarget(abjad.AbjadObject):
         attack_point_optimizer=None,
         attach_tempos=True
         ):
-        r'''Calls q-target.
-        '''
+        """
+        Calls q-target.
+        """
         import abjadext.nauert
 
         assert isinstance(q_event_sequence, abjadext.nauert.QEventSequence)

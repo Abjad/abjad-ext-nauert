@@ -2,7 +2,8 @@ from abjadext.nauert.Heuristic import Heuristic
 
 
 class DistanceHeuristic(Heuristic):
-    r'''Distance heuristic.
+    """
+    Distance heuristic.
 
     Considers only the computed distance of each ``QGrid`` and the number of
     leaves of that ``QGrid`` when choosing the optimal ``QGrid`` for a given
@@ -10,7 +11,7 @@ class DistanceHeuristic(Heuristic):
 
     The ``QGrid`` with the smallest distance and fewest number of
     leaves will be selected.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

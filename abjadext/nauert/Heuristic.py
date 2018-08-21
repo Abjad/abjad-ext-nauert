@@ -3,14 +3,15 @@ import abjad
 
 
 class Heuristic(abjad.AbjadObject):
-    r'''Abstract heuristic.
+    """
+    Abstract heuristic.
 
     Heuristics rank Q-grids according to the criteria they encapsulate.
 
     They provide the means by which the quantizer selects a single ``QGrid``
     from all computed ``QGrids`` for any given ``QTargetBeat`` to
     represent that beat.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -24,10 +25,11 @@ class Heuristic(abjad.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_target_beats):
-        r'''Calls heuristic.
+        """
+        Calls heuristic.
 
         Returns none.
-        '''
+        """
         import abjadext.nauert
         assert len(q_target_beats)
         assert all(isinstance(x, abjadext.nauert.QTargetBeat)
