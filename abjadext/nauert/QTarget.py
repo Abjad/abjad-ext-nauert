@@ -147,7 +147,7 @@ class QTarget(abjad.AbjadObject):
                     abjad.attach(tie, abjad.select(new_leaf))
                 abjad.mutate(leaf).replace(new_leaf)
             else:
-                previous_leaf = leaf._get_leaf(-1)
+                previous_leaf = leaf._leaf(-1)
                 if isinstance(previous_leaf, abjad.Rest):
                     new_leaf = type(previous_leaf)(
                         leaf.written_duration,
