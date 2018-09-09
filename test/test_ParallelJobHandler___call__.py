@@ -3,7 +3,7 @@ import pytest
 import abjadext.nauert
 
 
-class Job(abjad.system.AbjadObject):
+class Job(object):
 
     ### INITIALIZER ###
 
