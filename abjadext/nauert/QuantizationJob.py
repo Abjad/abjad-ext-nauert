@@ -1,7 +1,7 @@
 import abjad
 
 
-class QuantizationJob(abjad.AbjadObject):
+class QuantizationJob(object):
     r'''Quantization job.
 
     Copiable, picklable class for generating all ``QGrids`` which are valid
@@ -128,6 +128,12 @@ class QuantizationJob(abjad.AbjadObject):
                             return True
         return False
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return abjad.StorageFormatManager(self).get_storage_format()
+
     def __hash__(self):
         r'''Hashes quantization job.
 
@@ -136,6 +142,11 @@ class QuantizationJob(abjad.AbjadObject):
         Returns integer.
         '''
         return super(QuantizationJob, self).__hash__()
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return abjad.FormatSpecification(client=self)
 
     ### PUBLIC PROPERTIES ###
 

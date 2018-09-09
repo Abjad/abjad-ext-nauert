@@ -2,7 +2,7 @@ import abc
 import abjad
 
 
-class Heuristic(abjad.AbjadObject):
+class Heuristic(object):
     """
     Abstract heuristic.
 

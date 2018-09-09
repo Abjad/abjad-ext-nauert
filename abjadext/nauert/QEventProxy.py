@@ -1,7 +1,7 @@
 import abjad
 
 
-class QEventProxy(abjad.AbjadObject):
+class QEventProxy(object):
     """
     Q-event proxy.
 

@@ -3,7 +3,7 @@ import abjad
 import copy
 
 
-class SearchTree(abjad.AbjadObject):
+class SearchTree(object):
     r'''Abstract search tree.
 
     ``SearchTrees`` encapsulate strategies for generating collections of
@@ -57,6 +57,12 @@ class SearchTree(abjad.AbjadObject):
                 return True
         return False
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return abjad.StorageFormatManager(self).get_storage_format()
+
     def __hash__(self):
         r'''Hashes search tree.
 
@@ -65,6 +71,12 @@ class SearchTree(abjad.AbjadObject):
         Returns integer.
         '''
         return super(SearchTree, self).__hash__()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return abjad.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -109,6 +121,9 @@ class SearchTree(abjad.AbjadObject):
         combinations = enumerator.yield_outer_product()
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
+
+    def _get_format_specification(self):
+        return abjad.FormatSpecification(client=self)
 
     @abc.abstractmethod
     def _is_valid_definition(self, definition):

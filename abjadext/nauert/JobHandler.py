@@ -2,7 +2,7 @@ import abc
 import abjad
 
 
-class JobHandler(abjad.AbjadObject):
+class JobHandler(object):
     """
     Abstact job-handler.
 

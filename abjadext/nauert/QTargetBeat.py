@@ -1,7 +1,7 @@
 import abjad
 
 
-class QTargetBeat(abjad.AbjadObject):
+class QTargetBeat(object):
     """
     Q-target beat.
 

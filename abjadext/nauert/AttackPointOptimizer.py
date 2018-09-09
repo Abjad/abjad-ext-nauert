@@ -2,7 +2,7 @@ import abc
 import abjad
 
 
-class AttackPointOptimizer(abjad.AbjadObject):
+class AttackPointOptimizer(object):
     """
     Abstract attack-point optimizer.
 

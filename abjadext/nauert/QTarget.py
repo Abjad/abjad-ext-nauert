@@ -3,7 +3,7 @@ import abjad
 import bisect
 
 
-class QTarget(abjad.AbjadObject):
+class QTarget(object):
     """
     Abstract q-target.
 

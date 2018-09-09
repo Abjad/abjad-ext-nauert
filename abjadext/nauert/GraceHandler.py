@@ -2,7 +2,7 @@ import abc
 import abjad
 
 
-class GraceHandler(abjad.AbjadObject):
+class GraceHandler(object):
     """
     Abstract grace-handler.
 

@@ -1,7 +1,7 @@
 import abjad
 
 
-class QTargetMeasure(abjad.AbjadObject):
+class QTargetMeasure(object):
     """
     Q-target measure.
 

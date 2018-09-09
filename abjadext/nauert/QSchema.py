@@ -4,7 +4,7 @@ import bisect
 import copy
 
 
-class QSchema(abjad.AbjadObject):
+class QSchema(object):
     """
     Abstract Q-schema.
 

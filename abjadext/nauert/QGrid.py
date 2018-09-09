@@ -3,7 +3,7 @@ import bisect
 import copy
 
 
-class QGrid(abjad.AbjadObject):
+class QGrid(object):
     """
     Q-grid.
 
@@ -154,9 +154,7 @@ class QGrid(abjad.AbjadObject):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
+        return abjad.StorageFormatManager(self).get_storage_format()
 
     def __hash__(self):
         """
@@ -167,6 +165,17 @@ class QGrid(abjad.AbjadObject):
         Returns integer.
         """
         return super(QGrid, self).__hash__()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return abjad.FormatSpecification(client=self)
 
     ### PUBLIC METHODS ###
 

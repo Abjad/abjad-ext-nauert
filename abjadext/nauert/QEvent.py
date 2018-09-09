@@ -2,7 +2,7 @@ import abc
 import abjad
 
 
-class QEvent(abjad.AbjadObject):
+class QEvent(object):
     """
     Abstract Q-event.
 
@@ -31,6 +31,12 @@ class QEvent(abjad.AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return abjad.StorageFormatManager(self).get_storage_format()
+
     def __lt__(self, argument):
         """
         Is true when `epxr` is a q-event with offset greater than that of this
@@ -42,6 +48,12 @@ class QEvent(abjad.AbjadObject):
             if self.offset < argument.offset:
                 return True
         return False
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return abjad.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

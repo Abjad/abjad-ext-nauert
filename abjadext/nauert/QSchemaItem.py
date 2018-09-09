@@ -2,7 +2,7 @@ import abc
 import abjad
 
 
-class QSchemaItem(abjad.AbjadObject):
+class QSchemaItem(object):
     """
     Abstract q-schema item.
 

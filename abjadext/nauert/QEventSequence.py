@@ -6,7 +6,7 @@ import numbers
 from abjad import indicators as abjad_indicators
 
 
-class QEventSequence(abjad.AbjadObject):
+class QEventSequence(object):
     r"""
     Q-event sequence.
 
