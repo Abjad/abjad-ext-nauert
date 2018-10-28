@@ -142,10 +142,9 @@ class QTarget(object):
                     new_leaf.written_pitch = pitches[0]
                 if grace_container:
                     abjad.attach(grace_container, new_leaf)
-                tie = abjad.Tie()
-                if tie._attachment_test(new_leaf):
-                    abjad.attach(tie, abjad.select(new_leaf))
                 abjad.mutate(leaf).replace(new_leaf)
+                if not isinstance(new_leaf, abjad.Rest):
+                    abjad.annotate(new_leaf, 'tie_to_next', True)
             else:
                 previous_leaf = leaf._leaf(-1)
                 if isinstance(previous_leaf, abjad.Rest):
@@ -163,9 +162,11 @@ class QTarget(object):
                         leaf.written_duration,
                         )
                 abjad.mutate(leaf).replace(new_leaf)
-                tie = abjad.inspect(previous_leaf).spanner(abjad.Tie)
-                if tie is not None:
-                    tie._append(new_leaf)
+                inspection = abjad.inspect(previous_leaf)
+                if inspection.annotation('tie_to_next') is True:
+                    leaves = abjad.select([previous_leaf, new_leaf])
+                    abjad.tie(leaves)
+                    abjad.annotate(new_leaf, 'tie_to_next', True)
             if leaf._has_indicator(abjad.MetronomeMark):
                 tempo = leaf._get_indicator(abjad.MetronomeMark)
                 abjad.detach(abjad.MetronomeMark, leaf)
