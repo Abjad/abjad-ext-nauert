@@ -19,10 +19,8 @@ def test_QEventSequence_from_tempo_scaled_leaves_01():
     staff.append(abjad.Note(3, (1, 8)))
     staff.append(abjad.Chord([0, 1, 4], (1, 4)))
 
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[3:5])
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[5:7])
+    abjad.tie(staff[3:5])
+    abjad.tie(staff[5:7])
 
     tempo = abjad.MetronomeMark((1, 4), 55)
 
@@ -88,10 +86,8 @@ def test_QEventSequence_from_tempo_scaled_leaves_02():
     staff.append(abjad.Note(3, (1, 8)))
     staff.append(abjad.Chord([0, 1, 4], (1, 4)))
 
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[3:5])
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[5:7])
+    abjad.tie(staff[3:5])
+    abjad.tie(staff[5:7])
 
     tempo = abjad.MetronomeMark((1, 4), 58)
     abjad.attach(tempo, staff[0], context='Staff')
