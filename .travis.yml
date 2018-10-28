@@ -25,11 +25,11 @@ before_install:
 ###                     so abjad-book mypy tests fail on Travis.
 ###- pip install --no-deps --target /tmp/typehints abjad-ext-tonality>=3.0.0a0
 - export MYPYPATH=/tmp/typehints
-    # clone & install tonality (gets most recent code):
-    - TONALITY=/tmp/abjad-ext-tonality
-    - git clone https://github.com/Abjad/abjad-ext-tonality.git $TONALITY
-    - pip install -e $TONALITY
-    - export MYPYPATH=$MYPYPATH:$TONALITY
+# clone & install tonality (gets most recent code):
+- TONALITY=/tmp/abjad-ext-tonality
+- git clone https://github.com/Abjad/abjad-ext-tonality.git $TONALITY
+- pip install -e $TONALITY
+- export MYPYPATH=$MYPYPATH:$TONALITY
 
 install:
 - pip install -e .[test]
