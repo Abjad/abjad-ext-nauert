@@ -170,7 +170,7 @@ class QGrid(object):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return abjad.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
