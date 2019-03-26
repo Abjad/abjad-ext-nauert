@@ -32,8 +32,9 @@ if __name__ == "__main__":
                 "black",
                 "flake8",
                 "isort",
-                "pytest >= 3.5.0",
-                "pytest-cov",
+                "mypy >= 0.660",
+                "pytest >= 4.1.0",
+                "pytest-cov >= 2.6.0",
                 "pytest-helpers-namespace",
             ]
         },
