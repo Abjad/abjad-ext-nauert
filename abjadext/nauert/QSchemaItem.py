@@ -1,8 +1,9 @@
 import abc
+
 import abjad
 
 
-class QSchemaItem(object):
+class QSchemaItem:
     """
     Abstract q-schema item.
 
@@ -11,20 +12,14 @@ class QSchemaItem(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_search_tree',
-        '_tempo',
-        )
+    __slots__ = ("_search_tree", "_tempo")
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(
-        self,
-        search_tree=None,
-        tempo=None,
-        ):
+    def __init__(self, search_tree=None, tempo=None):
         import abjadext.nauert
+
         if search_tree is not None:
             assert isinstance(search_tree, abjadext.nauert.SearchTree)
         self._search_tree = search_tree
@@ -36,7 +31,7 @@ class QSchemaItem(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats q schema item.
 
@@ -45,7 +40,7 @@ class QSchemaItem(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 

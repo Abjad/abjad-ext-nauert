@@ -1,6 +1,7 @@
+from abjadext.nauert.QSchemaItem import QSchemaItem
+
 import abjad
 from abjad import indicators as abjad_indicators
-from abjadext.nauert.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
@@ -50,25 +51,14 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_time_signature',
-        '_use_full_measure',
-        )
+    __slots__ = ("_time_signature", "_use_full_measure")
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        search_tree=None,
-        tempo=None,
-        time_signature=None,
-        use_full_measure=None
-        ):
-        QSchemaItem.__init__(
-            self,
-            search_tree=search_tree,
-            tempo=tempo,
-            )
+        self, search_tree=None, tempo=None, time_signature=None, use_full_measure=None
+    ):
+        QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if time_signature is not None:
             time_signature = abjad_indicators.TimeSignature(time_signature)
         self._time_signature = time_signature
@@ -94,16 +84,16 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def time_signature(self):
-        r'''The optionally defined TimeSignature.
+        r"""The optionally defined TimeSignature.
 
         Returns time signature or none
-        '''
+        """
         return self._time_signature
 
     @property
     def use_full_measure(self):
-        r'''If True, use the full measure as the beatspan.
+        r"""If True, use the full measure as the beatspan.
 
         Returns boolean or none.
-        '''
+        """
         return self._use_full_measure

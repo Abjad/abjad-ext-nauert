@@ -1,9 +1,10 @@
-import abjad
 import bisect
 import copy
 
+import abjad
 
-class QGrid(object):
+
+class QGrid:
     """
     Q-grid.
 
@@ -74,10 +75,7 @@ class QGrid(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_next_downbeat',
-        '_root_node',
-        )
+    __slots__ = ("_next_downbeat", "_root_node")
 
     _publish_storage_format = True
 
@@ -86,13 +84,14 @@ class QGrid(object):
     def __init__(self, root_node=None, next_downbeat=None):
         import abjad
         import abjadext.nauert
+
         if root_node is None:
             root_node = abjadext.nauert.QGridLeaf(preprolated_duration=1)
-        assert isinstance(root_node,
-            (abjadext.nauert.QGridLeaf, abjadext.nauert.QGridContainer))
+        assert isinstance(
+            root_node, (abjadext.nauert.QGridLeaf, abjadext.nauert.QGridContainer)
+        )
         if next_downbeat is None:
-            next_downbeat = abjadext.nauert.QGridLeaf(
-                preprolated_duration=1)
+            next_downbeat = abjadext.nauert.QGridLeaf(preprolated_duration=1)
         assert isinstance(next_downbeat, abjadext.nauert.QGridLeaf)
         self._root_node = root_node
         self._next_downbeat = next_downbeat
@@ -115,11 +114,12 @@ class QGrid(object):
                 result_leaves.append(x)
         for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):
             if q_grid_leaf.q_event_proxies:
-                q_events = [q_event_proxy.q_event
-                    for q_event_proxy in q_grid_leaf.q_event_proxies]
-                q_events.sort(
-                    key=lambda x: 0 if x.index is None else x.index)
-                annotation = {'q_events': tuple(q_events)}
+                q_events = [
+                    q_event_proxy.q_event
+                    for q_event_proxy in q_grid_leaf.q_event_proxies
+                ]
+                q_events.sort(key=lambda x: 0 if x.index is None else x.index)
+                annotation = {"q_events": tuple(q_events)}
                 abjad.attach(annotation, result_leaf)
         return result
 
@@ -145,7 +145,7 @@ class QGrid(object):
                     return True
         return False
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats q-event.
 
@@ -180,14 +180,14 @@ class QGrid(object):
     ### PUBLIC METHODS ###
 
     def fit_q_events(self, q_event_proxies):
-        r'''Fit each ``QEventProxy`` in ``q_event_proxies`` onto
+        r"""Fit each ``QEventProxy`` in ``q_event_proxies`` onto
         the contained ``QGridLeaf`` whose offset is nearest.
 
         Returns None
-        '''
+        """
         import abjadext.nauert
-        assert all(isinstance(x, abjadext.nauert.QEventProxy)
-            for x in q_event_proxies)
+
+        assert all(isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies)
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
             idx = bisect.bisect_left(offsets, q_event_proxy.offset)
@@ -203,28 +203,30 @@ class QGrid(object):
                     leaves[idx - 1].q_event_proxies.append(q_event_proxy)
 
     def sort_q_events_by_index(self):
-        r'''Sort ``QEventProxies`` attached to each ``QGridLeaf`` in a
+        r"""Sort ``QEventProxies`` attached to each ``QGridLeaf`` in a
         ``QGrid`` by their index.
 
         Returns None.
-        '''
+        """
         for leaf in self.leaves:
             leaf.q_event_proxies.sort(key=lambda x: x.index)
 
     def subdivide_leaf(self, leaf, subdivisions):
-        r'''Replace the ``QGridLeaf`` ``leaf`` contained in a ``QGrid``
+        r"""Replace the ``QGridLeaf`` ``leaf`` contained in a ``QGrid``
         by a ``QGridContainer`` containing ``QGridLeaves`` with durations
         equal to the ratio described in ``subdivisions``
 
         Returns the ``QEventProxies`` attached to ``leaf``.
-        '''
+        """
         import abjadext.nauert
+
         container = abjadext.nauert.QGridContainer(
             preprolated_duration=leaf.preprolated_duration,
             children=[
                 abjadext.nauert.QGridLeaf(preprolated_duration=subdivision)
                 for subdivision in subdivisions
-                ])
+            ],
+        )
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)
             leaf.parent[index] = container
@@ -234,15 +236,16 @@ class QGrid(object):
         return leaf.q_event_proxies
 
     def subdivide_leaves(self, pairs):
-        r'''Given a sequence of leaf-index:subdivision-ratio pairs ``pairs``,
+        r"""Given a sequence of leaf-index:subdivision-ratio pairs ``pairs``,
         subdivide the ``QGridLeaves`` described by the indices into
         ``QGridContainers`` containing ``QGridLeaves`` with durations
         equal to their respective subdivision-ratios.
 
         Returns the ``QEventProxies`` attached to thus subdivided
         ``QGridLeaf``.
-        '''
+        """
         import abjad
+
         pairs = sorted(dict(pairs).items())
         leaf_indices = [pair[0] for pair in pairs]
         subdivisions = [pair[1] for pair in pairs]
@@ -271,12 +274,12 @@ class QGrid(object):
 
     @property
     def distance(self):
-        r'''The computed total distance of the offset of each ``QEventProxy``
+        r"""The computed total distance of the offset of each ``QEventProxy``
         contained by the ``QGrid`` to the offset of the ``QGridLeaf`` to
         which the ``QEventProxy`` is attached.
 
         Return ``Duration`` instance.
-        '''
+        """
         count = 0
         absolute_distance = 0
         for leaf, offset in zip(self.leaves, self.offsets):
@@ -289,55 +292,56 @@ class QGrid(object):
 
     @property
     def leaves(self):
-        r'''All of the leaf nodes in the QGrid, including the next
+        r"""All of the leaf nodes in the QGrid, including the next
         downbeat's node.
 
         Returns tuple of ``QGridLeaf`` instances.
-        '''
+        """
         import abjadext.nauert
+
         if isinstance(self._root_node, abjadext.nauert.QGridLeaf):
             return (self._root_node, self._next_downbeat)
         return self._root_node.leaves + (self._next_downbeat,)
 
     @property
     def next_downbeat(self):
-        r'''The node representing the "next" downbeat after the contents
+        r"""The node representing the "next" downbeat after the contents
         of the QGrid's tree.
 
         Return ``QGridLeaf`` instance.
-        '''
+        """
         return self._next_downbeat
 
     @property
     def offsets(self):
-        r'''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.
+        r"""The offsets between 0 and 1 of all of the leaf nodes in the QGrid.
 
         Returns tuple of ``Offset`` instances.
-        '''
+        """
         import abjad
-        return tuple([x.start_offset
-            for x in self.leaves[:-1]] + [abjad.Offset(1)])
+
+        return tuple([x.start_offset for x in self.leaves[:-1]] + [abjad.Offset(1)])
 
     @property
     def pretty_rtm_format(self):
-        r'''The pretty RTM-format of the root node of the ``QGrid``.
+        r"""The pretty RTM-format of the root node of the ``QGrid``.
 
         Returns string.
-        '''
+        """
         return self._root_node.pretty_rtm_format
 
     @property
     def root_node(self):
-        r'''The root node of the ``QGrid``.
+        r"""The root node of the ``QGrid``.
 
         Return ``QGridLeaf`` or ``QGridContainer``.
-        '''
+        """
         return self._root_node
 
     @property
     def rtm_format(self):
-        r'''The RTM format of the root node of the ``QGrid``.
+        r"""The RTM format of the root node of the ``QGrid``.
 
         Returns string.
-        '''
+        """
         return self._root_node.rtm_format

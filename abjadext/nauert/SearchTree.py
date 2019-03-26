@@ -1,10 +1,11 @@
 import abc
-import abjad
 import copy
 
+import abjad
 
-class SearchTree(object):
-    r'''Abstract search tree.
+
+class SearchTree:
+    r"""Abstract search tree.
 
     ``SearchTrees`` encapsulate strategies for generating collections of
     ``QGrids``, given a set of ``QEventProxy`` instances as input.
@@ -13,13 +14,11 @@ class SearchTree(object):
     subdivisions in the quantization output.  That is to say, they allow
     composers to specify what sorts of tuplets and ratios of pulses may be
     contained within other tuplets, to arbitrary levels of nesting.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_definition',
-        )
+    __slots__ = ("_definition",)
 
     ### INITIALIZER ###
 
@@ -33,9 +32,10 @@ class SearchTree(object):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
-        r'''Calls search tree.
-        '''
+        r"""Calls search tree.
+        """
         import abjadext.nauert
+
         assert isinstance(q_grid, abjadext.nauert.QGrid)
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)
@@ -47,29 +47,29 @@ class SearchTree(object):
         return new_q_grids
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a search tree with definition equal to that of
+        r"""Is true when `argument` is a search tree with definition equal to that of
         this search tree. Otherwise false.
 
         Returns true or false.
-        '''
+        """
         if type(self) == type(argument):
             if self.definition == argument.definition:
                 return True
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
         return abjad.StorageFormatManager(self).get_storage_format()
 
     def __hash__(self):
-        r'''Hashes search tree.
+        r"""Hashes search tree.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(SearchTree, self).__hash__()
 
     def __repr__(self) -> str:
@@ -93,15 +93,15 @@ class SearchTree(object):
             if leaf_one.is_divisible:
                 succeeding_proxies = leaf_one.succeeding_q_event_proxies
                 preceding_proxies = leaf_two.preceding_q_event_proxies
-                if not preceding_proxies and \
-                    all(proxy.offset == leaf_one.start_offset
-                        for proxy in succeeding_proxies):
+                if not preceding_proxies and all(
+                    proxy.offset == leaf_one.start_offset
+                    for proxy in succeeding_proxies
+                ):
                     pass  # proxies align perfectly with this leaf
 
                 elif preceding_proxies or succeeding_proxies:
                     parentage_ratios = leaf_one.parentage_ratios
-                    leaf_subdivisions = \
-                        self._find_leaf_subdivisions(parentage_ratios)
+                    leaf_subdivisions = self._find_leaf_subdivisions(parentage_ratios)
                     if leaf_subdivisions:
                         indices.append(i)
                         subdivisions.append(tuple(leaf_subdivisions))
@@ -113,8 +113,9 @@ class SearchTree(object):
         raise NotImplementedError
 
     def _generate_all_subdivision_commands(self, q_grid):
-        indices, subdivisions = \
-            self._find_divisible_leaf_indices_and_subdivisions(q_grid)
+        indices, subdivisions = self._find_divisible_leaf_indices_and_subdivisions(
+            q_grid
+        )
         if not indices:
             return ()
         enumerator = abjad.Enumerator(subdivisions)
@@ -133,16 +134,16 @@ class SearchTree(object):
 
     @abc.abstractproperty
     def default_definition(self):
-        r'''The default search tree definition.
+        r"""The default search tree definition.
 
         Returns dictionary.
-        '''
+        """
         raise NotImplementedError
 
     @property
     def definition(self):
-        r'''The search tree definition.
+        r"""The search tree definition.
 
         Returns dictionary.
-        '''
+        """
         return self._definition

@@ -1,9 +1,10 @@
-import abjad
 from abjadext.nauert.SearchTree import SearchTree
+
+import abjad
 
 
 class UnweightedSearchTree(SearchTree):
-    r'''Unweighted search tree based on Paul Nauert's model.
+    r"""Unweighted search tree based on Paul Nauert's model.
 
     ..  container:: example
 
@@ -96,7 +97,7 @@ class UnweightedSearchTree(SearchTree):
         (1 (1 1))
         (1 (1 1 1))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -123,9 +124,11 @@ class UnweightedSearchTree(SearchTree):
         def recurse(n):
             results = []
             for key in n:
-                if not isinstance(key, int) or \
-                    not 0 < key or \
-                    not abjad.mathtools.divisors(key) == [1, key]:
+                if (
+                    not isinstance(key, int)
+                    or not 0 < key
+                    or not abjad.mathtools.divisors(key) == [1, key]
+                ):
                     results.append(False)
                 elif not isinstance(n[key], (dict, type(None))):
                     results.append(False)
@@ -134,6 +137,7 @@ class UnweightedSearchTree(SearchTree):
                 else:
                     results.append(True)
             return results
+
         if not isinstance(definition, dict) or not len(definition):
             return False
         return all(recurse(definition))
@@ -142,7 +146,7 @@ class UnweightedSearchTree(SearchTree):
 
     @property
     def default_definition(self):
-        r'''The default search tree definition, based on the search tree given
+        r"""The default search tree definition, based on the search tree given
         by Paul Nauert:
 
         >>> import pprint
@@ -156,33 +160,17 @@ class UnweightedSearchTree(SearchTree):
             13: None}
 
         Returns dictionary.
-        '''
+        """
         return {
-            2: {                  # 1/2
-                2: {              # 1/4
-                    2: {          # 1/8
-                        2: None,  # 1/16
-                        },
-                    3: None,      # 1/12
-                    },
-                3: None,          # 1/6
-                5: None,          # 1/10
-                7: None,          # 1/14
-                },
-            3: {                  # 1/3
-                2: {              # 1/6
-                    2: None,      # 1/12
-                    },
-                3: None,          # 1/9
-                5: None,          # 1/15
-                },
-            5: {                  # 1/5
-                2: None,          # 1/10
-                3: None,          # 1/15
-                },
-            7: {                  # 1/7
-                2: None,          # 1/14
-                },
-            11: None,             # 1/11
-            13: None,             # 1/13
-            }
+            2: {  # 1/2
+                2: {2: {2: None}, 3: None},  # 1/4  # 1/8  # 1/16  # 1/12
+                3: None,  # 1/6
+                5: None,  # 1/10
+                7: None,  # 1/14
+            },
+            3: {2: {2: None}, 3: None, 5: None},  # 1/3  # 1/6  # 1/12  # 1/9  # 1/15
+            5: {2: None, 3: None},  # 1/5  # 1/10  # 1/15
+            7: {2: None},  # 1/7  # 1/14
+            11: None,  # 1/11
+            13: None,  # 1/13
+        }

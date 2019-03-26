@@ -1,5 +1,6 @@
-import abjad
 from abjadext.nauert.QGridLeaf import QGridLeaf
+
+import abjad
 
 
 class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
@@ -25,19 +26,18 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
         """
         Get leaves.
         """
-        return tuple(
-            _ for _ in self.depth_first()
-            if isinstance(_, QGridLeaf)
-            )
+        return tuple(_ for _ in self.depth_first() if isinstance(_, QGridLeaf))
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _leaf_class(self):
         import abjadext.nauert
+
         return abjadext.nauert.QGridLeaf
 
     @property
     def _node_class(self):
         import abjadext.nauert
+
         return (type(self), abjadext.nauert.QGridLeaf)

@@ -1,8 +1,7 @@
 import abc
-import abjad
 
 
-class GraceHandler(object):
+class GraceHandler:
     """
     Abstract grace-handler.
 

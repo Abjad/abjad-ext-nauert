@@ -43,26 +43,16 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_beatspan',
-        )
+    __slots__ = ("_beatspan",)
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        beatspan=None,
-        search_tree=None,
-        tempo=None,
-        ):
+    def __init__(self, beatspan=None, search_tree=None, tempo=None):
         import abjad
-        QSchemaItem.__init__(
-            self,
-            search_tree=search_tree,
-            tempo=tempo,
-            )
+
+        QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
             beatspan = abjad.Duration(beatspan)
             assert 0 < beatspan

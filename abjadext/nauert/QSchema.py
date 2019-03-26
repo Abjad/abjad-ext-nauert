@@ -1,10 +1,11 @@
 import abc
-import abjad
 import bisect
 import copy
 
+import abjad
 
-class QSchema(object):
+
+class QSchema:
     """
     Abstract Q-schema.
 
@@ -26,10 +27,7 @@ class QSchema(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_items',
-        '_lookups',
-        )
+    __slots__ = ("_items", "_lookups")
 
     ### INITIALIZER ###
 
@@ -41,8 +39,7 @@ class QSchema(object):
             items = list(arguments[0].items())
             if abjad.mathtools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
-            assert abjad.mathtools.all_are_pairs_of_types(
-                items, int, self.item_class)
+            assert abjad.mathtools.all_are_pairs_of_types(items, int, self.item_class)
             items = dict(items)
         elif abjad.mathtools.all_are_pairs_of_types(arguments, int, self.item_class):
             items = dict(arguments)
@@ -69,19 +66,20 @@ class QSchema(object):
         Calls QSchema on `duration`.
         """
         import abjad
+
         target_items = []
         idx, current_offset = 0, 0
         duration = abjad.Duration(duration)
         while current_offset < duration:
             lookup = self[idx]
-            lookup['offset_in_ms'] = current_offset
+            lookup["offset_in_ms"] = current_offset
             target_item = self.target_item_class(**lookup)
             target_items.append(target_item)
             current_offset += target_item.duration_in_ms
             idx += 1
         return self.target_class(target_items)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats q-event.
 
@@ -90,7 +88,7 @@ class QSchema(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 

@@ -1,4 +1,5 @@
 import abjad
+
 from .AttackPointOptimizer import AttackPointOptimizer
 
 
@@ -66,7 +67,4 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         leaf = abjad.inspect(argument).leaf(0)
         time_signature = abjad.inspect(leaf).indicator(abjad.TimeSignature)
         assert time_signature is not None, repr(time_signature)
-        abjad.mutate(argument[:]).rewrite_meter(
-            time_signature,
-            boundary_depth=1,
-            )
+        abjad.mutate(argument[:]).rewrite_meter(time_signature, boundary_depth=1)

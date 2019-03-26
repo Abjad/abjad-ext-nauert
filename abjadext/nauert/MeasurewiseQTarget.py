@@ -1,6 +1,8 @@
-import abjad
 import copy
+
 from abjadext.nauert.QTarget import QTarget
+
+import abjad
 
 
 class MeasurewiseQTarget(QTarget):
@@ -19,11 +21,8 @@ class MeasurewiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(
-        self,
-        attach_tempos=True,
-        attack_point_optimizer=None,
-        grace_handler=None,
-        ):
+        self, attach_tempos=True, attack_point_optimizer=None, grace_handler=None
+    ):
         voice = abjad.Voice()
 
         # generate the first
@@ -49,19 +48,17 @@ class MeasurewiseQTarget(QTarget):
                 measure.extend(beat.q_grid(beat.beatspan))
             leaf = abjad.inspect(measure).leaf(0)
             abjad.attach(time_signature, leaf)
-            if ((q_target_measure_two.tempo != q_target_measure_one.tempo) and
-                attach_tempos):
+            if (
+                q_target_measure_two.tempo != q_target_measure_one.tempo
+            ) and attach_tempos:
                 tempo = copy.deepcopy(q_target_measure_two.tempo)
-                #abjad.attach(tempo, measure)
+                # abjad.attach(tempo, measure)
                 leaf = abjad.inspect(measure).leaf(0)
                 abjad.attach(tempo, leaf)
             voice.append(measure)
 
         # apply logical ties, pitches, grace containers
-        self._notate_leaves(
-            grace_handler=grace_handler,
-            voice=voice,
-            )
+        self._notate_leaves(grace_handler=grace_handler, voice=voice)
 
         # partition logical ties in each measure
         for measure in voice:
@@ -88,4 +85,5 @@ class MeasurewiseQTarget(QTarget):
         Returns q-target measure class.
         """
         import abjadext.nauert
+
         return abjadext.nauert.QTargetMeasure

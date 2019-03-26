@@ -1,10 +1,10 @@
-sudo: false
-
 language: python
-
+dist: xenial
+sudo: false
 python:
-- 3.6
+- "3.6"
 - "3.7-dev"
+- "3.8-dev"
 
 env:
   global:
@@ -16,27 +16,20 @@ before_install:
 - sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
 - export PATH=/home/travis/bin:$PATH
 - pip install -U pip
+- pip install -U pip
 - pip install -U https://github.com/Abjad/abjad/archive/master.zip
-- pip install -U https://github.com/josiah-wolf-oberholtzer/uqbar/archive/master.zip
 - pip install --no-deps --target /tmp/typehints https://github.com/Abjad/abjad/archive/master.zip
-- pip install --no-deps --target /tmp/typehints https://github.com/josiah-wolf-oberholtzer/uqbar/archive/master.zip
-### VERSIONING PROBLEM: tonality 3.0 is too old (references AbjadObject);
-###                     but tonality 3.1 doesn't yet exist;
-###                     so abjad-book mypy tests fail on Travis.
-###- pip install --no-deps --target /tmp/typehints abjad-ext-tonality>=3.0.0a0
+- pip install --no-deps --target /tmp/typehints uqbar
 - export MYPYPATH=/tmp/typehints
-# clone & install tonality (gets most recent code):
-- TONALITY=/tmp/abjad-ext-tonality
-- git clone https://github.com/Abjad/abjad-ext-tonality.git $TONALITY
-- pip install -e $TONALITY
-- export MYPYPATH=$MYPYPATH:$TONALITY
 
 install:
 - pip install -e .[test]
 
 script:
-- pytest
-- mypy abjadext/
+- make black-check
+- make flake8
+- make mypy
+- make pytest
 
 after_success:
 - pip install --quiet coveralls

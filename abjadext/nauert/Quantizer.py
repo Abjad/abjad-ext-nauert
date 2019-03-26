@@ -1,8 +1,5 @@
-import abjad
-
-
-class Quantizer(object):
-    r'''Quantizer.
+class Quantizer:
+    r"""Quantizer.
 
     ..  container:: example
 
@@ -236,7 +233,7 @@ class Quantizer(object):
     ``MeasurewiseQSchema`` for more information on controlling the
     ``Quantizer``'s output, and to the reference on ``SearchTree`` for
     information on controlling the rhythmic complexity of that same output.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -258,11 +255,11 @@ class Quantizer(object):
         job_handler=None,
         attack_point_optimizer=None,
         attach_tempos=True,
-        ):
-        r'''Calls quantizer.
+    ):
+        r"""Calls quantizer.
 
         Returns Abjad components.
-        '''
+        """
         import abjadext.nauert
 
         q_event_sequence = abjadext.nauert.QEventSequence(q_event_sequence)
@@ -280,6 +277,6 @@ class Quantizer(object):
             job_handler=job_handler,
             attack_point_optimizer=attack_point_optimizer,
             attach_tempos=attach_tempos,
-            )
+        )
 
         return notation

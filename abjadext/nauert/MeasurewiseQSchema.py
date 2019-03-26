@@ -1,5 +1,6 @@
-import abjad
 from abjadext.nauert.QSchema import QSchema
+
+import abjad
 
 
 class MeasurewiseQSchema(QSchema):
@@ -198,20 +199,20 @@ class MeasurewiseQSchema(QSchema):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_items',
-        '_lookups',
-        '_search_tree',
-        '_tempo',
-        '_time_signature',
-        '_use_full_measure',
-        )
+        "_items",
+        "_lookups",
+        "_search_tree",
+        "_tempo",
+        "_time_signature",
+        "_use_full_measure",
+    )
 
     _keyword_argument_names = (
-        'search_tree',
-        'tempo',
-        'time_signature',
-        'use_full_measure',
-        )
+        "search_tree",
+        "tempo",
+        "time_signature",
+        "use_full_measure",
+    )
 
     _publish_storage_format = True
 
@@ -219,18 +220,20 @@ class MeasurewiseQSchema(QSchema):
 
     def __init__(self, *arguments, **keywords):
         import abjadext.nauert
+
         search_tree = keywords.get(
-            'search_tree', abjadext.nauert.UnweightedSearchTree())
+            "search_tree", abjadext.nauert.UnweightedSearchTree()
+        )
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
         self._search_tree = search_tree
-        tempo = keywords.get('tempo', ((1, 4), 60))
+        tempo = keywords.get("tempo", ((1, 4), 60))
         if isinstance(tempo, tuple):
             tempo = abjad.MetronomeMark(*tempo)
         self._tempo = tempo
         self._time_signature = abjad.TimeSignature(
-            keywords.get('time_signature', (4, 4))
-            )
-        self._use_full_measure = bool(keywords.get('use_full_measure'))
+            keywords.get("time_signature", (4, 4))
+        )
+        self._use_full_measure = bool(keywords.get("use_full_measure"))
         QSchema.__init__(self, *arguments, **keywords)
 
     ### PRIVATE METHODS ###
@@ -240,12 +243,12 @@ class MeasurewiseQSchema(QSchema):
             client=self,
             storage_format_args_values=self.items or (),
             storage_format_kwargs_names=[
-                'search_tree',
-                'tempo',
-                'time_signature',
-                'use_full_measure',
-                ],
-            )
+                "search_tree",
+                "tempo",
+                "time_signature",
+                "use_full_measure",
+            ],
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -257,6 +260,7 @@ class MeasurewiseQSchema(QSchema):
         Returns ``MeasurewiseQSchemaItem``.
         """
         import abjadext.nauert
+
         return abjadext.nauert.MeasurewiseQSchemaItem
 
     @property
@@ -267,6 +271,7 @@ class MeasurewiseQSchema(QSchema):
         Returns ``MeasurewiseQTarget``.
         """
         import abjadext.nauert
+
         return abjadext.nauert.MeasurewiseQTarget
 
     @property
@@ -277,6 +282,7 @@ class MeasurewiseQSchema(QSchema):
         Returns ``QTargetMeasure``.
         """
         import abjadext.nauert
+
         return abjadext.nauert.QTargetMeasure
 
     @property

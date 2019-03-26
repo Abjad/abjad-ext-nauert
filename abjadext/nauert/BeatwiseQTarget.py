@@ -1,6 +1,8 @@
-import abjad
 import copy
+
 from abjadext.nauert.QTarget import QTarget
+
+import abjad
 
 
 class BeatwiseQTarget(QTarget):
@@ -19,11 +21,8 @@ class BeatwiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(
-        self,
-        attach_tempos=True,
-        attack_point_optimizer=None,
-        grace_handler=None,
-        ):
+        self, attach_tempos=True, attack_point_optimizer=None, grace_handler=None
+    ):
         voice = abjad.Voice()
         # generate the first
         beat = self.items[0]
@@ -50,10 +49,7 @@ class BeatwiseQTarget(QTarget):
             voice.extend(components)
 
         # apply logical ties, pitches, grace containers
-        self._notate_leaves(
-            grace_handler=grace_handler,
-            voice=voice,
-            )
+        self._notate_leaves(grace_handler=grace_handler, voice=voice)
 
         # partition logical ties in voice
         attack_point_optimizer(voice)
@@ -75,4 +71,5 @@ class BeatwiseQTarget(QTarget):
         Item class of beatwise q-target.
         """
         import abjadext
+
         return abjadext.nauert.QTargetBeat

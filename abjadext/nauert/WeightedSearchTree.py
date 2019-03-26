@@ -1,9 +1,10 @@
-import abjad
 from abjadext.nauert.SearchTree import SearchTree
+
+import abjad
 
 
 class WeightedSearchTree(SearchTree):
-    r'''Weighted search tree.
+    r"""Weighted search tree.
 
     ..  container:: example
 
@@ -50,15 +51,11 @@ class WeightedSearchTree(SearchTree):
         (2, 5)
         (1, 6)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_all_compositions',
-        '_compositions',
-        '_definition',
-        )
+    __slots__ = ("_all_compositions", "_compositions", "_definition")
 
     _publish_storage_format = True
 
@@ -75,62 +72,60 @@ class WeightedSearchTree(SearchTree):
     ### PRIVATE METHODS ###
 
     def _find_leaf_subdivisions(self, parentage_ratios):
-        if len(parentage_ratios[1:]) < self._definition['max_depth']:
+        if len(parentage_ratios[1:]) < self._definition["max_depth"]:
             return self._all_compositions
         return ()
 
     def _is_valid_definition(self, definition):
         if not isinstance(definition, dict):
             return False
-        elif 'divisors' not in definition:
+        elif "divisors" not in definition:
             return False
-        elif not len(definition['divisors']):
+        elif not len(definition["divisors"]):
             return False
-        elif not all(isinstance(x, int) and
-            1 < x for x in definition['divisors']):
+        elif not all(isinstance(x, int) and 1 < x for x in definition["divisors"]):
             return False
-        elif not all(abjad.mathtools.divisors(x) == [1, x]
-            for x in definition['divisors']):
+        elif not all(
+            abjad.mathtools.divisors(x) == [1, x] for x in definition["divisors"]
+        ):
             return False
-        elif 'max_depth' not in definition:
+        elif "max_depth" not in definition:
             return False
-        elif not isinstance(definition['max_depth'], int):
+        elif not isinstance(definition["max_depth"], int):
             return False
-        elif not 0 < definition['max_depth']:
+        elif not 0 < definition["max_depth"]:
             return False
-        elif 'max_divisions' not in definition:
+        elif "max_divisions" not in definition:
             return False
-        elif not isinstance(definition['max_divisions'], int):
+        elif not isinstance(definition["max_divisions"], int):
             return False
-        elif not 1 < definition['max_divisions']:
+        elif not 1 < definition["max_divisions"]:
             return False
         return True
 
     def _precompute_compositions(self):
         compositions = {}
-        max_divisions = self._definition['max_divisions']
-        for divisor in self._definition['divisors']:
-            compositions[divisor] = [tuple(x) for x in
-                abjad.mathtools.yield_all_compositions_of_integer(divisor)
-                if 1 < len(x) <= max_divisions]
+        max_divisions = self._definition["max_divisions"]
+        for divisor in self._definition["divisors"]:
+            compositions[divisor] = [
+                tuple(x)
+                for x in abjad.mathtools.yield_all_compositions_of_integer(divisor)
+                if 1 < len(x) <= max_divisions
+            ]
         return compositions
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def all_compositions(self):
-        r'''All compositions of weighted search tree.
-        '''
+        r"""All compositions of weighted search tree.
+        """
         return self._all_compositions
 
     @property
     def default_definition(self):
-        r'''Default definition of weighted search tree.
+        r"""Default definition of weighted search tree.
 
         Returns dictionary.
-        '''
-        return {
-            'divisors': (2, 3, 5, 7),
-            'max_depth': 3,
-            'max_divisions': 2,
-            }
+        """
+        return {"divisors": (2, 3, 5, 7), "max_depth": 3, "max_divisions": 2}

@@ -1,5 +1,6 @@
-import abjad
 from abjadext.nauert.GraceHandler import GraceHandler
+
+import abjad
 
 
 class ConcatenatingGraceHandler(GraceHandler):
@@ -15,14 +16,13 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_grace_duration',
-        )
+    __slots__ = ("_grace_duration",)
 
     ### INITIALIZER ###
 
     def __init__(self, grace_duration=None):
         import abjad
+
         if grace_duration is None:
             grace_duration = (1, 16)
         grace_duration = abjad.Duration(grace_duration)
@@ -49,11 +49,9 @@ class ConcatenatingGraceHandler(GraceHandler):
             for q_event in grace_events:
                 if isinstance(q_event, abjadext.nauert.PitchedQEvent):
                     if len(q_event.pitches) == 1:
-                        leaf = abjad.Note(
-                            q_event.pitches[0], self.grace_duration)
+                        leaf = abjad.Note(q_event.pitches[0], self.grace_duration)
                     else:
-                        leaf = abjad.Chord(
-                            q_event.pitches, self.grace_duration)
+                        leaf = abjad.Chord(q_event.pitches, self.grace_duration)
                 else:
                     leaf = abjad.Rest(self.grace_duration)
                 grace_container.append(leaf)

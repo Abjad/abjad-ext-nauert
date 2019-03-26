@@ -1,8 +1,7 @@
 import abc
-import abjad
 
 
-class JobHandler(object):
+class JobHandler:
     """
     Abstact job-handler.
 

@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 Extension for quantizing rhythm, based on Paul Nauert's Q-Grid technique.
 """
@@ -40,5 +41,3 @@ from .SilentQEvent import SilentQEvent
 from .TerminalQEvent import TerminalQEvent
 from .UnweightedSearchTree import UnweightedSearchTree
 from .WeightedSearchTree import WeightedSearchTree
-
-_documentation_section = 'core'
