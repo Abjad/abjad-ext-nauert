@@ -1,12 +1,13 @@
-import abjad
 import collections
 import copy
 import itertools
 import numbers
+
+import abjad
 from abjad import indicators as abjad_indicators
 
 
-class QEventSequence(object):
+class QEventSequence:
     r"""
     Q-event sequence.
 
@@ -60,9 +61,7 @@ class QEventSequence(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_sequence',
-        )
+    __slots__ = ("_sequence",)
 
     _publish_storage_format = True
 
@@ -71,18 +70,17 @@ class QEventSequence(object):
     def __init__(self, sequence=None):
         import abjad
         import abjadext.nauert
-        q_event_classes = (
-            abjadext.nauert.PitchedQEvent,
-            abjadext.nauert.SilentQEvent,
-            )
-        #sequence = sequence or []
+
+        q_event_classes = (abjadext.nauert.PitchedQEvent, abjadext.nauert.SilentQEvent)
+        # sequence = sequence or []
         if sequence is None:
             self._sequence = ()
             return
         else:
             assert 1 < len(sequence)
-            assert all(isinstance(q_event, q_event_classes)
-                for q_event in sequence[:-1])
+            assert all(
+                isinstance(q_event, q_event_classes) for q_event in sequence[:-1]
+            )
             assert isinstance(sequence[-1], abjadext.nauert.TerminalQEvent)
             offsets = [x.offset for x in sequence]
             offsets = abjad.sequence(offsets)
@@ -111,7 +109,7 @@ class QEventSequence(object):
                 return True
         return False
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats q-event sequence.
 
@@ -158,7 +156,7 @@ class QEventSequence(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -207,7 +205,7 @@ class QEventSequence(object):
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
-            )
+        )
 
     ### PUBLIC METHODS ###
 
@@ -254,12 +252,11 @@ class QEventSequence(object):
         """
         import abjad
         import abjadext.nauert
+
         if fuse_silences:
             durations = [
-                x for x in
-                abjad.sequence(milliseconds).sum_by_sign(sign=[-1])
-                if x
-                ]
+                x for x in abjad.sequence(milliseconds).sum_by_sign(sign=[-1]) if x
+            ]
         else:
             durations = milliseconds
         offsets = abjad.mathtools.cumulative_sums([abs(x) for x in durations])
@@ -273,8 +270,7 @@ class QEventSequence(object):
             else:
                 q_event = abjadext.nauert.PitchedQEvent(offset, [0])
             q_events.append(q_event)
-        q_events.append(abjadext.nauert.TerminalQEvent(
-            abjad.Offset(offsets[-1])))
+        q_events.append(abjadext.nauert.TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
     @classmethod
@@ -327,8 +323,8 @@ class QEventSequence(object):
         Returns ``QEventSequence`` instance.
         """
         import abjadext.nauert
-        q_events = [abjadext.nauert.PitchedQEvent(x, [0])
-            for x in offsets[:-1]]
+
+        q_events = [abjadext.nauert.PitchedQEvent(x, [0]) for x in offsets[:-1]]
         q_events.append(abjadext.nauert.TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
@@ -381,13 +377,15 @@ class QEventSequence(object):
         """
         import abjad
         import abjadext.nauert
+
         assert isinstance(pairs, collections.Iterable)
         assert all(isinstance(x, collections.Iterable) for x in pairs)
         assert all(len(x) == 2 for x in pairs)
         assert all(0 < x[0] for x in pairs)
         for pair in pairs:
-            assert isinstance(pair[1], (
-                numbers.Number, type(None), collections.Iterable))
+            assert isinstance(
+                pair[1], (numbers.Number, type(None), collections.Iterable)
+            )
             if isinstance(pair[1], collections.Iterable):
                 assert 0 < len(pair[1])
                 assert all(isinstance(x, numbers.Number) for x in pair[1])
@@ -414,8 +412,7 @@ class QEventSequence(object):
                 q_events.append(abjadext.nauert.SilentQEvent(offset))
             elif isinstance(pitches, numbers.Number):
                 q_events.append(abjadext.nauert.PitchedQEvent(offset, [pitches]))
-        q_events.append(abjadext.nauert.TerminalQEvent(
-            abjad.Offset(offsets[-1])))
+        q_events.append(abjadext.nauert.TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
     @classmethod
@@ -459,13 +456,10 @@ class QEventSequence(object):
         """
         import abjad
         import abjadext.nauert
+
         durations = [abjad.Duration(x) for x in durations]
         assert isinstance(tempo, abjad_indicators.MetronomeMark)
-        durations = [
-            x for x in
-            abjad.sequence(durations).sum_by_sign(sign=[-1])
-            if x
-            ]
+        durations = [x for x in abjad.sequence(durations).sum_by_sign(sign=[-1]) if x]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.mathtools.cumulative_sums([abs(_) for _ in durations])
         q_events = []
@@ -532,6 +526,7 @@ class QEventSequence(object):
         Return ``QEventSequence`` instance.
         """
         import abjad
+
         assert abjad.select(leaves).are_contiguous_logical_voice()
         assert len(leaves)
         if tempo is None:
@@ -546,13 +541,14 @@ class QEventSequence(object):
         # sort by silence and tied leaves
         groups = []
         for rvalue, rgroup in itertools.groupby(
-            leaves,
-            lambda x: isinstance(x, (abjad.Rest, abjad.Skip))):
+            leaves, lambda x: isinstance(x, (abjad.Rest, abjad.Skip))
+        ):
             if rvalue:
                 groups.append(list(rgroup))
             else:
                 for tvalue, tgroup in itertools.groupby(
-                    rgroup, lambda x: x._get_logical_tie()):
+                    rgroup, lambda x: x._get_logical_tie()
+                ):
                     groups.append(list(tgroup))
         # calculate lists of pitches and durations
         durations = []
@@ -561,13 +557,15 @@ class QEventSequence(object):
             # get millisecond cumulative duration
             if tempo is not None:
                 duration = sum(
-                    tempo.duration_to_milliseconds(x._get_duration())
-                    for x in group)
+                    tempo.duration_to_milliseconds(x._get_duration()) for x in group
+                )
             else:
-                duration = sum(x._get_effective(
-                    abjad.MetronomeMark).duration_to_milliseconds(
-                    x._get_duration())
-                    for x in group)
+                duration = sum(
+                    x._get_effective(abjad.MetronomeMark).duration_to_milliseconds(
+                        x._get_duration()
+                    )
+                    for x in group
+                )
             durations.append(duration)
             # get pitch of first leaf in group
             if isinstance(group[0], (abjad.Rest, abjad.Skip)):
@@ -579,8 +577,7 @@ class QEventSequence(object):
                 pitch = [x.written_pitch.number for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
-        return class_.from_millisecond_pitch_pairs(
-            tuple(zip(durations, pitches)))
+        return class_.from_millisecond_pitch_pairs(tuple(zip(durations, pitches)))
 
     ### PUBLIC PROPERTIES ###
 
@@ -600,6 +597,7 @@ class QEventSequence(object):
         Return ``Duration`` instance.
         """
         import abjad
+
         return abjad.Duration(self[-1].offset)
 
     @property

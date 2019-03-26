@@ -1,7 +1,7 @@
 import abjad
 
 
-class QEventProxy(object):
+class QEventProxy:
     """
     Q-event proxy.
 
@@ -31,10 +31,7 @@ class QEventProxy(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_offset',
-        '_q_event',
-        )
+    __slots__ = ("_offset", "_q_event")
 
     _publish_storage_format = True
 
@@ -43,14 +40,17 @@ class QEventProxy(object):
     def __init__(self, *arguments):
         import abjad
         import abjadext.nauert
+
         if len(arguments) == 2:
             q_event, offset = arguments[0], abjad.Offset(arguments[1])
             assert isinstance(q_event, abjadext.nauert.QEvent)
             assert 0 <= offset <= 1
         elif len(arguments) == 3:
-            q_event, minimum, maximum = arguments[0], \
-                abjad.Offset(arguments[1]), \
-                abjad.Offset(arguments[2])
+            q_event, minimum, maximum = (
+                arguments[0],
+                abjad.Offset(arguments[1]),
+                abjad.Offset(arguments[2]),
+            )
             assert isinstance(q_event, abjadext.nauert.QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
@@ -58,7 +58,7 @@ class QEventProxy(object):
             q_event = None
             offset = abjad.Offset(0)
         else:
-            message = 'can not initialize {}: {!r}.'
+            message = "can not initialize {}: {!r}."
             message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
         self._q_event = q_event
@@ -79,7 +79,7 @@ class QEventProxy(object):
                     return True
         return False
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats q-event.
 
@@ -88,7 +88,7 @@ class QEventProxy(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -110,10 +110,7 @@ class QEventProxy(object):
             values.append(self.q_event)
         if self.offset:
             values.append(self.offset)
-        return abjad.FormatSpecification(
-            client=self,
-            storage_format_args_values=values,
-            )
+        return abjad.FormatSpecification(client=self, storage_format_args_values=values)
 
     ### PUBLIC PROPERTIES ###
 

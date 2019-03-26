@@ -1,8 +1,9 @@
 import abc
+
 import abjad
 
 
-class QEvent(object):
+class QEvent:
     """
     Abstract Q-event.
 
@@ -15,23 +16,21 @@ class QEvent(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_index',
-        '_offset',
-        )
+    __slots__ = ("_index", "_offset")
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self, offset=0, index=None):
         import abjad
+
         offset = abjad.Offset(offset)
         self._offset = offset
         self._index = index
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
@@ -60,14 +59,12 @@ class QEvent(object):
     def _get_format_specification(self):
         agent = abjad.StorageFormatManager(self)
         names = agent.signature_keyword_names
-        for name in ('attachments',):
+        for name in ("attachments",):
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
         return abjad.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_kwargs_names=names,
-            )
+            client=self, repr_is_indented=False, storage_format_kwargs_names=names
+        )
 
     ### PUBLIC PROPERTIES ###
 

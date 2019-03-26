@@ -1,5 +1,6 @@
-import abjad
 from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
+
+import abjad
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
@@ -26,9 +27,8 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         Returns none.
         """
         for logical_tie in abjad.iterate(argument).logical_ties(
-            grace_notes=False,
-            reverse=True,
-            ):
+            grace_notes=False, reverse=True
+        ):
             sub_logical_ties = []
             current_sub_logical_tie = []
             for leaf in logical_tie:
@@ -36,13 +36,13 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                 if tempos:
                     if current_sub_logical_tie:
                         current_sub_logical_tie = abjad.LogicalTie(
-                            current_sub_logical_tie)
+                            current_sub_logical_tie
+                        )
                         sub_logical_ties.append(current_sub_logical_tie)
                     current_sub_logical_tie = []
                 current_sub_logical_tie.append(leaf)
             if current_sub_logical_tie:
-                current_sub_logical_tie = abjad.LogicalTie(
-                    current_sub_logical_tie)
+                current_sub_logical_tie = abjad.LogicalTie(current_sub_logical_tie)
                 sub_logical_ties.append(current_sub_logical_tie)
             for sub_logical_tie in sub_logical_ties:
                 sub_logical_tie._fuse_leaves_by_immediate_parent()

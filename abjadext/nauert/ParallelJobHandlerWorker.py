@@ -34,10 +34,10 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
             job = self.job_queue.get()
             if job is None:
                 # poison pill causes worker shutdown
-                #print '{}: Exiting'.format(process_name)
+                # print '{}: Exiting'.format(process_name)
                 self.job_queue.task_done()
                 break
-            #print '{}: {!r}'.format(process_name, job)
+            # print '{}: {!r}'.format(process_name, job)
             job = pickle.loads(job)
             job()
             self.job_queue.task_done()

@@ -1,9 +1,10 @@
 import abc
-import abjad
 import bisect
 
+import abjad
 
-class QTarget(object):
+
+class QTarget:
     """
     Abstract q-target.
 
@@ -18,15 +19,13 @@ class QTarget(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_items',
-        )
+    __slots__ = ("_items",)
 
     ### INITIALIZATION ###
 
     def __init__(self, items=None):
         items = items or []
-        #assert len(items)
+        # assert len(items)
         assert all(isinstance(x, self.item_class) for x in items)
         self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
 
@@ -39,8 +38,8 @@ class QTarget(object):
         heuristic=None,
         job_handler=None,
         attack_point_optimizer=None,
-        attach_tempos=True
-        ):
+        attach_tempos=True,
+    ):
         """
         Calls q-target.
         """
@@ -61,10 +60,8 @@ class QTarget(object):
         assert isinstance(job_handler, abjadext.nauert.JobHandler)
 
         if attack_point_optimizer is None:
-            attack_point_optimizer = \
-                abjadext.nauert.NaiveAttackPointOptimizer()
-        assert isinstance(
-            attack_point_optimizer, abjadext.nauert.AttackPointOptimizer)
+            attack_point_optimizer = abjadext.nauert.NaiveAttackPointOptimizer()
+        assert isinstance(attack_point_optimizer, abjadext.nauert.AttackPointOptimizer)
 
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
@@ -87,7 +84,7 @@ class QTarget(object):
         for job in jobs:
             beats[job.job_id]._q_grids = job.q_grids
 
-        #for i, beat in enumerate(beats):
+        # for i, beat in enumerate(beats):
         #    print i, len(beat.q_grids)
         #    for q_event in beat.q_events:
         #        print '\t{}'.format(q_event.offset)
@@ -109,28 +106,21 @@ class QTarget(object):
             attach_tempos=attach_tempos,
             attack_point_optimizer=attack_point_optimizer,
             grace_handler=grace_handler,
-            )
+        )
 
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
     def _notate(
-        self,
-        grace_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
-        ):
+        self, grace_handler=None, attack_point_optimizer=None, attach_tempos=True
+    ):
         pass
 
-    def _notate_leaves(
-        self,
-        grace_handler=None,
-        voice=None,
-        ):
+    def _notate_leaves(self, grace_handler=None, voice=None):
         for leaf in abjad.iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
-                q_events = annotation['q_events']
+                q_events = annotation["q_events"]
                 pitches, grace_container = grace_handler(q_events)
                 if not pitches:
                     new_leaf = abjad.Rest(leaf)
@@ -144,29 +134,25 @@ class QTarget(object):
                     abjad.attach(grace_container, new_leaf)
                 abjad.mutate(leaf).replace(new_leaf)
                 if not isinstance(new_leaf, abjad.Rest):
-                    abjad.annotate(new_leaf, 'tie_to_next', True)
+                    abjad.annotate(new_leaf, "tie_to_next", True)
             else:
                 previous_leaf = leaf._leaf(-1)
                 if isinstance(previous_leaf, abjad.Rest):
-                    new_leaf = type(previous_leaf)(
-                        leaf.written_duration,
-                        )
+                    new_leaf = type(previous_leaf)(leaf.written_duration)
                 elif isinstance(previous_leaf, abjad.Note):
                     new_leaf = type(previous_leaf)(
-                        previous_leaf.written_pitch,
-                        leaf.written_duration,
-                        )
+                        previous_leaf.written_pitch, leaf.written_duration
+                    )
                 else:
                     new_leaf = type(previous_leaf)(
-                        previous_leaf.written_pitch,
-                        leaf.written_duration,
-                        )
+                        previous_leaf.written_pitch, leaf.written_duration
+                    )
                 abjad.mutate(leaf).replace(new_leaf)
                 inspection = abjad.inspect(previous_leaf)
-                if inspection.annotation('tie_to_next') is True:
+                if inspection.annotation("tie_to_next") is True:
                     leaves = abjad.select([previous_leaf, new_leaf])
                     abjad.tie(leaves)
-                    abjad.annotate(new_leaf, 'tie_to_next', True)
+                    abjad.annotate(new_leaf, "tie_to_next", True)
             if leaf._has_indicator(abjad.MetronomeMark):
                 tempo = leaf._get_indicator(abjad.MetronomeMark)
                 abjad.detach(abjad.MetronomeMark, leaf)
@@ -185,27 +171,27 @@ class QTarget(object):
 
     @abc.abstractproperty
     def beats(self):
-        r'''Beats of q-target.
-        '''
+        r"""Beats of q-target.
+        """
         raise NotImplementedError
 
     @property
     def duration_in_ms(self):
-        r'''Duration of q-target in milliseconds.
+        r"""Duration of q-target in milliseconds.
 
         Returns duration.
-        '''
+        """
         last_item = self._items[-1]
         return last_item.offset_in_ms + last_item.duration_in_ms
 
     @abc.abstractproperty
     def item_class(self):
-        r'''Item class of q-target.
-        '''
+        r"""Item class of q-target.
+        """
         raise NotImplementedError
 
     @property
     def items(self):
-        r'''Items of q-target.
-        '''
+        r"""Items of q-target.
+        """
         return self._items

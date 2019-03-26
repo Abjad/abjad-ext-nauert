@@ -1,7 +1,7 @@
 import abjad
 
 
-class QTargetMeasure(object):
+class QTargetMeasure:
     """
     Q-target measure.
 
@@ -71,13 +71,13 @@ class QTargetMeasure(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_beats',
-        '_offset_in_ms',
-        '_search_tree',
-        '_tempo',
-        '_time_signature',
-        '_use_full_measure',
-        )
+        "_beats",
+        "_offset_in_ms",
+        "_search_tree",
+        "_tempo",
+        "_time_signature",
+        "_use_full_measure",
+    )
 
     _publish_storage_format = True
 
@@ -90,7 +90,7 @@ class QTargetMeasure(object):
         time_signature=None,
         tempo=None,
         use_full_measure=False,
-        ):
+    ):
         import abjadext.nauert
 
         offset_in_ms = offset_in_ms or 0
@@ -100,7 +100,7 @@ class QTargetMeasure(object):
             search_tree = abjadext.nauert.UnweightedSearchTree()
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
         tempo = tempo or abjad.MetronomeMark((1, 4), 60)
-        #tempo = abjad.MetronomeMark(tempo)
+        # tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
             tempo = abjad.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
@@ -116,21 +116,20 @@ class QTargetMeasure(object):
                 beatspan=beatspan,
                 offset_in_ms=offset_in_ms,
                 search_tree=search_tree,
-                tempo=tempo
-                )
+                tempo=tempo,
+            )
             beats.append(beat)
         else:
             beatspan = abjad.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
-            beatspan_duration_in_ms = \
-                tempo.duration_to_milliseconds(beatspan)
+            beatspan_duration_in_ms = tempo.duration_to_milliseconds(beatspan)
             for i in range(time_signature.numerator):
                 beat = abjadext.nauert.QTargetBeat(
                     beatspan=beatspan,
                     offset_in_ms=current_offset_in_ms,
                     search_tree=search_tree,
-                    tempo=tempo
-                    )
+                    tempo=tempo,
+                )
                 beats.append(beat)
                 current_offset_in_ms += beatspan_duration_in_ms
 
@@ -143,7 +142,7 @@ class QTargetMeasure(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats q-event.
 
@@ -152,7 +151,7 @@ class QTargetMeasure(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -256,8 +255,7 @@ class QTargetMeasure(object):
 
         Returns duration.
         """
-        return self.tempo.duration_to_milliseconds(
-            self.time_signature.duration)
+        return self.tempo.duration_to_milliseconds(self.time_signature.duration)
 
     @property
     def offset_in_ms(self):

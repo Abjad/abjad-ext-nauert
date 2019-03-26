@@ -1,5 +1,6 @@
-import abjad
 import uqbar.containers
+
+import abjad
 
 
 class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
@@ -20,21 +21,16 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        preprolated_duration=1,
-        q_event_proxies=None,
-        is_divisible=True,
-        ):
+    def __init__(self, preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         import abjadext.nauert
+
         uqbar.containers.UniqueTreeNode.__init__(self)
         abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
             assert all(
-                isinstance(x, abjadext.nauert.QEventProxy)
-                for x in q_event_proxies
+                isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies
             )
             self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
@@ -48,6 +44,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         Returns selection of notes.
         """
         import abjad
+
         pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
         maker = abjad.NoteMaker()
@@ -60,13 +57,11 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         Returns Graphviz graph.
         """
         import uqbar.graphs
-        graph = uqbar.graphs.Graph(name='G')
+
+        graph = uqbar.graphs.Graph(name="G")
         node = uqbar.graphs.Node(
-            attributes={
-                'label': str(self.preprolated_duration),
-                'shape': 'box'
-                }
-            )
+            attributes={"label": str(self.preprolated_duration), "shape": "box"}
+        )
         graph.append(node)
         return graph
 
@@ -76,14 +71,14 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         agent = abjad.StorageFormatManager(self)
         names = agent.signature_names
         template_names = names[:]
-        if 'q_event_proxies' in names and not self.q_event_proxies:
-            names.remove('q_event_proxies')
+        if "q_event_proxies" in names and not self.q_event_proxies:
+            names.remove("q_event_proxies")
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=True,
             storage_format_kwargs_names=names,
             template_names=template_names,
-            )
+        )
 
     ### PRIVATE PROPERTIES ###
 
@@ -112,10 +107,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
         Returns list.
         """
-        return [
-            x for x in self._q_event_proxies
-            if x.offset < self.start_offset
-        ]
+        return [x for x in self._q_event_proxies if x.offset < self.start_offset]
 
     @property
     def q_event_proxies(self):
@@ -138,7 +130,4 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
         Returns list.
         """
-        return [
-            x for x in self._q_event_proxies
-            if self.start_offset <= x.offset
-        ]
+        return [x for x in self._q_event_proxies if self.start_offset <= x.offset]

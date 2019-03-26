@@ -2,7 +2,7 @@ from abjadext.nauert.QEvent import QEvent
 
 
 class TerminalQEvent(QEvent):
-    r'''Terminal q-event.
+    r"""Terminal q-event.
 
     ..  container:: example
 
@@ -13,13 +13,11 @@ class TerminalQEvent(QEvent):
             )
 
     Carries no significance outside the context of a ``QEventSequence``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_offset',
-        )
+    __slots__ = ("_offset",)
 
     _publish_storage_format = True
 
@@ -31,20 +29,20 @@ class TerminalQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a terminal q-event with offset equal to
+        r"""Is true when `argument` is a terminal q-event with offset equal to
         that of this terminal q-event. Otherwise false.
 
         Returns true or false.
-        '''
+        """
         if type(self) == type(argument) and self.offset == argument.offset:
             return True
         return False
 
     def __hash__(self):
-        r'''Hashes terminal q-event.
+        r"""Hashes terminal q-event.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(TerminalQEvent, self).__hash__()

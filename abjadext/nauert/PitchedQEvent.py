@@ -1,4 +1,5 @@
 import abjad
+
 from .QEvent import QEvent
 
 
@@ -26,12 +27,7 @@ class PitchedQEvent(QEvent):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_attachments',
-        '_index',
-        '_offset',
-        '_pitches',
-        )
+    __slots__ = ("_attachments", "_index", "_offset", "_pitches")
 
     _publish_storage_format = True
 
@@ -58,11 +54,13 @@ class PitchedQEvent(QEvent):
 
         Returns true or false.
         """
-        if (type(self) == type(argument) and
-            self.offset == argument.offset and
-            self.pitches == argument.pitches and
-            self.attachments == argument.attachments and
-            self.index == argument.index):
+        if (
+            type(self) == type(argument)
+            and self.offset == argument.offset
+            and self.pitches == argument.pitches
+            and self.attachments == argument.attachments
+            and self.index == argument.index
+        ):
             return True
         return False
 

@@ -1,7 +1,7 @@
 import abjad
 
 
-class QTargetBeat(object):
+class QTargetBeat:
     """
     Q-target beat.
 
@@ -43,28 +43,22 @@ class QTargetBeat(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_beatspan',
-        '_distances',
-        '_grouping',
-        '_offset_in_ms',
-        '_q_events',
-        '_q_grid',
-        '_q_grids',
-        '_search_tree',
-        '_tempo',
-        )
+        "_beatspan",
+        "_distances",
+        "_grouping",
+        "_offset_in_ms",
+        "_q_events",
+        "_q_grid",
+        "_q_grids",
+        "_search_tree",
+        "_tempo",
+    )
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        beatspan=None,
-        offset_in_ms=None,
-        search_tree=None,
-        tempo=None,
-        ):
+    def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
         import abjad
         import abjadext.nauert
 
@@ -77,7 +71,7 @@ class QTargetBeat(object):
             search_tree = abjadext.nauert.UnweightedSearchTree()
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
         tempo = tempo or abjad.MetronomeMark((1, 4), 60)
-        #tempo = abjad.MetronomeMark(tempo)
+        # tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
             tempo = abjad.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
@@ -103,22 +97,21 @@ class QTargetBeat(object):
         Returns quantization job.
         """
         import abjadext.nauert
+
         if not self.q_events:
             return None
-        assert all(isinstance(x, abjadext.nauert.QEvent)
-            for x in self.q_events)
+        assert all(isinstance(x, abjadext.nauert.QEvent) for x in self.q_events)
         q_event_proxies = []
         for q_event in self.q_events:
             q_event_proxy = abjadext.nauert.QEventProxy(
-                q_event,
-                self.offset_in_ms,
-                self.offset_in_ms + self.duration_in_ms,
-                )
+                q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms
+            )
             q_event_proxies.append(q_event_proxy)
         return abjadext.nauert.QuantizationJob(
-            job_id, self.search_tree, q_event_proxies)
+            job_id, self.search_tree, q_event_proxies
+        )
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats q-event.
 
@@ -127,7 +120,7 @@ class QTargetBeat(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 

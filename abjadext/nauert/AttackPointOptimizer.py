@@ -1,8 +1,7 @@
 import abc
-import abjad
 
 
-class AttackPointOptimizer(object):
+class AttackPointOptimizer:
     """
     Abstract attack-point optimizer.
 
@@ -17,15 +16,10 @@ class AttackPointOptimizer(object):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
-
-    def __init__(self):
-        pass
-
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
     def __call__(self, argument):
-        r'''Calls attack-point optimizer.
-        '''
+        r"""Calls attack-point optimizer.
+        """
         raise NotImplementedError

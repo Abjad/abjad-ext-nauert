@@ -1,5 +1,6 @@
 import multiprocessing
 import pickle
+
 from abjadext.nauert.JobHandler import JobHandler
 
 
@@ -22,12 +23,14 @@ class ParallelJobHandler(JobHandler):
         Calls parallel job handler.
         """
         import abjadext.nauert
+
         finished_jobs = []
         job_queue = multiprocessing.JoinableQueue()
         result_queue = multiprocessing.Queue()
-        workers = [abjadext.nauert.ParallelJobHandlerWorker(
-            job_queue, result_queue)
-            for i in range(multiprocessing.cpu_count() * 2)]
+        workers = [
+            abjadext.nauert.ParallelJobHandlerWorker(job_queue, result_queue)
+            for i in range(multiprocessing.cpu_count() * 2)
+        ]
         for worker in workers:
             worker.start()
         for job in jobs:

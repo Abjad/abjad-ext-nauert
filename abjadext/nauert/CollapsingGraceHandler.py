@@ -20,6 +20,7 @@ class CollapsingGraceHandler(GraceHandler):
         Calls collapsing grace handler.
         """
         import abjadext.nauert
+
         pitches = []
         for q_event in q_events:
             if isinstance(q_event, abjadext.nauert.PitchedQEvent):

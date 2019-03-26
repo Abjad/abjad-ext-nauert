@@ -1,6 +1,6 @@
-import abjad
-from abjad import indicators as abjad_indicators
 from abjadext.nauert.QSchema import QSchema
+
+import abjad
 
 
 class BeatwiseQSchema(QSchema):
@@ -231,35 +231,26 @@ class BeatwiseQSchema(QSchema):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_beatspan',
-        '_items',
-        '_lookups',
-        '_search_tree',
-        '_tempo',
-        )
+    __slots__ = ("_beatspan", "_items", "_lookups", "_search_tree", "_tempo")
 
-    _keyword_argument_names = (
-        'beatspan',
-        'search_tree',
-        'tempo',
-        )
+    _keyword_argument_names = ("beatspan", "search_tree", "tempo")
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
-        import abjad
         import abjadext.nauert
-        self._beatspan = abjad.Duration(keywords.get('beatspan', (1, 4)))
-        search_tree = keywords.get('search_tree',
-            abjadext.nauert.UnweightedSearchTree())
+
+        self._beatspan = abjad.Duration(keywords.get("beatspan", (1, 4)))
+        search_tree = keywords.get(
+            "search_tree", abjadext.nauert.UnweightedSearchTree()
+        )
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
         self._search_tree = search_tree
-        tempo = keywords.get('tempo', ((1, 4), 60))
+        tempo = keywords.get("tempo", ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = abjad_indicators.MetronomeMark(*tempo)
+            tempo = abjad.indicators.MetronomeMark(*tempo)
         self._tempo = tempo
         QSchema.__init__(self, *arguments, **keywords)
 
@@ -269,12 +260,8 @@ class BeatwiseQSchema(QSchema):
         return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),
-            storage_format_kwargs_names=[
-                'beatspan',
-                'search_tree',
-                'tempo',
-                ],
-            )
+            storage_format_kwargs_names=["beatspan", "search_tree", "tempo"],
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -293,6 +280,7 @@ class BeatwiseQSchema(QSchema):
         Returns beatwise q-schema item.
         """
         import abjadext.nauert
+
         return abjadext.nauert.BeatwiseQSchemaItem
 
     @property
@@ -303,6 +291,7 @@ class BeatwiseQSchema(QSchema):
         Returns beatwise q-target.
         """
         import abjadext.nauert
+
         return abjadext.nauert.BeatwiseQTarget
 
     @property
@@ -313,4 +302,5 @@ class BeatwiseQSchema(QSchema):
         Returns q-target beat.
         """
         import abjadext.nauert
+
         return abjadext.nauert.QTargetBeat

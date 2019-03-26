@@ -21,6 +21,7 @@ class DiscardingGraceHandler(GraceHandler):
         Calls discarding grace handler.
         """
         import abjadext.nauert
+
         q_event = q_events[-1]
         if isinstance(q_event, abjadext.nauert.PitchedQEvent):
             return q_event.pitches, None

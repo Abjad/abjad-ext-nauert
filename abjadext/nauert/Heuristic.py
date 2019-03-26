@@ -1,8 +1,7 @@
 import abc
-import abjad
 
 
-class Heuristic(object):
+class Heuristic:
     """
     Abstract heuristic.
 
@@ -31,9 +30,9 @@ class Heuristic(object):
         Returns none.
         """
         import abjadext.nauert
+
         assert len(q_target_beats)
-        assert all(isinstance(x, abjadext.nauert.QTargetBeat)
-            for x in q_target_beats)
+        assert all(isinstance(x, abjadext.nauert.QTargetBeat) for x in q_target_beats)
         return self._process(q_target_beats)
 
     ### PRIVATE METHODS ###
