@@ -378,15 +378,15 @@ class QEventSequence:
         import abjad
         import abjadext.nauert
 
-        assert isinstance(pairs, collections.Iterable)
-        assert all(isinstance(x, collections.Iterable) for x in pairs)
+        assert isinstance(pairs, collections.abc.Iterable)
+        assert all(isinstance(x, collections.abc.Iterable) for x in pairs)
         assert all(len(x) == 2 for x in pairs)
         assert all(0 < x[0] for x in pairs)
         for pair in pairs:
             assert isinstance(
-                pair[1], (numbers.Number, type(None), collections.Iterable)
+                pair[1], (numbers.Number, type(None), collections.abc.Iterable)
             )
-            if isinstance(pair[1], collections.Iterable):
+            if isinstance(pair[1], collections.abc.Iterable):
                 assert 0 < len(pair[1])
                 assert all(isinstance(x, numbers.Number) for x in pair[1])
         # fuse silences
@@ -405,7 +405,7 @@ class QEventSequence:
         for pair in zip(offsets, groups):
             offset = abjad.Offset(pair[0])
             pitches = pair[1][1]
-            if isinstance(pitches, collections.Iterable):
+            if isinstance(pitches, collections.abc.Iterable):
                 assert all(isinstance(x, numbers.Number) for x in pitches)
                 q_events.append(abjadext.nauert.PitchedQEvent(offset, pitches))
             elif isinstance(pitches, type(None)):
