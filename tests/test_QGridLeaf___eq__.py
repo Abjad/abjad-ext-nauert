@@ -11,11 +11,13 @@ def test_QGridLeaf___eq___01():
 def test_QGridLeaf___eq___02():
     a = abjadext.nauert.QGridLeaf(1, [])
     b = abjadext.nauert.QGridLeaf(
-        1, [abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1000), 0.5)]
+        1,
+        [abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1000), 0.5)],
     )
     c = abjadext.nauert.QGridLeaf(2, [])
     d = abjadext.nauert.QGridLeaf(
-        2, [abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1000), 0.5)]
+        2,
+        [abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1000), 0.5)],
     )
     assert a != b
     assert a != c

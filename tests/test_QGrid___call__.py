@@ -13,7 +13,9 @@ def test_QGrid___call___01():
     c = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
+    d = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2)
+    )
     e = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
     )
@@ -50,7 +52,9 @@ def test_QGrid___call___02():
     c = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
+    d = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2)
+    )
     e = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
     )
@@ -75,7 +79,7 @@ def test_QGrid___call___02():
             }
         }
         """
-    )
+    ), print(format(result[0]))
 
     leaves = abjad.select(result[0]).leaves()
     leaf = leaves[0]
@@ -115,7 +119,9 @@ def test_QGrid___call___03():
     c = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
+    d = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2)
+    )
     e = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
     )
@@ -137,4 +143,4 @@ def test_QGrid___call___03():
             c'4
         }
         """
-    )
+    ), print(format(result[0]))

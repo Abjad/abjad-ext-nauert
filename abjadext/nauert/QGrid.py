@@ -88,7 +88,8 @@ class QGrid:
         if root_node is None:
             root_node = abjadext.nauert.QGridLeaf(preprolated_duration=1)
         assert isinstance(
-            root_node, (abjadext.nauert.QGridLeaf, abjadext.nauert.QGridContainer)
+            root_node,
+            (abjadext.nauert.QGridLeaf, abjadext.nauert.QGridContainer),
         )
         if next_downbeat is None:
             next_downbeat = abjadext.nauert.QGridLeaf(preprolated_duration=1)
@@ -130,7 +131,9 @@ class QGrid:
         Returns new q-grid.
         """
         root_node, next_downbeat = self._root_node, self._next_downbeat
-        return type(self)(copy.deepcopy(root_node), copy.deepcopy(next_downbeat))
+        return type(self)(
+            copy.deepcopy(root_node), copy.deepcopy(next_downbeat)
+        )
 
     def __eq__(self, argument):
         """
@@ -187,7 +190,9 @@ class QGrid:
         """
         import abjadext.nauert
 
-        assert all(isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies)
+        assert all(
+            isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies
+        )
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
             idx = bisect.bisect_left(offsets, q_event_proxy.offset)
@@ -320,7 +325,9 @@ class QGrid:
         """
         import abjad
 
-        return tuple([x.start_offset for x in self.leaves[:-1]] + [abjad.Offset(1)])
+        return tuple(
+            [x.start_offset for x in self.leaves[:-1]] + [abjad.Offset(1)]
+        )
 
     @property
     def pretty_rtm_format(self):

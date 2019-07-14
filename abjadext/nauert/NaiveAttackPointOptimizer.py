@@ -42,7 +42,9 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                     current_sub_logical_tie = []
                 current_sub_logical_tie.append(leaf)
             if current_sub_logical_tie:
-                current_sub_logical_tie = abjad.LogicalTie(current_sub_logical_tie)
+                current_sub_logical_tie = abjad.LogicalTie(
+                    current_sub_logical_tie
+                )
                 sub_logical_ties.append(current_sub_logical_tie)
             for sub_logical_tie in sub_logical_ties:
                 sub_logical_tie._fuse_leaves_by_immediate_parent()

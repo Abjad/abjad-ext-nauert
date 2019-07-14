@@ -26,7 +26,9 @@ def test_QGrid___eq___02():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=1,
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(200), 0.9
+                )
             ],
         ),
     )
@@ -47,7 +49,9 @@ def test_QGrid___eq___02():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=1,
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(200), 0.9
+                )
             ],
         ),
     )
@@ -76,7 +80,9 @@ def test_QGrid___eq___03():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=1,
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(200), 0.9
+                )
             ],
         )
     )

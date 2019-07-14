@@ -9,7 +9,9 @@ def test_QGrid_subdivide_leaf_01():
     b = abjadext.nauert.QEventProxy(
         abjadext.nauert.PitchedQEvent((9, 20), [1]), (9, 20)
     )
-    c = abjadext.nauert.QEventProxy(abjadext.nauert.PitchedQEvent((1, 2), [2]), (1, 2))
+    c = abjadext.nauert.QEventProxy(
+        abjadext.nauert.PitchedQEvent((1, 2), [2]), (1, 2)
+    )
     d = abjadext.nauert.QEventProxy(
         abjadext.nauert.PitchedQEvent((11, 20), [3]), (11, 20)
     )
@@ -23,8 +25,12 @@ def test_QGrid_subdivide_leaf_01():
     assert result == [a, b, c, d]
     root_node = abjadext.nauert.QGridContainer(
         children=[
-            abjadext.nauert.QGridLeaf(preprolated_duration=2, q_event_proxies=[]),
-            abjadext.nauert.QGridLeaf(preprolated_duration=3, q_event_proxies=[]),
+            abjadext.nauert.QGridLeaf(
+                preprolated_duration=2, q_event_proxies=[]
+            ),
+            abjadext.nauert.QGridLeaf(
+                preprolated_duration=3, q_event_proxies=[]
+            ),
         ],
         preprolated_duration=1,
     )

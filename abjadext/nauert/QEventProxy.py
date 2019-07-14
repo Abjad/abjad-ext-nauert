@@ -110,7 +110,9 @@ class QEventProxy:
             values.append(self.q_event)
         if self.offset:
             values.append(self.offset)
-        return abjad.FormatSpecification(client=self, storage_format_args_values=values)
+        return abjad.FormatSpecification(
+            client=self, storage_format_args_values=values
+        )
 
     ### PUBLIC PROPERTIES ###
 

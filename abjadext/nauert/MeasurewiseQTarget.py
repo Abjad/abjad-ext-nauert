@@ -21,7 +21,10 @@ class MeasurewiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(
-        self, attach_tempos=True, attack_point_optimizer=None, grace_handler=None
+        self,
+        attach_tempos=True,
+        attack_point_optimizer=None,
+        grace_handler=None,
     ):
         voice = abjad.Voice()
 

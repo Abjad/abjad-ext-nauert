@@ -15,7 +15,10 @@ class Job:
 
     def __call__(self):
         self.result = [
-            x for x in abjad.mathtools.yield_all_compositions_of_integer(self.number)
+            x
+            for x in abjad.mathtools.yield_all_compositions_of_integer(
+                self.number
+            )
         ]
 
 
@@ -68,8 +71,12 @@ def test_ParallelJobHandler___call___02():
             abjadext.nauert.SilentQEvent(1, ["K"], index=11), 0, 1
         ),
     ]
-    job_a = abjadext.nauert.QuantizationJob(job_id, search_tree, q_event_proxies)
-    job_b = abjadext.nauert.QuantizationJob(job_id, search_tree, q_event_proxies)
+    job_a = abjadext.nauert.QuantizationJob(
+        job_id, search_tree, q_event_proxies
+    )
+    job_b = abjadext.nauert.QuantizationJob(
+        job_id, search_tree, q_event_proxies
+    )
 
     assert job_a == job_b
 
@@ -78,11 +85,15 @@ def test_ParallelJobHandler___call___02():
 
     assert len(a_jobs) == len(b_jobs)
 
-    a_rtms = sorted([q_grid.root_node.rtm_format for q_grid in a_jobs[0].q_grids])
-    b_rtms = sorted([q_grid.root_node.rtm_format for q_grid in b_jobs[0].q_grids])
+    a_rtms = sorted(
+        [q_grid.root_node.rtm_format for q_grid in a_jobs[0].q_grids]
+    )
+    b_rtms = sorted(
+        [q_grid.root_node.rtm_format for q_grid in b_jobs[0].q_grids]
+    )
 
     assert a_rtms == b_rtms
 
-    assert sorted(a_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format) == sorted(
-        b_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format
-    )
+    assert sorted(
+        a_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format
+    ) == sorted(b_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format)

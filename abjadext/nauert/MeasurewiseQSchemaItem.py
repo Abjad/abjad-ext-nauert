@@ -56,7 +56,11 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### INITIALIZER ###
 
     def __init__(
-        self, search_tree=None, tempo=None, time_signature=None, use_full_measure=None
+        self,
+        search_tree=None,
+        tempo=None,
+        time_signature=None,
+        use_full_measure=None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if time_signature is not None:

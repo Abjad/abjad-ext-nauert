@@ -5,7 +5,9 @@ import abjad
 
 def test_Quantizer___call___01():
     milliseconds = [1500, 1500]
-    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        milliseconds
+    )
     quantizer = abjadext.nauert.Quantizer()
     result = quantizer(q_events)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
@@ -34,7 +36,9 @@ def test_Quantizer___call___01():
 
 def test_Quantizer___call___02():
     milliseconds = [750, 750]
-    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        milliseconds
+    )
     quantizer = abjadext.nauert.Quantizer()
     optimizer = abjadext.nauert.MeasurewiseAttackPointOptimizer()
     result = quantizer(q_events, attack_point_optimizer=optimizer)
@@ -68,7 +72,9 @@ def test_Quantizer___call___02():
 def test_Quantizer___call___03():
 
     milliseconds = [1500, -1000, 1000, 1000, -1000, 1000, -1000, 500]
-    sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        milliseconds
+    )
     attack_point_optimizer = abjadext.nauert.NullAttackPointOptimizer()
     quantizer = abjadext.nauert.Quantizer()
 
@@ -122,7 +128,9 @@ def test_Quantizer___call___03():
 def test_Quantizer___call___04():
 
     milliseconds = [250, 1000, 1000, 1000, 750]
-    sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        milliseconds
+    )
     attack_point_optimizer = abjadext.nauert.NullAttackPointOptimizer()
     quantizer = abjadext.nauert.Quantizer()
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
@@ -176,12 +184,16 @@ def test_Quantizer___call___05():
         {"search_tree": abjadext.nauert.UnweightedSearchTree({7: None})},
     )
     milliseconds = [250, 250, 250, 250] * 4
-    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        milliseconds
+    )
     attack_point_optimizer = abjadext.nauert.NullAttackPointOptimizer()
     quantizer = abjadext.nauert.Quantizer()
 
     result = quantizer(
-        q_events, q_schema=q_schema, attack_point_optimizer=attack_point_optimizer
+        q_events,
+        q_schema=q_schema,
+        attack_point_optimizer=attack_point_optimizer,
     )
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])

@@ -168,7 +168,11 @@ class UnweightedSearchTree(SearchTree):
                 5: None,  # 1/10
                 7: None,  # 1/14
             },
-            3: {2: {2: None}, 3: None, 5: None},  # 1/3  # 1/6  # 1/12  # 1/9  # 1/15
+            3: {
+                2: {2: None},
+                3: None,
+                5: None,
+            },  # 1/3  # 1/6  # 1/12  # 1/9  # 1/15
             5: {2: None, 3: None},  # 1/5  # 1/10  # 1/15
             7: {2: None},  # 1/7  # 1/14
             11: None,  # 1/11
