@@ -58,9 +58,7 @@ class QTargetBeat:
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None
-    ):
+    def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
         import abjad
         import abjadext.nauert
 
@@ -102,15 +100,11 @@ class QTargetBeat:
 
         if not self.q_events:
             return None
-        assert all(
-            isinstance(x, abjadext.nauert.QEvent) for x in self.q_events
-        )
+        assert all(isinstance(x, abjadext.nauert.QEvent) for x in self.q_events)
         q_event_proxies = []
         for q_event in self.q_events:
             q_event_proxy = abjadext.nauert.QEventProxy(
-                q_event,
-                self.offset_in_ms,
-                self.offset_in_ms + self.duration_in_ms,
+                q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms,
             )
             q_event_proxies.append(q_event_proxy)
         return abjadext.nauert.QuantizationJob(

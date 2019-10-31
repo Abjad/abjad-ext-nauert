@@ -25,9 +25,7 @@ def test_QGrid_distance_01():
     q_grid.fit_q_events([c])
     assert q_grid.distance == abjad.Offset(1, 6)
 
-    d = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2)
-    )
+    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
     q_grid.fit_q_events([d])
     assert q_grid.distance == abjad.Offset(1, 4)
 

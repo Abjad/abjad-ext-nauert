@@ -39,13 +39,9 @@ class QSchema:
             items = list(arguments[0].items())
             if abjad.mathtools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
-            assert abjad.mathtools.all_are_pairs_of_types(
-                items, int, self.item_class
-            )
+            assert abjad.mathtools.all_are_pairs_of_types(items, int, self.item_class)
             items = dict(items)
-        elif abjad.mathtools.all_are_pairs_of_types(
-            arguments, int, self.item_class
-        ):
+        elif abjad.mathtools.all_are_pairs_of_types(arguments, int, self.item_class):
             items = dict(arguments)
         elif abjad.mathtools.all_are_pairs_of_types(arguments, int, dict):
             items = [(x, self.item_class(**y)) for x, y in arguments]
@@ -54,9 +50,7 @@ class QSchema:
             items = [(i, x) for i, x in enumerate(arguments)]
             items = dict(items)
         elif all(isinstance(x, dict) for x in arguments):
-            items = [
-                (i, self.item_class(**x)) for i, x in enumerate(arguments)
-            ]
+            items = [(i, self.item_class(**x)) for i, x in enumerate(arguments)]
             items = dict(items)
         else:
             raise ValueError

@@ -3,9 +3,7 @@ import uqbar.containers
 import abjad
 
 
-class QGridLeaf(
-    abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode
-):
+class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
     """
     Q-grid leaf.
 
@@ -23,9 +21,7 @@ class QGridLeaf(
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, preprolated_duration=1, q_event_proxies=None, is_divisible=True
-    ):
+    def __init__(self, preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         import abjadext.nauert
 
         uqbar.containers.UniqueTreeNode.__init__(self)
@@ -34,8 +30,7 @@ class QGridLeaf(
             self._q_event_proxies = []
         else:
             assert all(
-                isinstance(x, abjadext.nauert.QEventProxy)
-                for x in q_event_proxies
+                isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies
             )
             self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
@@ -65,10 +60,7 @@ class QGridLeaf(
 
         graph = uqbar.graphs.Graph(name="G")
         node = uqbar.graphs.Node(
-            attributes={
-                "label": str(self.preprolated_duration),
-                "shape": "box",
-            }
+            attributes={"label": str(self.preprolated_duration), "shape": "box",}
         )
         graph.append(node)
         return graph
@@ -115,9 +107,7 @@ class QGridLeaf(
 
         Returns list.
         """
-        return [
-            x for x in self._q_event_proxies if x.offset < self.start_offset
-        ]
+        return [x for x in self._q_event_proxies if x.offset < self.start_offset]
 
     @property
     def q_event_proxies(self):
@@ -140,6 +130,4 @@ class QGridLeaf(
 
         Returns list.
         """
-        return [
-            x for x in self._q_event_proxies if self.start_offset <= x.offset
-        ]
+        return [x for x in self._q_event_proxies if self.start_offset <= x.offset]

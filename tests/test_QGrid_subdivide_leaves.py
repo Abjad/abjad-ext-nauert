@@ -12,9 +12,7 @@ def test_QGrid_subdivide_leaves_01():
     c = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2)
-    )
+    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
     e = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
     )
@@ -54,9 +52,7 @@ def test_QGrid_subdivide_leaves_02():
     c = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2)
-    )
+    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
     e = abjadext.nauert.QEventProxy(
         abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
     )

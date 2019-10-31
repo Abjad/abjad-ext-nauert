@@ -49,13 +49,9 @@ class ConcatenatingGraceHandler(GraceHandler):
             for q_event in grace_events:
                 if isinstance(q_event, abjadext.nauert.PitchedQEvent):
                     if len(q_event.pitches) == 1:
-                        leaf = abjad.Note(
-                            q_event.pitches[0], self.grace_duration
-                        )
+                        leaf = abjad.Note(q_event.pitches[0], self.grace_duration)
                     else:
-                        leaf = abjad.Chord(
-                            q_event.pitches, self.grace_duration
-                        )
+                        leaf = abjad.Chord(q_event.pitches, self.grace_duration)
                 else:
                     leaf = abjad.Rest(self.grace_duration)
                 grace_container.append(leaf)

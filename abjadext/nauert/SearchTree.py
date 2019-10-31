@@ -101,9 +101,7 @@ class SearchTree:
 
                 elif preceding_proxies or succeeding_proxies:
                     parentage_ratios = leaf_one.parentage_ratios
-                    leaf_subdivisions = self._find_leaf_subdivisions(
-                        parentage_ratios
-                    )
+                    leaf_subdivisions = self._find_leaf_subdivisions(parentage_ratios)
                     if leaf_subdivisions:
                         indices.append(i)
                         subdivisions.append(tuple(leaf_subdivisions))

@@ -47,17 +47,13 @@ class QuantizationJob:
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, job_id=1, search_tree=None, q_event_proxies=None, q_grids=None
-    ):
+    def __init__(self, job_id=1, search_tree=None, q_event_proxies=None, q_grids=None):
         import abjadext.nauert
 
         search_tree = search_tree or abjadext.nauert.UnweightedSearchTree()
         q_event_proxies = q_event_proxies or []
         assert isinstance(search_tree, abjadext.nauert.SearchTree)
-        assert all(
-            isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies
-        )
+        assert all(isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies)
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)

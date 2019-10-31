@@ -20,9 +20,7 @@ def test_BeatwiseQSchema___init___01():
 
     assert len(schema.items) == 3
     assert schema.beatspan == abjad.Duration(1, 32)
-    assert schema.search_tree == abjadext.nauert.UnweightedSearchTree(
-        {3: None}
-    )
+    assert schema.search_tree == abjadext.nauert.UnweightedSearchTree({3: None})
     assert schema.tempo == abjad.MetronomeMark((1, 16), 32)
 
 

@@ -255,9 +255,7 @@ class QTargetMeasure:
 
         Returns duration.
         """
-        return self.tempo.duration_to_milliseconds(
-            self.time_signature.duration
-        )
+        return self.tempo.duration_to_milliseconds(self.time_signature.duration)
 
     @property
     def offset_in_ms(self):

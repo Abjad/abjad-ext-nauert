@@ -26,9 +26,7 @@ def test_BeatwiseQSchemaItem___new___03():
 
 
 def test_BeatwiseQSchemaItem___new___04():
-    item = abjadext.nauert.BeatwiseQSchemaItem(
-        beatspan=(1, 8), tempo=((1, 4), 57)
-    )
+    item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8), tempo=((1, 4), 57))
     assert item.beatspan == abjad.Duration(1, 8)
     assert item.search_tree is None
     assert item.tempo == abjad.MetronomeMark((1, 4), 57)

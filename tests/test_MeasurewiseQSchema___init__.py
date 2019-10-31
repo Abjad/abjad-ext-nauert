@@ -21,9 +21,7 @@ def test_MeasurewiseQSchema___init___01():
     )
 
     assert len(schema.items) == 4
-    assert schema.search_tree == abjadext.nauert.UnweightedSearchTree(
-        {3: None}
-    )
+    assert schema.search_tree == abjadext.nauert.UnweightedSearchTree({3: None})
     assert schema.tempo == abjad.MetronomeMark((1, 8), 58)
     assert schema.time_signature == abjad.TimeSignature((5, 8))
     assert schema.use_full_measure is False

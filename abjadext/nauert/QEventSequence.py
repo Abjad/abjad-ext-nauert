@@ -82,8 +82,7 @@ class QEventSequence:
         else:
             assert 1 < len(sequence)
             assert all(
-                isinstance(q_event, q_event_classes)
-                for q_event in sequence[:-1]
+                isinstance(q_event, q_event_classes) for q_event in sequence[:-1]
             )
             assert isinstance(sequence[-1], abjadext.nauert.TerminalQEvent)
             offsets = [x.offset for x in sequence]
@@ -259,9 +258,7 @@ class QEventSequence:
 
         if fuse_silences:
             durations = [
-                x
-                for x in abjad.sequence(milliseconds).sum_by_sign(sign=[-1])
-                if x
+                x for x in abjad.sequence(milliseconds).sum_by_sign(sign=[-1]) if x
             ]
         else:
             durations = milliseconds
@@ -276,9 +273,7 @@ class QEventSequence:
             else:
                 q_event = abjadext.nauert.PitchedQEvent(offset, [0])
             q_events.append(q_event)
-        q_events.append(
-            abjadext.nauert.TerminalQEvent(abjad.Offset(offsets[-1]))
-        )
+        q_events.append(abjadext.nauert.TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
     @classmethod
@@ -332,9 +327,7 @@ class QEventSequence:
         """
         import abjadext.nauert
 
-        q_events = [
-            abjadext.nauert.PitchedQEvent(x, [0]) for x in offsets[:-1]
-        ]
+        q_events = [abjadext.nauert.PitchedQEvent(x, [0]) for x in offsets[:-1]]
         q_events.append(abjadext.nauert.TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
@@ -421,12 +414,8 @@ class QEventSequence:
             elif isinstance(pitches, type(None)):
                 q_events.append(abjadext.nauert.SilentQEvent(offset))
             elif isinstance(pitches, numbers.Number):
-                q_events.append(
-                    abjadext.nauert.PitchedQEvent(offset, [pitches])
-                )
-        q_events.append(
-            abjadext.nauert.TerminalQEvent(abjad.Offset(offsets[-1]))
-        )
+                q_events.append(abjadext.nauert.PitchedQEvent(offset, [pitches]))
+        q_events.append(abjadext.nauert.TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
     @classmethod
@@ -473,9 +462,7 @@ class QEventSequence:
 
         durations = [abjad.Duration(x) for x in durations]
         assert isinstance(tempo, abjad_indicators.MetronomeMark)
-        durations = [
-            x for x in abjad.sequence(durations).sum_by_sign(sign=[-1]) if x
-        ]
+        durations = [x for x in abjad.sequence(durations).sum_by_sign(sign=[-1]) if x]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.mathtools.cumulative_sums([abs(_) for _ in durations])
         q_events = []
@@ -573,14 +560,13 @@ class QEventSequence:
             # get millisecond cumulative duration
             if tempo is not None:
                 duration = sum(
-                    tempo.duration_to_milliseconds(x._get_duration())
-                    for x in group
+                    tempo.duration_to_milliseconds(x._get_duration()) for x in group
                 )
             else:
                 duration = sum(
-                    x._get_effective(
-                        abjad.MetronomeMark
-                    ).duration_to_milliseconds(x._get_duration())
+                    x._get_effective(abjad.MetronomeMark).duration_to_milliseconds(
+                        x._get_duration()
+                    )
                     for x in group
                 )
             durations.append(duration)
@@ -594,9 +580,7 @@ class QEventSequence:
                 pitch = [x.written_pitch.number for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
-        return class_.from_millisecond_pitch_pairs(
-            tuple(zip(durations, pitches))
-        )
+        return class_.from_millisecond_pitch_pairs(tuple(zip(durations, pitches)))
 
     ### PUBLIC PROPERTIES ###
 

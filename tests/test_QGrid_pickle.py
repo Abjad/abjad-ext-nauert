@@ -23,9 +23,7 @@ def test_QGrid_pickle_01():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=1,
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(
-                    abjadext.nauert.TerminalQEvent(200), 0.9
-                )
+                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
             ],
         ),
     )

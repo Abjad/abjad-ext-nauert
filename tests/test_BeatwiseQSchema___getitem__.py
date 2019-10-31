@@ -26,8 +26,7 @@ def test_BeatwiseQSchema___getitem___02():
     )
     item_b = abjadext.nauert.BeatwiseQSchemaItem(tempo=((1, 4), 76))
     item_c = abjadext.nauert.BeatwiseQSchemaItem(
-        beatspan=(1, 8),
-        search_tree=abjadext.nauert.UnweightedSearchTree({5: None}),
+        beatspan=(1, 8), search_tree=abjadext.nauert.UnweightedSearchTree({5: None}),
     )
 
     schema = abjadext.nauert.BeatwiseQSchema(

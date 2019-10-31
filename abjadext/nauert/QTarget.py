@@ -60,12 +60,8 @@ class QTarget:
         assert isinstance(job_handler, abjadext.nauert.JobHandler)
 
         if attack_point_optimizer is None:
-            attack_point_optimizer = (
-                abjadext.nauert.NaiveAttackPointOptimizer()
-            )
-        assert isinstance(
-            attack_point_optimizer, abjadext.nauert.AttackPointOptimizer
-        )
+            attack_point_optimizer = abjadext.nauert.NaiveAttackPointOptimizer()
+        assert isinstance(attack_point_optimizer, abjadext.nauert.AttackPointOptimizer)
 
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
@@ -116,10 +112,7 @@ class QTarget:
 
     @abc.abstractmethod
     def _notate(
-        self,
-        grace_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
+        self, grace_handler=None, attack_point_optimizer=None, attach_tempos=True,
     ):
         pass
 
