@@ -1,6 +1,5 @@
-from abjadext.nauert.GraceHandler import GraceHandler
-
 import abjad
+from abjadext.nauert.GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):

@@ -1,6 +1,5 @@
-from abjadext.nauert.SearchTree import SearchTree
-
 import abjad
+from abjadext.nauert.SearchTree import SearchTree
 
 
 class UnweightedSearchTree(SearchTree):

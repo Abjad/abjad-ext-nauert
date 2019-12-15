@@ -1,6 +1,5 @@
-from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
-
 import abjad
+from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):

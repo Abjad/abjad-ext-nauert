@@ -1,6 +1,5 @@
-import abjadext.nauert
-
 import abjad
+import abjadext.nauert
 
 test_time_segments = [
     (116, 255),

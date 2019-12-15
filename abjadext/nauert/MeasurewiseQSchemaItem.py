@@ -1,7 +1,6 @@
-from abjadext.nauert.QSchemaItem import QSchemaItem
-
 import abjad
 from abjad import indicators as abjad_indicators
+from abjadext.nauert.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):

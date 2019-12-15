@@ -1,8 +1,7 @@
 import pickle
 
-import abjadext.nauert
-
 import abjad
+import abjadext.nauert
 
 
 def test_QuantizationJob_pickle_01():

@@ -1,6 +1,5 @@
-import abjadext.nauert
-
 import abjad
+import abjadext.nauert
 
 
 class Job:

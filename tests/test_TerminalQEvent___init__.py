@@ -1,6 +1,5 @@
-import abjadext.nauert
-
 import abjad
+import abjadext.nauert
 
 
 def test_TerminalQEvent___init___01():

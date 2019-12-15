@@ -1,6 +1,5 @@
-from abjadext.nauert.QSchema import QSchema
-
 import abjad
+from abjadext.nauert.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):

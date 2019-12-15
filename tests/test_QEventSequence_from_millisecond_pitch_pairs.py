@@ -1,6 +1,5 @@
-import abjadext.nauert
-
 import abjad
+import abjadext.nauert
 
 
 def test_QEventSequence_from_millisecond_pitch_pairs_01():

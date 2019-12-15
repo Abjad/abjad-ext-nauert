@@ -1,8 +1,7 @@
 import copy
 
-from abjadext.nauert.QTarget import QTarget
-
 import abjad
+from abjadext.nauert.QTarget import QTarget
 
 
 class MeasurewiseQTarget(QTarget):
