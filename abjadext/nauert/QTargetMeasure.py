@@ -276,7 +276,7 @@ class QTargetMeasure:
             ...     )
 
             >>> q_target_measure.offset_in_ms
-            Offset(1000, 1)
+            Offset((1000, 1))
 
         Returns offset.
         """

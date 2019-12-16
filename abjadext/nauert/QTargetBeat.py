@@ -205,7 +205,7 @@ class QTargetBeat:
         ...     )
 
         >>> q_target_beat.offset_in_ms
-        Offset(1500, 1)
+        Offset((1500, 1))
 
         Returns offset.
         """
