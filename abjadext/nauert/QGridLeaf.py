@@ -60,7 +60,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
         graph = uqbar.graphs.Graph(name="G")
         node = uqbar.graphs.Node(
-            attributes={"label": str(self.preprolated_duration), "shape": "box",}
+            attributes={"label": str(self.preprolated_duration), "shape": "box"}
         )
         graph.append(node)
         return graph

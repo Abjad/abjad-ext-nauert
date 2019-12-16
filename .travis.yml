@@ -3,8 +3,8 @@ dist: xenial
 sudo: false
 python:
     - "3.6"
-    - "3.7-dev"
-    #- "3.8-dev"
+    - "3.7"
+    - "3.8"
 
 env:
   global:
@@ -21,6 +21,7 @@ before_install:
 - pip install --no-deps --target /tmp/typehints https://github.com/Abjad/abjad/archive/master.zip
 - pip install --no-deps --target /tmp/typehints uqbar
 - export MYPYPATH=/tmp/typehints
+- pip install black
 
 install:
 - pip install -e .[test]
