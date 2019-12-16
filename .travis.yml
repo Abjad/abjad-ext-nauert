@@ -21,14 +21,14 @@ before_install:
 - pip install --no-deps --target /tmp/typehints https://github.com/Abjad/abjad/archive/master.zip
 - pip install --no-deps --target /tmp/typehints uqbar
 - export MYPYPATH=/tmp/typehints
-- pip install black
 
 install:
 - pip install -e .[test]
 
 script:
-- black --version
-- make black-check
+# TODO: make black work on Travis:
+#- black --version
+#- make black-check
 - make flake8
 - mypy --version
 - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
