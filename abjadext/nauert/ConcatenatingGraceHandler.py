@@ -7,10 +7,10 @@ class ConcatenatingGraceHandler(GraceHandler):
     Concatenating grace-handler.
 
     Concatenates all but the final ``QEvent`` attached to a ``QGrid`` offset
-    into a ``GraceContainer``, using a fixed leaf duration ``duration``.
+    into a ``BeforeGraceContainer``, using a fixed leaf duration ``duration``.
 
     When called, it returns pitch information of final ``QEvent``, and the
-    generated ``GraceContainer``, if any.
+    generated ``BeforeGraceContainer``, if any.
     """
 
     ### CLASS VARIABLES ###
@@ -44,7 +44,7 @@ class ConcatenatingGraceHandler(GraceHandler):
             pitches = ()
 
         if grace_events:
-            grace_container = abjad.GraceContainer()
+            grace_container = abjad.BeforeGraceContainer()
             for q_event in grace_events:
                 if isinstance(q_event, abjadext.nauert.PitchedQEvent):
                     if len(q_event.pitches) == 1:
