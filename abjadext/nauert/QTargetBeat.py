@@ -24,7 +24,7 @@ class QTargetBeat:
         >>> abjad.f(q_target_beat)
         abjadext.nauert.QTargetBeat(
             beatspan=abjad.Duration(1, 8),
-            offset_in_ms=abjad.Offset(1500, 1),
+            offset_in_ms=abjad.Offset((1500, 1)),
             search_tree=abjadext.nauert.UnweightedSearchTree(
                 definition={   3: None,
                     },

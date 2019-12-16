@@ -170,29 +170,29 @@ class QuantizationJob:
         ...
         abjadext.nauert.QEventProxy(
             abjadext.nauert.PitchedQEvent(
-                offset=abjad.Offset(250, 1),
+                offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
                     abjad.NamedPitch("cs'"),
                     ),
                 ),
-            abjad.Offset(1, 4)
+            abjad.Offset((1, 4))
             )
         abjadext.nauert.QEventProxy(
             abjadext.nauert.SilentQEvent(
-                offset=abjad.Offset(500, 1),
+                offset=abjad.Offset((500, 1)),
                 ),
-            abjad.Offset(1, 2)
+            abjad.Offset((1, 2))
             )
         abjadext.nauert.QEventProxy(
             abjadext.nauert.PitchedQEvent(
-                offset=abjad.Offset(750, 1),
+                offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("ef'"),
                     abjad.NamedPitch("g'"),
                     ),
                 ),
-            abjad.Offset(3, 4)
+            abjad.Offset((3, 4))
             )
 
         Returns tuple.

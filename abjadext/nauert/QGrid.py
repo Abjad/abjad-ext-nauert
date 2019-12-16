@@ -49,12 +49,12 @@ class QGrid:
         ...
         abjadext.nauert.QEventProxy(
             abjadext.nauert.PitchedQEvent(
-                offset=abjad.Offset(250, 1),
+                offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
                     ),
                 ),
-            abjad.Offset(1, 4)
+            abjad.Offset((1, 4))
             )
 
         >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
@@ -62,12 +62,12 @@ class QGrid:
         ...
         abjadext.nauert.QEventProxy(
             abjadext.nauert.PitchedQEvent(
-                offset=abjad.Offset(750, 1),
+                offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("cs'"),
                     ),
                 ),
-            abjad.Offset(3, 4)
+            abjad.Offset((3, 4))
             )
 
     Used internally by the ``Quantizer``.

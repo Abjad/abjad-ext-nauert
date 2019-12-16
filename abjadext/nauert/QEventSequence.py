@@ -30,31 +30,31 @@ class QEventSequence:
         ...     abjad.f(q_event)
         ...
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(1000, 1),
+            offset=abjad.Offset((1000, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(1500, 1),
+            offset=abjad.Offset((1500, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(2750, 1),
+            offset=abjad.Offset((2750, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(3250, 1),
+            offset=abjad.Offset((3250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
+            offset=abjad.Offset((4000, 1)),
             )
 
     """
@@ -128,31 +128,31 @@ class QEventSequence:
         abjadext.nauert.QEventSequence(
             (
                 abjadext.nauert.PitchedQEvent(
-                    offset=abjad.Offset(0, 1),
+                    offset=abjad.Offset((0, 1)),
                     pitches=(
                         abjad.NamedPitch("c'"),
                         ),
                     ),
                 abjadext.nauert.SilentQEvent(
-                    offset=abjad.Offset(1000, 1),
+                    offset=abjad.Offset((1000, 1)),
                     ),
                 abjadext.nauert.PitchedQEvent(
-                    offset=abjad.Offset(1500, 1),
+                    offset=abjad.Offset((1500, 1)),
                     pitches=(
                         abjad.NamedPitch("c'"),
                         ),
                     ),
                 abjadext.nauert.SilentQEvent(
-                    offset=abjad.Offset(2750, 1),
+                    offset=abjad.Offset((2750, 1)),
                     ),
                 abjadext.nauert.PitchedQEvent(
-                    offset=abjad.Offset(3250, 1),
+                    offset=abjad.Offset((3250, 1)),
                     pitches=(
                         abjad.NamedPitch("c'"),
                         ),
                     ),
                 abjadext.nauert.TerminalQEvent(
-                    offset=abjad.Offset(4000, 1),
+                    offset=abjad.Offset((4000, 1)),
                     ),
                 )
             )
@@ -227,28 +227,28 @@ class QEventSequence:
         ...     print(format(q_event, 'storage'))
         ...
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(250, 1),
+            offset=abjad.Offset((250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(750, 1),
+            offset=abjad.Offset((750, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(1750, 1),
+            offset=abjad.Offset((1750, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(3000, 1),
+            offset=abjad.Offset((3000, 1)),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
+            offset=abjad.Offset((4000, 1)),
             )
 
         Returns ``QEventSequence`` instance.
@@ -290,37 +290,37 @@ class QEventSequence:
         ...     print(format(q_event, 'storage'))
         ...
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(250, 1),
+            offset=abjad.Offset((250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(750, 1),
+            offset=abjad.Offset((750, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(1750, 1),
+            offset=abjad.Offset((1750, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(3000, 1),
+            offset=abjad.Offset((3000, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
+            offset=abjad.Offset((4000, 1)),
             )
 
         Returns ``QEventSequence`` instance.
@@ -348,32 +348,32 @@ class QEventSequence:
         ...     print(format(q_event, 'storage'))
         ...
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(250, 1),
+            offset=abjad.Offset((250, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(750, 1),
+            offset=abjad.Offset((750, 1)),
             pitches=(
                 abjad.NamedPitch("d'"),
                 abjad.NamedPitch("ef'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(1750, 1),
+            offset=abjad.Offset((1750, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(3000, 1),
+            offset=abjad.Offset((3000, 1)),
             pitches=(
                 abjad.NamedPitch("cs'"),
                 ),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
+            offset=abjad.Offset((4000, 1)),
             )
 
         Returns ``QEventSequence`` instance.
@@ -434,25 +434,25 @@ class QEventSequence:
         ...     print(format(q_event, 'storage'))
         ...
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(10000, 29),
+            offset=abjad.Offset((10000, 29)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(17500, 29),
+            offset=abjad.Offset((17500, 29)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(20000, 29),
+            offset=abjad.Offset((20000, 29)),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(40000, 29),
+            offset=abjad.Offset((40000, 29)),
             )
 
         Returns ``QEventSequence`` instance.
@@ -496,29 +496,29 @@ class QEventSequence:
         ...     print(format(q_event, 'storage'))
         ...
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(2500, 3),
+            offset=abjad.Offset((2500, 3)),
             pitches=(
                 abjad.NamedPitch("d'"),
                 abjad.NamedPitch("fs'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(4375, 3),
+            offset=abjad.Offset((4375, 3)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(5000, 3),
+            offset=abjad.Offset((5000, 3)),
             pitches=(
                 abjad.NamedPitch("gqs'"),
                 ),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(10000, 3),
+            offset=abjad.Offset((10000, 3)),
             )
 
         If ``tempo`` is ``None``, all leaves in ``leaves`` must
@@ -617,31 +617,31 @@ class QEventSequence:
         ...     print(format(q_event, 'storage'))
         ...
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
+            offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(1000, 1),
+            offset=abjad.Offset((1000, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(1500, 1),
+            offset=abjad.Offset((1500, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset(2750, 1),
+            offset=abjad.Offset((2750, 1)),
             )
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(3250, 1),
+            offset=abjad.Offset((3250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
+            offset=abjad.Offset((4000, 1)),
             )
 
         Returns tuple.

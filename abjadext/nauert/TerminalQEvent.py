@@ -9,7 +9,7 @@ class TerminalQEvent(QEvent):
         >>> q_event = abjadext.nauert.TerminalQEvent(1000)
         >>> print(format(q_event))
         abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset(1000, 1),
+            offset=abjad.Offset((1000, 1)),
             )
 
     Carries no significance outside the context of a ``QEventSequence``.

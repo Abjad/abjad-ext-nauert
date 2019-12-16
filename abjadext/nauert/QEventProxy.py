@@ -14,14 +14,14 @@ class QEventProxy:
         >>> abjad.f(proxy)
         abjadext.nauert.QEventProxy(
             abjadext.nauert.PitchedQEvent(
-                offset=abjad.Offset(130, 1),
+                offset=abjad.Offset((130, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
                     abjad.NamedPitch("cs'"),
                     abjad.NamedPitch("e'"),
                     ),
                 ),
-            abjad.Offset(1, 2)
+            abjad.Offset((1, 2))
             )
 
     Not composer-safe.

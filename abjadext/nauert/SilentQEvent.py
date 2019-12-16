@@ -8,7 +8,7 @@ class SilentQEvent(QEvent):
 
         >>> q_event = abjadext.nauert.SilentQEvent(1000)
         >>> q_event
-        SilentQEvent(offset=Offset(1000, 1))
+        SilentQEvent(offset=Offset((1000, 1)))
 
     """
 

@@ -15,7 +15,7 @@ class PitchedQEvent(QEvent):
         >>> q_event = abjadext.nauert.PitchedQEvent(1000, pitches)
         >>> abjad.f(q_event)
         abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset(1000, 1),
+            offset=abjad.Offset((1000, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 abjad.NamedPitch("cs'"),
