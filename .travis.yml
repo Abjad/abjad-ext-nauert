@@ -26,9 +26,11 @@ install:
 - pip install -e .[test]
 
 script:
+- black --version
 - make black-check
 - make flake8
-- make mypy
+- mypy --version
+- if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
 - make pytest
 
 after_success:
