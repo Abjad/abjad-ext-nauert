@@ -8,31 +8,34 @@ python:
 
 env:
   global:
-  - LILYPOND_URL="http://lilypond.org/downloads/binaries/linux-64/"
-  - LILYPOND_VERSION=2.19.65
+    - LILYPOND_URL=http://lilypond.org/downloads/binaries/linux-64/
+    - LILYPOND_VERSION=2.19.65
 
 before_install:
-- wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
-- sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
-- export PATH=/home/travis/bin:$PATH
-- pip install -U pip
-- pip install -U pip
-- pip install -U https://github.com/Abjad/abjad/archive/master.zip
-- pip install --no-deps --target /tmp/typehints https://github.com/Abjad/abjad/archive/master.zip
-- pip install --no-deps --target /tmp/typehints uqbar
-- export MYPYPATH=/tmp/typehints
+    - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
+    - sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
+    - export PATH=/home/travis/bin:$PATH
+    - pip install -U pip
+    - pip install -U pip
+    - pip install -U https://github.com/Abjad/abjad/archive/master.zip
+    - ARCHIVE https://github.com/Abjad/abjad/archive/master.zip
+    - pip install --no-deps --target /tmp/typehints $ARCHIVE
+    - pip install --no-deps --target /tmp/typehints uqbar
+    - export MYPYPATH=/tmp/typehints
 
 install:
-- pip install -e .[test]
+    - pip install -e .[test]
 
 script:
-- black --version
-- make black-check
-- make flake8
-- mypy --version
-- if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
-- make pytest
+    - black --version
+    - make black-check
+    - flake8 --version
+    - make flake8
+    - mypy --version
+    - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
+    - pytest --version
+    - make pytest
 
 after_success:
-- pip install --quiet coveralls
-- coveralls
+    - pip install --quiet coveralls
+    - coveralls
