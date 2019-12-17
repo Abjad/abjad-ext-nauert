@@ -2,9 +2,9 @@ language: python
 dist: xenial
 sudo: false
 python:
-    - "3.6"
-    - "3.7"
-    - "3.8"
+    - 3.6
+    - 3.7
+    - 3.8
 
 env:
   global:
@@ -26,9 +26,8 @@ install:
 - pip install -e .[test]
 
 script:
-# TODO: make black work on Travis:
-#- black --version
-#- make black-check
+- black --version
+- make black-check
 - make flake8
 - mypy --version
 - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
