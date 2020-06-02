@@ -7,10 +7,10 @@ formatPaths = ${project}/ tests/ *.py
 testPaths = ${project}/ tests/
 
 black-check:
-	black --target-version py38 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
+	black --check --diff --target-version py38 ${formatPaths}
 
 black-reformat:
-	black --target-version py38 --exclude '.*boilerplate.*' ${formatPaths}
+	black --target-version py38 ${formatPaths}
 
 build:
 	python setup.py sdist
@@ -30,7 +30,7 @@ docs:
 	make -C docs/ html
 
 flake8-check:
-	flake8 --max-line-length=88 --isolated --ignore=${errors} ${formatPaths}
+	flake8 --ignore=${errors} --isolated --max-line-length ${formatPaths}
 
 gh-pages:
 	rm -Rf gh-pages/
@@ -77,7 +77,6 @@ isort-reformat:
 
 mypy:
 	mypy ${project}/
-
 
 pytest:
 	rm -Rf htmlcov/
