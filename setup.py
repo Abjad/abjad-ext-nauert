@@ -33,7 +33,7 @@ if __name__ == "__main__":
                 "flake8>=3.8.2",
                 "isort>=4.3.21",
                 "mypy>=0.770",
-                "pytest>=4.1.0",
+                "pytest>=5.4.3",
                 "pytest-cov>=2.6.0",
                 "pytest-helpers-namespace",
             ]
