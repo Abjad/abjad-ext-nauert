@@ -229,7 +229,7 @@ class QGrid:
         )
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)
-            leaf.parent[index] = container
+            leaf.parent[index] = [container]
         # otherwise, our root node if just a QGridLeaf
         else:
             self._root_node = container
