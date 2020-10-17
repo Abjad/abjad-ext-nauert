@@ -30,24 +30,8 @@ clean:  ## Remove transitory files
 	rm -Rif htmlcov/
 	rm -Rif prof/
 
-docs:  ## Build the docs
-	make -C docs/ html
-
 flake8:  ## Run flake8
 	flake8 --max-line-length=90 --isolated --ignore=${errors} ${formatPaths}
-
-gh-pages:  ## Upload docs to GitHub pages
-	rm -Rf gh-pages/
-	git clone $(origin) gh-pages/
-	cd gh-pages/ && \
-		git checkout gh-pages || git checkout --orphan gh-pages
-	rsync -rtv --del --exclude=.git docs/build/html/ gh-pages/
-	cd gh-pages && \
-		touch .nojekyll && \
-		git add --all . && \
-		git commit --allow-empty -m "Update docs" && \
-		git push -u origin gh-pages
-	rm -Rf gh-pages/
 
 isort:  ## Run isort
 	isort \
@@ -87,9 +71,8 @@ pytest-x:  ## Run pytest and stop on first failure
 
 reformat: isort black-reformat ## Reformat codebase via isort and black
 
-release: docs clean build ## Make a new release
+release: clean build ## Make a new release
 	pip install -U twine
 	twine upload dist/*.tar.gz
-	make gh-pages
 
 test: black-check flake8 mypy pytest ## Run all tests

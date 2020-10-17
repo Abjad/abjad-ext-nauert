@@ -55,6 +55,6 @@ if __name__ == "__main__":
         name="abjad-ext-{}".format(subpackage_name),
         packages=["abjadext"],
         platforms="Any",
-        url="http://abjad.io.github",
+        url="http://abjad.github.io",
         version=read_version(),
     )
