@@ -1,4 +1,5 @@
 import abjad
+
 import abjadext.nauert
 
 test_time_segments = [

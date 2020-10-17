@@ -1,6 +1,5 @@
-import uqbar.containers
-
 import abjad
+import uqbar.containers
 
 
 class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):

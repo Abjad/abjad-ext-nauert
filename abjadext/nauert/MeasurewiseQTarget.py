@@ -1,6 +1,7 @@
 import copy
 
 import abjad
+
 from abjadext.nauert.QTarget import QTarget
 
 

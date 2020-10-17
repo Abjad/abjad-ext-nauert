@@ -1,4 +1,5 @@
 import abjad
+
 from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
 
 
