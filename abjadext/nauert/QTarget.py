@@ -158,6 +158,11 @@ class QTarget:
                 abjad.detach(abjad.MetronomeMark, leaf)
                 abjad.detach(abjad.MetronomeMark, new_leaf)
                 abjad.attach(tempo, new_leaf)
+            if leaf._has_indicator(abjad.TimeSignature):
+                time_signature = leaf._get_indicator(abjad.TimeSignature)
+                abjad.detach(abjad.TimeSignature, leaf)
+                abjad.detach(abjad.TimeSignature, new_leaf)
+                abjad.attach(time_signature, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats

@@ -43,11 +43,14 @@ class MeasurewiseQTarget(QTarget):
         pairs = abjad.sequence(self.items).nwise()
         for q_target_measure_one, q_target_measure_two in pairs:
             measure = abjad.Container()
-            time_signature = q_target_measure_two.time_signature
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
-            leaf = abjad.inspect(measure).leaf(0)
-            abjad.attach(time_signature, leaf)
+            if (
+                q_target_measure_two.time_signature != q_target_measure_one.time_signature
+            ):
+                time_signature = q_target_measure_two.time_signature
+                leaf = abjad.inspect(measure).leaf(0)
+                abjad.attach(time_signature, leaf)
             if (
                 q_target_measure_two.tempo != q_target_measure_one.tempo
             ) and attach_tempos:
