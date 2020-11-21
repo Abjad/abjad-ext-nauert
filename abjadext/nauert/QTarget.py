@@ -121,7 +121,10 @@ class QTarget:
 
     @abc.abstractmethod
     def _notate(
-        self, grace_handler=None, attack_point_optimizer=None, attach_tempos=True,
+        self,
+        grace_handler=None,
+        attack_point_optimizer=None,
+        attach_tempos=True,
     ):
         pass
 
@@ -184,8 +187,7 @@ class QTarget:
 
     @abc.abstractproperty
     def beats(self):
-        r"""Beats of q-target.
-        """
+        r"""Beats of q-target."""
         raise NotImplementedError
 
     @property
@@ -199,12 +201,10 @@ class QTarget:
 
     @abc.abstractproperty
     def item_class(self):
-        r"""Item class of q-target.
-        """
+        r"""Item class of q-target."""
         raise NotImplementedError
 
     @property
     def items(self):
-        r"""Items of q-target.
-        """
+        r"""Items of q-target."""
         return self._items

@@ -34,8 +34,7 @@ class SearchTree:
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
-        r"""Calls search tree.
-        """
+        r"""Calls search tree."""
         assert isinstance(q_grid, QGrid)
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)

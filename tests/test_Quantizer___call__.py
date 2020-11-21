@@ -180,7 +180,9 @@ def test_Quantizer___call___05():
     quantizer = abjadext.nauert.Quantizer()
 
     result = quantizer(
-        q_events, q_schema=q_schema, attack_point_optimizer=attack_point_optimizer,
+        q_events,
+        q_schema=q_schema,
+        attack_point_optimizer=attack_point_optimizer,
     )
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])

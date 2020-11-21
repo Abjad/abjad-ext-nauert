@@ -52,8 +52,7 @@ test_time_segments = [
 
 
 def test_QEventSequence_from_millisecond_durations_01():
-    r"""Test basic functionality.
-    """
+    r"""Test basic functionality."""
 
     durations = abjad.mathx.difference_series([x[0] for x in test_time_segments])
     q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(durations)
@@ -201,8 +200,7 @@ def test_QEventSequence_from_millisecond_durations_01():
 
 
 def test_QEventSequence_from_millisecond_durations_02():
-    r"""Silences are not fused.
-    """
+    r"""Silences are not fused."""
 
     durations = [100, -100, 100, -100, -100, 100]
     q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(
@@ -223,8 +221,7 @@ def test_QEventSequence_from_millisecond_durations_02():
 
 
 def test_QEventSequence_from_millisecond_durations_03():
-    r"""Silences are fused.
-    """
+    r"""Silences are fused."""
 
     durations = [100, -100, 100, -100, -100, 100]
     q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(

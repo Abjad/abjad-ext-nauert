@@ -105,12 +105,12 @@ class QTargetBeat:
         q_event_proxies = []
         for q_event in self.q_events:
             q_event_proxy = QEventProxy(
-                q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms,
+                q_event,
+                self.offset_in_ms,
+                self.offset_in_ms + self.duration_in_ms,
             )
             q_event_proxies.append(q_event_proxy)
-        return QuantizationJob(
-            job_id, self.search_tree, q_event_proxies
-        )
+        return QuantizationJob(job_id, self.search_tree, q_event_proxies)
 
     def __format__(self, format_specification=""):
         """

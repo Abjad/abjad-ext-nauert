@@ -2,8 +2,7 @@ from .JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):
-    r"""Serial job-handler.
-    """
+    r"""Serial job-handler."""
 
     ### CLASS VARIABLES ###
 

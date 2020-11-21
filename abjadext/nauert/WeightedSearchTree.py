@@ -85,9 +85,7 @@ class WeightedSearchTree(SearchTree):
             return False
         elif not all(isinstance(x, int) and 1 < x for x in definition["divisors"]):
             return False
-        elif not all(
-            abjad.mathx.divisors(x) == [1, x] for x in definition["divisors"]
-        ):
+        elif not all(abjad.mathx.divisors(x) == [1, x] for x in definition["divisors"]):
             return False
         elif "max_depth" not in definition:
             return False
@@ -118,8 +116,7 @@ class WeightedSearchTree(SearchTree):
 
     @property
     def all_compositions(self):
-        r"""All compositions of weighted search tree.
-        """
+        r"""All compositions of weighted search tree."""
         return self._all_compositions
 
     @property

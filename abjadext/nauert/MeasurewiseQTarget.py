@@ -22,7 +22,10 @@ class MeasurewiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(
-        self, attach_tempos=True, attack_point_optimizer=None, grace_handler=None,
+        self,
+        attach_tempos=True,
+        attack_point_optimizer=None,
+        grace_handler=None,
     ):
         voice = abjad.Voice()
 
@@ -47,7 +50,8 @@ class MeasurewiseQTarget(QTarget):
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
             if (
-                q_target_measure_two.time_signature != q_target_measure_one.time_signature
+                q_target_measure_two.time_signature
+                != q_target_measure_one.time_signature
             ):
                 time_signature = q_target_measure_two.time_signature
                 leaf = abjad.get.leaf(measure, 0)

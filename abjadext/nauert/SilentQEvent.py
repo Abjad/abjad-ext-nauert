@@ -59,6 +59,5 @@ class SilentQEvent(QEvent):
 
     @property
     def attachments(self):
-        r"""Gets attachments of silent q-event.
-        """
+        r"""Gets attachments of silent q-event."""
         return self._attachments

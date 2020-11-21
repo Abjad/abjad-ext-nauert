@@ -12,7 +12,8 @@ def test_QEventSequence_from_millisecond_pitch_pairs_01():
             abjadext.nauert.PitchedQEvent(abjad.Offset(0), (abjad.NamedPitch("c'"),)),
             abjadext.nauert.SilentQEvent(abjad.Offset(100, 1)),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(400, 1), (abjad.NamedPitch("cs'"), abjad.NamedPitch("e'")),
+                abjad.Offset(400, 1),
+                (abjad.NamedPitch("cs'"), abjad.NamedPitch("e'")),
             ),
             abjadext.nauert.SilentQEvent(abjad.Offset(700, 1)),
             abjadext.nauert.PitchedQEvent(

@@ -89,7 +89,8 @@ class QGrid:
         if root_node is None:
             root_node = QGridLeaf(preprolated_duration=1)
         assert isinstance(
-            root_node, (QGridLeaf, QGridContainer),
+            root_node,
+            (QGridLeaf, QGridContainer),
         )
         if next_downbeat is None:
             next_downbeat = QGridLeaf(preprolated_duration=1)

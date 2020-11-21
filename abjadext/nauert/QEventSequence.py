@@ -552,9 +552,9 @@ class QEventSequence:
                 )
             else:
                 duration = sum(
-                    abjad.get.effective(x, abjad.MetronomeMark).duration_to_milliseconds(
-                        x._get_duration()
-                    )
+                    abjad.get.effective(
+                        x, abjad.MetronomeMark
+                    ).duration_to_milliseconds(x._get_duration())
                     for x in group
                 )
             durations.append(duration)
