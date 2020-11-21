@@ -1,7 +1,6 @@
 import pickle
 
 import abjad
-
 import abjadext.nauert
 
 

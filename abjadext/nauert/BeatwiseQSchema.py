@@ -1,6 +1,8 @@
 import abjad
 
-from abjadext.nauert.QSchema import QSchema
+from .QSchema import QSchema
+from .SearchTree import SearchTree
+from .UnweightedSearchTree import UnweightedSearchTree
 
 
 class BeatwiseQSchema(QSchema):
@@ -240,17 +242,15 @@ class BeatwiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
-        import abjadext.nauert
-
         self._beatspan = abjad.Duration(keywords.get("beatspan", (1, 4)))
         search_tree = keywords.get(
-            "search_tree", abjadext.nauert.UnweightedSearchTree()
+            "search_tree", UnweightedSearchTree()
         )
-        assert isinstance(search_tree, abjadext.nauert.SearchTree)
+        assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         tempo = keywords.get("tempo", ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = abjad.indicators.MetronomeMark(*tempo)
+            tempo = abjad.MetronomeMark(*tempo)
         self._tempo = tempo
         QSchema.__init__(self, *arguments, **keywords)
 
@@ -260,7 +260,7 @@ class BeatwiseQSchema(QSchema):
         return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),
-            storage_format_kwargs_names=["beatspan", "search_tree", "tempo"],
+            storage_format_keyword_names=["beatspan", "search_tree", "tempo"],
         )
 
     ### PUBLIC PROPERTIES ###

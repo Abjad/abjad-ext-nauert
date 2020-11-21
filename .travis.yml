@@ -10,6 +10,7 @@ python:
   - 3.6
   - 3.7
   - 3.8
+  - 3.9
 
 git:
   depth: false
@@ -46,7 +47,7 @@ install:
   - pytest --version
 
 script:
-  - make black-check
+  # - make black-check
   - make flake8
   - make isort-check
   - make mypy
@@ -55,6 +56,3 @@ script:
 after_success:
   - pip install --quiet coveralls
   - coveralls
-
-notifications:
-  email: false

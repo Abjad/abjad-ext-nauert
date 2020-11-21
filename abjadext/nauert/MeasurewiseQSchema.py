@@ -1,6 +1,6 @@
 import abjad
 
-from abjadext.nauert.QSchema import QSchema
+from .QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
@@ -242,7 +242,7 @@ class MeasurewiseQSchema(QSchema):
         return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),
-            storage_format_kwargs_names=[
+            storage_format_keyword_names=[
                 "search_tree",
                 "tempo",
                 "time_signature",

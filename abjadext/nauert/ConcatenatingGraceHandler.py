@@ -1,6 +1,6 @@
 import abjad
 
-from abjadext.nauert.GraceHandler import GraceHandler
+from .GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):
@@ -21,8 +21,6 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### INITIALIZER ###
 
     def __init__(self, grace_duration=None):
-        import abjad
-
         if grace_duration is None:
             grace_duration = (1, 16)
         grace_duration = abjad.Duration(grace_duration)

@@ -1,5 +1,7 @@
 import abjad
 
+from .QEvent import QEvent
+
 
 class QEventProxy:
     """
@@ -38,12 +40,9 @@ class QEventProxy:
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
-        import abjad
-        import abjadext.nauert
-
         if len(arguments) == 2:
             q_event, offset = arguments[0], abjad.Offset(arguments[1])
-            assert isinstance(q_event, abjadext.nauert.QEvent)
+            assert isinstance(q_event, QEvent)
             assert 0 <= offset <= 1
         elif len(arguments) == 3:
             q_event, minimum, maximum = (
@@ -51,7 +50,7 @@ class QEventProxy:
                 abjad.Offset(arguments[1]),
                 abjad.Offset(arguments[2]),
             )
-            assert isinstance(q_event, abjadext.nauert.QEvent)
+            assert isinstance(q_event, QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
         elif len(arguments) == 0:

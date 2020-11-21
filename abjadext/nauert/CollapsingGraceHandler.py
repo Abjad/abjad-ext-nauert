@@ -1,4 +1,4 @@
-from abjadext.nauert.GraceHandler import GraceHandler
+from .GraceHandler import GraceHandler
 
 
 class CollapsingGraceHandler(GraceHandler):

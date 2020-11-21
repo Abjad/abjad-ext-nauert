@@ -1,4 +1,4 @@
-from abjadext.nauert.JobHandler import JobHandler
+from .JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):

@@ -1,25 +1,15 @@
 .PHONY: docs build
-.DEFAULT_GOAL := help
-
-project = abjadext
-errors = E123,E203,E265,E266,E501,W503
-origin := $(shell git config --get remote.origin.url)
-formatPaths = ${project}/ tests/ *.py
-testPaths = ${project}/ tests/
-
-help:  ## Display this help
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 black-check:
-	black --target-version py36 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
+	black --check --diff --target-version=py38 .
 
 black-reformat:
-	black --target-version py36 --exclude '.*boilerplate.*' ${formatPaths}
+	black --target-version=py38 .
 
-build:  ## Build distribution archive
+build:
 	python setup.py sdist
 
-clean:  ## Remove transitory files
+clean:
 	find . -name '*.pyc' | xargs rm
 	find . -name __pycache__ | xargs rm -Rf
 	rm -Rif *.egg-info/
@@ -30,49 +20,75 @@ clean:  ## Remove transitory files
 	rm -Rif htmlcov/
 	rm -Rif prof/
 
-flake8:  ## Run flake8
-	flake8 --max-line-length=90 --isolated --ignore=${errors} ${formatPaths}
+flake_ignore = --ignore=E203,E266,E501,W503
+flake_options = --isolated --max-line-length=88
 
-isort:  ## Run isort
+flake8:
+	flake8 ${flake_ignore} ${flake_options}
+
+isort-check:
 	isort \
-		--case-sensitive \
-		--multi-line 3 \
-		--recursive \
-		--skip ${project}/__init__.py \
-		--skip-glob '*boilerplate*' \
-		--thirdparty uqbar \
-		--trailing-comma \
-		--use-parentheses -y \
-		${formatPaths}
+	--case-sensitive \
+	--check-only \
+	--diff \
+	--line-width=88 \
+	--multi-line=3 \
+	--project=abjad \
+	--project=abjadext \
+	--thirdparty=ply \
+	--thirdparty=uqbar \
+	--trailing-comma \
+	--use-parentheses \
+	.
 
-mypy:  ## Run mypy
-	mypy --ignore-missing-imports ${project}/
+isort-reformat:
+	isort \
+	--case-sensitive \
+	--line-width=88 \
+	--multi-line=3 \
+	--project=abjad \
+	--project=abjadext \
+	--thirdparty=ply \
+	--thirdparty=uqbar \
+	--trailing-comma \
+	--use-parentheses \
+	.
 
-pytest:  ## Run pytest
+mypy:
+	mypy .
+
+project = abjadext
+
+pytest:
 	rm -Rf htmlcov/
 	pytest \
-		--cov-config=.coveragerc \
-		--cov-report=html \
-		--cov-report=term \
-		--cov=${project}/ \
-		--durations=20 \
-		${testPaths}
+	--cov-config=.coveragerc \
+	--cov-report=html \
+	--cov=${project} \
+	.
 
-pytest-x:  ## Run pytest and stop on first failure
+pytest-x:
 	rm -Rf htmlcov/
 	pytest \
-		-x \
-		--cov-config=.coveragerc \
-		--cov-report=html \
-		--cov-report=term \
-		--cov=${project}/ \
-		--durations=20 \
-		${testPaths}
+	-x \
+	--cov-config=.coveragerc \
+	--cov-report=html \
+	--cov=${project} \
+	.
 
-reformat: isort black-reformat ## Reformat codebase via isort and black
+reformat:
+	make black-reformat
+	make isort-reformat
 
-release: clean build ## Make a new release
+release:
+	make clean
+	make build
 	pip install -U twine
 	twine upload dist/*.tar.gz
 
-test: black-check flake8 mypy pytest ## Run all tests
+test:
+	make black-check
+	make flake8
+	make isort-check
+	make mypy
+	make pytest

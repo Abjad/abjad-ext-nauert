@@ -2,7 +2,8 @@ import copy
 
 import abjad
 
-from abjadext.nauert.QTarget import QTarget
+from .QTarget import QTarget
+from .QTargetBeat import QTargetBeat
 
 
 class BeatwiseQTarget(QTarget):
@@ -70,6 +71,4 @@ class BeatwiseQTarget(QTarget):
         """
         Item class of beatwise q-target.
         """
-        import abjadext
-
-        return abjadext.nauert.QTargetBeat
+        return QTargetBeat

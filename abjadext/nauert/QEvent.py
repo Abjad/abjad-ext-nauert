@@ -22,8 +22,6 @@ class QEvent:
 
     @abc.abstractmethod
     def __init__(self, offset=0, index=None):
-        import abjad
-
         offset = abjad.Offset(offset)
         self._offset = offset
         self._index = index
@@ -63,7 +61,7 @@ class QEvent:
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
         return abjad.FormatSpecification(
-            client=self, repr_is_indented=False, storage_format_kwargs_names=names,
+            client=self, repr_is_indented=False, storage_format_keyword_names=names,
         )
 
     ### PUBLIC PROPERTIES ###

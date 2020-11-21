@@ -1,6 +1,6 @@
 import abjad
 
-from abjadext.nauert.QGridLeaf import QGridLeaf
+from .QGridLeaf import QGridLeaf
 
 
 class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
@@ -32,12 +32,8 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
 
     @property
     def _leaf_class(self):
-        import abjadext.nauert
-
-        return abjadext.nauert.QGridLeaf
+        return QGridLeaf
 
     @property
     def _node_class(self):
-        import abjadext.nauert
-
-        return (type(self), abjadext.nauert.QGridLeaf)
+        return (type(self), QGridLeaf)

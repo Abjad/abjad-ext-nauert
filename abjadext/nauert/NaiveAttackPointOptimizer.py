@@ -1,6 +1,6 @@
 import abjad
 
-from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
+from .AttackPointOptimizer import AttackPointOptimizer
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
@@ -45,4 +45,4 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                 current_sub_logical_tie = abjad.LogicalTie(current_sub_logical_tie)
                 sub_logical_ties.append(current_sub_logical_tie)
             for sub_logical_tie in sub_logical_ties:
-                sub_logical_tie._fuse_leaves_by_immediate_parent()
+                abjad.mutate._fuse_leaves_by_immediate_parent(sub_logical_tie)

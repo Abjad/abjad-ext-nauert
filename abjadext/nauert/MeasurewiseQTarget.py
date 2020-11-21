@@ -2,7 +2,8 @@ import copy
 
 import abjad
 
-from abjadext.nauert.QTarget import QTarget
+from .QTarget import QTarget
+from .QTargetMeasure import QTargetMeasure
 
 
 class MeasurewiseQTarget(QTarget):
@@ -31,11 +32,11 @@ class MeasurewiseQTarget(QTarget):
         measure = abjad.Container()
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
-        leaf = abjad.inspect(measure).leaf(0)
+        leaf = abjad.get.leaf(measure, 0)
         abjad.attach(time_signature, leaf)
         if attach_tempos:
             tempo = copy.deepcopy(q_target_measure.tempo)
-            leaf = abjad.inspect(measure).leaf(0)
+            leaf = abjad.get.leaf(measure, 0)
             abjad.attach(tempo, leaf)
         voice.append(measure)
 
@@ -46,14 +47,14 @@ class MeasurewiseQTarget(QTarget):
             time_signature = q_target_measure_two.time_signature
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
-            leaf = abjad.inspect(measure).leaf(0)
+            leaf = abjad.get.leaf(measure, 0)
             abjad.attach(time_signature, leaf)
             if (
                 q_target_measure_two.tempo != q_target_measure_one.tempo
             ) and attach_tempos:
                 tempo = copy.deepcopy(q_target_measure_two.tempo)
                 # abjad.attach(tempo, measure)
-                leaf = abjad.inspect(measure).leaf(0)
+                leaf = abjad.get.leaf(measure, 0)
                 abjad.attach(tempo, leaf)
             voice.append(measure)
 
@@ -84,6 +85,4 @@ class MeasurewiseQTarget(QTarget):
 
         Returns q-target measure class.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.QTargetMeasure
+        return QTargetMeasure

@@ -1,6 +1,6 @@
 import abjad
 
-from abjadext.nauert.SearchTree import SearchTree
+from .SearchTree import SearchTree
 
 
 class UnweightedSearchTree(SearchTree):
@@ -127,7 +127,7 @@ class UnweightedSearchTree(SearchTree):
                 if (
                     not isinstance(key, int)
                     or not 0 < key
-                    or not abjad.mathtools.divisors(key) == [1, key]
+                    or not abjad.mathx.divisors(key) == [1, key]
                 ):
                     results.append(False)
                 elif not isinstance(n[key], (dict, type(None))):

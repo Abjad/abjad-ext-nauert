@@ -37,13 +37,13 @@ class QSchema:
             items = copy.deepcopy(arguments[0].items)
         elif 1 == len(arguments) and isinstance(arguments[0], dict):
             items = list(arguments[0].items())
-            if abjad.mathtools.all_are_pairs_of_types(items, int, dict):
+            if abjad.mathx.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
-            assert abjad.mathtools.all_are_pairs_of_types(items, int, self.item_class)
+            assert abjad.mathx.all_are_pairs_of_types(items, int, self.item_class)
             items = dict(items)
-        elif abjad.mathtools.all_are_pairs_of_types(arguments, int, self.item_class):
+        elif abjad.mathx.all_are_pairs_of_types(arguments, int, self.item_class):
             items = dict(arguments)
-        elif abjad.mathtools.all_are_pairs_of_types(arguments, int, dict):
+        elif abjad.mathx.all_are_pairs_of_types(arguments, int, dict):
             items = [(x, self.item_class(**y)) for x, y in arguments]
             items = dict(items)
         elif all(isinstance(x, self.item_class) for x in arguments):
@@ -65,8 +65,6 @@ class QSchema:
         """
         Calls QSchema on `duration`.
         """
-        import abjad
-
         target_items = []
         idx, current_offset = 0, 0
         duration = abjad.Duration(duration)

@@ -1,3 +1,8 @@
+from .MeasurewiseQSchema import MeasurewiseQSchema
+from .QEventSequence import QEventSequence
+from .QSchema import QSchema
+
+
 class Quantizer:
     r"""Quantizer.
 
@@ -260,13 +265,11 @@ class Quantizer:
 
         Returns Abjad components.
         """
-        import abjadext.nauert
-
-        q_event_sequence = abjadext.nauert.QEventSequence(q_event_sequence)
+        q_event_sequence = QEventSequence(q_event_sequence)
 
         if q_schema is None:
-            q_schema = abjadext.nauert.MeasurewiseQSchema()
-        assert isinstance(q_schema, abjadext.nauert.QSchema)
+            q_schema = MeasurewiseQSchema()
+        assert isinstance(q_schema, QSchema)
 
         q_target = q_schema(q_event_sequence.duration_in_ms)
 

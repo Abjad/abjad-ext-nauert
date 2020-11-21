@@ -3,6 +3,17 @@ import bisect
 
 import abjad
 
+from .AttackPointOptimizer import AttackPointOptimizer
+from .ConcatenatingGraceHandler import ConcatenatingGraceHandler
+from .DistanceHeuristic import DistanceHeuristic
+from .GraceHandler import GraceHandler
+from .Heuristic import Heuristic
+from .JobHandler import JobHandler
+from .NaiveAttackPointOptimizer import NaiveAttackPointOptimizer
+from .QEventSequence import QEventSequence
+from .SerialJobHandler import SerialJobHandler
+from .SilentQEvent import SilentQEvent
+
 
 class QTarget:
     """
@@ -43,30 +54,28 @@ class QTarget:
         """
         Calls q-target.
         """
-        import abjadext.nauert
-
-        assert isinstance(q_event_sequence, abjadext.nauert.QEventSequence)
+        assert isinstance(q_event_sequence, QEventSequence)
 
         if grace_handler is None:
-            grace_handler = abjadext.nauert.ConcatenatingGraceHandler()
-        assert isinstance(grace_handler, abjadext.nauert.GraceHandler)
+            grace_handler = ConcatenatingGraceHandler()
+        assert isinstance(grace_handler, GraceHandler)
 
         if heuristic is None:
-            heuristic = abjadext.nauert.DistanceHeuristic()
-        assert isinstance(heuristic, abjadext.nauert.Heuristic)
+            heuristic = DistanceHeuristic()
+        assert isinstance(heuristic, Heuristic)
 
         if job_handler is None:
-            job_handler = abjadext.nauert.SerialJobHandler()
-        assert isinstance(job_handler, abjadext.nauert.JobHandler)
+            job_handler = SerialJobHandler()
+        assert isinstance(job_handler, JobHandler)
 
         if attack_point_optimizer is None:
-            attack_point_optimizer = abjadext.nauert.NaiveAttackPointOptimizer()
-        assert isinstance(attack_point_optimizer, abjadext.nauert.AttackPointOptimizer)
+            attack_point_optimizer = NaiveAttackPointOptimizer()
+        assert isinstance(attack_point_optimizer, AttackPointOptimizer)
 
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
         q_events = q_event_sequence
-        if isinstance(q_event_sequence[-2], abjadext.nauert.SilentQEvent):
+        if isinstance(q_event_sequence[-2], SilentQEvent):
             q_events = q_event_sequence[:-1]
 
         # parcel QEvents out to each beat
@@ -132,11 +141,11 @@ class QTarget:
                     new_leaf.written_pitch = pitches[0]
                 if grace_container:
                     abjad.attach(grace_container, new_leaf)
-                abjad.mutate(leaf).replace(new_leaf)
+                abjad.mutate.replace(leaf, new_leaf)
                 if not isinstance(new_leaf, abjad.Rest):
                     abjad.annotate(new_leaf, "tie_to_next", True)
             else:
-                previous_leaf = leaf._leaf(-1)
+                previous_leaf = abjad._iterate._get_leaf(leaf, -1)
                 if isinstance(previous_leaf, abjad.Rest):
                     new_leaf = type(previous_leaf)(leaf.written_duration)
                 elif isinstance(previous_leaf, abjad.Note):
@@ -147,9 +156,8 @@ class QTarget:
                     new_leaf = type(previous_leaf)(
                         previous_leaf.written_pitch, leaf.written_duration
                     )
-                abjad.mutate(leaf).replace(new_leaf)
-                inspection = abjad.inspect(previous_leaf)
-                if inspection.annotation("tie_to_next") is True:
+                abjad.mutate.replace(leaf, new_leaf)
+                if abjad.get.annotation(previous_leaf, "tie_to_next") is True:
                     leaves = abjad.select([previous_leaf, new_leaf])
                     abjad.tie(leaves)
                     abjad.annotate(new_leaf, "tie_to_next", True)

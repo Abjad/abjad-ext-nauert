@@ -2,6 +2,8 @@ import abc
 
 import abjad
 
+from .SearchTree import SearchTree
+
 
 class QSchemaItem:
     """
@@ -18,10 +20,8 @@ class QSchemaItem:
 
     @abc.abstractmethod
     def __init__(self, search_tree=None, tempo=None):
-        import abjadext.nauert
-
         if search_tree is not None:
-            assert isinstance(search_tree, abjadext.nauert.SearchTree)
+            assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
             if isinstance(tempo, tuple):

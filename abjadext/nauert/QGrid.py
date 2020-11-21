@@ -3,6 +3,10 @@ import copy
 
 import abjad
 
+from .QEventProxy import QEventProxy
+from .QGridContainer import QGridContainer
+from .QGridLeaf import QGridLeaf
+
 
 class QGrid:
     """
@@ -82,17 +86,14 @@ class QGrid:
     ### INITIALIZATION ###
 
     def __init__(self, root_node=None, next_downbeat=None):
-        import abjad
-        import abjadext.nauert
-
         if root_node is None:
-            root_node = abjadext.nauert.QGridLeaf(preprolated_duration=1)
+            root_node = QGridLeaf(preprolated_duration=1)
         assert isinstance(
-            root_node, (abjadext.nauert.QGridLeaf, abjadext.nauert.QGridContainer),
+            root_node, (QGridLeaf, QGridContainer),
         )
         if next_downbeat is None:
-            next_downbeat = abjadext.nauert.QGridLeaf(preprolated_duration=1)
-        assert isinstance(next_downbeat, abjadext.nauert.QGridLeaf)
+            next_downbeat = QGridLeaf(preprolated_duration=1)
+        assert isinstance(next_downbeat, QGridLeaf)
         self._root_node = root_node
         self._next_downbeat = next_downbeat
         self._next_downbeat._offset = abjad.Offset(1)
@@ -185,9 +186,7 @@ class QGrid:
 
         Returns None
         """
-        import abjadext.nauert
-
-        assert all(isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies)
+        assert all(isinstance(x, QEventProxy) for x in q_event_proxies)
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
             idx = bisect.bisect_left(offsets, q_event_proxy.offset)
@@ -218,12 +217,10 @@ class QGrid:
 
         Returns the ``QEventProxies`` attached to ``leaf``.
         """
-        import abjadext.nauert
-
-        container = abjadext.nauert.QGridContainer(
+        container = QGridContainer(
             preprolated_duration=leaf.preprolated_duration,
             children=[
-                abjadext.nauert.QGridLeaf(preprolated_duration=subdivision)
+                QGridLeaf(preprolated_duration=subdivision)
                 for subdivision in subdivisions
             ],
         )
@@ -297,9 +294,7 @@ class QGrid:
 
         Returns tuple of ``QGridLeaf`` instances.
         """
-        import abjadext.nauert
-
-        if isinstance(self._root_node, abjadext.nauert.QGridLeaf):
+        if isinstance(self._root_node, QGridLeaf):
             return (self._root_node, self._next_downbeat)
         return self._root_node.leaves + (self._next_downbeat,)
 
