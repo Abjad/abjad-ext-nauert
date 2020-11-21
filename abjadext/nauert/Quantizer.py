@@ -46,7 +46,6 @@ class Quantizer:
                             ef'4
                         }
                         {
-                            \time 4/4
                             e'4
                             f'4
                             fs'4
@@ -102,6 +101,7 @@ class Quantizer:
                         {
                             \times 4/7 {
                                 \tempo 8=57
+                                \time 5/4
                                 cs'16.
                                 d'8
                                 ~
