@@ -1,5 +1,9 @@
-import abjad
 import uqbar.containers
+import uqbar.graphs
+
+import abjad
+
+from .QEventProxy import QEventProxy
 
 
 class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
@@ -21,15 +25,13 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
     ### INITIALIZER ###
 
     def __init__(self, preprolated_duration=1, q_event_proxies=None, is_divisible=True):
-        import abjadext.nauert
-
         uqbar.containers.UniqueTreeNode.__init__(self)
         abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
             assert all(
-                isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies
+                isinstance(x, QEventProxy) for x in q_event_proxies
             )
             self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
@@ -42,8 +44,6 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
         Returns selection of notes.
         """
-        import abjad
-
         pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
         maker = abjad.NoteMaker()
@@ -55,8 +55,6 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
         Returns Graphviz graph.
         """
-        import uqbar.graphs
-
         graph = uqbar.graphs.Graph(name="G")
         node = uqbar.graphs.Node(
             attributes={"label": str(self.preprolated_duration), "shape": "box"}
@@ -75,7 +73,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=True,
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
             template_names=template_names,
         )
 

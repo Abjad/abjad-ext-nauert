@@ -1,6 +1,6 @@
-import abjad
 import pytest
 
+import abjad
 import abjadext.nauert
 
 

@@ -1,5 +1,7 @@
 import abc
 
+from .QTargetBeat import QTargetBeat
+
 
 class Heuristic:
     """
@@ -29,10 +31,8 @@ class Heuristic:
 
         Returns none.
         """
-        import abjadext.nauert
-
         assert len(q_target_beats)
-        assert all(isinstance(x, abjadext.nauert.QTargetBeat) for x in q_target_beats)
+        assert all(isinstance(x, QTargetBeat) for x in q_target_beats)
         return self._process(q_target_beats)
 
     ### PRIVATE METHODS ###

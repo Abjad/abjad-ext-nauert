@@ -1,5 +1,9 @@
 import abjad
 
+from .QTargetBeat import QTargetBeat
+from .SearchTree import SearchTree
+from .UnweightedSearchTree import UnweightedSearchTree
+
 
 class QTargetMeasure:
     """
@@ -91,14 +95,12 @@ class QTargetMeasure:
         tempo=None,
         use_full_measure=False,
     ):
-        import abjadext.nauert
-
         offset_in_ms = offset_in_ms or 0
         offset_in_ms = abjad.Offset(offset_in_ms)
 
         if search_tree is None:
-            search_tree = abjadext.nauert.UnweightedSearchTree()
-        assert isinstance(search_tree, abjadext.nauert.SearchTree)
+            search_tree = UnweightedSearchTree()
+        assert isinstance(search_tree, SearchTree)
         tempo = tempo or abjad.MetronomeMark((1, 4), 60)
         # tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
@@ -112,7 +114,7 @@ class QTargetMeasure:
 
         if use_full_measure:
             beatspan = time_signature.duration
-            beat = abjadext.nauert.QTargetBeat(
+            beat = QTargetBeat(
                 beatspan=beatspan,
                 offset_in_ms=offset_in_ms,
                 search_tree=search_tree,
@@ -124,7 +126,7 @@ class QTargetMeasure:
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = tempo.duration_to_milliseconds(beatspan)
             for i in range(time_signature.numerator):
-                beat = abjadext.nauert.QTargetBeat(
+                beat = QTargetBeat(
                     beatspan=beatspan,
                     offset_in_ms=current_offset_in_ms,
                     search_tree=search_tree,

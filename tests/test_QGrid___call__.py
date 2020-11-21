@@ -1,5 +1,4 @@
 import abjad
-
 import abjadext.nauert
 
 
@@ -27,7 +26,7 @@ def test_QGrid___call___01():
     assert len(result) == 1
     assert format(result[0]) == "c'4"
 
-    annotation = abjad.inspect(result[0]).indicator(dict)
+    annotation = abjad.get.indicator(result[0], dict)
     q_events = annotation["q_events"]
 
     assert isinstance(q_events, tuple) and len(q_events) == 4
@@ -62,7 +61,7 @@ def test_QGrid___call___02():
     result = q_grid((1, 4))
 
     assert isinstance(result, list) and len(result) == 1
-    assert format(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'8
@@ -79,17 +78,17 @@ def test_QGrid___call___02():
 
     leaves = abjad.select(result[0]).leaves()
     leaf = leaves[0]
-    annotation = abjad.inspect(leaf).indicator(dict)
+    annotation = abjad.get.indicator(leaf, dict)
     q_events = annotation["q_events"]
     assert isinstance(q_events, tuple) and len(q_events) == 2
     assert q_events[0].attachments == ("A",)
     assert q_events[1].attachments == ("B",)
 
     leaf = leaves[1]
-    assert not abjad.inspect(leaf).indicator(dict)
+    assert not abjad.get.indicator(leaf, dict)
 
     leaf = leaves[2]
-    annotation = abjad.inspect(leaf).indicator(dict)
+    annotation = abjad.get.indicator(leaf, dict)
     q_events = annotation["q_events"]
 
     assert isinstance(q_events, tuple) and len(q_events) == 3
@@ -98,11 +97,12 @@ def test_QGrid___call___02():
     assert q_events[2].attachments == ("E",)
 
     for leaf in leaves[3:6]:
-        assert not abjad.inspect(leaf).indicators(dict)
+        assert not abjad.get.indicator(leaf, dict)
 
 
 def test_QGrid___call___03():
-    r"""Non-binary works too.
+    """
+    Non-binary works too.
     """
 
     q_grid = abjadext.nauert.QGrid()
@@ -129,7 +129,7 @@ def test_QGrid___call___03():
     result = q_grid((1, 3))
 
     assert isinstance(result, list) and len(result) == 1
-    assert format(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.String.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {

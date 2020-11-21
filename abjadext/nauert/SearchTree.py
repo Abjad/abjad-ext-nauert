@@ -3,6 +3,8 @@ import copy
 
 import abjad
 
+from .QGrid import QGrid
+
 
 class SearchTree:
     r"""Abstract search tree.
@@ -34,9 +36,7 @@ class SearchTree:
     def __call__(self, q_grid):
         r"""Calls search tree.
         """
-        import abjadext.nauert
-
-        assert isinstance(q_grid, abjadext.nauert.QGrid)
+        assert isinstance(q_grid, QGrid)
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)
         for command in commands:
@@ -118,8 +118,7 @@ class SearchTree:
         )
         if not indices:
             return ()
-        enumerator = abjad.Enumerator(subdivisions)
-        combinations = enumerator.yield_outer_product()
+        combinations = abjad.enumeratex.yield_outer_product(subdivisions)
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 

@@ -1,5 +1,11 @@
 import abjad
 
+from .QEvent import QEvent
+from .QEventProxy import QEventProxy
+from .QuantizationJob import QuantizationJob
+from .SearchTree import SearchTree
+from .UnweightedSearchTree import UnweightedSearchTree
+
 
 class QTargetBeat:
     """
@@ -59,17 +65,14 @@ class QTargetBeat:
     ### INITIALIZER ###
 
     def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
-        import abjad
-        import abjadext.nauert
-
         beatspan = beatspan or abjad.Duration(0)
         beatspan = abjad.Duration(beatspan)
         offset_in_ms = offset_in_ms or abjad.Duration(0)
         offset_in_ms = abjad.Offset(offset_in_ms)
 
         if search_tree is None:
-            search_tree = abjadext.nauert.UnweightedSearchTree()
-        assert isinstance(search_tree, abjadext.nauert.SearchTree)
+            search_tree = UnweightedSearchTree()
+        assert isinstance(search_tree, SearchTree)
         tempo = tempo or abjad.MetronomeMark((1, 4), 60)
         # tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
@@ -96,18 +99,16 @@ class QTargetBeat:
 
         Returns quantization job.
         """
-        import abjadext.nauert
-
         if not self.q_events:
             return None
-        assert all(isinstance(x, abjadext.nauert.QEvent) for x in self.q_events)
+        assert all(isinstance(x, QEvent) for x in self.q_events)
         q_event_proxies = []
         for q_event in self.q_events:
-            q_event_proxy = abjadext.nauert.QEventProxy(
+            q_event_proxy = QEventProxy(
                 q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms,
             )
             q_event_proxies.append(q_event_proxy)
-        return abjadext.nauert.QuantizationJob(
+        return QuantizationJob(
             job_id, self.search_tree, q_event_proxies
         )
 

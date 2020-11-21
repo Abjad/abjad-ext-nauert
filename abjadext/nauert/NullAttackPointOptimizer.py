@@ -1,4 +1,4 @@
-from abjadext.nauert.AttackPointOptimizer import AttackPointOptimizer
+from .AttackPointOptimizer import AttackPointOptimizer
 
 
 class NullAttackPointOptimizer(AttackPointOptimizer):

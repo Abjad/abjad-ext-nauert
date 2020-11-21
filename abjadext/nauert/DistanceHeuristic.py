@@ -1,4 +1,5 @@
-from abjadext.nauert.Heuristic import Heuristic
+from .Heuristic import Heuristic
+from .QGrid import QGrid
 
 
 class DistanceHeuristic(Heuristic):
@@ -20,8 +21,6 @@ class DistanceHeuristic(Heuristic):
     ### PRIVATE METHODS ###
 
     def _process(self, q_target_beats):
-        import abjadext.nauert
-
         for q_target_beat in q_target_beats:
             q_grids = q_target_beat.q_grids
             if q_grids:
@@ -30,5 +29,5 @@ class DistanceHeuristic(Heuristic):
                 )
                 q_target_beat._q_grid = sorted_q_grids[0]
             else:
-                q_target_beat._q_grid = abjadext.nauert.QGrid()
+                q_target_beat._q_grid = QGrid()
         return q_target_beats

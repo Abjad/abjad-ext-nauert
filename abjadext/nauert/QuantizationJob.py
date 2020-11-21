@@ -1,5 +1,10 @@
 import abjad
 
+from .QEventProxy import QEventProxy
+from .QGrid import QGrid
+from .SearchTree import SearchTree
+from .UnweightedSearchTree import UnweightedSearchTree
+
 
 class QuantizationJob:
     r"""Quantization job.
@@ -48,19 +53,17 @@ class QuantizationJob:
     ### INITIALIZER ###
 
     def __init__(self, job_id=1, search_tree=None, q_event_proxies=None, q_grids=None):
-        import abjadext.nauert
-
-        search_tree = search_tree or abjadext.nauert.UnweightedSearchTree()
+        search_tree = search_tree or UnweightedSearchTree()
         q_event_proxies = q_event_proxies or []
-        assert isinstance(search_tree, abjadext.nauert.SearchTree)
-        assert all(isinstance(x, abjadext.nauert.QEventProxy) for x in q_event_proxies)
+        assert isinstance(search_tree, SearchTree)
+        assert all(isinstance(x, QEventProxy) for x in q_event_proxies)
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
         if q_grids is None:
             self._q_grids = ()
         else:
-            assert all(isinstance(x, abjadext.nauert.QGrid) for x in q_grids)
+            assert all(isinstance(x, QGrid) for x in q_grids)
             self._q_grids = tuple(q_grids)
 
     ### SPECIAL METHODS ###
@@ -70,12 +73,10 @@ class QuantizationJob:
 
         Returns none.
         """
-        import abjadext.nauert
-
         # print('XXX')
         # print(format(self.q_event_proxies[0]))
 
-        q_grid = abjadext.nauert.QGrid()
+        q_grid = QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
 
         # print(format(q_grid))

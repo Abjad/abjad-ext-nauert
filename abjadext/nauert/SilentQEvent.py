@@ -1,4 +1,4 @@
-from abjadext.nauert.QEvent import QEvent
+from .QEvent import QEvent
 
 
 class SilentQEvent(QEvent):

@@ -64,7 +64,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         Returns none.
         """
         assert isinstance(argument, abjad.Container)
-        leaf = abjad.inspect(argument).leaf(0)
-        time_signature = abjad.inspect(leaf).indicator(abjad.TimeSignature)
+        leaf = abjad.get.leaf(argument, 0)
+        time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
         assert time_signature is not None, repr(time_signature)
-        abjad.mutate(argument[:]).rewrite_meter(time_signature, boundary_depth=1)
+        abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
