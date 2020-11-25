@@ -1,6 +1,7 @@
 import abjad
 
 from .GraceHandler import GraceHandler
+from .PitchedQEvent import PitchedQEvent
 
 
 class ConcatenatingGraceHandler(GraceHandler):
@@ -33,11 +34,8 @@ class ConcatenatingGraceHandler(GraceHandler):
         """
         Calls concatenating grace handler.
         """
-        import abjadext.nauert
-
         grace_events, final_event = q_events[:-1], q_events[-1]
-
-        if isinstance(final_event, abjadext.nauert.PitchedQEvent):
+        if isinstance(final_event, PitchedQEvent):
             pitches = final_event.pitches
         else:
             pitches = ()
@@ -45,7 +43,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         if grace_events:
             grace_container = abjad.BeforeGraceContainer()
             for q_event in grace_events:
-                if isinstance(q_event, abjadext.nauert.PitchedQEvent):
+                if isinstance(q_event, PitchedQEvent):
                     if len(q_event.pitches) == 1:
                         leaf = abjad.Note(q_event.pitches[0], self.grace_duration)
                     else:

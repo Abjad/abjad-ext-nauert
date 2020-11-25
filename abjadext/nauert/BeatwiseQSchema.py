@@ -1,6 +1,9 @@
 import abjad
 
+from .BeatwiseQSchemaItem import BeatwiseQSchemaItem
+from .BeatwiseQTarget import BeatwiseQTarget
 from .QSchema import QSchema
+from .QTargetBeat import QTargetBeat
 from .SearchTree import SearchTree
 from .UnweightedSearchTree import UnweightedSearchTree
 
@@ -277,9 +280,7 @@ class BeatwiseQSchema(QSchema):
 
         Returns beatwise q-schema item.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.BeatwiseQSchemaItem
+        return BeatwiseQSchemaItem
 
     @property
     def target_class(self):
@@ -288,9 +289,7 @@ class BeatwiseQSchema(QSchema):
 
         Returns beatwise q-target.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.BeatwiseQTarget
+        return BeatwiseQTarget
 
     @property
     def target_item_class(self):
@@ -299,6 +298,4 @@ class BeatwiseQSchema(QSchema):
 
         Returns q-target beat.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.QTargetBeat
+        return QTargetBeat

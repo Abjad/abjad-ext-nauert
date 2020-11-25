@@ -1,4 +1,5 @@
 from .GraceHandler import GraceHandler
+from .PitchedQEvent import PitchedQEvent
 
 
 class CollapsingGraceHandler(GraceHandler):
@@ -19,10 +20,8 @@ class CollapsingGraceHandler(GraceHandler):
         """
         Calls collapsing grace handler.
         """
-        import abjadext.nauert
-
         pitches = []
         for q_event in q_events:
-            if isinstance(q_event, abjadext.nauert.PitchedQEvent):
+            if isinstance(q_event, PitchedQEvent):
                 pitches.extend(q_event.pitches)
         return tuple(pitches), None

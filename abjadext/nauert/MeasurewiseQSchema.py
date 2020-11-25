@@ -1,6 +1,11 @@
 import abjad
 
+from .MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
+from .MeasurewiseQTarget import MeasurewiseQTarget
 from .QSchema import QSchema
+from .QTargetMeasure import QTargetMeasure
+from .SearchTree import SearchTree
+from .UnweightedSearchTree import UnweightedSearchTree
 
 
 class MeasurewiseQSchema(QSchema):
@@ -219,12 +224,10 @@ class MeasurewiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
-        import abjadext.nauert
-
         search_tree = keywords.get(
-            "search_tree", abjadext.nauert.UnweightedSearchTree()
+            "search_tree", UnweightedSearchTree()
         )
-        assert isinstance(search_tree, abjadext.nauert.SearchTree)
+        assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         tempo = keywords.get("tempo", ((1, 4), 60))
         if isinstance(tempo, tuple):
@@ -259,9 +262,7 @@ class MeasurewiseQSchema(QSchema):
 
         Returns ``MeasurewiseQSchemaItem``.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.MeasurewiseQSchemaItem
+        return MeasurewiseQSchemaItem
 
     @property
     def target_class(self):
@@ -270,9 +271,7 @@ class MeasurewiseQSchema(QSchema):
 
         Returns ``MeasurewiseQTarget``.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.MeasurewiseQTarget
+        return MeasurewiseQTarget
 
     @property
     def target_item_class(self):
@@ -281,9 +280,7 @@ class MeasurewiseQSchema(QSchema):
 
         Returns ``QTargetMeasure``.
         """
-        import abjadext.nauert
-
-        return abjadext.nauert.QTargetMeasure
+        return QTargetMeasure
 
     @property
     def time_signature(self):

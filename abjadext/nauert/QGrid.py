@@ -242,8 +242,6 @@ class QGrid:
         Returns the ``QEventProxies`` attached to thus subdivided
         ``QGridLeaf``.
         """
-        import abjad
-
         pairs = sorted(dict(pairs).items())
         leaf_indices = [pair[0] for pair in pairs]
         subdivisions = [pair[1] for pair in pairs]
@@ -314,8 +312,6 @@ class QGrid:
 
         Returns tuple of ``Offset`` instances.
         """
-        import abjad
-
         return tuple([x.start_offset for x in self.leaves[:-1]] + [abjad.Offset(1)])
 
     @property
