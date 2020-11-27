@@ -13,7 +13,7 @@ class Job:
 
     def __call__(self):
         self.result = [
-            x for x in abjad.mathx.yield_all_compositions_of_integer(self.number)
+            x for x in abjad.math.yield_all_compositions_of_integer(self.number)
         ]
 
     def __repr__(self):

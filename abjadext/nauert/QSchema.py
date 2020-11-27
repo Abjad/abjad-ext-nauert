@@ -37,13 +37,13 @@ class QSchema:
             items = copy.deepcopy(arguments[0].items)
         elif 1 == len(arguments) and isinstance(arguments[0], dict):
             items = list(arguments[0].items())
-            if abjad.mathx.all_are_pairs_of_types(items, int, dict):
+            if abjad.math.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
-            assert abjad.mathx.all_are_pairs_of_types(items, int, self.item_class)
+            assert abjad.math.all_are_pairs_of_types(items, int, self.item_class)
             items = dict(items)
-        elif abjad.mathx.all_are_pairs_of_types(arguments, int, self.item_class):
+        elif abjad.math.all_are_pairs_of_types(arguments, int, self.item_class):
             items = dict(arguments)
-        elif abjad.mathx.all_are_pairs_of_types(arguments, int, dict):
+        elif abjad.math.all_are_pairs_of_types(arguments, int, dict):
             items = [(x, self.item_class(**y)) for x, y in arguments]
             items = dict(items)
         elif all(isinstance(x, self.item_class) for x in arguments):

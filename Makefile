@@ -60,6 +60,9 @@ mypy:
 project = abjadext
 
 pytest:
+	pytest .
+
+pytest-coverage:
 	rm -Rf htmlcov/
 	pytest \
 	--cov-config=.coveragerc \
@@ -68,13 +71,7 @@ pytest:
 	.
 
 pytest-x:
-	rm -Rf htmlcov/
-	pytest \
-	-x \
-	--cov-config=.coveragerc \
-	--cov-report=html \
-	--cov=${project} \
-	.
+	pytest -x .
 
 reformat:
 	make black-reformat

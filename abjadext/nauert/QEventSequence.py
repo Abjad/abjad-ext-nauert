@@ -260,7 +260,7 @@ class QEventSequence:
             ]
         else:
             durations = milliseconds
-        offsets = abjad.mathx.cumulative_sums([abs(x) for x in durations])
+        offsets = abjad.math.cumulative_sums([abs(x) for x in durations])
         q_events = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
@@ -395,7 +395,7 @@ class QEventSequence:
                 duration = sum(x[0] for x in group)
                 groups.append((duration, None))
         # find offsets
-        offsets = abjad.mathx.cumulative_sums([abs(x[0]) for x in groups])
+        offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
         # build QEvents
         q_events = []
         for pair in zip(offsets, groups):
@@ -454,7 +454,7 @@ class QEventSequence:
         assert isinstance(tempo, abjad.MetronomeMark)
         durations = [x for x in abjad.sequence(durations).sum_by_sign(sign=[-1]) if x]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
-        offsets = abjad.mathx.cumulative_sums([abs(_) for _ in durations])
+        offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])

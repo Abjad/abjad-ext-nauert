@@ -54,7 +54,7 @@ test_time_segments = [
 def test_QEventSequence_from_millisecond_durations_01():
     r"""Test basic functionality."""
 
-    durations = abjad.mathx.difference_series([x[0] for x in test_time_segments])
+    durations = abjad.math.difference_series([x[0] for x in test_time_segments])
     q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(durations)
 
     assert q_events == abjadext.nauert.QEventSequence(

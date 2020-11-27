@@ -85,7 +85,7 @@ class WeightedSearchTree(SearchTree):
             return False
         elif not all(isinstance(x, int) and 1 < x for x in definition["divisors"]):
             return False
-        elif not all(abjad.mathx.divisors(x) == [1, x] for x in definition["divisors"]):
+        elif not all(abjad.math.divisors(x) == [1, x] for x in definition["divisors"]):
             return False
         elif "max_depth" not in definition:
             return False
@@ -107,7 +107,7 @@ class WeightedSearchTree(SearchTree):
         for divisor in self._definition["divisors"]:
             compositions[divisor] = [
                 tuple(x)
-                for x in abjad.mathx.yield_all_compositions_of_integer(divisor)
+                for x in abjad.math.yield_all_compositions_of_integer(divisor)
                 if 1 < len(x) <= max_divisions
             ]
         return compositions
