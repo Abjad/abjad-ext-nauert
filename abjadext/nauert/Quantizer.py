@@ -4,7 +4,8 @@ from .QSchema import QSchema
 
 
 class Quantizer:
-    r"""Quantizer.
+    r"""
+    Quantizer.
 
     ..  container:: example
 
@@ -20,8 +21,7 @@ class Quantizer:
 
     ..  container:: example
 
-        Quantization defaults to outputting into a 4/4, quarter=60 musical
-        structure:
+        Quantization defaults to outputting into a 4/4, quarter=60 musical structure:
 
         >>> result = quantizer(q_event_sequence)
         >>> staff = abjad.Staff([result])
@@ -66,14 +66,14 @@ class Quantizer:
         with different tempi and time signatures:
 
         >>> measurewise_q_schema = abjadext.nauert.MeasurewiseQSchema(
-        ...     {'tempo': ((1, 4), 78), 'time_signature': (2, 4)},
-        ...     {'tempo': ((1, 8), 57), 'time_signature': (5, 4)},
-        ...     )
+        ...     {"tempo": ((1, 4), 78), "time_signature": (2, 4)},
+        ...     {"tempo": ((1, 8), 57), "time_signature": (5, 4)},
+        ... )
 
         >>> result = quantizer(
         ...     q_event_sequence,
         ...     q_schema=measurewise_q_schema,
-        ...     )
+        ... )
         >>> staff = abjad.Staff([result])
         >>> score = abjad.Score([staff])
         >>> abjad.show(score) # doctest: +SKIP
@@ -156,15 +156,15 @@ class Quantizer:
 
         >>> beatwise_q_schema = abjadext.nauert.BeatwiseQSchema(
         ... {
-        ...     2: {'tempo': ((1, 4), 120)},
-        ...     5: {'tempo': ((1, 4), 90)},
-        ...     7: {'tempo': ((1, 4), 30)},
+        ...     2: {"tempo": ((1, 4), 120)},
+        ...     5: {"tempo": ((1, 4), 90)},
+        ...     7: {"tempo": ((1, 4), 30)},
         ... })
 
         >>> result = quantizer(
         ...     q_event_sequence,
         ...     q_schema=beatwise_q_schema,
-        ...     )
+        ... )
         >>> staff = abjad.Staff([result])
         >>> score = abjad.Score([staff])
         >>> abjad.show(score) # doctest: +SKIP
@@ -261,18 +261,16 @@ class Quantizer:
         attack_point_optimizer=None,
         attach_tempos=True,
     ):
-        r"""Calls quantizer.
+        """
+        Calls quantizer.
 
         Returns Abjad components.
         """
         q_event_sequence = QEventSequence(q_event_sequence)
-
         if q_schema is None:
             q_schema = MeasurewiseQSchema()
         assert isinstance(q_schema, QSchema)
-
         q_target = q_schema(q_event_sequence.duration_in_ms)
-
         notation = q_target(
             q_event_sequence,
             grace_handler=grace_handler,
@@ -281,5 +279,4 @@ class Quantizer:
             attack_point_optimizer=attack_point_optimizer,
             attach_tempos=attach_tempos,
         )
-
         return notation

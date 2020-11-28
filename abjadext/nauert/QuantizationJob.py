@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .QEventProxy import QEventProxy
@@ -99,12 +101,11 @@ class QuantizationJob:
 
         self._q_grids = tuple(old_q_grids)
 
-    def __eq__(self, argument):
-        r"""Is true when `argument` is a quantization job with job ID, search tree,
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when `argument` is a quantization job with job ID, search tree,
         q-event proxies and q-grids equal to those of this quantization job.
         Otherwise false.
-
-        Returns true or false.
         """
         if type(self) == type(argument):
             if self.job_id == argument.job_id:
@@ -120,12 +121,11 @@ class QuantizationJob:
         """
         return abjad.StorageFormatManager(self).get_storage_format()
 
-    def __hash__(self):
-        r"""Hashes quantization job.
+    def __hash__(self) -> int:
+        """
+        Hashes quantization job.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super(QuantizationJob, self).__hash__()
 
@@ -137,20 +137,19 @@ class QuantizationJob:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def job_id(self):
-        r"""The job id of the ``QuantizationJob``.
+    def job_id(self) -> int:
+        """
+        The job id of the ``QuantizationJob``.
 
         Only meaningful when the job is processed via multiprocessing,
         as the job id is necessary to reconstruct the order of jobs.
-
-        Returns int.
         """
         return self._job_id
 
     @property
-    def q_event_proxies(self):
-        r"""The ``QEventProxies`` the ``QuantizationJob`` was instantiated
-        with.
+    def q_event_proxies(self) -> typing.Tuple:
+        r"""
+        The ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
 
         >>> q_event_a = abjadext.nauert.PitchedQEvent(250, [0, 1])
         >>> q_event_b = abjadext.nauert.SilentQEvent(500)
@@ -167,7 +166,8 @@ class QuantizationJob:
         >>> job()
 
         >>> for q_event_proxy in job.q_event_proxies:
-        ...     print(format(q_event_proxy, 'storage'))
+        ...     string = format(q_event_proxy, "storage")
+        ...     print(string)
         ...
         abjadext.nauert.QEventProxy(
             abjadext.nauert.PitchedQEvent(
@@ -196,13 +196,13 @@ class QuantizationJob:
             abjad.Offset((3, 4))
             )
 
-        Returns tuple.
         """
         return self._q_event_proxies
 
     @property
-    def q_grids(self):
-        r"""The generated ``QGrids``.
+    def q_grids(self) -> typing.Tuple:
+        r"""
+        The generated ``QGrids``.
 
         >>> q_event_a = abjadext.nauert.PitchedQEvent(250, [0, 1])
         >>> q_event_b = abjadext.nauert.SilentQEvent(500)
@@ -226,14 +226,12 @@ class QuantizationJob:
         (1 (1 1))
         (1 ((1 (1 1)) (1 (1 1))))
 
-        Returns tuple.
         """
         return self._q_grids
 
     @property
-    def search_tree(self):
-        r"""The search tree the ``QuantizationJob`` was instantiated with.
-
-        Return ``SearchTree`` instance.
+    def search_tree(self) -> SearchTree:
+        """
+        The search tree the ``QuantizationJob`` was instantiated with.
         """
         return self._search_tree

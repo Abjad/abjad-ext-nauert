@@ -63,7 +63,7 @@ class QSchema:
 
     def __call__(self, duration):
         """
-        Calls QSchema on `duration`.
+        Calls QSchema on ``duration``.
         """
         target_items = []
         idx, current_offset = 0, 0
@@ -77,14 +77,12 @@ class QSchema:
             idx += 1
         return self.target_class(target_items)
 
-    def __format__(self, format_specification=""):
+    def __format__(self, format_specification="") -> str:
         """
         Formats q-event.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
+        Set `format_specification` to `''` or `'storage'`. Interprets `''`
+        equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()

@@ -46,13 +46,11 @@ class PitchedQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when `argument` is a pitched q-event with offset, pitches,
         attachments and index equal to those of this pitched q-event. Otherwise
         false.
-
-        Returns true or false.
         """
         if (
             type(self) == type(argument)
@@ -64,13 +62,11 @@ class PitchedQEvent(QEvent):
             return True
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes pitched q-event.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super(PitchedQEvent, self).__hash__()
 

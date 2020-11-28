@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .QSchemaItem import QSchemaItem
@@ -7,8 +9,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     """
     Measurewise q-schema item.
 
-    Represents a change of state in the timeline of a metered quantization
-    process.
+    Represents a change of state in the timeline of a metered quantization process.
 
     >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem()
 
@@ -16,9 +17,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(
-        ...     tempo=((1, 4), 60),
-        ...     )
+        >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
         >>> print(format(q_schema_item))
         abjadext.nauert.MeasurewiseQSchemaItem(
             tempo=abjad.MetronomeMark(
@@ -31,9 +30,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Defines a change in time signature:
 
-        >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(
-        ...     time_signature=(6, 8),
-        ...     )
+        >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
         >>> print(format(q_schema_item))
         abjadext.nauert.MeasurewiseQSchemaItem(
             time_signature=abjad.TimeSignature((6, 8)),
@@ -72,11 +69,9 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beatspan(self):
+    def beatspan(self) -> typing.Optional[abjad.Duration]:
         """
         The beatspan duration, if a time signature was defined.
-
-        Returns duration or none.
         """
         if self.time_signature is not None:
             if self.use_full_measure:
@@ -86,17 +81,15 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         return None
 
     @property
-    def time_signature(self):
-        r"""The optionally defined TimeSignature.
-
-        Returns time signature or none
+    def time_signature(self) -> typing.Optional[abjad.TimeSignature]:
+        """
+        The optionally defined TimeSignature.
         """
         return self._time_signature
 
     @property
-    def use_full_measure(self):
-        r"""If True, use the full measure as the beatspan.
-
-        Returns boolean or none.
+    def use_full_measure(self) -> typing.Optional[bool]:
+        """
+        If true, use the full measure as the beatspan.
         """
         return self._use_full_measure

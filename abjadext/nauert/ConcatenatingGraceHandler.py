@@ -59,10 +59,8 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def grace_duration(self):
+    def grace_duration(self) -> abjad.Duration:
         """
         Grace duration of concantenating grace handler.
-
-        Returns duration.
         """
         return self._grace_duration

@@ -2,7 +2,8 @@ from .QEvent import QEvent
 
 
 class SilentQEvent(QEvent):
-    r"""Silent q-event.
+    """
+    Silent q-event.
 
     ..  container:: example
 
@@ -30,12 +31,10 @@ class SilentQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
-        r"""Is true when `argument` is a silent q-event with offset,
-        attachments and index equal to those of this silent q-event.
-        Otherwise false.
-
-        Returns true or false.
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when `argument` is a silent q-event with offset, attachments
+        and index equal to those of this silent q-event. Otherwise false.
         """
         if (
             type(self) == type(argument)
@@ -46,12 +45,10 @@ class SilentQEvent(QEvent):
             return True
         return False
 
-    def __hash__(self):
-        r"""Hashes silent q-event.
+    def __hash__(self) -> int:
+        """Hashes silent q-event.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super(SilentQEvent, self).__hash__()
 
@@ -59,5 +56,7 @@ class SilentQEvent(QEvent):
 
     @property
     def attachments(self):
-        r"""Gets attachments of silent q-event."""
+        """
+        Gets attachments of silent q-event.
+        """
         return self._attachments

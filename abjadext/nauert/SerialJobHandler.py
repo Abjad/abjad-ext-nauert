@@ -2,7 +2,9 @@ from .JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):
-    r"""Serial job-handler."""
+    """
+    Serial job-handler.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -11,9 +13,10 @@ class SerialJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):
-        r"""Calls serial job handler.
+        """
+        Calls serial job handler.
 
-        Returns `jobs`.
+        Returns ``jobs``.
         """
         for job in jobs:
             job()

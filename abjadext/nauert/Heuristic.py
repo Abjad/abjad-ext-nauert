@@ -25,11 +25,9 @@ class Heuristic:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_target_beats):
+    def __call__(self, q_target_beats) -> None:
         """
         Calls heuristic.
-
-        Returns none.
         """
         assert len(q_target_beats)
         assert all(isinstance(x, QTargetBeat) for x in q_target_beats)

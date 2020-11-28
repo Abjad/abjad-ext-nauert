@@ -23,8 +23,6 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     def __call__(self, argument):
         """
         Calls naive attack-point optimizer.
-
-        Returns none.
         """
         for logical_tie in abjad.iterate(argument).logical_ties(
             grace=False, reverse=True

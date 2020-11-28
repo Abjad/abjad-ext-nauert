@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
@@ -82,7 +84,7 @@ class MeasurewiseQSchema(QSchema):
         ...     tempo=tempo,
         ...     time_signature=time_signature,
         ...     use_full_measure=use_full_measure,
-        ...     )
+        ... )
 
         All of these settings are self-descriptive, except for
         ``use_full_measure``, which controls whether the measure is subdivided by
@@ -103,7 +105,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> index = 0
         >>> for key, value in sorted(q_schema[index].items()):
-        ...     print('{}:'.format(key), value)
+        ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
@@ -112,7 +114,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()):
-        ...     print('{}:'.format(key), value)
+        ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
@@ -128,22 +130,22 @@ class MeasurewiseQSchema(QSchema):
         to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
         settings sequentially, starting from time-step ``0``:
 
-        >>> a = {'search_tree': abjadext.nauert.UnweightedSearchTree({2: None})}
-        >>> b = {'search_tree': abjadext.nauert.UnweightedSearchTree({3: None})}
-        >>> c = {'search_tree': abjadext.nauert.UnweightedSearchTree({5: None})}
+        >>> a = {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}
+        >>> b = {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}
+        >>> c = {"search_tree": abjadext.nauert.UnweightedSearchTree({5: None})}
 
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(a, b, c)
 
-        >>> q_schema[0]['search_tree']
+        >>> q_schema[0]["search_tree"]
         UnweightedSearchTree(definition={2: None})
 
-        >>> q_schema[1]['search_tree']
+        >>> q_schema[1]["search_tree"]
         UnweightedSearchTree(definition={3: None})
 
-        >>> q_schema[2]['search_tree']
+        >>> q_schema[2]["search_tree"]
         UnweightedSearchTree(definition={5: None})
 
-        >>> q_schema[1000]['search_tree']
+        >>> q_schema[1000]["search_tree"]
         UnweightedSearchTree(definition={5: None})
 
     ..  container:: example
@@ -153,9 +155,9 @@ class MeasurewiseQSchema(QSchema):
         specification) pairs, allows for applying settings to non-sequential
         time-steps:
 
-        >>> a = {'time_signature': abjad.TimeSignature((7, 32))}
-        >>> b = {'time_signature': abjad.TimeSignature((3, 4))}
-        >>> c = {'time_signature': abjad.TimeSignature((5, 8))}
+        >>> a = {"time_signature": abjad.TimeSignature((7, 32))}
+        >>> b = {"time_signature": abjad.TimeSignature((3, 4))}
+        >>> c = {"time_signature": abjad.TimeSignature((5, 8))}
 
         >>> settings = {
         ...     2: a,
@@ -165,28 +167,28 @@ class MeasurewiseQSchema(QSchema):
 
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(settings)
 
-        >>> q_schema[0]['time_signature']
+        >>> q_schema[0]["time_signature"]
         TimeSignature((4, 4))
 
-        >>> q_schema[1]['time_signature']
+        >>> q_schema[1]["time_signature"]
         TimeSignature((4, 4))
 
-        >>> q_schema[2]['time_signature']
+        >>> q_schema[2]["time_signature"]
         TimeSignature((7, 32))
 
-        >>> q_schema[3]['time_signature']
+        >>> q_schema[3]["time_signature"]
         TimeSignature((7, 32))
 
-        >>> q_schema[4]['time_signature']
+        >>> q_schema[4]["time_signature"]
         TimeSignature((3, 4))
 
-        >>> q_schema[5]['time_signature']
+        >>> q_schema[5]["time_signature"]
         TimeSignature((3, 4))
 
-        >>> q_schema[6]['time_signature']
+        >>> q_schema[6]["time_signature"]
         TimeSignature((5, 8))
 
-        >>> q_schema[1000]['time_signature']
+        >>> q_schema[1000]["time_signature"]
         TimeSignature((5, 8))
 
     ..  container:: example
@@ -194,10 +196,10 @@ class MeasurewiseQSchema(QSchema):
         The following is equivalent to the above schema definition:
 
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
-        ...     (2, {'time_signature': abjad.TimeSignature((7, 32))}),
-        ...     (4, {'time_signature': abjad.TimeSignature((3, 4))}),
-        ...     (6, {'time_signature': abjad.TimeSignature((5, 8))}),
-        ...     )
+        ...     (2, {"time_signature": abjad.TimeSignature((7, 32))}),
+        ...     (4, {"time_signature": abjad.TimeSignature((3, 4))}),
+        ...     (6, {"time_signature": abjad.TimeSignature((5, 8))}),
+        ... )
 
     """
 
@@ -224,9 +226,7 @@ class MeasurewiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
-        search_tree = keywords.get(
-            "search_tree", UnweightedSearchTree()
-        )
+        search_tree = keywords.get("search_tree", UnweightedSearchTree())
         assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         tempo = keywords.get("tempo", ((1, 4), 60))
@@ -256,46 +256,36 @@ class MeasurewiseQSchema(QSchema):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def item_class(self):
+    def item_class(self) -> typing.Type[MeasurewiseQSchemaItem]:
         """
         Item class of measurewise q-schema.
-
-        Returns ``MeasurewiseQSchemaItem``.
         """
         return MeasurewiseQSchemaItem
 
     @property
-    def target_class(self):
+    def target_class(self) -> typing.Type[MeasurewiseQTarget]:
         """
         Target class of measurewise q-schema.
-
-        Returns ``MeasurewiseQTarget``.
         """
         return MeasurewiseQTarget
 
     @property
-    def target_item_class(self):
+    def target_item_class(self) -> typing.Type[QTargetMeasure]:
         """
         Target item class of measurewise q-schema.
-
-        Returns ``QTargetMeasure``.
         """
         return QTargetMeasure
 
     @property
-    def time_signature(self):
+    def time_signature(self) -> abjad.TimeSignature:
         """
         Default time signature of measurewise q-schema.
-
-        Returns time signature.
         """
         return self._time_signature
 
     @property
-    def use_full_measure(self):
+    def use_full_measure(self) -> bool:
         """
         The full-measure-as-beatspan default.
-
-        Returns true or false.
         """
         return self._use_full_measure

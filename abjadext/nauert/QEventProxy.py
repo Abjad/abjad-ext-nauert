@@ -65,12 +65,10 @@ class QEventProxy:
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when `argument` is a q-event proxy with offset and q-event
         equal to those of this q-event proxy. Otherwise false.
-
-        Returns true or false.
         """
         if type(self) == type(argument):
             if self.offset == argument.offset:
@@ -78,26 +76,22 @@ class QEventProxy:
                     return True
         return False
 
-    def __format__(self, format_specification=""):
+    def __format__(self, format_specification="") -> str:
         """
         Formats q-event.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
-
-        Returns string.
         """
         if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes q-event proxy.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super(QEventProxy, self).__hash__()
 

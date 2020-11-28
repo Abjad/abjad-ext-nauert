@@ -1,4 +1,5 @@
 import abc
+import typing
 
 import abjad
 
@@ -31,14 +32,12 @@ class QSchemaItem:
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=""):
+    def __format__(self, format_specification="") -> str:
         """
         Formats q schema item.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
+        Set `format_specification` to `''` or `'storage'`. Interprets `''`
+        equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
@@ -56,10 +55,8 @@ class QSchemaItem:
         return self._search_tree
 
     @property
-    def tempo(self):
+    def tempo(self) -> typing.Optional[abjad.MetronomeMark]:
         """
         The optionally defined tempo.
-
-        Returns tempo or none.
         """
         return self._tempo

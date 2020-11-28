@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .BeatwiseQSchemaItem import BeatwiseQSchemaItem
@@ -78,7 +80,7 @@ class BeatwiseQSchema(QSchema):
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,
         ...     tempo=tempo,
-        ...     )
+        ... )
 
     ..  container:: example
 
@@ -87,7 +89,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> index = 0
         >>> for key, value in sorted(q_schema[index].items()):
-        ...     print('{}:'.format(key), value)
+        ...     print("{}:".format(key), value)
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
@@ -95,7 +97,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()):
-        ...     print('{}:'.format(key), value)
+        ...     print("{}:".format(key), value)
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
@@ -110,22 +112,22 @@ class BeatwiseQSchema(QSchema):
         instantiate ``BeatwiseQSchemaItem`` instances, will apply those settings
         sequentially, starting from time-step ``0``:
 
-        >>> a = {'beatspan': abjad.Duration(5, 32)}
-        >>> b = {'beatspan': abjad.Duration(3, 16)}
-        >>> c = {'beatspan': abjad.Duration(1, 8)}
+        >>> a = {"beatspan": abjad.Duration(5, 32)}
+        >>> b = {"beatspan": abjad.Duration(3, 16)}
+        >>> c = {"beatspan": abjad.Duration(1, 8)}
 
         >>> q_schema = abjadext.nauert.BeatwiseQSchema(a, b, c)
 
-        >>> q_schema[0]['beatspan']
+        >>> q_schema[0]["beatspan"]
         Duration(5, 32)
 
-        >>> q_schema[1]['beatspan']
+        >>> q_schema[1]["beatspan"]
         Duration(3, 16)
 
-        >>> q_schema[2]['beatspan']
+        >>> q_schema[2]["beatspan"]
         Duration(1, 8)
 
-        >>> q_schema[3]['beatspan']
+        >>> q_schema[3]["beatspan"]
         Duration(1, 8)
 
     ..  container:: example
@@ -135,8 +137,8 @@ class BeatwiseQSchema(QSchema):
         specification) pairs, allows for applying settings to  non-sequential
         time-steps:
 
-        >>> a = {'search_tree': abjadext.nauert.UnweightedSearchTree({2: None})}
-        >>> b = {'search_tree': abjadext.nauert.UnweightedSearchTree({3: None})}
+        >>> a = {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}
+        >>> b = {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}
 
         >>> settings = {
         ...     2: a,
@@ -145,7 +147,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(settings)
 
-        >>> abjad.f(q_schema[0]['search_tree'])
+        >>> abjad.f(q_schema[0]["search_tree"])
         abjadext.nauert.UnweightedSearchTree(
             definition={
                 2: {
@@ -178,7 +180,8 @@ class BeatwiseQSchema(QSchema):
                 },
             )
 
-        >>> print(format(q_schema[1]['search_tree']))
+        >>> string = format(q_schema[1]["search_tree"])
+        >>> print(string)
         abjadext.nauert.UnweightedSearchTree(
             definition={
                 2: {
@@ -211,16 +214,16 @@ class BeatwiseQSchema(QSchema):
                 },
             )
 
-        >>> q_schema[2]['search_tree']
+        >>> q_schema[2]["search_tree"]
         UnweightedSearchTree(definition={2: None})
 
-        >>> q_schema[3]['search_tree']
+        >>> q_schema[3]["search_tree"]
         UnweightedSearchTree(definition={2: None})
 
-        >>> q_schema[4]['search_tree']
+        >>> q_schema[4]["search_tree"]
         UnweightedSearchTree(definition={3: None})
 
-        >>> q_schema[1000]['search_tree']
+        >>> q_schema[1000]["search_tree"]
         UnweightedSearchTree(definition={3: None})
 
     ..  container:: example
@@ -228,9 +231,9 @@ class BeatwiseQSchema(QSchema):
         The following is equivalent to the above schema definition:
 
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
-        ...     (2, {'search_tree': abjadext.nauert.UnweightedSearchTree({2: None})}),
-        ...     (4, {'search_tree': abjadext.nauert.UnweightedSearchTree({3: None})}),
-        ...     )
+        ...     (2, {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}),
+        ...     (4, {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}),
+        ... )
 
     """
 
@@ -274,28 +277,22 @@ class BeatwiseQSchema(QSchema):
         return self._beatspan
 
     @property
-    def item_class(self):
+    def item_class(self) -> typing.Type[BeatwiseQSchemaItem]:
         """
         The schema's item class.
-
-        Returns beatwise q-schema item.
         """
         return BeatwiseQSchemaItem
 
     @property
-    def target_class(self):
+    def target_class(self) -> typing.Type[BeatwiseQTarget]:
         """
         Target class of beatwise q-schema.
-
-        Returns beatwise q-target.
         """
         return BeatwiseQTarget
 
     @property
-    def target_item_class(self):
+    def target_item_class(self) -> typing.Type[QTargetBeat]:
         """
         Target item class of beatwise q-schema.
-
-        Returns q-target beat.
         """
         return QTargetBeat

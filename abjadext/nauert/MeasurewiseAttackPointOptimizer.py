@@ -19,11 +19,11 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         >>> q_events = abjadext.nauert.QEventSequence.from_tempo_scaled_leaves(
         ...     staff[:],
         ...     tempo=source_tempo,
-        ...     )
+        ... )
         >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
-        ...     )
+        ... )
         >>> quantizer = abjadext.nauert.Quantizer()
 
     ..  container:: example
@@ -33,7 +33,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         >>> result = quantizer(
         ...     q_events,
         ...     q_schema=q_schema,
-        ...     )
+        ... )
         >>> abjad.show(result) # doctest: +SKIP
 
     ..  container:: example
@@ -45,7 +45,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,
-        ...     )
+        ... )
         >>> abjad.show(result) # doctest: +SKIP
 
     Only acts on measures.
@@ -57,11 +57,9 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument):
+    def __call__(self, argument) -> None:
         """
         Calls measurewise attack-point optimizer.
-
-        Returns none.
         """
         assert isinstance(argument, abjad.Container)
         leaf = abjad.get.leaf(argument, 0)

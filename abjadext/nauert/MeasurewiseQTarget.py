@@ -1,4 +1,5 @@
 import copy
+import typing
 
 import abjad
 
@@ -77,19 +78,15 @@ class MeasurewiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self):
+    def beats(self) -> typing.Tuple:
         """
         Beats of measurewise q-target.
-
-        Returns tuple.
         """
         return tuple([beat for item in self.items for beat in item.beats])
 
     @property
-    def item_class(self):
+    def item_class(self) -> typing.Type[QTargetMeasure]:
         """
         Item class of measurewise q-target.
-
-        Returns q-target measure class.
         """
         return QTargetMeasure

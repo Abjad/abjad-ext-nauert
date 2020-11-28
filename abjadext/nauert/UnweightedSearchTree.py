@@ -4,7 +4,8 @@ from .SearchTree import SearchTree
 
 
 class UnweightedSearchTree(SearchTree):
-    r"""Unweighted search tree based on Paul Nauert's model.
+    r"""
+    Unweighted search tree based on Paul Nauert's model.
 
     ..  container:: example
 
@@ -145,8 +146,9 @@ class UnweightedSearchTree(SearchTree):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_definition(self):
-        r"""The default search tree definition, based on the search tree given
+    def default_definition(self) -> dict:
+        """
+        The default search tree definition, based on the search tree given
         by Paul Nauert:
 
         >>> import pprint
@@ -159,7 +161,6 @@ class UnweightedSearchTree(SearchTree):
             11: None,
             13: None}
 
-        Returns dictionary.
         """
         return {
             2: {  # 1/2

@@ -84,7 +84,7 @@ release:
 	twine upload dist/*.tar.gz
 
 check:
-	# make black-check
+	make black-check
 	make flake8
 	make isort-check
 	make mypy

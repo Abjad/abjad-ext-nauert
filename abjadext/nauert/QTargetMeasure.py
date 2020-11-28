@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .QTargetBeat import QTargetBeat
@@ -22,7 +24,7 @@ class QTargetMeasure:
         ...     search_tree=search_tree,
         ...     tempo=tempo,
         ...     time_signature=time_signature,
-        ...     )
+        ... )
 
         >>> abjad.f(q_target_measure)
         abjadext.nauert.QTargetMeasure(
@@ -52,8 +54,8 @@ class QTargetMeasure:
 
     ..  container:: example
 
-        If ``use_full_measure`` is set, the ``QTargetMeasure`` will only
-        ever contain a single ``QTargetBeat`` instance:
+        If ``use_full_measure`` is set, the ``QTargetMeasure`` will only ever
+        contain a single ``QTargetBeat`` instance:
 
         >>> another_q_target_measure = abjadext.nauert.QTargetMeasure(
         ...     offset_in_ms=1000,
@@ -61,7 +63,7 @@ class QTargetMeasure:
         ...     tempo=tempo,
         ...     time_signature=time_signature,
         ...     use_full_measure=True,
-        ...     )
+        ... )
 
         >>> for q_target_beat in another_q_target_measure.beats:
         ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
@@ -144,14 +146,12 @@ class QTargetMeasure:
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=""):
+    def __format__(self, format_specification="") -> str:
         """
         Formats q-event.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
+        Set `format_specification` to `''` or `'storage'`. Interprets `''`
+        equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
@@ -160,7 +160,7 @@ class QTargetMeasure:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self):
+    def beats(self) -> typing.Tuple:
         """
         Gets the tuple of ``QTargetBeats`` contained by the
         ``QTargetMeasure``.
@@ -230,12 +230,11 @@ class QTargetMeasure:
                     ),
                 )
 
-        Returns tuple.
         """
         return self._beats
 
     @property
-    def duration_in_ms(self):
+    def duration_in_ms(self) -> abjad.Duration:
         """
         The duration in milliseconds of the ``QTargetMeasure``:
 
@@ -255,12 +254,11 @@ class QTargetMeasure:
             >>> q_target_measure.duration_in_ms
             Duration(4000, 1)
 
-        Returns duration.
         """
         return self.tempo.duration_to_milliseconds(self.time_signature.duration)
 
     @property
-    def offset_in_ms(self):
+    def offset_in_ms(self) -> abjad.Offset:
         """
         The offset in milliseconds of the ``QTargetMeasure``:
 
@@ -280,12 +278,11 @@ class QTargetMeasure:
             >>> q_target_measure.offset_in_ms
             Offset((1000, 1))
 
-        Returns offset.
         """
         return self._offset_in_ms
 
     @property
-    def search_tree(self):
+    def search_tree(self) -> UnweightedSearchTree:
         """
         The search tree of the ``QTargetMeasure``:
 
@@ -305,12 +302,11 @@ class QTargetMeasure:
             >>> q_target_measure.search_tree
             UnweightedSearchTree(definition={2: None})
 
-        Returns search tree.
         """
         return self._search_tree
 
     @property
-    def tempo(self):
+    def tempo(self) -> abjad.MetronomeMark:
         """
         The tempo of the ``QTargetMeasure``:
 
@@ -330,12 +326,11 @@ class QTargetMeasure:
             >>> q_target_measure.tempo
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
 
-        Returns metronome mark.
         """
         return self._tempo
 
     @property
-    def time_signature(self):
+    def time_signature(self) -> abjad.TimeSignature:
         """
         The time signature of the ``QTargetMeasure``:
 
@@ -355,12 +350,11 @@ class QTargetMeasure:
             >>> q_target_measure.time_signature
             TimeSignature((4, 4))
 
-        Returns time signature.
         """
         return self._time_signature
 
     @property
-    def use_full_measure(self):
+    def use_full_measure(self) -> bool:
         """
         The ``use_full_measure`` flag of the ``QTargetMeasure``:
 
@@ -380,6 +374,5 @@ class QTargetMeasure:
             >>> q_target_measure.use_full_measure
             False
 
-        Returns true or false.
         """
         return self._use_full_measure

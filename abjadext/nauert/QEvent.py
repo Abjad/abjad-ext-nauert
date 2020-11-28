@@ -34,12 +34,10 @@ class QEvent:
         """
         return abjad.StorageFormatManager(self).get_storage_format()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
-
-        Returns true or false.
         """
         if type(self) == type(self):
             if self.offset < argument.offset:

@@ -4,7 +4,8 @@ from .SearchTree import SearchTree
 
 
 class WeightedSearchTree(SearchTree):
-    r"""Weighted search tree.
+    r"""
+    Weighted search tree.
 
     ..  container:: example
 
@@ -116,13 +117,14 @@ class WeightedSearchTree(SearchTree):
 
     @property
     def all_compositions(self):
-        r"""All compositions of weighted search tree."""
+        """
+        All compositions of weighted search tree.
+        """
         return self._all_compositions
 
     @property
-    def default_definition(self):
-        r"""Default definition of weighted search tree.
-
-        Returns dictionary.
+    def default_definition(self) -> dict:
+        """
+        Gets default definition of weighted search tree.
         """
         return {"divisors": (2, 3, 5, 7), "max_depth": 3, "max_divisions": 2}

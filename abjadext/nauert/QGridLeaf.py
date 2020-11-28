@@ -1,3 +1,5 @@
+import typing
+
 import uqbar.containers
 import uqbar.graphs
 
@@ -36,11 +38,9 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pulse_duration):
+    def __call__(self, pulse_duration) -> abjad.Selection:
         """
         Calls q-grid leaf.
-
-        Returns selection of notes.
         """
         pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
@@ -84,7 +84,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
     ### PUBLIC PROPERTIES ###
 
     @property
-    def is_divisible(self):
+    def is_divisible(self) -> bool:
         """
         Flag for whether the node may be further divided
         under some search tree.
@@ -96,11 +96,9 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         self._is_divisible = bool(argument)
 
     @property
-    def preceding_q_event_proxies(self):
+    def preceding_q_event_proxies(self) -> typing.List:
         """
         Preceding q-event proxies of q-grid leaf.
-
-        Returns list.
         """
         return [x for x in self._q_event_proxies if x.offset < self.start_offset]
 
@@ -119,10 +117,8 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         return str(self.preprolated_duration)
 
     @property
-    def succeeding_q_event_proxies(self):
+    def succeeding_q_event_proxies(self) -> typing.List:
         """
         Succeeding q-event proxies of q-grid leaf.
-
-        Returns list.
         """
         return [x for x in self._q_event_proxies if self.start_offset <= x.offset]

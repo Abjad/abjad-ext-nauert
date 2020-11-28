@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .QSchemaItem import QSchemaItem
@@ -18,9 +20,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(
-        ...     tempo=((1, 4), 60),
-        ...     )
+        >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
         >>> abjad.f(q_schema_item)
         abjadext.nauert.BeatwiseQSchemaItem(
             tempo=abjad.MetronomeMark(
@@ -33,9 +33,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         Defines a change in beatspan:
 
-        >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(
-        ...     beatspan=(1, 8),
-        ...     )
+        >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
         >>> abjad.f(q_schema_item)
         abjadext.nauert.BeatwiseQSchemaItem(
             beatspan=abjad.Duration(1, 8),
@@ -61,10 +59,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beatspan(self):
+    def beatspan(self) -> typing.Optional[abjad.Duration]:
         """
         The optionally defined beatspan duration.
-
-        Returns duration or none.
         """
         return self._beatspan

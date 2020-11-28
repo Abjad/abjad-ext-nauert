@@ -1,4 +1,5 @@
 import copy
+import typing
 
 import abjad
 
@@ -70,7 +71,7 @@ class BeatwiseQTarget(QTarget):
         return tuple(self.items)
 
     @property
-    def item_class(self):
+    def item_class(self) -> typing.Type[QTargetBeat]:
         """
         Item class of beatwise q-target.
         """

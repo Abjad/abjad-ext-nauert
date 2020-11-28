@@ -7,7 +7,8 @@ from .QGrid import QGrid
 
 
 class SearchTree:
-    r"""Abstract search tree.
+    """
+    Abstract search tree.
 
     ``SearchTrees`` encapsulate strategies for generating collections of
     ``QGrids``, given a set of ``QEventProxy`` instances as input.
@@ -34,7 +35,9 @@ class SearchTree:
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
-        r"""Calls search tree."""
+        """
+        Calls search tree.
+        """
         assert isinstance(q_grid, QGrid)
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)
@@ -45,11 +48,10 @@ class SearchTree:
             new_q_grids.append(new_q_grid)
         return new_q_grids
 
-    def __eq__(self, argument):
-        r"""Is true when `argument` is a search tree with definition equal to that of
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when `argument` is a search tree with definition equal to that of
         this search tree. Otherwise false.
-
-        Returns true or false.
         """
         if type(self) == type(argument):
             if self.definition == argument.definition:
@@ -62,12 +64,11 @@ class SearchTree:
         """
         return abjad.StorageFormatManager(self).get_storage_format()
 
-    def __hash__(self):
-        r"""Hashes search tree.
+    def __hash__(self) -> int:
+        """
+        Hashes search tree.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super(SearchTree, self).__hash__()
 
@@ -131,17 +132,15 @@ class SearchTree:
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def default_definition(self):
-        r"""The default search tree definition.
-
-        Returns dictionary.
+    def default_definition(self) -> dict:
+        """
+        Gets default search tree definition.
         """
         raise NotImplementedError
 
     @property
-    def definition(self):
-        r"""The search tree definition.
-
-        Returns dictionary.
+    def definition(self) -> dict:
+        """
+        Gets search tree definition.
         """
         return self._definition

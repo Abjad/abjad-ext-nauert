@@ -20,5 +20,5 @@ class AttackPointOptimizer:
 
     @abc.abstractmethod
     def __call__(self, argument):
-        r"""Calls attack-point optimizer."""
+        """Calls attack-point optimizer."""
         raise NotImplementedError
