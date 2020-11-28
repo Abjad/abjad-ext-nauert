@@ -19,15 +19,6 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
     Used internally by ``QGrid``.
     """
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def leaves(self):
-        """
-        Get leaves.
-        """
-        return tuple(_ for _ in self.depth_first() if isinstance(_, QGridLeaf))
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -37,3 +28,12 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
     @property
     def _node_class(self):
         return (type(self), QGridLeaf)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def leaves(self):
+        """
+        Get leaves.
+        """
+        return tuple(_ for _ in self.depth_first() if isinstance(_, QGridLeaf))

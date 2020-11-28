@@ -60,6 +60,12 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         graph.append(node)
         return graph
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _pretty_rtm_format_pieces(self):
+        return [str(self.preprolated_duration)]
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -74,12 +80,6 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
             storage_format_keyword_names=names,
             template_names=template_names,
         )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _pretty_rtm_format_pieces(self):
-        return [str(self.preprolated_duration)]
 
     ### PUBLIC PROPERTIES ###
 

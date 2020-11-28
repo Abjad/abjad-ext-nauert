@@ -203,6 +203,67 @@ class QEventSequence:
             storage_format_keyword_names=[],
         )
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration_in_ms(self) -> abjad.Duration:
+        r"""
+        Duration in milliseconds of the ``QEventSequence``:
+
+        >>> durations = (1000, -500, 1250, -500, 750)
+        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        ...     durations)
+
+        >>> sequence.duration_in_ms
+        Duration(4000, 1)
+
+        """
+        return abjad.Duration(self[-1].offset)
+
+    @property
+    def sequence(self) -> typing.Tuple:
+        r"""
+        Sequence of q-events.
+
+        >>> durations = (1000, -500, 1250, -500, 750)
+        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        ...     durations)
+
+        >>> for q_event in sequence.sequence:
+        ...     string = format(q_event, "storage")
+        ...     print(string)
+        ...
+        abjadext.nauert.PitchedQEvent(
+            offset=abjad.Offset((0, 1)),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjadext.nauert.SilentQEvent(
+            offset=abjad.Offset((1000, 1)),
+            )
+        abjadext.nauert.PitchedQEvent(
+            offset=abjad.Offset((1500, 1)),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjadext.nauert.SilentQEvent(
+            offset=abjad.Offset((2750, 1)),
+            )
+        abjadext.nauert.PitchedQEvent(
+            offset=abjad.Offset((3250, 1)),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjadext.nauert.TerminalQEvent(
+            offset=abjad.Offset((4000, 1)),
+            )
+
+        """
+        return self._sequence
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -558,64 +619,3 @@ class QEventSequence:
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
         return class_.from_millisecond_pitch_pairs(tuple(zip(durations, pitches)))
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration_in_ms(self) -> abjad.Duration:
-        r"""
-        Duration in milliseconds of the ``QEventSequence``:
-
-        >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
-        ...     durations)
-
-        >>> sequence.duration_in_ms
-        Duration(4000, 1)
-
-        """
-        return abjad.Duration(self[-1].offset)
-
-    @property
-    def sequence(self) -> typing.Tuple:
-        r"""
-        Sequence of q-events.
-
-        >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
-        ...     durations)
-
-        >>> for q_event in sequence.sequence:
-        ...     string = format(q_event, "storage")
-        ...     print(string)
-        ...
-        abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset((1000, 1)),
-            )
-        abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset((1500, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        abjadext.nauert.SilentQEvent(
-            offset=abjad.Offset((2750, 1)),
-            )
-        abjadext.nauert.PitchedQEvent(
-            offset=abjad.Offset((3250, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        abjadext.nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
-
-        """
-        return self._sequence

@@ -1,4 +1,3 @@
-# flake8: noqa
 """
 Extension for quantizing rhythm, based on Paul Nauert's Q-Grid technique.
 """
@@ -41,3 +40,45 @@ from .SilentQEvent import SilentQEvent
 from .TerminalQEvent import TerminalQEvent
 from .UnweightedSearchTree import UnweightedSearchTree
 from .WeightedSearchTree import WeightedSearchTree
+
+__all__ = [
+    "AttackPointOptimizer",
+    "BeatwiseQSchema",
+    "BeatwiseQSchemaItem",
+    "BeatwiseQTarget",
+    "CollapsingGraceHandler",
+    "ConcatenatingGraceHandler",
+    "DiscardingGraceHandler",
+    "DistanceHeuristic",
+    "GraceHandler",
+    "Heuristic",
+    "JobHandler",
+    "MeasurewiseAttackPointOptimizer",
+    "MeasurewiseQSchema",
+    "MeasurewiseQSchemaItem",
+    "MeasurewiseQTarget",
+    "NaiveAttackPointOptimizer",
+    "NullAttackPointOptimizer",
+    "ParallelJobHandler",
+    "ParallelJobHandlerWorker",
+    "PitchedQEvent",
+    "QEvent",
+    "QEventProxy",
+    "QEventSequence",
+    "QGrid",
+    "QGridContainer",
+    "QGridLeaf",
+    "QSchema",
+    "QSchemaItem",
+    "QTarget",
+    "QTargetBeat",
+    "QTargetMeasure",
+    "QuantizationJob",
+    "Quantizer",
+    "SearchTree",
+    "SerialJobHandler",
+    "SilentQEvent",
+    "TerminalQEvent",
+    "UnweightedSearchTree",
+    "WeightedSearchTree",
+]

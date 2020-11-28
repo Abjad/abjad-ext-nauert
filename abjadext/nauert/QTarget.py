@@ -36,7 +36,6 @@ class QTarget:
 
     def __init__(self, items=None):
         items = items or []
-        # assert len(items)
         assert all(isinstance(x, self.item_class) for x in items)
         self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
 
