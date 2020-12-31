@@ -1,5 +1,7 @@
 import abc
 import bisect
+import copy
+import typing
 
 import abjad
 
@@ -11,6 +13,8 @@ from .Heuristic import Heuristic
 from .JobHandler import JobHandler
 from .NaiveAttackPointOptimizer import NaiveAttackPointOptimizer
 from .QEventSequence import QEventSequence
+from .QTargetBeat import QTargetBeat
+from .QTargetMeasure import QTargetMeasure
 from .SerialJobHandler import SerialJobHandler
 from .SilentQEvent import SilentQEvent
 
@@ -212,3 +216,159 @@ class QTarget:
         Items of q-target.
         """
         return self._items
+
+
+class BeatwiseQTarget(QTarget):
+    """
+    Beatwise q-target.
+
+    Not composer-safe.
+
+    Used internally by ``Quantizer``.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### PRIVATE METHODS ###
+
+    def _notate(
+        self,
+        attach_tempos=True,
+        attack_point_optimizer=None,
+        grace_handler=None,
+    ):
+        voice = abjad.Voice()
+        # generate the first
+        beat = self.items[0]
+        components = beat.q_grid(beat.beatspan)
+        if attach_tempos:
+            attachment_target = components[0]
+            leaves = abjad.select(attachment_target).leaves()
+            if isinstance(attachment_target, abjad.Container):
+                attachment_target = leaves[0]
+            tempo = copy.deepcopy(beat.tempo)
+            abjad.attach(tempo, attachment_target)
+        voice.extend(components)
+
+        # generate the rest pairwise, comparing tempi
+        for beat_one, beat_two in abjad.sequence(self.items).nwise():
+            components = beat_two.q_grid(beat_two.beatspan)
+            if (beat_two.tempo != beat_one.tempo) and attach_tempos:
+                attachment_target = components[0]
+                leaves = abjad.select(attachment_target).leaves()
+                if isinstance(attachment_target, abjad.Container):
+                    attachment_target = leaves[0]
+                tempo = copy.deepcopy(beat_two.tempo)
+                abjad.attach(tempo, attachment_target)
+            voice.extend(components)
+
+        # apply logical ties, pitches, grace containers
+        self._notate_leaves(grace_handler=grace_handler, voice=voice)
+
+        # partition logical ties in voice
+        attack_point_optimizer(voice)
+
+        return voice
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def beats(self):
+        """
+        Beats of beatwise q-target.
+        """
+        return tuple(self.items)
+
+    @property
+    def item_class(self) -> typing.Type[QTargetBeat]:
+        """
+        Item class of beatwise q-target.
+        """
+        return QTargetBeat
+
+
+class MeasurewiseQTarget(QTarget):
+    """
+    Measurewise quantization target.
+
+    Not composer-safe.
+
+    Used internally by ``Quantizer``.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### PRIVATE METHODS ###
+
+    def _notate(
+        self,
+        attach_tempos=True,
+        attack_point_optimizer=None,
+        grace_handler=None,
+    ):
+        voice = abjad.Voice()
+
+        # generate the first
+        q_target_measure = self.items[0]
+        time_signature = q_target_measure.time_signature
+        measure = abjad.Container()
+        for beat in q_target_measure.beats:
+            measure.extend(beat.q_grid(beat.beatspan))
+        leaf = abjad.get.leaf(measure, 0)
+        abjad.attach(time_signature, leaf)
+        if attach_tempos:
+            tempo = copy.deepcopy(q_target_measure.tempo)
+            leaf = abjad.get.leaf(measure, 0)
+            abjad.attach(tempo, leaf)
+        voice.append(measure)
+
+        # generate the rest pairwise, comparing tempi
+        pairs = abjad.sequence(self.items).nwise()
+        for q_target_measure_one, q_target_measure_two in pairs:
+            measure = abjad.Container()
+            for beat in q_target_measure_two.beats:
+                measure.extend(beat.q_grid(beat.beatspan))
+            if (
+                q_target_measure_two.time_signature
+                != q_target_measure_one.time_signature
+            ):
+                time_signature = q_target_measure_two.time_signature
+                leaf = abjad.get.leaf(measure, 0)
+                abjad.attach(time_signature, leaf)
+            if (
+                q_target_measure_two.tempo != q_target_measure_one.tempo
+            ) and attach_tempos:
+                tempo = copy.deepcopy(q_target_measure_two.tempo)
+                # abjad.attach(tempo, measure)
+                leaf = abjad.get.leaf(measure, 0)
+                abjad.attach(tempo, leaf)
+            voice.append(measure)
+
+        # apply logical ties, pitches, grace containers
+        self._notate_leaves(grace_handler=grace_handler, voice=voice)
+
+        # partition logical ties in each measure
+        for measure in voice:
+            attack_point_optimizer(measure)
+
+        return voice
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def beats(self) -> typing.Tuple:
+        """
+        Beats of measurewise q-target.
+        """
+        return tuple([beat for item in self.items for beat in item.beats])
+
+    @property
+    def item_class(self) -> typing.Type[QTargetMeasure]:
+        """
+        Item class of measurewise q-target.
+        """
+        return QTargetMeasure

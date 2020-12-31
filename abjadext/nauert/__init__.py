@@ -2,9 +2,7 @@
 Extension for quantizing rhythm, based on Paul Nauert's Q-Grid technique.
 """
 from .AttackPointOptimizer import AttackPointOptimizer
-from .BeatwiseQSchema import BeatwiseQSchema
 from .BeatwiseQSchemaItem import BeatwiseQSchemaItem
-from .BeatwiseQTarget import BeatwiseQTarget
 from .CollapsingGraceHandler import CollapsingGraceHandler
 from .ConcatenatingGraceHandler import ConcatenatingGraceHandler
 from .DiscardingGraceHandler import DiscardingGraceHandler
@@ -13,9 +11,7 @@ from .GraceHandler import GraceHandler
 from .Heuristic import Heuristic
 from .JobHandler import JobHandler
 from .MeasurewiseAttackPointOptimizer import MeasurewiseAttackPointOptimizer
-from .MeasurewiseQSchema import MeasurewiseQSchema
 from .MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
-from .MeasurewiseQTarget import MeasurewiseQTarget
 from .NaiveAttackPointOptimizer import NaiveAttackPointOptimizer
 from .NullAttackPointOptimizer import NullAttackPointOptimizer
 from .ParallelJobHandler import ParallelJobHandler
@@ -27,9 +23,9 @@ from .QEventSequence import QEventSequence
 from .QGrid import QGrid
 from .QGridContainer import QGridContainer
 from .QGridLeaf import QGridLeaf
-from .QSchema import QSchema
+from .qschemas import BeatwiseQSchema, MeasurewiseQSchema, QSchema
 from .QSchemaItem import QSchemaItem
-from .QTarget import QTarget
+from .qtargets import BeatwiseQTarget, MeasurewiseQTarget, QTarget
 from .QTargetBeat import QTargetBeat
 from .QTargetMeasure import QTargetMeasure
 from .QuantizationJob import QuantizationJob
