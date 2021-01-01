@@ -4,8 +4,7 @@ import abjad
 
 from .QEventProxy import QEventProxy
 from .QGrid import QGrid
-from .SearchTree import SearchTree
-from .UnweightedSearchTree import UnweightedSearchTree
+from .searchtrees import SearchTree, UnweightedSearchTree
 
 
 class QuantizationJob:
@@ -170,7 +169,7 @@ class QuantizationJob:
         ...     print(string)
         ...
         abjadext.nauert.QEventProxy(
-            abjadext.nauert.PitchedQEvent(
+            abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
@@ -180,13 +179,13 @@ class QuantizationJob:
             abjad.Offset((1, 4))
             )
         abjadext.nauert.QEventProxy(
-            abjadext.nauert.SilentQEvent(
+            abjadext.qevents.SilentQEvent(
                 offset=abjad.Offset((500, 1)),
                 ),
             abjad.Offset((1, 2))
             )
         abjadext.nauert.QEventProxy(
-            abjadext.nauert.PitchedQEvent(
+            abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("ef'"),

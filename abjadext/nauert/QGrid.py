@@ -52,7 +52,7 @@ class QGrid:
         ...     abjad.f(q_event_proxy)
         ...
         abjadext.nauert.QEventProxy(
-            abjadext.nauert.PitchedQEvent(
+            abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
@@ -65,7 +65,7 @@ class QGrid:
         ...     abjad.f(q_event_proxy)
         ...
         abjadext.nauert.QEventProxy(
-            abjadext.nauert.PitchedQEvent(
+            abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("cs'"),

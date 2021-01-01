@@ -5,13 +5,11 @@ import typing
 
 import abjad
 
-from .BeatwiseQSchemaItem import BeatwiseQSchemaItem
-from .MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
 from .QTargetBeat import QTargetBeat
 from .QTargetMeasure import QTargetMeasure
-from .SearchTree import SearchTree
-from .UnweightedSearchTree import UnweightedSearchTree
 from .qtargets import BeatwiseQTarget, MeasurewiseQTarget
+from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem
+from .searchtrees import SearchTree, UnweightedSearchTree
 
 
 class QSchema:
@@ -191,7 +189,7 @@ class BeatwiseQSchema(QSchema):
         >>> abjad.f(q_schema)
         abjadext.qschemas.BeatwiseQSchema(
             beatspan=abjad.Duration(1, 4),
-            search_tree=abjadext.nauert.UnweightedSearchTree(
+            search_tree=abjadext.searchtrees.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {
@@ -314,7 +312,7 @@ class BeatwiseQSchema(QSchema):
         >>> q_schema = abjadext.nauert.MeasurewiseQSchema(settings)
 
         >>> abjad.f(q_schema[0]["search_tree"])
-        abjadext.nauert.UnweightedSearchTree(
+        abjadext.searchtrees.UnweightedSearchTree(
             definition={
                 2: {
                     2: {
@@ -348,7 +346,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> string = format(q_schema[1]["search_tree"])
         >>> print(string)
-        abjadext.nauert.UnweightedSearchTree(
+        abjadext.searchtrees.UnweightedSearchTree(
             definition={
                 2: {
                     2: {
@@ -478,7 +476,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> abjad.f(q_schema)
         abjadext.qschemas.MeasurewiseQSchema(
-            search_tree=abjadext.nauert.UnweightedSearchTree(
+            search_tree=abjadext.searchtrees.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {

@@ -2,12 +2,11 @@ import typing
 
 import abjad
 
-from .QEvent import QEvent
 from .QEventProxy import QEventProxy
 from .QGrid import QGrid
 from .QuantizationJob import QuantizationJob
-from .SearchTree import SearchTree
-from .UnweightedSearchTree import UnweightedSearchTree
+from .qevents import QEvent
+from .searchtrees import SearchTree, UnweightedSearchTree
 
 
 class QTargetBeat:
@@ -34,7 +33,7 @@ class QTargetBeat:
         abjadext.nauert.QTargetBeat(
             beatspan=abjad.Duration(1, 8),
             offset_in_ms=abjad.Offset((1500, 1)),
-            search_tree=abjadext.nauert.UnweightedSearchTree(
+            search_tree=abjadext.searchtrees.UnweightedSearchTree(
                 definition={   3: None,
                     },
                 ),

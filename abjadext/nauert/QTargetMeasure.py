@@ -3,8 +3,7 @@ import typing
 import abjad
 
 from .QTargetBeat import QTargetBeat
-from .SearchTree import SearchTree
-from .UnweightedSearchTree import UnweightedSearchTree
+from .searchtrees import SearchTree, UnweightedSearchTree
 
 
 class QTargetMeasure:
@@ -29,7 +28,7 @@ class QTargetMeasure:
         >>> abjad.f(q_target_measure)
         abjadext.nauert.QTargetMeasure(
             offset_in_ms=abjad.Offset((1000, 1)),
-            search_tree=abjadext.nauert.UnweightedSearchTree(
+            search_tree=abjadext.searchtrees.UnweightedSearchTree(
                 definition={   2: None,
                     },
                 ),
@@ -184,7 +183,7 @@ class QTargetMeasure:
             abjadext.nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((1000, 1)),
-                search_tree=abjadext.nauert.UnweightedSearchTree(
+                search_tree=abjadext.searchtrees.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
@@ -196,7 +195,7 @@ class QTargetMeasure:
             abjadext.nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((2000, 1)),
-                search_tree=abjadext.nauert.UnweightedSearchTree(
+                search_tree=abjadext.searchtrees.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
@@ -208,7 +207,7 @@ class QTargetMeasure:
             abjadext.nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((3000, 1)),
-                search_tree=abjadext.nauert.UnweightedSearchTree(
+                search_tree=abjadext.searchtrees.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
@@ -220,7 +219,7 @@ class QTargetMeasure:
             abjadext.nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((4000, 1)),
-                search_tree=abjadext.nauert.UnweightedSearchTree(
+                search_tree=abjadext.searchtrees.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
