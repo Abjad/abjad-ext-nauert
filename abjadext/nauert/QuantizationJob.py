@@ -2,8 +2,8 @@ import typing
 
 import abjad
 
-from .QEventProxy import QEventProxy
-from .QGrid import QGrid
+from .qeventproxy import QEventProxy
+from .qgrid import QGrid
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 
@@ -168,7 +168,7 @@ class QuantizationJob:
         ...     string = format(q_event_proxy, "storage")
         ...     print(string)
         ...
-        abjadext.nauert.QEventProxy(
+        abjadext.qeventproxy.QEventProxy(
             abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((250, 1)),
                 pitches=(
@@ -178,13 +178,13 @@ class QuantizationJob:
                 ),
             abjad.Offset((1, 4))
             )
-        abjadext.nauert.QEventProxy(
+        abjadext.qeventproxy.QEventProxy(
             abjadext.qevents.SilentQEvent(
                 offset=abjad.Offset((500, 1)),
                 ),
             abjad.Offset((1, 2))
             )
-        abjadext.nauert.QEventProxy(
+        abjadext.qeventproxy.QEventProxy(
             abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((750, 1)),
                 pitches=(

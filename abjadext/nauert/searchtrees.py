@@ -3,7 +3,7 @@ import copy
 
 import abjad
 
-from .QGrid import QGrid
+from .qgrid import QGrid
 
 
 class SearchTree:

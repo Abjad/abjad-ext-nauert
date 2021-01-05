@@ -14,7 +14,7 @@ class QEventProxy:
         >>> q_event = abjadext.nauert.PitchedQEvent(130, [0, 1, 4])
         >>> proxy = abjadext.nauert.QEventProxy(q_event, 0.5)
         >>> abjad.f(proxy)
-        abjadext.nauert.QEventProxy(
+        abjadext.qeventproxy.QEventProxy(
             abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((130, 1)),
                 pitches=(

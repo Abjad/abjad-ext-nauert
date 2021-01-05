@@ -2,8 +2,8 @@ import typing
 
 import abjad
 
-from .QEventProxy import QEventProxy
-from .QGrid import QGrid
+from .qeventproxy import QEventProxy
+from .qgrid import QGrid
 from .QuantizationJob import QuantizationJob
 from .qevents import QEvent
 from .searchtrees import SearchTree, UnweightedSearchTree

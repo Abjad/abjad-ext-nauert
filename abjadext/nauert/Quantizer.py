@@ -1,4 +1,4 @@
-from .QEventSequence import QEventSequence
+from .qeventsequence import QEventSequence
 from .qschemas import MeasurewiseQSchema, QSchema
 
 

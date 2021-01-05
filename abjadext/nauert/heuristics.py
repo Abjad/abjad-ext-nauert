@@ -1,6 +1,6 @@
 import abc
 
-from .QGrid import QGrid
+from .qgrid import QGrid
 from .QTargetBeat import QTargetBeat
 
 

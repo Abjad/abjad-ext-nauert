@@ -120,7 +120,7 @@ class QEventSequence:
 
         >>> string = format(sequence)
         >>> print(string)
-        abjadext.nauert.QEventSequence(
+        abjadext.qeventsequence.QEventSequence(
             (
                 abjadext.qevents.PitchedQEvent(
                     offset=abjad.Offset((0, 1)),
