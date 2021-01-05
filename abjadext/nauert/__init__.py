@@ -20,16 +20,16 @@ from .jobhandlers import (
     ParallelJobHandlerWorker,
     SerialJobHandler,
 )
-from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
 from .qeventproxy import QEventProxy
+from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
 from .qeventsequence import QEventSequence
 from .qgrid import QGrid, QGridContainer, QGridLeaf
 from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem, QSchemaItem
 from .qschemas import BeatwiseQSchema, MeasurewiseQSchema, QSchema
 from .qtargetitems import QTargetBeat, QTargetMeasure
 from .qtargets import BeatwiseQTarget, MeasurewiseQTarget, QTarget
-from .QuantizationJob import QuantizationJob
-from .Quantizer import Quantizer
+from .quantizationjob import QuantizationJob
+from .quantizer import Quantizer
 from .searchtrees import SearchTree, UnweightedSearchTree, WeightedSearchTree
 
 __all__ = [

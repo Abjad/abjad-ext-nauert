@@ -3,9 +3,9 @@ import typing
 import abjad
 
 from .qeventproxy import QEventProxy
-from .qgrid import QGrid
-from .QuantizationJob import QuantizationJob
 from .qevents import QEvent
+from .qgrid import QGrid
+from .quantizationjob import QuantizationJob
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 

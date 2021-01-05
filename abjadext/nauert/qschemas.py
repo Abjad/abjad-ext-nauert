@@ -5,9 +5,9 @@ import typing
 
 import abjad
 
+from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem
 from .qtargetitems import QTargetBeat, QTargetMeasure
 from .qtargets import BeatwiseQTarget, MeasurewiseQTarget
-from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 
