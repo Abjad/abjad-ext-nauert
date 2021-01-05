@@ -1,6 +1,5 @@
-from .MeasurewiseQSchema import MeasurewiseQSchema
-from .QEventSequence import QEventSequence
-from .QSchema import QSchema
+from .qeventsequence import QEventSequence
+from .qschemas import MeasurewiseQSchema, QSchema
 
 
 class Quantizer:

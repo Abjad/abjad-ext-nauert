@@ -1,11 +1,165 @@
 import bisect
 import copy
+import typing
+
+import uqbar.containers
+import uqbar.graphs
 
 import abjad
 
-from .QEventProxy import QEventProxy
-from .QGridContainer import QGridContainer
-from .QGridLeaf import QGridLeaf
+from .qeventproxy import QEventProxy
+
+
+class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
+    """
+    Q-grid leaf.
+
+    ..  container:: example
+
+        >>> leaf = abjadext.nauert.QGridLeaf()
+        >>> leaf
+        QGridLeaf(
+            preprolated_duration=Duration(1, 1),
+            is_divisible=True
+            )
+
+    Used internally by ``QGrid``.
+    """
+
+    ### INITIALIZER ###
+
+    def __init__(self, preprolated_duration=1, q_event_proxies=None, is_divisible=True):
+        uqbar.containers.UniqueTreeNode.__init__(self)
+        abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
+        if q_event_proxies is None:
+            self._q_event_proxies = []
+        else:
+            assert all(isinstance(x, QEventProxy) for x in q_event_proxies)
+            self._q_event_proxies = list(q_event_proxies)
+        self._is_divisible = bool(is_divisible)
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, pulse_duration) -> abjad.Selection:
+        """
+        Calls q-grid leaf.
+        """
+        pulse_duration = abjad.Duration(pulse_duration)
+        total_duration = pulse_duration * self.preprolated_duration
+        maker = abjad.NoteMaker()
+        return maker(0, total_duration)
+
+    def __graph__(self, **keywords):
+        """
+        Graphviz graph of q-grid leaf.
+
+        Returns Graphviz graph.
+        """
+        graph = uqbar.graphs.Graph(name="G")
+        node = uqbar.graphs.Node(
+            attributes={"label": str(self.preprolated_duration), "shape": "box"}
+        )
+        graph.append(node)
+        return graph
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _pretty_rtm_format_pieces(self):
+        return [str(self.preprolated_duration)]
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        agent = abjad.StorageFormatManager(self)
+        names = agent.signature_names
+        template_names = names[:]
+        if "q_event_proxies" in names and not self.q_event_proxies:
+            names.remove("q_event_proxies")
+        return abjad.FormatSpecification(
+            client=self,
+            repr_is_indented=True,
+            storage_format_keyword_names=names,
+            template_names=template_names,
+        )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def is_divisible(self) -> bool:
+        """
+        Flag for whether the node may be further divided
+        under some search tree.
+        """
+        return self._is_divisible
+
+    @is_divisible.setter
+    def is_divisible(self, argument):
+        self._is_divisible = bool(argument)
+
+    @property
+    def preceding_q_event_proxies(self) -> typing.List:
+        """
+        Preceding q-event proxies of q-grid leaf.
+        """
+        return [x for x in self._q_event_proxies if x.offset < self.start_offset]
+
+    @property
+    def q_event_proxies(self):
+        """
+        Q-event proxies of q-grid leaf.
+        """
+        return self._q_event_proxies
+
+    @property
+    def rtm_format(self):
+        """
+        RTM format of q-grid leaf.
+        """
+        return str(self.preprolated_duration)
+
+    @property
+    def succeeding_q_event_proxies(self) -> typing.List:
+        """
+        Succeeding q-event proxies of q-grid leaf.
+        """
+        return [x for x in self._q_event_proxies if self.start_offset <= x.offset]
+
+
+class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
+    """
+    Q-grid container.
+
+    ..  container:: example
+
+        >>> container = abjadext.nauert.QGridContainer()
+        >>> abjad.f(container)
+        abjadext.qgrid.QGridContainer(
+            children=(),
+            preprolated_duration=abjad.Duration(1, 1),
+            )
+
+    Used internally by ``QGrid``.
+    """
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _leaf_class(self):
+        return QGridLeaf
+
+    @property
+    def _node_class(self):
+        return (type(self), QGridLeaf)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def leaves(self):
+        """
+        Get leaves.
+        """
+        return tuple(_ for _ in self.depth_first() if isinstance(_, QGridLeaf))
 
 
 class QGrid:
@@ -20,12 +174,12 @@ class QGrid:
     ..  container:: example
 
         >>> abjad.f(q_grid)
-        abjadext.nauert.QGrid(
-            root_node=abjadext.nauert.QGridLeaf(
+        abjadext.qgrid.QGrid(
+            root_node=abjadext.qgrid.QGridLeaf(
                 preprolated_duration=abjad.Duration(1, 1),
                 is_divisible=True,
                 ),
-            next_downbeat=abjadext.nauert.QGridLeaf(
+            next_downbeat=abjadext.qgrid.QGridLeaf(
                 preprolated_duration=abjad.Duration(1, 1),
                 is_divisible=True,
                 ),
@@ -51,8 +205,8 @@ class QGrid:
         >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
         ...     abjad.f(q_event_proxy)
         ...
-        abjadext.nauert.QEventProxy(
-            abjadext.nauert.PitchedQEvent(
+        abjadext.qeventproxy.QEventProxy(
+            abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
@@ -64,8 +218,8 @@ class QGrid:
         >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
         ...     abjad.f(q_event_proxy)
         ...
-        abjadext.nauert.QEventProxy(
-            abjadext.nauert.PitchedQEvent(
+        abjadext.qeventproxy.QEventProxy(
+            abjadext.qevents.PitchedQEvent(
                 offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("cs'"),
