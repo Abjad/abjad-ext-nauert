@@ -5,14 +5,13 @@ import typing
 
 import abjad
 
-from .QTargetBeat import QTargetBeat
-from .QTargetMeasure import QTargetMeasure
 from .attackpointoptimizers import AttackPointOptimizer, NaiveAttackPointOptimizer
 from .heuristics import DistanceHeuristic, Heuristic
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .jobhandlers import JobHandler, SerialJobHandler
 from .qevents import SilentQEvent
 from .qeventsequence import QEventSequence
+from .qtargetitems import QTargetBeat, QTargetMeasure
 
 
 class QTarget:

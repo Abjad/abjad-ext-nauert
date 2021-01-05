@@ -1,7 +1,7 @@
 import abc
 
 from .qgrid import QGrid
-from .QTargetBeat import QTargetBeat
+from .qtargetitems import QTargetBeat
 
 
 class Heuristic:

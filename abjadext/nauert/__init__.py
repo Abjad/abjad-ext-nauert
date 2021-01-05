@@ -24,10 +24,9 @@ from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
 from .qeventproxy import QEventProxy
 from .qeventsequence import QEventSequence
 from .qgrid import QGrid, QGridContainer, QGridLeaf
-from .qschemas import BeatwiseQSchema, MeasurewiseQSchema, QSchema
 from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem, QSchemaItem
-from .QTargetBeat import QTargetBeat
-from .QTargetMeasure import QTargetMeasure
+from .qschemas import BeatwiseQSchema, MeasurewiseQSchema, QSchema
+from .qtargetitems import QTargetBeat, QTargetMeasure
 from .qtargets import BeatwiseQTarget, MeasurewiseQTarget, QTarget
 from .QuantizationJob import QuantizationJob
 from .Quantizer import Quantizer
