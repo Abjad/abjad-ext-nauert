@@ -185,7 +185,8 @@ class BeatwiseQSchema(QSchema):
 
         Without arguments, it uses smart defaults:
 
-        >>> abjad.f(q_schema)
+        >>> string = abjad.storage(q_schema)
+        >>> print(string)
         abjadext.qschemas.BeatwiseQSchema(
             beatspan=abjad.Duration(1, 4),
             search_tree=abjadext.searchtrees.UnweightedSearchTree(
@@ -310,7 +311,8 @@ class BeatwiseQSchema(QSchema):
 
         >>> q_schema = abjadext.nauert.BeatwiseQSchema(settings)
 
-        >>> abjad.f(q_schema[0]["search_tree"])
+        >>> string = abjad.storage(q_schema[0]["search_tree"])
+        >>> print(string)
         abjadext.searchtrees.UnweightedSearchTree(
             definition={
                 2: {
@@ -343,7 +345,7 @@ class BeatwiseQSchema(QSchema):
                 },
             )
 
-        >>> string = format(q_schema[1]["search_tree"])
+        >>> string = abjad.storage(q_schema[1]["search_tree"])
         >>> print(string)
         abjadext.searchtrees.UnweightedSearchTree(
             definition={
@@ -473,7 +475,8 @@ class MeasurewiseQSchema(QSchema):
 
         Without arguments, it uses smart defaults:
 
-        >>> abjad.f(q_schema)
+        >>> string = abjad.storage(q_schema)
+        >>> print(string)
         abjadext.qschemas.MeasurewiseQSchema(
             search_tree=abjadext.searchtrees.UnweightedSearchTree(
                 definition={

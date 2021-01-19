@@ -17,10 +17,11 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
     ..  container:: example
 
         >>> leaf = abjadext.nauert.QGridLeaf()
-        >>> leaf
-        QGridLeaf(
-            preprolated_duration=Duration(1, 1),
-            is_divisible=True
+        >>> string = abjad.storage(leaf)
+        >>> print(string)
+        abjadext.qgrid.QGridLeaf(
+            preprolated_duration=abjad.Duration(1, 1),
+            is_divisible=True,
             )
 
     Used internally by ``QGrid``.
@@ -133,7 +134,8 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
     ..  container:: example
 
         >>> container = abjadext.nauert.QGridContainer()
-        >>> abjad.f(container)
+        >>> string = abjad.storage(container)
+        >>> print(string)
         abjadext.qgrid.QGridContainer(
             children=(),
             preprolated_duration=abjad.Duration(1, 1),
@@ -173,7 +175,8 @@ class QGrid:
 
     ..  container:: example
 
-        >>> abjad.f(q_grid)
+        >>> string = abjad.storage(q_grid)
+        >>> print(string)
         abjadext.qgrid.QGrid(
             root_node=abjadext.qgrid.QGridLeaf(
                 preprolated_duration=abjad.Duration(1, 1),
@@ -203,7 +206,8 @@ class QGrid:
         >>> q_grid.fit_q_events([proxy_a, proxy_b])
 
         >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
-        ...     abjad.f(q_event_proxy)
+        ...     string = abjad.storage(q_event_proxy)
+        ...     print(string)
         ...
         abjadext.qeventproxy.QEventProxy(
             abjadext.qevents.PitchedQEvent(
@@ -216,7 +220,8 @@ class QGrid:
             )
 
         >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
-        ...     abjad.f(q_event_proxy)
+        ...     string = abjad.storage(q_event_proxy)
+        ...     print(string)
         ...
         abjadext.qeventproxy.QEventProxy(
             abjadext.qevents.PitchedQEvent(

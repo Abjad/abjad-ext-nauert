@@ -70,7 +70,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
     process.
 
     >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem()
-    >>> abjad.f(q_schema_item)
+    >>> string = abjad.storage(q_schema_item)
+    >>> print(string)
     abjadext.qschemaitems.BeatwiseQSchemaItem()
 
     ..  container:: example
@@ -78,7 +79,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
         Defines a change in tempo:
 
         >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
-        >>> abjad.f(q_schema_item)
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
         abjadext.qschemaitems.BeatwiseQSchemaItem(
             tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
@@ -91,7 +93,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
         Defines a change in beatspan:
 
         >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
-        >>> abjad.f(q_schema_item)
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
         abjadext.qschemaitems.BeatwiseQSchemaItem(
             beatspan=abjad.Duration(1, 8),
             )
@@ -136,7 +139,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         Defines a change in tempo:
 
         >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
-        >>> print(format(q_schema_item))
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
         abjadext.qschemaitems.MeasurewiseQSchemaItem(
             tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
@@ -149,7 +153,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         Defines a change in time signature:
 
         >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
-        >>> print(format(q_schema_item))
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
         abjadext.qschemaitems.MeasurewiseQSchemaItem(
             time_signature=abjad.TimeSignature((6, 8)),
             )

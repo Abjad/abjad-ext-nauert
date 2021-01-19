@@ -28,7 +28,8 @@ class QEventSequence:
         ...     durations)
 
         >>> for q_event in sequence:
-        ...     abjad.f(q_event)
+        ...     string = abjad.storage(q_event)
+        ...     print(string)
         ...
         abjadext.qevents.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
@@ -227,7 +228,7 @@ class QEventSequence:
         ...     durations)
 
         >>> for q_event in sequence.sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
         abjadext.qevents.PitchedQEvent(
@@ -275,7 +276,7 @@ class QEventSequence:
         ...     durations)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
         abjadext.qevents.SilentQEvent(
@@ -335,7 +336,7 @@ class QEventSequence:
         ...     offsets)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
         abjadext.qevents.PitchedQEvent(
@@ -390,7 +391,7 @@ class QEventSequence:
         ...     pairs)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
         abjadext.qevents.PitchedQEvent(
@@ -471,7 +472,7 @@ class QEventSequence:
         ...     durations, tempo=tempo)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
         abjadext.qevents.PitchedQEvent(
@@ -531,7 +532,7 @@ class QEventSequence:
         ... )
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
         abjadext.qevents.PitchedQEvent(

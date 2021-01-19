@@ -29,7 +29,8 @@ class QTargetBeat:
         ...     tempo=tempo,
         ... )
 
-        >>> abjad.f(q_target_beat)
+        >>> string = abjad.storage(q_target_beat)
+        >>> print(string)
         abjadext.qtargetitems.QTargetBeat(
             beatspan=abjad.Duration(1, 8),
             offset_in_ms=abjad.Offset((1500, 1)),
@@ -301,7 +302,8 @@ class QTargetMeasure:
         ...     time_signature=time_signature,
         ... )
 
-        >>> abjad.f(q_target_measure)
+        >>> string = abjad.storage(q_target_measure)
+        >>> print(string)
         abjadext.qtargetitems.QTargetMeasure(
             offset_in_ms=abjad.Offset((1000, 1)),
             search_tree=abjadext.searchtrees.UnweightedSearchTree(
@@ -454,7 +456,8 @@ class QTargetMeasure:
             ...     )
 
             >>> for q_target_beat in q_target_measure.beats:
-            ...     abjad.f(q_target_beat)
+            ...     string = abjad.storage(q_target_beat)
+            ...     print(string)
             ...
             abjadext.qtargetitems.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),

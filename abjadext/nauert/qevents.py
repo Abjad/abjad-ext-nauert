@@ -91,7 +91,8 @@ class PitchedQEvent(QEvent):
 
         >>> pitches = [0, 1, 4]
         >>> q_event = abjadext.nauert.PitchedQEvent(1000, pitches)
-        >>> abjad.f(q_event)
+        >>> string = abjad.storage(q_event)
+        >>> print(string)
         abjadext.qevents.PitchedQEvent(
             offset=abjad.Offset((1000, 1)),
             pitches=(
@@ -172,8 +173,11 @@ class SilentQEvent(QEvent):
     ..  container:: example
 
         >>> q_event = abjadext.nauert.SilentQEvent(1000)
-        >>> q_event
-        SilentQEvent(offset=Offset((1000, 1)))
+        >>> string = abjad.storage(q_event)
+        >>> print(string)
+        abjadext.qevents.SilentQEvent(
+            offset=abjad.Offset((1000, 1)),
+            )
 
     """
 
@@ -233,7 +237,7 @@ class TerminalQEvent(QEvent):
     ..  container:: example
 
         >>> q_event = abjadext.nauert.TerminalQEvent(1000)
-        >>> string = format(q_event)
+        >>> string = abjad.storage(q_event)
         >>> print(string)
         abjadext.qevents.TerminalQEvent(
             offset=abjad.Offset((1000, 1)),

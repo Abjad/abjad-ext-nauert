@@ -153,7 +153,8 @@ class UnweightedSearchTree(SearchTree):
     ..  container:: example
 
         >>> search_tree = abjadext.nauert.UnweightedSearchTree()
-        >>> abjad.f(search_tree)
+        >>> string = abjad.storage(search_tree)
+        >>> print(string)
         abjadext.searchtrees.UnweightedSearchTree(
             definition={
                 2: {
@@ -330,7 +331,8 @@ class WeightedSearchTree(SearchTree):
 
         >>> search_tree = abjadext.nauert.WeightedSearchTree()
 
-        >>> abjad.f(search_tree)
+        >>> string = abjad.storage(search_tree)
+        >>> print(string)
         abjadext.searchtrees.WeightedSearchTree(
             definition={
                 'divisors': (2, 3, 5, 7),

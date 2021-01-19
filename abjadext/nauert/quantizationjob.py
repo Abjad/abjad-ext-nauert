@@ -165,7 +165,7 @@ class QuantizationJob:
         >>> job()
 
         >>> for q_event_proxy in job.q_event_proxies:
-        ...     string = format(q_event_proxy, "storage")
+        ...     string = abjad.storage(q_event_proxy)
         ...     print(string)
         ...
         abjadext.qeventproxy.QEventProxy(
