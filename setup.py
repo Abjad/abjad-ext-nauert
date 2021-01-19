@@ -16,10 +16,17 @@ def read_version():
     return local_dict["__version__"]
 
 
+author = ["Josiah Wolf Oberholtzer", "Tsz Kiu Pang"]
+
+author_email = [
+    "josiah.oberholtzer@gmail.com",
+    "osamupang@gmail.com",
+]
+
 if __name__ == "__main__":
     setuptools.setup(
-        author="Josiah Wolf Oberholtzer",
-        author_email="josiah.oberholtzer@gmail.com",
+        author=", ".join(author),
+        author_email=", ".join(author_email),
         classifiers=[
             "Development Status :: 3 - Alpha",
             "License :: OSI Approved :: GNU General Public License (GPL)",
@@ -39,17 +46,14 @@ if __name__ == "__main__":
             ]
         },
         include_package_data=True,
-        install_requires=["abjad>=3.1"],
+        install_requires=["abjad==3.2"],
         license="MIT",
         long_description=pathlib.Path("README.md").read_text(),
         keywords=", ".join(
             [
                 "music composition",
                 "music notation",
-                "formalized score control",
                 "lilypond",
-                "documentation",
-                "cli",
             ]
         ),
         name="abjad-ext-{}".format(subpackage_name),

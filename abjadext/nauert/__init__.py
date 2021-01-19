@@ -1,6 +1,7 @@
 """
 Extension for quantizing rhythm, based on Paul Nauert's Q-Grid technique.
 """
+from ._version import __version__, __version_info__
 from .attackpointoptimizers import (
     AttackPointOptimizer,
     MeasurewiseAttackPointOptimizer,
@@ -33,6 +34,8 @@ from .quantizer import Quantizer
 from .searchtrees import SearchTree, UnweightedSearchTree, WeightedSearchTree
 
 __all__ = [
+    "__version__",
+    "__version_info__",
     "AttackPointOptimizer",
     "BeatwiseQSchema",
     "BeatwiseQSchemaItem",
