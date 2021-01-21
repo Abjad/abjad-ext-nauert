@@ -128,9 +128,9 @@ class ConcatenatingGraceHandler(GraceHandler):
 
 class DiscardingGraceHandler(GraceHandler):
     """
-    Discarindg grace-handler.
+    Discarding grace-handler.
 
-    Dscards all but final q-event attached to an offset.
+    Discards all but final q-event attached to an offset.
 
     Does not create grace containers.
     """
