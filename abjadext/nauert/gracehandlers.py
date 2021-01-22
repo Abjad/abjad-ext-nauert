@@ -2,7 +2,7 @@ import abc
 
 import abjad
 
-from .qevents import PitchedQEvent
+from .qevents import PitchedQEvent, SilentQEvent
 
 
 class GraceHandler:
@@ -65,7 +65,7 @@ class CollapsingGraceHandler(GraceHandler):
 
 
 class ConcatenatingGraceHandler(GraceHandler):
-    """
+    r"""
     Concatenating grace-handler.
 
     Concatenates all but the final ``QEvent`` attached to a ``QGrid`` offset
@@ -73,15 +73,92 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     When called, it returns pitch information of final ``QEvent``, and the
     generated ``BeforeGraceContainer``, if any.
+
+    ..  container:: example
+
+        When ``discard_grace_rest`` is set to ``True`` (the default), all the
+        grace rests are discarded.
+
+        >>> quantizer = abjadext.nauert.Quantizer()
+        >>> durations = [1000, 1, 999]
+        >>> pitches = [0, None, 0]
+        >>> q_event_sequence = abjadext.nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     tuple(zip(durations, pitches))
+        ... )
+        >>> grace_handler = ConcatenatingGraceHandler()
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> staff = abjad.Staff([result])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> print(abjad.lilypond(score))
+            \new Score
+            <<
+                \new Staff
+                {
+                    \new Voice
+                    {
+                        {
+                            \tempo 4=60
+                            \time 4/4
+                            c'4
+                            c'4
+                            r4
+                            r4
+                        }
+                    }
+                }
+            >>
+
+    ..  container:: example
+
+        When ``discard_grace_rest`` is set to ``False``, grace rests are not
+        discarded.
+
+        >>> grace_handler = ConcatenatingGraceHandler(discard_grace_rest=False)
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> staff = abjad.Staff([result])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> print(abjad.lilypond(score))
+            \new Score
+            <<
+                \new Staff
+                {
+                    \new Voice
+                    {
+                        {
+                            \tempo 4=60
+                            \time 4/4
+                            c'4
+                            \grace {
+                                r16
+                            }
+                            c'4
+                            r4
+                            r4
+                        }
+                    }
+                }
+            >>
     """
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_grace_duration",)
+    __slots__ = (
+        "_discard_grace_rest",
+        "_grace_duration",
+    )
 
     ### INITIALIZER ###
 
-    def __init__(self, grace_duration=None):
+    def __init__(self, discard_grace_rest=True, grace_duration=None):
+        self._discard_grace_rest = discard_grace_rest
         if grace_duration is None:
             grace_duration = (1, 16)
         grace_duration = abjad.Duration(grace_duration)
@@ -100,6 +177,13 @@ class ConcatenatingGraceHandler(GraceHandler):
         else:
             pitches = ()
 
+        grace_events_list = list(grace_events)
+        if self._discard_grace_rest:
+            for q_event in grace_events_list:
+                if isinstance(q_event, SilentQEvent):
+                    grace_events_list.remove(q_event)
+        grace_events = tuple(grace_events_list)
+
         if grace_events:
             grace_container = abjad.BeforeGraceContainer()
             for q_event in grace_events:
@@ -117,6 +201,13 @@ class ConcatenatingGraceHandler(GraceHandler):
         return pitches, grace_container
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def discard_grace_rest(self) -> bool:
+        """
+        Boolean of whether to discard grace rests or not.
+        """
+        return self._discard_grace_rest
 
     @property
     def grace_duration(self) -> abjad.Duration:
