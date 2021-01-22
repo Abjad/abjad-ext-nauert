@@ -5,6 +5,14 @@ import abjad
 from .qevents import PitchedQEvent, SilentQEvent
 
 
+def _find_last_pitched_q_event(q_events) -> int:
+    for index, q_event in enumerate(reversed(q_events)):
+        if isinstance(q_event, PitchedQEvent):
+            return len(q_events) - index - 1
+    message = "There should be at least one PitchedQEvent in q_events"
+    raise ValueError(message)
+
+
 class GraceHandler:
     """
     Abstract grace-handler.
@@ -153,17 +161,24 @@ class ConcatenatingGraceHandler(GraceHandler):
     __slots__ = (
         "_discard_grace_rest",
         "_grace_duration",
+        "_replace_rest_with_final_grace_note",
     )
 
     ### INITIALIZER ###
 
-    def __init__(self, discard_grace_rest=True, grace_duration=None):
+    def __init__(
+        self,
+        discard_grace_rest=True,
+        grace_duration=None,
+        replace_rest_with_final_grace_note=False,
+    ):
         self._discard_grace_rest = discard_grace_rest
         if grace_duration is None:
             grace_duration = (1, 16)
         grace_duration = abjad.Duration(grace_duration)
         assert grace_duration.has_power_of_two_denominator
         self._grace_duration = grace_duration
+        self._replace_rest_with_final_grace_note = replace_rest_with_final_grace_note
 
     ### SPECIAL METHODS ###
 
@@ -172,6 +187,10 @@ class ConcatenatingGraceHandler(GraceHandler):
         Calls concatenating grace handler.
         """
         grace_events, final_event = q_events[:-1], q_events[-1]
+        if grace_events and self._replace_rest_with_final_grace_note:
+            index = _find_last_pitched_q_event(q_events)
+            grace_events, final_event = q_events[:index], q_events[index]
+
         if isinstance(final_event, PitchedQEvent):
             pitches = final_event.pitches
         else:
@@ -215,6 +234,14 @@ class ConcatenatingGraceHandler(GraceHandler):
         Grace duration of concantenating grace handler.
         """
         return self._grace_duration
+
+    @property
+    def replace_rest_with_final_grace_note(self) -> bool:
+        """
+        Boolean of whether to replace the rest with the final (pitched) grace
+        note.
+        """
+        return self._replace_rest_with_final_grace_note
 
 
 class DiscardingGraceHandler(GraceHandler):
