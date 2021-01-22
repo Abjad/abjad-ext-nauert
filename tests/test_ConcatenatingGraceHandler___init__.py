@@ -1,0 +1,20 @@
+import abjad
+from abjadext import nauert
+
+
+def test_ConcatenatingGraceHandler___init___01():
+    grace_handler = nauert.ConcatenatingGraceHandler()
+    assert grace_handler.grace_duration == abjad.Duration(1, 16)
+    assert grace_handler.discard_grace_rest is True
+
+
+def test_ConcatenatingGraceHandler___init___02():
+    grace_handler = nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
+    assert grace_handler.grace_duration == abjad.Duration(1, 16)
+    assert grace_handler.discard_grace_rest is False
+
+
+def test_ConcatenatingGraceHandler___init___03():
+    grace_handler = nauert.ConcatenatingGraceHandler(grace_duration=(1, 32))
+    assert grace_handler.grace_duration == abjad.Duration(1, 32)
+    assert grace_handler.discard_grace_rest is True
