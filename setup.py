@@ -3,12 +3,12 @@ import pathlib
 
 import setuptools
 
-subpackage_name = "nauert"
+name = "nauert"
 
 
 def read_version():
     root_path = pathlib.Path(__file__).parent
-    version_path = root_path / "abjadext" / subpackage_name / "_version.py"
+    version_path = root_path / "abjadext" / name / "_version.py"
     with version_path.open() as file_pointer:
         file_contents = file_pointer.read()
     local_dict = {}
@@ -23,6 +23,8 @@ author_email = [
     "osamupang@gmail.com",
 ]
 
+description = "Nauert extends Abjad with tools for rhythmic quantization."
+
 if __name__ == "__main__":
     setuptools.setup(
         author=", ".join(author),
@@ -34,6 +36,7 @@ if __name__ == "__main__":
             "Programming Language :: Python :: Implementation :: CPython",
             "Topic :: Artistic Software",
         ],
+        description=description,
         extras_require={
             "test": [
                 "black>=20.8b1",
@@ -56,7 +59,7 @@ if __name__ == "__main__":
                 "lilypond",
             ]
         ),
-        name="abjad-ext-{}".format(subpackage_name),
+        name=f"abjad-ext-{name}",
         packages=["abjadext"],
         platforms="Any",
         url="http://abjad.github.io",
