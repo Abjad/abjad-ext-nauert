@@ -32,7 +32,6 @@ jobs:
       run: |
         git clone https://github.com/Abjad/abjad.git /tmp/abjad
         pip install /tmp/abjad
-        export MYPYPATH=$MYPYPATH:/tmp/abjad
     - name: Install dependencies
       run: |
         python -m pip install -e .[test]
@@ -44,6 +43,8 @@ jobs:
         pytest --version
     - name: Checks and Tests
       run: |
+        export MYPYPATH=$MYPYPATH:/tmp/abjad
+        echo $MYPYPATH
         make black-check
         make flake8
         make isort-check
