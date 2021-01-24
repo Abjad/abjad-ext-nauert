@@ -44,7 +44,7 @@ jobs:
         make isort-check
         make mypy
         make pytest
-    - name: after_success:
+    - name: after_success
       run: |
         python -m pip install --quiet coveralls
         coveralls
