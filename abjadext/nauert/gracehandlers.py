@@ -85,7 +85,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         >>> q_event_sequence = abjadext.nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
-        >>> grace_handler = ConcatenatingGraceHandler()
+        >>> grace_handler = abjadext.nauert.ConcatenatingGraceHandler()
         >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
         >>> staff = abjad.Staff([result])
         >>> score = abjad.Score([staff])
@@ -117,7 +117,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         When ``discard_grace_rest`` is set to ``False``, grace rests are not
         discarded.
 
-        >>> grace_handler = ConcatenatingGraceHandler(discard_grace_rest=False)
+        >>> grace_handler = abjadext.nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
         >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
         >>> staff = abjad.Staff([result])
         >>> score = abjad.Score([staff])
