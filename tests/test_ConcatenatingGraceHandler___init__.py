@@ -12,9 +12,20 @@ def test_ConcatenatingGraceHandler___init___02():
     grace_handler = nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
     assert grace_handler.grace_duration == abjad.Duration(1, 16)
     assert grace_handler.discard_grace_rest is False
+    assert grace_handler.replace_rest_with_final_grace_note is False
 
 
 def test_ConcatenatingGraceHandler___init___03():
     grace_handler = nauert.ConcatenatingGraceHandler(grace_duration=(1, 32))
     assert grace_handler.grace_duration == abjad.Duration(1, 32)
     assert grace_handler.discard_grace_rest is True
+    assert grace_handler.replace_rest_with_final_grace_note is False
+
+
+def test_ConcatenatingGraceHandler___init___04():
+    grace_handler = nauert.ConcatenatingGraceHandler(
+        replace_rest_with_final_grace_note=True
+    )
+    assert grace_handler.grace_duration == abjad.Duration(1, 16)
+    assert grace_handler.discard_grace_rest is True
+    assert grace_handler.replace_rest_with_final_grace_note is True
