@@ -48,11 +48,38 @@ class GraceHandler:
 
 
 class CollapsingGraceHandler(GraceHandler):
-    """
+    r"""
     Collapsing grace-handler.
 
     Collapses pitch information into a single chord rather than creating a
     grace container.
+
+    ..  container:: example
+
+        >>> quantizer = nauert.Quantizer()
+        >>> durations = [1000, 1, 1, 997]
+        >>> pitches = [0, 7, 4, 0]
+        >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     tuple(zip(durations, pitches))
+        ... )
+        >>> grace_handler = nauert.CollapsingGraceHandler()
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> print(abjad.lilypond(result))
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    <c' e' g'>4
+                    r4
+                    r4
+                }
+            }
     """
 
     ### CLASS VARIABLES ###
@@ -84,10 +111,39 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ..  container:: example
 
+        >>> quantizer = nauert.Quantizer()
+        >>> durations = [1000, 1, 999]
+        >>> pitches = [0, 2, 0]
+        >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     tuple(zip(durations, pitches))
+        ... )
+        >>> grace_handler = nauert.ConcatenatingGraceHandler()
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> print(abjad.lilypond(result))
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    \grace {
+                        d'16
+                    }
+                    c'4
+                    r4
+                    r4
+                }
+            }
+
+    ..  container:: example
+
         When ``discard_grace_rest`` is set to ``True`` (the default), all the
         grace rests are discarded.
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 999]
         >>> pitches = [0, None, 0]
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
@@ -141,6 +197,67 @@ class ConcatenatingGraceHandler(GraceHandler):
                 }
             }
 
+    ..  container:: example
+
+        When ``replace_rest_with_final_grace_note`` is set to ``False`` (the
+        default behaviour), grace notes are allowed to be attached to a rest.
+
+        >>> quantizer = nauert.Quantizer()
+        >>> durations = [1000, 1, 999, 1000]
+        >>> pitches = [0, 0, None, 0]
+        >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     tuple(zip(durations, pitches))
+        ... )
+        >>> grace_handler = nauert.ConcatenatingGraceHandler()
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    \grace {
+                        c'16
+                    }
+                    r4
+                    c'4
+                    r4
+                }
+            }
+
+    ..  container:: example
+
+        When ``replace_rest_with_final_grace_note`` is set to ``True``, any
+        rest with grace notes attached to it is replaced by the last pitched
+        grace note in the grace container.
+
+        >>> grace_handler = nauert.ConcatenatingGraceHandler(
+        ...     replace_rest_with_final_grace_note=True
+        ... )
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    c'4
+                    c'4
+                    r4
+                }
+            }
     """
 
     ### CLASS VARIABLES ###
@@ -232,12 +349,39 @@ class ConcatenatingGraceHandler(GraceHandler):
 
 
 class DiscardingGraceHandler(GraceHandler):
-    """
+    r"""
     Discarding grace-handler.
 
     Discards all but final q-event attached to an offset.
 
     Does not create grace containers.
+
+    ..  container:: example
+
+        >>> quantizer = nauert.Quantizer()
+        >>> durations = [1000, 1, 999]
+        >>> pitches = [0, 0, 1]
+        >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     tuple(zip(durations, pitches))
+        ... )
+        >>> grace_handler = nauert.DiscardingGraceHandler()
+        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> print(abjad.lilypond(result))
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    cs'4
+                    r4
+                    r4
+                }
+            }
     """
 
     ### CLASS VARIABLES ###
