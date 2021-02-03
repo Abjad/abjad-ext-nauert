@@ -73,6 +73,13 @@ class QTarget:
         if attack_point_optimizer is None:
             attack_point_optimizer = NaiveAttackPointOptimizer()
         assert isinstance(attack_point_optimizer, AttackPointOptimizer)
+        if isinstance(self, BeatwiseQTarget) and isinstance(
+            attack_point_optimizer, MeasurewiseAttackPointOptimizer
+        ):
+            message = "{} is not supposed to be used together with {}.".format(
+                self.__class__.__name__, attack_point_optimizer.__class__.__name__
+            )
+            raise TypeError(message)
 
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets

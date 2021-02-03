@@ -382,3 +382,29 @@ def test_Quantizer___call___08():
         >>
         """
     ), print(abjad.lilypond(score))
+
+
+def test_Quantizer___call___09():
+    q_schema = abjadext.nauert.BeatwiseQSchema(
+        {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})},
+        {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})},
+        {"search_tree": abjadext.nauert.UnweightedSearchTree({5: None})},
+        {"search_tree": abjadext.nauert.UnweightedSearchTree({7: None})},
+    )
+    milliseconds = [250, 250, 250, 250] * 4
+    q_events = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    attack_point_optimizer = abjadext.nauert.MeasurewiseAttackPointOptimizer()
+    quantizer = abjadext.nauert.Quantizer()
+
+    try:
+        quantizer(
+            q_events,
+            q_schema=q_schema,
+            attack_point_optimizer=attack_point_optimizer,
+        )
+        assert False
+    except TypeError as error:
+        assert (
+            str(error)
+            == "BeatwiseQTarget is not supposed to be used together with MeasurewiseAttackPointOptimizer."
+        )
