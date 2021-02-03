@@ -237,3 +237,87 @@ def test_Quantizer___call___05():
         >>
         """
     ), print(abjad.lilypond(score))
+
+
+def test_Quantizer___call___06():
+    milliseconds = [1000] * 8
+    sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    optimizer = abjadext.nauert.MeasurewiseAttackPointOptimizer()
+    quantizer = abjadext.nauert.Quantizer()
+    result = quantizer(sequence, attack_point_optimizer=optimizer)
+    staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
+    score = abjad.Score([staff])
+
+    assert abjad.lilypond(score) == abjad.String.normalize(
+        r"""
+        \new Score
+        <<
+            \new RhythmicStaff
+            {
+                \new Voice
+                {
+                    {
+                        \tempo 4=60
+                        \time 4/4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+            }
+        >>
+        """
+    ), print(abjad.lilypond(score))
+
+
+def test_Quantizer___call___07():
+    milliseconds = [1000, 750, 1000, 1250] * 2
+    sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(milliseconds)
+    optimizer = abjadext.nauert.MeasurewiseAttackPointOptimizer()
+    quantizer = abjadext.nauert.Quantizer()
+    result = quantizer(sequence, attack_point_optimizer=optimizer)
+    staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
+    score = abjad.Score([staff])
+
+    assert abjad.lilypond(score) == abjad.String.normalize(
+        r"""
+        \new Score
+        <<
+            \new RhythmicStaff
+            {
+                \new Voice
+                {
+                    {
+                        \tempo 4=60
+                        \time 4/4
+                        c'4
+                        c'8.
+                        c'16
+                        ~
+                        c'8.
+                        c'16
+                        ~
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'8.
+                        c'16
+                        ~
+                        c'8.
+                        c'16
+                        ~
+                        c'4
+                    }
+                }
+            }
+        >>
+        """
+    ), print(abjad.lilypond(score))

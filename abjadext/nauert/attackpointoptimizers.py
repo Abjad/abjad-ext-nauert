@@ -80,13 +80,15 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument) -> None:
+    def __call__(self, argument, time_signature=None) -> None:
         """
         Calls measurewise attack-point optimizer.
         """
         assert isinstance(argument, abjad.Container)
         leaf = abjad.get.leaf(argument, 0)
-        time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
+        time_signature = time_signature or abjad.get.indicator(
+            leaf, abjad.TimeSignature
+        )
         assert time_signature is not None, repr(time_signature)
         abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
 

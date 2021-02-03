@@ -5,7 +5,11 @@ import typing
 
 import abjad
 
-from .attackpointoptimizers import AttackPointOptimizer, NaiveAttackPointOptimizer
+from .attackpointoptimizers import (
+    AttackPointOptimizer,
+    MeasurewiseAttackPointOptimizer,
+    NaiveAttackPointOptimizer,
+)
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
@@ -347,8 +351,12 @@ class MeasurewiseQTarget(QTarget):
         self._notate_leaves(grace_handler=grace_handler, voice=voice)
 
         # partition logical ties in each measure
-        for measure in voice:
-            attack_point_optimizer(measure)
+        for index, measure in enumerate(voice):
+            if isinstance(attack_point_optimizer, MeasurewiseAttackPointOptimizer):
+                # then we need to pass the time signature of each measure
+                attack_point_optimizer(measure, self.items[index].time_signature)
+            else:
+                attack_point_optimizer(measure)
 
         return voice
 
