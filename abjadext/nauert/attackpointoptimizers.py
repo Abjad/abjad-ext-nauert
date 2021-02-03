@@ -182,6 +182,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
                     }
                 }
             }
+
     """
 
     ### CLASS VARIABLES ###
