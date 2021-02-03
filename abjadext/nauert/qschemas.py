@@ -308,7 +308,7 @@ class BeatwiseQSchema(QSchema):
         ...     4: b,
         ... }
 
-        >>> q_schema = abjadext.nauert.MeasurewiseQSchema(settings)
+        >>> q_schema = abjadext.nauert.BeatwiseQSchema(settings)
 
         >>> abjad.f(q_schema[0]["search_tree"])
         abjadext.searchtrees.UnweightedSearchTree(
@@ -393,7 +393,7 @@ class BeatwiseQSchema(QSchema):
 
         The following is equivalent to the above schema definition:
 
-        >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
+        >>> q_schema = abjadext.nauert.BeatwiseQSchema(
         ...     (2, {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}),
         ...     (4, {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}),
         ... )

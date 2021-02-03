@@ -212,6 +212,23 @@ class Quantizer:
         Note that ``TieChains`` are generally fused together in the above
         example, but break at tempo changes.
 
+    ..  container::
+
+        The use of `BeatwiseQSchema` and `MeasurewiseAttackPointOptimizer` is
+        not supported. Please raise an issue if you would like this to be
+        supported in the future.
+
+        >>> q_schema = abjadext.nauert.BeatwiseQSchema()
+        >>> attack_point_optimizer = abjadext.nauert.MeasurewiseAttackPointOptimizer()
+        >>> result = quantizer(
+        ...     q_event_sequence,
+        ...     attack_point_optimizer=attack_point_optimizer,
+        ...     q_schema=q_schema,
+        ... )
+        Traceback (most recent call last):
+            ...
+        TypeError: BeatwiseQTarget is not supposed to be used together with MeasurewiseAttackPointOptimizer.
+
     Other keyword arguments are:
 
         * ``grace_handler``: a ``GraceHandler`` instance controls whether and
