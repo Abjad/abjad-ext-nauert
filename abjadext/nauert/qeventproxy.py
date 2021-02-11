@@ -11,12 +11,12 @@ class QEventProxy:
 
     ..  container:: example
 
-        >>> q_event = abjadext.nauert.PitchedQEvent(130, [0, 1, 4])
-        >>> proxy = abjadext.nauert.QEventProxy(q_event, 0.5)
+        >>> q_event = nauert.PitchedQEvent(130, [0, 1, 4])
+        >>> proxy = nauert.QEventProxy(q_event, 0.5)
         >>> string = abjad.storage(proxy)
         >>> print(string)
-        abjadext.qeventproxy.QEventProxy(
-            abjadext.qevents.PitchedQEvent(
+        nauert.QEventProxy(
+            nauert.PitchedQEvent(
                 offset=abjad.Offset((130, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),

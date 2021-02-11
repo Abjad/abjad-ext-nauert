@@ -179,7 +179,7 @@ class BeatwiseQSchema(QSchema):
 
     Treats beats as timestep unit.
 
-        >>> q_schema = abjadext.nauert.BeatwiseQSchema()
+        >>> q_schema = nauert.BeatwiseQSchema()
 
     ..  container:: example
 
@@ -187,9 +187,9 @@ class BeatwiseQSchema(QSchema):
 
         >>> string = abjad.storage(q_schema)
         >>> print(string)
-        abjadext.qschemas.BeatwiseQSchema(
+        nauert.BeatwiseQSchema(
             beatspan=abjad.Duration(1, 4),
-            search_tree=abjadext.searchtrees.UnweightedSearchTree(
+            search_tree=nauert.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {
@@ -238,9 +238,9 @@ class BeatwiseQSchema(QSchema):
         arguments, which persist until overridden:
 
         >>> beatspan = abjad.Duration(5, 16)
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree({7: None})
+        >>> search_tree = nauert.UnweightedSearchTree({7: None})
         >>> tempo = abjad.MetronomeMark((1, 4), 54)
-        >>> q_schema = abjadext.nauert.BeatwiseQSchema(
+        >>> q_schema = nauert.BeatwiseQSchema(
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,
         ...     tempo=tempo,
@@ -280,7 +280,7 @@ class BeatwiseQSchema(QSchema):
         >>> b = {"beatspan": abjad.Duration(3, 16)}
         >>> c = {"beatspan": abjad.Duration(1, 8)}
 
-        >>> q_schema = abjadext.nauert.BeatwiseQSchema(a, b, c)
+        >>> q_schema = nauert.BeatwiseQSchema(a, b, c)
 
         >>> q_schema[0]["beatspan"]
         Duration(5, 32)
@@ -301,19 +301,19 @@ class BeatwiseQSchema(QSchema):
         specification) pairs, allows for applying settings to  non-sequential
         time-steps:
 
-        >>> a = {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}
-        >>> b = {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}
+        >>> a = {"search_tree": nauert.UnweightedSearchTree({2: None})}
+        >>> b = {"search_tree": nauert.UnweightedSearchTree({3: None})}
 
         >>> settings = {
         ...     2: a,
         ...     4: b,
         ... }
 
-        >>> q_schema = abjadext.nauert.BeatwiseQSchema(settings)
+        >>> q_schema = nauert.BeatwiseQSchema(settings)
 
         >>> string = abjad.storage(q_schema[0]["search_tree"])
         >>> print(string)
-        abjadext.searchtrees.UnweightedSearchTree(
+        nauert.UnweightedSearchTree(
             definition={
                 2: {
                     2: {
@@ -347,7 +347,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> string = abjad.storage(q_schema[1]["search_tree"])
         >>> print(string)
-        abjadext.searchtrees.UnweightedSearchTree(
+        nauert.UnweightedSearchTree(
             definition={
                 2: {
                     2: {
@@ -395,9 +395,9 @@ class BeatwiseQSchema(QSchema):
 
         The following is equivalent to the above schema definition:
 
-        >>> q_schema = abjadext.nauert.BeatwiseQSchema(
-        ...     (2, {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}),
-        ...     (4, {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}),
+        >>> q_schema = nauert.BeatwiseQSchema(
+        ...     (2, {"search_tree": nauert.UnweightedSearchTree({2: None})}),
+        ...     (4, {"search_tree": nauert.UnweightedSearchTree({3: None})}),
         ... )
 
     """
@@ -469,7 +469,7 @@ class MeasurewiseQSchema(QSchema):
 
     Treats measures as its timestep unit.
 
-    >>> q_schema = abjadext.nauert.MeasurewiseQSchema()
+    >>> q_schema = nauert.MeasurewiseQSchema()
 
     ..  container:: example
 
@@ -477,8 +477,8 @@ class MeasurewiseQSchema(QSchema):
 
         >>> string = abjad.storage(q_schema)
         >>> print(string)
-        abjadext.qschemas.MeasurewiseQSchema(
-            search_tree=abjadext.searchtrees.UnweightedSearchTree(
+        nauert.MeasurewiseQSchema(
+            search_tree=nauert.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {
@@ -529,11 +529,11 @@ class MeasurewiseQSchema(QSchema):
         These settings can be applied as global defaults for the schema via keyword
         arguments, which persist until overridden:
 
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree({7: None})
+        >>> search_tree = nauert.UnweightedSearchTree({7: None})
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> tempo = abjad.MetronomeMark((1, 4), 54)
         >>> use_full_measure = True
-        >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
+        >>> q_schema = nauert.MeasurewiseQSchema(
         ...     search_tree=search_tree,
         ...     tempo=tempo,
         ...     time_signature=time_signature,
@@ -584,11 +584,11 @@ class MeasurewiseQSchema(QSchema):
         to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
         settings sequentially, starting from time-step ``0``:
 
-        >>> a = {"search_tree": abjadext.nauert.UnweightedSearchTree({2: None})}
-        >>> b = {"search_tree": abjadext.nauert.UnweightedSearchTree({3: None})}
-        >>> c = {"search_tree": abjadext.nauert.UnweightedSearchTree({5: None})}
+        >>> a = {"search_tree": nauert.UnweightedSearchTree({2: None})}
+        >>> b = {"search_tree": nauert.UnweightedSearchTree({3: None})}
+        >>> c = {"search_tree": nauert.UnweightedSearchTree({5: None})}
 
-        >>> q_schema = abjadext.nauert.MeasurewiseQSchema(a, b, c)
+        >>> q_schema = nauert.MeasurewiseQSchema(a, b, c)
 
         >>> q_schema[0]["search_tree"]
         UnweightedSearchTree(definition={2: None})
@@ -619,7 +619,7 @@ class MeasurewiseQSchema(QSchema):
         ...     6: c,
         ... }
 
-        >>> q_schema = abjadext.nauert.MeasurewiseQSchema(settings)
+        >>> q_schema = nauert.MeasurewiseQSchema(settings)
 
         >>> q_schema[0]["time_signature"]
         TimeSignature((4, 4))
@@ -649,7 +649,7 @@ class MeasurewiseQSchema(QSchema):
 
         The following is equivalent to the above schema definition:
 
-        >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
+        >>> q_schema = nauert.MeasurewiseQSchema(
         ...     (2, {"time_signature": abjad.TimeSignature((7, 32))}),
         ...     (4, {"time_signature": abjad.TimeSignature((3, 4))}),
         ...     (6, {"time_signature": abjad.TimeSignature((5, 8))}),

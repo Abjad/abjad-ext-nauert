@@ -15,17 +15,17 @@ class QuantizationJob:
 
     ..  container:: example
 
-        >>> q_event_a = abjadext.nauert.PitchedQEvent(250, [0, 1])
-        >>> q_event_b = abjadext.nauert.SilentQEvent(500)
-        >>> q_event_c = abjadext.nauert.PitchedQEvent(750, [3, 7])
-        >>> proxy_a = abjadext.nauert.QEventProxy(q_event_a, 0.25)
-        >>> proxy_b = abjadext.nauert.QEventProxy(q_event_b, 0.5)
-        >>> proxy_c = abjadext.nauert.QEventProxy(q_event_c, 0.75)
+        >>> q_event_a = nauert.PitchedQEvent(250, [0, 1])
+        >>> q_event_b = nauert.SilentQEvent(500)
+        >>> q_event_c = nauert.PitchedQEvent(750, [3, 7])
+        >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = nauert.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = nauert.QEventProxy(q_event_c, 0.75)
 
         >>> definition = {2: {2: None}, 3: None, 5: None}
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree(definition)
+        >>> search_tree = nauert.UnweightedSearchTree(definition)
 
-        >>> job = abjadext.nauert.QuantizationJob(
+        >>> job = nauert.QuantizationJob(
         ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
 
     ..  container:: example
@@ -150,17 +150,17 @@ class QuantizationJob:
         r"""
         The ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
 
-        >>> q_event_a = abjadext.nauert.PitchedQEvent(250, [0, 1])
-        >>> q_event_b = abjadext.nauert.SilentQEvent(500)
-        >>> q_event_c = abjadext.nauert.PitchedQEvent(750, [3, 7])
-        >>> proxy_a = abjadext.nauert.QEventProxy(q_event_a, 0.25)
-        >>> proxy_b = abjadext.nauert.QEventProxy(q_event_b, 0.5)
-        >>> proxy_c = abjadext.nauert.QEventProxy(q_event_c, 0.75)
+        >>> q_event_a = nauert.PitchedQEvent(250, [0, 1])
+        >>> q_event_b = nauert.SilentQEvent(500)
+        >>> q_event_c = nauert.PitchedQEvent(750, [3, 7])
+        >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = nauert.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = nauert.QEventProxy(q_event_c, 0.75)
 
         >>> definition = {2: {2: None}, 3: None, 5: None}
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree(definition)
+        >>> search_tree = nauert.UnweightedSearchTree(definition)
 
-        >>> job = abjadext.nauert.QuantizationJob(
+        >>> job = nauert.QuantizationJob(
         ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
         >>> job()
 
@@ -168,8 +168,8 @@ class QuantizationJob:
         ...     string = abjad.storage(q_event_proxy)
         ...     print(string)
         ...
-        abjadext.qeventproxy.QEventProxy(
-            abjadext.qevents.PitchedQEvent(
+        nauert.QEventProxy(
+            nauert.PitchedQEvent(
                 offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
@@ -178,14 +178,14 @@ class QuantizationJob:
                 ),
             abjad.Offset((1, 4))
             )
-        abjadext.qeventproxy.QEventProxy(
-            abjadext.qevents.SilentQEvent(
+        nauert.QEventProxy(
+            nauert.SilentQEvent(
                 offset=abjad.Offset((500, 1)),
                 ),
             abjad.Offset((1, 2))
             )
-        abjadext.qeventproxy.QEventProxy(
-            abjadext.qevents.PitchedQEvent(
+        nauert.QEventProxy(
+            nauert.PitchedQEvent(
                 offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("ef'"),
@@ -203,17 +203,17 @@ class QuantizationJob:
         r"""
         The generated ``QGrids``.
 
-        >>> q_event_a = abjadext.nauert.PitchedQEvent(250, [0, 1])
-        >>> q_event_b = abjadext.nauert.SilentQEvent(500)
-        >>> q_event_c = abjadext.nauert.PitchedQEvent(750, [3, 7])
-        >>> proxy_a = abjadext.nauert.QEventProxy(q_event_a, 0.25)
-        >>> proxy_b = abjadext.nauert.QEventProxy(q_event_b, 0.5)
-        >>> proxy_c = abjadext.nauert.QEventProxy(q_event_c, 0.75)
+        >>> q_event_a = nauert.PitchedQEvent(250, [0, 1])
+        >>> q_event_b = nauert.SilentQEvent(500)
+        >>> q_event_c = nauert.PitchedQEvent(750, [3, 7])
+        >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = nauert.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = nauert.QEventProxy(q_event_c, 0.75)
 
         >>> definition = {2: {2: None}, 3: None, 5: None}
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree(definition)
+        >>> search_tree = nauert.UnweightedSearchTree(definition)
 
-        >>> job = abjadext.nauert.QuantizationJob(
+        >>> job = nauert.QuantizationJob(
         ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
         >>> job()
 

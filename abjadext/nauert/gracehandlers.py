@@ -87,73 +87,60 @@ class ConcatenatingGraceHandler(GraceHandler):
         When ``discard_grace_rest`` is set to ``True`` (the default), all the
         grace rests are discarded.
 
-        >>> quantizer = abjadext.nauert.Quantizer()
+        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 999]
         >>> pitches = [0, None, 0]
-        >>> q_event_sequence = abjadext.nauert.QEventSequence.from_millisecond_pitch_pairs(
+        >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
-        >>> grace_handler = abjadext.nauert.ConcatenatingGraceHandler()
+        >>> grace_handler = nauert.ConcatenatingGraceHandler()
         >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
-        >>> staff = abjad.Staff([result])
-        >>> score = abjad.Score([staff])
-        >>> abjad.show(score) # doctest: +SKIP
+        >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(score))
-            \new Score
-            <<
-                \new Staff
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
                 {
-                    \new Voice
-                    {
-                        {
-                            \tempo 4=60
-                            \time 4/4
-                            c'4
-                            c'4
-                            r4
-                            r4
-                        }
-                    }
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    c'4
+                    r4
+                    r4
                 }
-            >>
+            }
 
     ..  container:: example
 
         When ``discard_grace_rest`` is set to ``False``, grace rests are not
         discarded.
 
-        >>> grace_handler = abjadext.nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
+        >>> grace_handler = nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
         >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
-        >>> staff = abjad.Staff([result])
-        >>> score = abjad.Score([staff])
-        >>> abjad.show(score) # doctest: +SKIP
+        >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(score))
-            \new Score
-            <<
-                \new Staff
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
                 {
-                    \new Voice
-                    {
-                        {
-                            \tempo 4=60
-                            \time 4/4
-                            c'4
-                            \grace {
-                                r16
-                            }
-                            c'4
-                            r4
-                            r4
-                        }
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    \grace {
+                        r16
                     }
+                    c'4
+                    r4
+                    r4
                 }
-            >>
+            }
+
     """
 
     ### CLASS VARIABLES ###
