@@ -69,17 +69,19 @@ class BeatwiseQSchemaItem(QSchemaItem):
     Represents a change of state in the timeline of an unmetered quantization
     process.
 
-    >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem()
-    >>> abjad.f(q_schema_item)
-    abjadext.qschemaitems.BeatwiseQSchemaItem()
+    >>> q_schema_item = nauert.BeatwiseQSchemaItem()
+    >>> string = abjad.storage(q_schema_item)
+    >>> print(string)
+    nauert.BeatwiseQSchemaItem()
 
     ..  container:: example
 
         Defines a change in tempo:
 
-        >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
-        >>> abjad.f(q_schema_item)
-        abjadext.qschemaitems.BeatwiseQSchemaItem(
+        >>> q_schema_item = nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
+        nauert.BeatwiseQSchemaItem(
             tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
@@ -90,9 +92,10 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         Defines a change in beatspan:
 
-        >>> q_schema_item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
-        >>> abjad.f(q_schema_item)
-        abjadext.qschemaitems.BeatwiseQSchemaItem(
+        >>> q_schema_item = nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
+        nauert.BeatwiseQSchemaItem(
             beatspan=abjad.Duration(1, 8),
             )
 
@@ -129,15 +132,16 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     Represents a change of state in the timeline of a metered quantization process.
 
-    >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem()
+    >>> q_schema_item = nauert.MeasurewiseQSchemaItem()
 
     ..  container:: example
 
         Defines a change in tempo:
 
-        >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
-        >>> print(format(q_schema_item))
-        abjadext.qschemaitems.MeasurewiseQSchemaItem(
+        >>> q_schema_item = nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
+        nauert.MeasurewiseQSchemaItem(
             tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
@@ -148,9 +152,10 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Defines a change in time signature:
 
-        >>> q_schema_item = abjadext.nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
-        >>> print(format(q_schema_item))
-        abjadext.qschemaitems.MeasurewiseQSchemaItem(
+        >>> q_schema_item = nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
+        >>> string = abjad.storage(q_schema_item)
+        >>> print(string)
+        nauert.MeasurewiseQSchemaItem(
             time_signature=abjad.TimeSignature((6, 8)),
             )
 

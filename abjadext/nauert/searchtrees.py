@@ -152,9 +152,10 @@ class UnweightedSearchTree(SearchTree):
 
     ..  container:: example
 
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree()
-        >>> abjad.f(search_tree)
-        abjadext.searchtrees.UnweightedSearchTree(
+        >>> search_tree = nauert.UnweightedSearchTree()
+        >>> string = abjad.storage(search_tree)
+        >>> print(string)
+        nauert.UnweightedSearchTree(
             definition={
                 2: {
                     2: {
@@ -208,11 +209,11 @@ class UnweightedSearchTree(SearchTree):
         generate all permissable subdivided ``QGrids``, according to the
         definition of the called search tree:
 
-        >>> q_event_a = abjadext.nauert.PitchedQEvent(130, [0, 1, 4])
-        >>> q_event_b = abjadext.nauert.PitchedQEvent(150, [2, 3, 5])
-        >>> proxy_a = abjadext.nauert.QEventProxy(q_event_a, 0.5)
-        >>> proxy_b = abjadext.nauert.QEventProxy(q_event_b, 0.667)
-        >>> q_grid = abjadext.nauert.QGrid()
+        >>> q_event_a = nauert.PitchedQEvent(130, [0, 1, 4])
+        >>> q_event_b = nauert.PitchedQEvent(150, [2, 3, 5])
+        >>> proxy_a = nauert.QEventProxy(q_event_a, 0.5)
+        >>> proxy_b = nauert.QEventProxy(q_event_b, 0.667)
+        >>> q_grid = nauert.QGrid()
         >>> q_grid.fit_q_events([proxy_a, proxy_b])
 
         >>> q_grids = search_tree(q_grid)
@@ -233,7 +234,7 @@ class UnweightedSearchTree(SearchTree):
         ``2``, a node may be divided once more into ``2`` parts:
 
         >>> definition = {2: {2: None}, 3: None}
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree(definition)
+        >>> search_tree = nauert.UnweightedSearchTree(definition)
 
         >>> q_grids = search_tree(q_grid)
         >>> for grid in q_grids:
@@ -295,7 +296,7 @@ class UnweightedSearchTree(SearchTree):
         by Paul Nauert:
 
         >>> import pprint
-        >>> search_tree = abjadext.nauert.UnweightedSearchTree()
+        >>> search_tree = nauert.UnweightedSearchTree()
         >>> pprint.pprint(search_tree.default_definition)
         {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
             3: {2: {2: None}, 3: None, 5: None},
@@ -328,10 +329,11 @@ class WeightedSearchTree(SearchTree):
 
         Allows for dividing nodes in a q-grid into parts with unequal weights.
 
-        >>> search_tree = abjadext.nauert.WeightedSearchTree()
+        >>> search_tree = nauert.WeightedSearchTree()
 
-        >>> abjad.f(search_tree)
-        abjadext.searchtrees.WeightedSearchTree(
+        >>> string = abjad.storage(search_tree)
+        >>> print(string)
+        nauert.WeightedSearchTree(
             definition={
                 'divisors': (2, 3, 5, 7),
                 'max_depth': 3,

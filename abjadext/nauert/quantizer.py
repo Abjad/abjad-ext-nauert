@@ -11,11 +11,11 @@ class Quantizer:
         Quantizes sequences of attack-points, encapsulated by
         ``QEventSequences``, into score trees.
 
-        >>> quantizer = abjadext.nauert.Quantizer()
+        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000] * 8
         >>> pitches = range(8)
         >>> q_event_sequence = \
-        ...     abjadext.nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches)))
 
     ..  container:: example
@@ -29,7 +29,8 @@ class Quantizer:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -64,7 +65,7 @@ class Quantizer:
         which will cause the ``Quantizer`` to group the output into measures
         with different tempi and time signatures:
 
-        >>> measurewise_q_schema = abjadext.nauert.MeasurewiseQSchema(
+        >>> measurewise_q_schema = nauert.MeasurewiseQSchema(
         ...     {"tempo": ((1, 4), 78), "time_signature": (2, 4)},
         ...     {"tempo": ((1, 8), 57), "time_signature": (5, 4)},
         ... )
@@ -79,7 +80,8 @@ class Quantizer:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -153,7 +155,7 @@ class Quantizer:
         or explicit time signatures.  The default beat-wise settings of
         quarter=60 persists until the third "beatspan":
 
-        >>> beatwise_q_schema = abjadext.nauert.BeatwiseQSchema(
+        >>> beatwise_q_schema = nauert.BeatwiseQSchema(
         ... {
         ...     2: {"tempo": ((1, 4), 120)},
         ...     5: {"tempo": ((1, 4), 90)},
@@ -170,7 +172,8 @@ class Quantizer:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -218,8 +221,8 @@ class Quantizer:
         not supported. Please raise an issue if you would like this to be
         supported in the future.
 
-        >>> q_schema = abjadext.nauert.BeatwiseQSchema()
-        >>> attack_point_optimizer = abjadext.nauert.MeasurewiseAttackPointOptimizer()
+        >>> q_schema = nauert.BeatwiseQSchema()
+        >>> attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
         >>> result = quantizer(
         ...     q_event_sequence,
         ...     attack_point_optimizer=attack_point_optimizer,

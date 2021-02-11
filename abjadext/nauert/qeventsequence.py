@@ -24,37 +24,39 @@ class QEventSequence:
         with instantiating new sequences:
 
         >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
-        ...     durations)
+        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
+        ...     durations
+        ... )
 
         >>> for q_event in sequence:
-        ...     abjad.f(q_event)
+        ...     string = abjad.storage(q_event)
+        ...     print(string)
         ...
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((1000, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((1500, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((2750, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((3250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((4000, 1)),
             )
 
@@ -115,38 +117,38 @@ class QEventSequence:
         Interprets `''` equal to `'storage'`.
 
         >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
         ...     durations)
 
         >>> string = format(sequence)
         >>> print(string)
-        abjadext.qeventsequence.QEventSequence(
+        nauert.QEventSequence(
             (
-                abjadext.qevents.PitchedQEvent(
+                nauert.PitchedQEvent(
                     offset=abjad.Offset((0, 1)),
                     pitches=(
                         abjad.NamedPitch("c'"),
                         ),
                     ),
-                abjadext.qevents.SilentQEvent(
+                nauert.SilentQEvent(
                     offset=abjad.Offset((1000, 1)),
                     ),
-                abjadext.qevents.PitchedQEvent(
+                nauert.PitchedQEvent(
                     offset=abjad.Offset((1500, 1)),
                     pitches=(
                         abjad.NamedPitch("c'"),
                         ),
                     ),
-                abjadext.qevents.SilentQEvent(
+                nauert.SilentQEvent(
                     offset=abjad.Offset((2750, 1)),
                     ),
-                abjadext.qevents.PitchedQEvent(
+                nauert.PitchedQEvent(
                     offset=abjad.Offset((3250, 1)),
                     pitches=(
                         abjad.NamedPitch("c'"),
                         ),
                     ),
-                abjadext.qevents.TerminalQEvent(
+                nauert.TerminalQEvent(
                     offset=abjad.Offset((4000, 1)),
                     ),
                 )
@@ -208,7 +210,7 @@ class QEventSequence:
         Duration in milliseconds of the ``QEventSequence``:
 
         >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
         ...     durations)
 
         >>> sequence.duration_in_ms
@@ -223,38 +225,38 @@ class QEventSequence:
         Sequence of q-events.
 
         >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
         ...     durations)
 
         >>> for q_event in sequence.sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((1000, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((1500, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((2750, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((3250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((4000, 1)),
             )
 
@@ -271,35 +273,35 @@ class QEventSequence:
         Changes sequence of millisecond durations ``durations`` to a ``QEventSequence``:
 
         >>> durations = [-250, 500, -1000, 1250, -1000]
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_durations(
+        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
         ...     durations)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((0, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((750, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((1750, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((3000, 1)),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((4000, 1)),
             )
 
@@ -331,44 +333,44 @@ class QEventSequence:
         Changes millisecond offsets ``offsets`` to a ``QEventSequence``:
 
         >>> offsets = [0, 250, 750, 1750, 3000, 4000]
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_offsets(
+        >>> sequence = nauert.QEventSequence.from_millisecond_offsets(
         ...     offsets)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((250, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((750, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((1750, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((3000, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((4000, 1)),
             )
 
@@ -386,39 +388,39 @@ class QEventSequence:
         >>> durations = [250, 500, 1000, 1250, 1000]
         >>> pitches = [(0,), None, (2, 3), None, (1,)]
         >>> pairs = tuple(zip(durations, pitches))
-        >>> sequence = abjadext.nauert.QEventSequence.from_millisecond_pitch_pairs(
+        >>> sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     pairs)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((250, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((750, 1)),
             pitches=(
                 abjad.NamedPitch("d'"),
                 abjad.NamedPitch("ef'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((1750, 1)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((3000, 1)),
             pitches=(
                 abjad.NamedPitch("cs'"),
                 ),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((4000, 1)),
             )
 
@@ -467,32 +469,32 @@ class QEventSequence:
 
         >>> tempo = abjad.MetronomeMark((1, 4), 174)
         >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
-        >>> sequence = abjadext.nauert.QEventSequence.from_tempo_scaled_durations(
+        >>> sequence = nauert.QEventSequence.from_tempo_scaled_durations(
         ...     durations, tempo=tempo)
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((10000, 29)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((17500, 29)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((20000, 29)),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((40000, 29)),
             )
 
@@ -525,38 +527,38 @@ class QEventSequence:
 
         >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
         >>> tempo = abjad.MetronomeMark((1, 4), 72)
-        >>> sequence = abjadext.nauert.QEventSequence.from_tempo_scaled_leaves(
+        >>> sequence = nauert.QEventSequence.from_tempo_scaled_leaves(
         ...     staff[:],
         ...     tempo=tempo,
         ... )
 
         >>> for q_event in sequence:
-        ...     string = format(q_event, "storage")
+        ...     string = abjad.storage(q_event)
         ...     print(string)
         ...
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((0, 1)),
             pitches=(
                 abjad.NamedPitch("c'"),
                 ),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((2500, 3)),
             pitches=(
                 abjad.NamedPitch("d'"),
                 abjad.NamedPitch("fs'"),
                 ),
             )
-        abjadext.qevents.SilentQEvent(
+        nauert.SilentQEvent(
             offset=abjad.Offset((4375, 3)),
             )
-        abjadext.qevents.PitchedQEvent(
+        nauert.PitchedQEvent(
             offset=abjad.Offset((5000, 3)),
             pitches=(
                 abjad.NamedPitch("gqs'"),
                 ),
             )
-        abjadext.qevents.TerminalQEvent(
+        nauert.TerminalQEvent(
             offset=abjad.Offset((10000, 3)),
             )
 
