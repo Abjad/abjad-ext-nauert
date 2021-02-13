@@ -737,7 +737,7 @@ class MeasurewiseQSchema(QSchema):
 
         ..  container:: example
 
-            >>> q_schema = abjadext.nauert.MeasurewiseQSchema(
+            >>> q_schema = nauert.MeasurewiseQSchema(
             ...     time_signature=abjad.TimeSignature((3, 4))
             ... )
             >>> q_schema.time_signature
@@ -758,7 +758,7 @@ class MeasurewiseQSchema(QSchema):
             ...     6: c,
             ... }
 
-            >>> q_schema = abjadext.nauert.MeasurewiseQSchema(settings)
+            >>> q_schema = nauert.MeasurewiseQSchema(settings)
             >>> q_schema.time_signature
             TimeSignature((4, 4))
         """

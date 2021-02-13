@@ -351,12 +351,12 @@ class QGrid:
 
         ..  container:: example
 
-            >>> q_grid = abjadext.nauert.QGrid()
+            >>> q_grid = nauert.QGrid()
 
-            >>> q_event_a = abjadext.nauert.PitchedQEvent(250, [0], ["A"])
-            >>> q_event_b = abjadext.nauert.PitchedQEvent(750, [1], ["B"])
-            >>> proxy_a = abjadext.nauert.QEventProxy(q_event_a, 0.25)
-            >>> proxy_b = abjadext.nauert.QEventProxy(q_event_b, 0.75)
+            >>> q_event_a = nauert.PitchedQEvent(250, [0], ["A"])
+            >>> q_event_b = nauert.PitchedQEvent(750, [1], ["B"])
+            >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = nauert.QEventProxy(q_event_b, 0.75)
             >>> q_grid.fit_q_events([proxy_a, proxy_b])
             >>> print(q_grid.rtm_format)
             1
