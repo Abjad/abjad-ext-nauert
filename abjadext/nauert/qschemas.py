@@ -734,6 +734,33 @@ class MeasurewiseQSchema(QSchema):
     def time_signature(self) -> abjad.TimeSignature:
         """
         Default time signature of measurewise q-schema.
+
+        ..  container:: example
+
+            >>> q_schema = nauert.MeasurewiseQSchema(
+            ...     time_signature=abjad.TimeSignature((3, 4))
+            ... )
+            >>> q_schema.time_signature
+            TimeSignature((3, 4))
+
+        ..  container:: example
+
+            If there are multiple time signatures in the QSchema, this returns
+            the default time signature of (4, 4).
+
+            >>> a = {"time_signature": abjad.TimeSignature((7, 32))}
+            >>> b = {"time_signature": abjad.TimeSignature((3, 4))}
+            >>> c = {"time_signature": abjad.TimeSignature((5, 8))}
+
+            >>> settings = {
+            ...     2: a,
+            ...     4: b,
+            ...     6: c,
+            ... }
+
+            >>> q_schema = nauert.MeasurewiseQSchema(settings)
+            >>> q_schema.time_signature
+            TimeSignature((4, 4))
         """
         return self._time_signature
 

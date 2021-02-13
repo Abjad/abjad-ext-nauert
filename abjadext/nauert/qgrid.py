@@ -342,11 +342,62 @@ class QGrid:
 
     @property
     def distance(self):
-        r"""The computed total distance of the offset of each ``QEventProxy``
-        contained by the ``QGrid`` to the offset of the ``QGridLeaf`` to
-        which the ``QEventProxy`` is attached.
+        r"""The computed total distance (divided by the number of
+        ``QEventProxy`` s) of the offset of each ``QEventProxy`` contained by
+        the ``QGrid`` to the offset of the ``QGridLeaf`` to which the
+        ``QEventProxy`` is attached.
 
         Return ``Duration`` instance.
+
+        ..  container:: example
+
+            >>> q_grid = nauert.QGrid()
+
+            >>> q_event_a = nauert.PitchedQEvent(250, [0], ["A"])
+            >>> q_event_b = nauert.PitchedQEvent(750, [1], ["B"])
+            >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = nauert.QEventProxy(q_event_b, 0.75)
+            >>> q_grid.fit_q_events([proxy_a, proxy_b])
+            >>> print(q_grid.rtm_format)
+            1
+
+            >>> for index, (leaf, offset) in enumerate(zip(q_grid.leaves, q_grid.offsets)):
+            ...     for q_event_proxy in leaf.q_event_proxies:
+            ...         q_event = q_event_proxy.q_event
+            ...         print(
+            ...             "leaf's index: {}, leaf's offset: {}, q_event: {}".format(
+            ...                 index, offset, q_event.attachments
+            ...             )
+            ...         )
+            ...
+            leaf's index: 0, leaf's offset: 0, q_event: ('A',)
+            leaf's index: 1, leaf's offset: 1, q_event: ('B',)
+
+            >>> print(abjad.storage(q_grid.distance))
+            abjad.Duration(1, 4)
+
+            >>> q_events = q_grid.subdivide_leaves([(0, (1, 1))])
+            >>> q_grid.fit_q_events(q_events)
+            >>> q_events = q_grid.subdivide_leaves([(0, (1, 1))])
+            >>> q_grid.fit_q_events(q_events)
+            >>> print(q_grid.rtm_format)
+            (1 ((1 (1 1)) 1))
+
+            >>> for index, (leaf, offset) in enumerate(zip(q_grid.leaves, q_grid.offsets)):
+            ...     for q_event_proxy in leaf.q_event_proxies:
+            ...         q_event = q_event_proxy.q_event
+            ...         print(
+            ...             "leaf's index: {}, leaf's offset: {}, q_event: {}".format(
+            ...                 index, offset, q_event.attachments
+            ...             )
+            ...         )
+            ...
+            leaf's index: 1, leaf's offset: 1/4, q_event: ('A',)
+            leaf's index: 2, leaf's offset: 1/2, q_event: ('B',)
+
+            >>> print(abjad.storage(q_grid.distance))
+            abjad.Duration(1, 8)
+
         """
         count = 0
         absolute_distance = 0
