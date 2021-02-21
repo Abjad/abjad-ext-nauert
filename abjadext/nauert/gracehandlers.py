@@ -280,7 +280,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         if grace_duration is None:
             grace_duration = (1, 16)
         grace_duration = abjad.Duration(grace_duration)
-        assert grace_duration.has_power_of_two_denominator
+        assert grace_duration.is_dyadic_rational
         self._grace_duration = grace_duration
         self._replace_rest_with_final_grace_note = replace_rest_with_final_grace_note
 
