@@ -58,7 +58,9 @@ def test_ConcatenatingGraceHandler___call___02():
 
 
 def test_ConcatenatingGraceHandler___call___03():
-    grace_handler = nauert.ConcatenatingGraceHandler()
+    grace_handler = nauert.ConcatenatingGraceHandler(
+        replace_rest_with_final_grace_note=False
+    )
     quantizer = nauert.Quantizer()
     durations = [1000, 1, 999, 1000]
     pitches = [0, 0, None, 0]
