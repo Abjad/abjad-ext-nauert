@@ -199,8 +199,8 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ..  container:: example
 
-        When ``replace_rest_with_final_grace_note`` is set to ``False`` (the
-        default behaviour), grace notes are allowed to be attached to a rest.
+        When ``replace_rest_with_final_grace_note`` is set to ``False``, grace
+        notes are allowed to be attached to a rest.
 
         >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 999, 1000]
@@ -208,7 +208,9 @@ class ConcatenatingGraceHandler(GraceHandler):
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
-        >>> grace_handler = nauert.ConcatenatingGraceHandler()
+        >>> grace_handler = nauert.ConcatenatingGraceHandler(
+        ...     replace_rest_with_final_grace_note=False
+        ... )
         >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
         >>> abjad.show(result) # doctest: +SKIP
 
@@ -233,13 +235,11 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ..  container:: example
 
-        When ``replace_rest_with_final_grace_note`` is set to ``True``, any
-        rest with grace notes attached to it is replaced by the last pitched
-        grace note in the grace container.
+        When ``replace_rest_with_final_grace_note`` is set to ``True`` (the
+        default behavior), any rest with grace notes attached to it is replaced
+        by the last pitched grace note in the grace container.
 
-        >>> grace_handler = nauert.ConcatenatingGraceHandler(
-        ...     replace_rest_with_final_grace_note=True
-        ... )
+        >>> grace_handler = nauert.ConcatenatingGraceHandler()
         >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
         >>> abjad.show(result) # doctest: +SKIP
 
@@ -274,7 +274,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         self,
         discard_grace_rest=True,
         grace_duration=None,
-        replace_rest_with_final_grace_note=False,
+        replace_rest_with_final_grace_note=True,
     ):
         self._discard_grace_rest = discard_grace_rest
         if grace_duration is None:
