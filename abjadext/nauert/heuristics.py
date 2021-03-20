@@ -42,7 +42,7 @@ class Heuristic:
 
 
 class DistanceHeuristic(Heuristic):
-    """
+    r"""
     Distance heuristic.
 
     Considers only the computed distance of each ``QGrid`` and the number of
@@ -51,6 +51,41 @@ class DistanceHeuristic(Heuristic):
 
     The ``QGrid`` with the smallest distance and fewest number of
     leaves will be selected.
+
+    ..  container:: example
+
+        >>> quantizer = nauert.Quantizer()
+        >>> durations = [1000] * 8
+        >>> pitches = range(8)
+        >>> q_event_sequence = \
+        ...     nauert.QEventSequence.from_millisecond_pitch_pairs(
+        ...     tuple(zip(durations, pitches)))
+        >>> heuristic = nauert.DistanceHeuristic()
+        >>> result = quantizer(q_event_sequence, heuristic=heuristic)
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    %%% \time 4/4 %%%
+                    c'4
+                    cs'4
+                    d'4
+                    ef'4
+                }
+                {
+                    e'4
+                    f'4
+                    fs'4
+                    g'4
+                }
+            }
+
     """
 
     ### CLASS VARIABLES ###

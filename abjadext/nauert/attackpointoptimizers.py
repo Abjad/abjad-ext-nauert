@@ -205,14 +205,96 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
-    """
-    Naive attack-point optimizer.
+    r"""
+    Naive attack-point optimizer. (The default attack-point optimizer)
 
     Optimizes attack points by fusing tie leaves within logical ties with leaf
     durations decreasing monotonically.
 
     Logical ties will be partitioned into sub-logical-ties if leaves are found
     with metronome marks attached.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> source_tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> q_events = nauert.QEventSequence.from_tempo_scaled_leaves(
+        ...     staff[:],
+        ...     tempo=source_tempo,
+        ... )
+        >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> q_schema = nauert.MeasurewiseQSchema(
+        ...     tempo=target_tempo,
+        ... )
+        >>> quantizer = nauert.Quantizer()
+
+    ..  container:: example
+
+        >>> optimizer = nauert.NaiveAttackPointOptimizer()
+        >>> result = quantizer(
+        ...     q_events,
+        ...     attack_point_optimizer=optimizer,
+        ...     q_schema=q_schema,
+        ... )
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
+                {
+                    \tempo 4=54
+                    %%% \time 4/4 %%%
+                    c'16..
+                    d'64
+                    ~
+                    \times 4/5 {
+                        d'8
+                        e'32
+                        ~
+                    }
+                    \times 4/7 {
+                        e'8
+                        ~
+                        e'32
+                        f'16
+                        ~
+                    }
+                    \times 4/5 {
+                        f'16.
+                        g'16
+                        ~
+                    }
+                    g'16
+                    a'16
+                    ~
+                    \times 4/5 {
+                        a'16
+                        b'16.
+                        ~
+                    }
+                    \times 4/7 {
+                        b'16
+                        c''8
+                        ~
+                        c''32
+                        ~
+                    }
+                    \times 4/5 {
+                        c''32
+                        r32
+                        r32
+                        r32
+                        r32
+                    }
+                }
+            }
+
+
     """
 
     ### CLASS VARIABLES ###
@@ -248,10 +330,131 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
 
 
 class NullAttackPointOptimizer(AttackPointOptimizer):
-    """
+    r"""
     Null attack-point optimizer.
 
     Performs no attack point optimization.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> source_tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> q_events = nauert.QEventSequence.from_tempo_scaled_leaves(
+        ...     staff[:],
+        ...     tempo=source_tempo,
+        ... )
+        >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> q_schema = nauert.MeasurewiseQSchema(
+        ...     tempo=target_tempo,
+        ... )
+        >>> quantizer = nauert.Quantizer()
+
+    ..  container:: example
+
+        >>> optimizer = nauert.NullAttackPointOptimizer()
+        >>> result = quantizer(
+        ...     q_events,
+        ...     attack_point_optimizer=optimizer,
+        ...     q_schema=q_schema,
+        ... )
+        >>> abjad.show(result) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
+            \new Voice
+            {
+                {
+                    \tempo 4=54
+                    %%% \time 4/4 %%%
+                    c'16
+                    ~
+                    c'32
+                    ~
+                    c'64
+                    d'64
+                    ~
+                    \times 4/5 {
+                        d'32
+                        ~
+                        d'32
+                        ~
+                        d'32
+                        ~
+                        d'32
+                        e'32
+                        ~
+                    }
+                    \times 4/7 {
+                        e'32
+                        ~
+                        e'32
+                        ~
+                        e'32
+                        ~
+                        e'32
+                        ~
+                        e'32
+                        f'32
+                        ~
+                        f'32
+                        ~
+                    }
+                    \times 4/5 {
+                        f'32
+                        ~
+                        f'32
+                        ~
+                        f'32
+                        g'32
+                        ~
+                        g'32
+                        ~
+                    }
+                    g'16
+                    a'16
+                    ~
+                    \times 4/5 {
+                        a'32
+                        ~
+                        a'32
+                        b'32
+                        ~
+                        b'32
+                        ~
+                        b'32
+                        ~
+                    }
+                    \times 4/7 {
+                        b'32
+                        ~
+                        b'32
+                        c''32
+                        ~
+                        c''32
+                        ~
+                        c''32
+                        ~
+                        c''32
+                        ~
+                        c''32
+                        ~
+                    }
+                    \times 4/5 {
+                        c''32
+                        r32
+                        r32
+                        r32
+                        r32
+                    }
+                }
+            }
+
+
+
     """
 
     ### CLASS VARIABLES ###
