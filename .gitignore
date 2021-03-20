@@ -104,3 +104,6 @@ ENV/
 
 # pytest
 .pytest_cache/
+
+# vim
+*.swp
