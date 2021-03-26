@@ -4,7 +4,8 @@ from abjadext import nauert
 
 def test_MeasurewiseAttackPointOptimizer___call___01():
     string = r"""
-        \times 8/11 {
+        \times 8/11
+        {
             a''8
             ~
             a''8
@@ -38,7 +39,8 @@ def test_MeasurewiseAttackPointOptimizer___call___01():
     assert string == abjad.String.normalize(
         r"""
         {
-            \times 8/11 {
+            \times 8/11
+            {
                 a''2..
                 \grace {
                     e''16

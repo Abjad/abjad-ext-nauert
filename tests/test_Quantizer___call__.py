@@ -201,7 +201,8 @@ def test_Quantizer___call___05():
                         c'16
                     }
                     c'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
                         \grace {
                             c'16
@@ -209,7 +210,8 @@ def test_Quantizer___call___05():
                         c'8
                         c'8
                     }
-                    \times 4/5 {
+                    \times 4/5
+                    {
                         c'16
                         c'16
                         c'16
@@ -217,7 +219,8 @@ def test_Quantizer___call___05():
                         c'16
                         c'16
                     }
-                    \times 4/7 {
+                    \times 4/7
+                    {
                         c'16
                         ~
                         c'16
@@ -357,7 +360,8 @@ def test_Quantizer___call___08():
                         c'16
                     }
                     c'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
                         \grace {
                             c'16
@@ -365,13 +369,15 @@ def test_Quantizer___call___08():
                         c'8
                         c'8
                     }
-                    \times 4/5 {
+                    \times 4/5
+                    {
                         c'16
                         c'16
                         c'8
                         c'16
                     }
-                    \times 4/7 {
+                    \times 4/7
+                    {
                         c'8
                         c'16
                         c'8
