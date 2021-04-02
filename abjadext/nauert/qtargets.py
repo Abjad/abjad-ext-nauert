@@ -166,7 +166,7 @@ class QTarget:
                     )
                 else:
                     new_leaf = type(previous_leaf)(
-                        previous_leaf.written_pitch, leaf.written_duration
+                        previous_leaf.written_pitches, leaf.written_duration
                     )
                 abjad.mutate.replace(leaf, new_leaf)
                 if abjad.get.annotation(previous_leaf, "tie_to_next") is True:
