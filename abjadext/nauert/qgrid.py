@@ -266,14 +266,15 @@ class QGrid:
         Calls q-grid.
         """
         result = self.root_node(beatspan)
-        result_leaves = []
+        result_logical_ties = []
         for x in result:
             if isinstance(x, abjad.Container):
-                leaves = abjad.select(x).leaves()
-                result_leaves.extend(leaves)
+                logical_ties = abjad.select(x).logical_ties()
+                result_logical_ties.extend(logical_ties)
             else:
-                result_leaves.append(x)
-        for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):
+                result_logical_ties.append(x)
+        assert len(result_logical_ties) == len(self.leaves[:-1])
+        for logical_tie, q_grid_leaf in zip(result_logical_ties, self.leaves[:-1]):
             if q_grid_leaf.q_event_proxies:
                 q_events = [
                     q_event_proxy.q_event
@@ -281,7 +282,8 @@ class QGrid:
                 ]
                 q_events.sort(key=lambda x: 0 if x.index is None else x.index)
                 annotation = {"q_events": tuple(q_events)}
-                abjad.attach(annotation, result_leaf)
+                leaf = abjad.get.leaf(logical_tie, 0)
+                abjad.attach(annotation, leaf)
         return result
 
     def __copy__(self, *arguments):
