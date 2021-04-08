@@ -451,4 +451,64 @@ def test_Quantizer___call___10():
             }
         }
         """
+    ), print(string)
+
+
+def test_Quantizer___call___11():
+    quantizer = nauert.Quantizer()
+    durations = [250, 1250, 750, 1000, 250]
+    pitches = range(5)
+    pitches = [(x, x + 7) for x in pitches]
+    q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        tuple(zip(durations, pitches))
     )
+    time_signature = abjad.TimeSignature((7, 8))
+    search_tree = nauert.UnweightedSearchTree(
+        definition={
+            2: {2: None, 3: None},
+            3: {2: None, 3: None},
+            5: {2: None},
+            7: {2: None},
+            13: None,
+        }
+    )
+    q_schema = nauert.MeasurewiseQSchema(
+        time_signature=abjad.TimeSignature((7, 8)),
+        search_tree=search_tree,
+        use_full_measure=True,
+    )
+    grace_handler = nauert.ConcatenatingGraceHandler(
+        replace_rest_with_final_grace_note=True
+    )
+    attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
+    result = quantizer(
+        q_event_sequence,
+        q_schema=q_schema,
+        grace_handler=grace_handler,
+        attack_point_optimizer=attack_point_optimizer,
+    )
+    staff = abjad.Staff([result])
+    string = abjad.lilypond(staff)
+    assert string == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    \time 7/8
+                    <c' g'>16
+                    <cs' af'>16
+                    ~
+                    <cs' af'>4
+                    <d' a'>8.
+                    <ef' bf'>16
+                    ~
+                    <ef' bf'>8.
+                    <e' b'>16
+                }
+            }
+        }
+        """
+    ), print(string)
