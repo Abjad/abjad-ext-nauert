@@ -89,7 +89,7 @@ class SearchTree:
         indices, subdivisions = [], []
         leaves = list(q_grid.leaves)
         i = 0
-        for leaf_one, leaf_two in abjad.sequence(leaves).nwise():
+        for leaf_one, leaf_two in abjad.Sequence(leaves).nwise():
             if leaf_one.is_divisible:
                 succeeding_proxies = leaf_one.succeeding_q_event_proxies
                 preceding_proxies = leaf_two.preceding_q_event_proxies
