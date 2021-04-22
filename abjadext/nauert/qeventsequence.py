@@ -87,7 +87,7 @@ class QEventSequence:
             )
             assert isinstance(sequence[-1], TerminalQEvent)
             offsets = [x.offset for x in sequence]
-            offsets = abjad.sequence(offsets)
+            offsets = abjad.Sequence(offsets)
             assert offsets.is_increasing(strict=False)
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
@@ -308,7 +308,7 @@ class QEventSequence:
         """
         if fuse_silences:
             durations = [
-                x for x in abjad.sequence(milliseconds).sum_by_sign(sign=[-1]) if x
+                x for x in abjad.Sequence(milliseconds).sum_by_sign(sign=[-1]) if x
             ]
         else:
             durations = milliseconds
@@ -501,7 +501,7 @@ class QEventSequence:
         """
         durations = [abjad.Duration(x) for x in durations]
         assert isinstance(tempo, abjad.MetronomeMark)
-        durations = [x for x in abjad.sequence(durations).sum_by_sign(sign=[-1]) if x]
+        durations = [x for x in abjad.Sequence(durations).sum_by_sign(sign=[-1]) if x]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events = []

@@ -186,7 +186,7 @@ class QTarget:
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
-        for one, two in abjad.sequence(beats).nwise():
+        for one, two in abjad.Sequence(beats).nwise():
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
@@ -259,7 +259,7 @@ class BeatwiseQTarget(QTarget):
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
-        for beat_one, beat_two in abjad.sequence(self.items).nwise():
+        for beat_one, beat_two in abjad.Sequence(self.items).nwise():
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]
@@ -333,7 +333,7 @@ class MeasurewiseQTarget(QTarget):
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
-        pairs = abjad.sequence(self.items).nwise()
+        pairs = abjad.Sequence(self.items).nwise()
         for q_target_measure_one, q_target_measure_two in pairs:
             measure = abjad.Container()
             for beat in q_target_measure_two.beats:
