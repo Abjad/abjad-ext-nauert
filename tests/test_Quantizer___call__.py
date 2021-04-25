@@ -570,3 +570,67 @@ def test_Quantizer___call___12():
         }
         """
     ), print(string)
+
+
+def test_Quantizer___call___13():
+    definition = {"divisors": (2, 3, 5, 7), "max_depth": 2, "max_divisions": 2}
+    search_tree = nauert.WeightedSearchTree(definition=definition)
+    quantizer = nauert.Quantizer()
+    durations = [400, 1000, 1260, 840, 20, 610, 420, 2450, 3500]
+    pitches = range(len(durations))
+    q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        tuple(zip(durations, pitches))
+    )
+    q_schema = nauert.MeasurewiseQSchema(
+        search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
+    )
+    result = quantizer(q_event_sequence, q_schema=q_schema, attach_tempos=True)
+    staff = abjad.Staff([result])
+    string = abjad.lilypond(staff)
+    assert string == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            \new Voice
+            {
+                {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 7/10
+                    {
+                        \times 4/7
+                        {
+                            \tempo 4=60
+                            \time 7/8
+                            c'4
+                            cs'2
+                            ~
+                            cs'8
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5
+                        {
+                            d'2.
+                            ef'2
+                        }
+                    }
+                }
+                {
+                    \times 4/5
+                    {
+                        \grace {
+                            e'16
+                        }
+                        f'8.
+                        fs'8
+                    }
+                    g'2
+                    ~
+                    g'8
+                }
+                {
+                    af'2..
+                }
+            }
+        }
+        """
+    ), print(string)

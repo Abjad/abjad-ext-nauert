@@ -118,6 +118,8 @@ class QTarget:
         #        next_downbeat.
         #  TODO: remove a final QGrid with no QEvents
 
+        self._regroup_q_grid_with_unnecessary_divisions()
+
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
         return self._notate(
@@ -183,6 +185,10 @@ class QTarget:
                 abjad.detach(abjad.TimeSignature, leaf)
                 abjad.detach(abjad.TimeSignature, new_leaf)
                 abjad.attach(time_signature, new_leaf)
+
+    def _regroup_q_grid_with_unnecessary_divisions(self):
+        for beat in self.beats:
+            beat.q_grid.regroup_leaves_with_unencessary_divisions()
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats

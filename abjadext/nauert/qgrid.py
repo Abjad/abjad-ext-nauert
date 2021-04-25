@@ -266,13 +266,9 @@ class QGrid:
         Calls q-grid.
         """
         result = self.root_node(beatspan)
-        result_logical_ties = []
-        for x in result:
-            if isinstance(x, abjad.Container):
-                logical_ties = abjad.select(x).logical_ties()
-                result_logical_ties.extend(logical_ties)
-            else:
-                result_logical_ties.append(x)
+        result_logical_ties = [
+            logical_tie for logical_tie in abjad.iterate(result).logical_ties()
+        ]
         assert len(result_logical_ties) == len(self.leaves[:-1])
         for logical_tie, q_grid_leaf in zip(result_logical_ties, self.leaves[:-1]):
             if q_grid_leaf.q_event_proxies:
@@ -485,6 +481,32 @@ class QGrid:
                     leaves[idx].q_event_proxies.append(q_event_proxy)
                 else:
                     leaves[idx - 1].q_event_proxies.append(q_event_proxy)
+
+    def regroup_leaves_with_unencessary_divisions(self):
+        """
+        Regroup leaves that belong to the same parent in which only the first
+        leaf contains q_event_prox[y|ies].
+        """
+        index = 0
+        while True:
+            leaf = self.leaves[index]
+            parent = leaf.parent
+            if isinstance(parent, QGridContainer):
+                leaves = parent.leaves
+                if (
+                    leaves[0].q_event_proxies
+                    and len(leaves) > 1
+                    and all([_leaf.q_event_proxies == [] for _leaf in leaves[1:]])
+                ):
+                    new_leaf = QGridLeaf(
+                        preprolated_duration=parent.preprolated_duration,
+                        q_event_proxies=leaves[0].q_event_proxies,
+                    )
+                    index = parent.parent.index(parent)
+                    parent.parent[index] = [new_leaf]
+            index += 1
+            if index == len(self.leaves):
+                break
 
     def sort_q_events_by_index(self):
         r"""Sort ``QEventProxies`` attached to each ``QGridLeaf`` in a
