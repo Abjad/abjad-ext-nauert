@@ -196,7 +196,7 @@ class QTarget:
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
-                two_q_events.append(one_q_events.pop())
+                two_q_events.insert(0, one_q_events.pop())
 
     ### PUBLIC PROPERTIES ###
 

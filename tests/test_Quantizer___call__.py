@@ -634,3 +634,55 @@ def test_Quantizer___call___13():
         }
         """
     ), print(string)
+
+
+def test_Quantizer___call___14():
+    definition = {"divisors": (2, 3, 5, 7), "max_depth": 2, "max_divisions": 2}
+    search_tree = nauert.WeightedSearchTree(definition=definition)
+    quantizer = nauert.Quantizer()
+    durations = [1000, 1000, 1000, 400, 50, 50, 3500]
+    pitches = range(len(durations))
+    q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        tuple(zip(durations, pitches))
+    )
+    q_schema = nauert.MeasurewiseQSchema(
+        search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
+    )
+    attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
+    result = quantizer(
+        q_event_sequence,
+        q_schema=q_schema,
+        attack_point_optimizer=attack_point_optimizer,
+        attach_tempos=True,
+    )
+    staff = abjad.Staff([result])
+    string = abjad.lilypond(staff)
+    assert string == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    \time 7/8
+                    c'4
+                    cs'8
+                    ~
+                    cs'8
+                    d'8
+                    ~
+                    d'8
+                    ef'8
+                }
+                {
+                    \grace {
+                        e'16
+                        f'16
+                    }
+                    fs'2..
+                }
+            }
+        }
+        """
+    ), print(string)
