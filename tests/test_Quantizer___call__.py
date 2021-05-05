@@ -686,3 +686,55 @@ def test_Quantizer___call___14():
         }
         """
     ), print(string)
+
+
+def test_Quantizer___call___15():
+    durations = [1000, 1000, 1000, 400, 50, 50]
+    pitches = range(len(durations))
+
+    quantizer = nauert.Quantizer()
+    q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        tuple(zip(durations, pitches))
+    )
+    search_tree = nauert.UnweightedSearchTree()
+    attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
+    q_schema = nauert.MeasurewiseQSchema(
+        search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
+    )
+
+    result = quantizer(
+        q_event_sequence,
+        q_schema=q_schema,
+        attach_tempos=True,
+        attack_point_optimizer=attack_point_optimizer,
+    )
+
+    staff = abjad.Staff([result])
+    string = abjad.lilypond(staff)
+    assert string == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            \new Voice
+            {
+                {
+                    \tempo 4=60
+                    \time 7/8
+                    c'4
+                    cs'8
+                    ~
+                    cs'8
+                    d'8
+                    ~
+                    d'8
+                    \afterGrace
+                    ef'8
+                    {
+                        e'16
+                        f'16
+                    }
+                }
+            }
+        }
+        """
+    ), print(string)
