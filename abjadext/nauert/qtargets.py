@@ -13,7 +13,7 @@ from .attackpointoptimizers import (
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
-from .qevents import SilentQEvent
+from .qevents import SilentQEvent, TerminalQEvent
 from .qeventsequence import QEventSequence
 from .qtargetitems import QTargetBeat, QTargetMeasure
 
@@ -112,7 +112,7 @@ class QTarget:
 
         # shift QEvents attached to each QGrid's "next downbeat"
         # over to the next QGrid's first leaf - the real downbeat
-        self._shift_downbeat_q_events_to_next_q_grid()
+        orphaned_q_events_proxies = self._shift_downbeat_q_events_to_next_q_grid()
 
         #  TODO: handle a final QGrid with QEvents attached to its
         #        next_downbeat.
@@ -122,11 +122,20 @@ class QTarget:
 
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
-        return self._notate(
+        notation = self._notate(
             attach_tempos=attach_tempos,
             attack_point_optimizer=attack_point_optimizer,
             grace_handler=grace_handler,
         )
+
+        handle_orphaned_q_events = getattr(
+            grace_handler, "handle_orphaned_q_event_proxies", None
+        )
+        if callable(handle_orphaned_q_events) and orphaned_q_events_proxies:
+            last_leaf = abjad.get.leaf(notation, -1)
+            handle_orphaned_q_events(last_leaf, orphaned_q_events_proxies)
+
+        return notation
 
     ### PRIVATE METHODS ###
 
@@ -197,6 +206,11 @@ class QTarget:
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
                 two_q_events.insert(0, one_q_events.pop())
+        return [
+            proxy
+            for proxy in beats[-1].q_grid.next_downbeat.q_event_proxies
+            if not isinstance(proxy.q_event, TerminalQEvent)
+        ]
 
     ### PUBLIC PROPERTIES ###
 

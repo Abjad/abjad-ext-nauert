@@ -68,7 +68,8 @@ class CollapsingGraceHandler(GraceHandler):
 
         ..  docs::
 
-            >>> print(abjad.lilypond(result))
+            >>> string = abjad.lilypond(result)
+            >>> print(string)
             \new Voice
             {
                 {
@@ -322,6 +323,75 @@ class ConcatenatingGraceHandler(GraceHandler):
             grace_container = None
 
         return pitches, grace_container
+
+    ### PUBLIC METHODS ###
+
+    def handle_orphaned_q_event_proxies(self, last_leaf, q_event_proxies):
+        r"""
+        Embeds orphaned ``QEvents`` into an ``AfterGraceContainer`` and
+        attaches it to the last leaf.
+
+        ..  container:: example
+
+            >>> durations = [1000, 1000, 1000, 400, 50, 50]
+            >>> pitches = range(len(durations))
+            >>> quantizer = nauert.Quantizer()
+            >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+            ...     tuple(zip(durations, pitches))
+            ... )
+            >>> search_tree = nauert.UnweightedSearchTree()
+            >>> attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
+            >>> q_schema = nauert.MeasurewiseQSchema(
+            ...     search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
+            ... )
+            >>> result = quantizer(
+            ...     q_event_sequence,
+            ...     q_schema=q_schema,
+            ...     attach_tempos=True,
+            ...     attack_point_optimizer=attack_point_optimizer,
+            ... )
+            >>> staff = abjad.Staff([result])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                {
+                    \new Voice
+                    {
+                        {
+                            \tempo 4=60
+                            \time 7/8
+                            c'4
+                            cs'8
+                            ~
+                            cs'8
+                            d'8
+                            ~
+                            d'8
+                            \afterGrace
+                            ef'8
+                            {
+                                e'16
+                                f'16
+                            }
+                        }
+                    }
+                }
+        """
+        grace_container = abjad.AfterGraceContainer() if q_event_proxies else None
+        for proxy in q_event_proxies:
+            q_event = proxy.q_event
+            if isinstance(q_event, PitchedQEvent):
+                if len(q_event.pitches) == 1:
+                    leaf = abjad.Note(q_event.pitches[0], self.grace_duration)
+                else:
+                    leaf = abjad.Chord(q_event.pitches, self.grace_duration)
+                grace_container.append(leaf)
+        if grace_container:
+            abjad.attach(grace_container, last_leaf)
 
     ### PUBLIC PROPERTIES ###
 
