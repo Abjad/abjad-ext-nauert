@@ -738,3 +738,68 @@ def test_Quantizer___call___15():
         }
         """
     ), print(string)
+
+
+def test_Quantizer___call___16():
+    durations = [1546, 578, 375, 589, 144, 918, 137]
+    pitches = list(range(len(durations)))
+    pitches[0] = None
+
+    quantizer = nauert.Quantizer()
+    q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        tuple(zip(durations, pitches))
+    )
+    definition = {"divisors": (2, 3, 5, 7), "max_depth": 2, "max_divisions": 2}
+    search_tree = nauert.WeightedSearchTree(definition=definition)
+    attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
+    q_schema = nauert.MeasurewiseQSchema(
+        search_tree=search_tree,
+        tempo=abjad.MetronomeMark((1, 4), 72),
+        time_signature=(7, 8),
+        use_full_measure=True,
+    )
+
+    result = quantizer(
+        q_event_sequence,
+        q_schema=q_schema,
+        attach_tempos=True,
+        attack_point_optimizer=attack_point_optimizer,
+    )
+
+    staff = abjad.Staff([result])
+    string = abjad.lilypond(staff)
+    assert string == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            \new Voice
+            {
+                {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 5/7
+                    {
+                        \tempo 4=72
+                        \time 7/8
+                        r4.
+                        r4
+                        cs'4
+                    }
+                    d'8
+                    ef'8
+                    ~
+                }
+                {
+                    \times 4/5
+                    {
+                        ef'16
+                        e'32
+                        ~
+                        e'16
+                    }
+                    f'4
+                    fs'2
+                }
+            }
+        }
+        """
+    ), print(string)

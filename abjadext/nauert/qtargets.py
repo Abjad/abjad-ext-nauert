@@ -167,6 +167,8 @@ class QTarget:
                 abjad.mutate.replace(leaf, new_leaf)
                 if not isinstance(new_leaf, abjad.Rest):
                     abjad.annotate(new_leaf, "tie_to_next", True)
+                elif abjad.get.indicator(new_leaf, abjad.Tie):
+                    abjad.detach(abjad.Tie, new_leaf)
             else:
                 previous_leaf = abjad._iterate._get_leaf(leaf, -1)
                 if isinstance(previous_leaf, abjad.Rest):
