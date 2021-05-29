@@ -493,10 +493,8 @@ class QGrid:
             parent = leaf.parent
             if isinstance(parent, QGridContainer):
                 leaves = parent.leaves
-                if (
-                    leaves[0].q_event_proxies
-                    and len(leaves) > 1
-                    and all([_leaf.q_event_proxies == [] for _leaf in leaves[1:]])
+                if len(leaves) > 1 and all(
+                    [_leaf.q_event_proxies == [] for _leaf in leaves[1:]]
                 ):
                     new_leaf = QGridLeaf(
                         preprolated_duration=parent.preprolated_duration,
