@@ -94,10 +94,12 @@ class CollapsingGraceHandler(GraceHandler):
         Calls collapsing grace handler.
         """
         pitches = []
+        attachments = []
         for q_event in q_events:
             if isinstance(q_event, PitchedQEvent):
                 pitches.extend(q_event.pitches)
-        return tuple(pitches), None
+                attachments.extend(q_event.attachments)
+        return tuple(pitches), tuple(attachments), None
 
 
 class ConcatenatingGraceHandler(GraceHandler):
@@ -298,8 +300,10 @@ class ConcatenatingGraceHandler(GraceHandler):
 
         if isinstance(final_event, PitchedQEvent):
             pitches = final_event.pitches
+            attachments = final_event.attachments
         else:
             pitches = ()
+            attachments = None
 
         grace_events_list = list(grace_events)
         if self._discard_grace_rest:
@@ -318,11 +322,12 @@ class ConcatenatingGraceHandler(GraceHandler):
                         leaf = abjad.Chord(q_event.pitches, self.grace_duration)
                 else:
                     leaf = abjad.Rest(self.grace_duration)
+                abjad.annotate(leaf, "q_event_attachments", q_event.attachments)
                 grace_container.append(leaf)
         else:
             grace_container = None
 
-        return pitches, grace_container
+        return tuple(pitches), attachments, grace_container
 
     ### PUBLIC METHODS ###
 
@@ -389,8 +394,9 @@ class ConcatenatingGraceHandler(GraceHandler):
                     leaf = abjad.Note(q_event.pitches[0], self.grace_duration)
                 else:
                     leaf = abjad.Chord(q_event.pitches, self.grace_duration)
+                abjad.annotate(leaf, "q_event_attachments", q_event.attachments)
                 grace_container.append(leaf)
-        if grace_container:
+        if grace_container:  # TODO: check if the grace_container is empty?
             abjad.attach(grace_container, last_leaf)
 
     ### PUBLIC PROPERTIES ###
@@ -466,5 +472,5 @@ class DiscardingGraceHandler(GraceHandler):
         """
         q_event = q_events[-1]
         if isinstance(q_event, PitchedQEvent):
-            return q_event.pitches, None
-        return (), None
+            return tuple(q_event.pitches), tuple(q_event.attachments), None
+        return (), (), None

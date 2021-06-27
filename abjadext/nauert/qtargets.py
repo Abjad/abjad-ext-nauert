@@ -139,6 +139,13 @@ class QTarget:
 
     ### PRIVATE METHODS ###
 
+    def _attach_attachments_to_logical_ties(self, voice, all_attachments):
+        for logical_tie, attachments in zip(
+            abjad.iterate(voice).logical_ties(grace=False), all_attachments
+        ):
+            first_leaf = abjad.get.leaf(logical_tie, 0)
+            abjad.annotate(first_leaf, "q_event_attachments", attachments)
+
     @abc.abstractmethod
     def _notate(
         self,
@@ -149,11 +156,12 @@ class QTarget:
         pass
 
     def _notate_leaves(self, grace_handler=None, voice=None):
+        all_q_event_attachments = []
         for leaf in abjad.iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
                 q_events = annotation["q_events"]
-                pitches, grace_container = grace_handler(q_events)
+                pitches, attachments, grace_container = grace_handler(q_events)
                 if not pitches:
                     new_leaf = abjad.Rest(leaf)
                 elif 1 < len(pitches):
@@ -162,6 +170,7 @@ class QTarget:
                 else:
                     new_leaf = abjad.Note(leaf)
                     new_leaf.written_pitch = pitches[0]
+                all_q_event_attachments.append(attachments)
                 if grace_container:
                     abjad.attach(grace_container, new_leaf)
                 abjad.mutate.replace(leaf, new_leaf)
@@ -196,6 +205,7 @@ class QTarget:
                 abjad.detach(abjad.TimeSignature, leaf)
                 abjad.detach(abjad.TimeSignature, new_leaf)
                 abjad.attach(time_signature, new_leaf)
+        return all_q_event_attachments
 
     def _regroup_q_grid_with_unnecessary_divisions(self):
         for beat in self.beats:
@@ -293,10 +303,14 @@ class BeatwiseQTarget(QTarget):
             voice.extend(components)
 
         # apply logical ties, pitches, grace containers
-        self._notate_leaves(grace_handler=grace_handler, voice=voice)
+        q_events_attachments = self._notate_leaves(
+            grace_handler=grace_handler, voice=voice
+        )
 
         # partition logical ties in voice
         attack_point_optimizer(voice)
+
+        self._attach_attachments_to_logical_ties(voice, q_events_attachments)
 
         return voice
 
@@ -377,7 +391,9 @@ class MeasurewiseQTarget(QTarget):
             voice.append(measure)
 
         # apply logical ties, pitches, grace containers
-        self._notate_leaves(grace_handler=grace_handler, voice=voice)
+        q_events_attachments = self._notate_leaves(
+            grace_handler=grace_handler, voice=voice
+        )
 
         # partition logical ties in each measure
         for index, measure in enumerate(voice):
@@ -386,6 +402,8 @@ class MeasurewiseQTarget(QTarget):
                 attack_point_optimizer(measure, self.items[index].time_signature)
             else:
                 attack_point_optimizer(measure)
+
+        self._attach_attachments_to_logical_ties(voice, q_events_attachments)
 
         return voice
 
