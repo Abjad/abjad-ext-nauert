@@ -381,6 +381,94 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
+    def from_millisecond_pitch_attachment_tuples(class_, tuples) -> "QEventSequence":
+        r"""
+        Changes millisecond-duration:pitch:attachment tuples ``tuples`` into a ``QEventSequence``:
+
+        >>> durations = [250, 500, 1000, 1250, 1000]
+        >>> pitches = [(0,), None, (2, 3), None, (1,)]
+        >>> attachments = [("foo",), None, None, None, ("foobar", "foo")]
+        >>> tuples = tuple(zip(durations, pitches, attachments))
+        >>> sequence = nauert.QEventSequence.from_millisecond_pitch_attachment_tuples(
+        ...     tuples
+        ... )
+        >>> for q_event in sequence:
+        ...     string = abjad.storage(q_event)
+        ...     print(string)
+        ...
+        nauert.PitchedQEvent(
+            offset=abjad.Offset((0, 1)),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            attachments=('foo',),
+            )
+        nauert.SilentQEvent(
+            offset=abjad.Offset((250, 1)),
+            )
+        nauert.PitchedQEvent(
+            offset=abjad.Offset((750, 1)),
+            pitches=(
+                abjad.NamedPitch("d'"),
+                abjad.NamedPitch("ef'"),
+                ),
+            )
+        nauert.SilentQEvent(
+            offset=abjad.Offset((1750, 1)),
+            )
+        nauert.PitchedQEvent(
+            offset=abjad.Offset((3000, 1)),
+            pitches=(
+                abjad.NamedPitch("cs'"),
+                ),
+            attachments=('foobar', 'foo'),
+            )
+        nauert.TerminalQEvent(
+            offset=abjad.Offset((4000, 1)),
+            )
+
+        """
+        assert isinstance(tuples, collections.abc.Iterable)
+        assert all(isinstance(x, collections.abc.Iterable) for x in tuples)
+        assert all(len(x) == 3 for x in tuples)
+        assert all(0 < x[0] for x in tuples)
+        for tuple_ in tuples:
+            assert isinstance(
+                tuple_[1], (numbers.Number, type(None), collections.abc.Sequence)
+            )
+            if isinstance(tuple_[1], collections.abc.Sequence):
+                assert 0 < len(tuple_[1])
+                assert all(isinstance(x, numbers.Number) for x in tuple_[1])
+            if tuple_[1] is None:
+                assert tuple_[2] is None
+        # fuse silences
+        g = itertools.groupby(tuples, lambda x: x[1] is not None)
+        groups = []
+        for value, group in g:
+            if value:
+                groups.extend(list(group))
+            else:
+                duration = sum(x[0] for x in group)
+                groups.append((duration, None, None))
+        # find offsets
+        offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
+        # build QEvents
+        q_events: typing.List[QEvent] = []
+        for pair in zip(offsets, groups):
+            offset = abjad.Offset(pair[0])
+            pitches = pair[1][1]
+            attachments = pair[1][2]
+            if isinstance(pitches, collections.abc.Iterable):
+                assert all(isinstance(x, numbers.Number) for x in pitches)
+                q_events.append(PitchedQEvent(offset, pitches, attachments))
+            elif isinstance(pitches, type(None)):
+                q_events.append(SilentQEvent(offset))
+            elif isinstance(pitches, numbers.Number):
+                q_events.append(PitchedQEvent(offset, [pitches], attachments))
+        q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
+        return class_(q_events)
+
+    @classmethod
     def from_millisecond_pitch_pairs(class_, pairs) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
