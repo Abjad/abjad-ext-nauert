@@ -299,6 +299,7 @@ class ConcatenatingGraceHandler(GraceHandler):
             grace_events, final_event = q_events[:index], q_events[index]
 
         if isinstance(final_event, PitchedQEvent):
+            # TODO: we are only supporting preserving attachments for PitchedQEvent
             pitches = final_event.pitches
             attachments = final_event.attachments
         else:
@@ -322,7 +323,8 @@ class ConcatenatingGraceHandler(GraceHandler):
                         leaf = abjad.Chord(q_event.pitches, self.grace_duration)
                 else:
                     leaf = abjad.Rest(self.grace_duration)
-                abjad.annotate(leaf, "q_event_attachments", q_event.attachments)
+                if q_event.attachments is not None:
+                    abjad.annotate(leaf, "q_event_attachments", q_event.attachments)
                 grace_container.append(leaf)
         else:
             grace_container = None

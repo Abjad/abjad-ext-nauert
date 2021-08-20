@@ -140,9 +140,11 @@ class QTarget:
     ### PRIVATE METHODS ###
 
     def _attach_attachments_to_logical_ties(self, voice, all_attachments):
-        for logical_tie, attachments in zip(
-            abjad.iterate(voice).logical_ties(grace=False), all_attachments
-        ):
+        logical_tie_list = list(
+            abjad.iterate(voice).logical_ties(grace=False, pitched=True)
+        )
+        assert len(logical_tie_list) == len(all_attachments)
+        for logical_tie, attachments in zip(logical_tie_list, all_attachments):
             first_leaf = abjad.get.leaf(logical_tie, 0)
             abjad.annotate(first_leaf, "q_event_attachments", attachments)
 
@@ -170,7 +172,8 @@ class QTarget:
                 else:
                     new_leaf = abjad.Note(leaf)
                     new_leaf.written_pitch = pitches[0]
-                all_q_event_attachments.append(attachments)
+                if attachments is not None:
+                    all_q_event_attachments.append(attachments)
                 if grace_container:
                     abjad.attach(grace_container, new_leaf)
                 abjad.mutate.replace(leaf, new_leaf)
@@ -310,7 +313,8 @@ class BeatwiseQTarget(QTarget):
         # partition logical ties in voice
         attack_point_optimizer(voice)
 
-        self._attach_attachments_to_logical_ties(voice, q_events_attachments)
+        if isinstance(grace_handler, ConcatenatingGraceHandler):
+            self._attach_attachments_to_logical_ties(voice, q_events_attachments)
 
         return voice
 
@@ -403,7 +407,8 @@ class MeasurewiseQTarget(QTarget):
             else:
                 attack_point_optimizer(measure)
 
-        self._attach_attachments_to_logical_ties(voice, q_events_attachments)
+        if isinstance(grace_handler, ConcatenatingGraceHandler):
+            self._attach_attachments_to_logical_ties(voice, q_events_attachments)
 
         return voice
 

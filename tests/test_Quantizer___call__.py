@@ -4,7 +4,7 @@ from abjadext import nauert
 
 def assert_q_event_attachments(result, all_attachments):
     for logical_tie, attachments in zip(
-        abjad.iterate(result).logical_ties(), all_attachments
+        abjad.iterate(result).logical_ties(pitched=True), all_attachments
     ):
         first_leaf = abjad.get.leaf(logical_tie, 0)
         q_event_attachments = abjad.get.annotation(first_leaf, "q_event_attachments")
@@ -820,4 +820,4 @@ def test_Quantizer___call___16():
         }
         """
     ), print(string)
-    assert_q_event_attachments(result, all_attachments)
+    assert_q_event_attachments(result, all_attachments[1:])
