@@ -118,7 +118,7 @@ class SearchTree:
         )
         if not indices:
             return ()
-        combinations = abjad.enumerate.yield_outer_product(subdivisions)
+        combinations = abjad.enumerate.outer_product(subdivisions)
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 
