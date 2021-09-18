@@ -13,7 +13,7 @@ def _find_last_pitched_q_event(q_events) -> int:
     raise ValueError(message)
 
 
-class GraceHandler:
+class GraceHandler(metaclass=abc.ABCMeta):
     """
     Abstract grace-handler.
 
@@ -397,6 +397,7 @@ class ConcatenatingGraceHandler(GraceHandler):
                 else:
                     leaf = abjad.Chord(q_event.pitches, self.grace_duration)
                 abjad.annotate(leaf, "q_event_attachments", q_event.attachments)
+                assert grace_container is not None
                 grace_container.append(leaf)
         if grace_container:  # TODO: check if the grace_container is empty?
             abjad.attach(grace_container, last_leaf)

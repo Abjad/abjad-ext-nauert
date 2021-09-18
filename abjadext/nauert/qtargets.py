@@ -15,10 +15,10 @@ from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
 from .qevents import SilentQEvent, TerminalQEvent
 from .qeventsequence import QEventSequence
-from .qtargetitems import QTargetBeat, QTargetMeasure
+from .qtargetitems import QTargetBeat, QTargetItem, QTargetMeasure
 
 
-class QTarget:
+class QTarget(metaclass=abc.ABCMeta):
     """
     Abstract q-target.
 
@@ -37,10 +37,14 @@ class QTarget:
 
     ### INITIALIZATION ###
 
-    def __init__(self, items=None):
-        items = items or []
+    def __init__(
+        self,
+        items: typing.Sequence[QTargetItem] = [],
+    ):
         assert all(isinstance(x, self.item_class) for x in items)
-        self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
+        self._items: typing.Sequence[QTargetItem] = ()
+        if len(items) > 0:
+            self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
 
     ### SPECIAL METHODS ###
 
@@ -154,7 +158,7 @@ class QTarget:
         grace_handler=None,
         attack_point_optimizer=None,
         attach_tempos=True,
-    ):
+    ) -> abjad.Voice:
         pass
 
     def _notate_leaves(self, grace_handler=None, voice=None):
@@ -272,17 +276,24 @@ class BeatwiseQTarget(QTarget):
 
     __slots__ = ()
 
+    ### INITIALIZATION ###
+
+    def __init__(self, items: typing.Sequence[QTargetBeat] = []):
+        self._items: typing.Sequence[QTargetBeat]
+        super().__init__(items)
+
     ### PRIVATE METHODS ###
 
     def _notate(
         self,
-        attach_tempos=True,
-        attack_point_optimizer=None,
         grace_handler=None,
-    ):
+        attack_point_optimizer=None,
+        attach_tempos=True,
+    ) -> abjad.Voice:
         voice = abjad.Voice()
         # generate the first
-        beat = self.items[0]
+        beat = self._items[0]
+        assert isinstance(beat, QTargetBeat)
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
             attachment_target = components[0]
@@ -321,11 +332,11 @@ class BeatwiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self):
+    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
         """
         Beats of beatwise q-target.
         """
-        return tuple(self.items)
+        return tuple(self._items)
 
     @property
     def item_class(self) -> typing.Type[QTargetBeat]:
@@ -348,18 +359,24 @@ class MeasurewiseQTarget(QTarget):
 
     __slots__ = ()
 
+    ### INITIALIZATION ###
+
+    def __init__(self, items: typing.Sequence[QTargetMeasure] = []):
+        super().__init__(items)
+
     ### PRIVATE METHODS ###
 
     def _notate(
         self,
-        attach_tempos=True,
-        attack_point_optimizer=None,
         grace_handler=None,
-    ):
+        attack_point_optimizer=None,
+        attach_tempos=True,
+    ) -> abjad.Voice:
         voice = abjad.Voice()
 
         # generate the first
-        q_target_measure = self.items[0]
+        q_target_measure = self._items[0]
+        assert isinstance(q_target_measure, QTargetMeasure)
         time_signature = q_target_measure.time_signature
         measure = abjad.Container()
         for beat in q_target_measure.beats:
@@ -415,7 +432,7 @@ class MeasurewiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self) -> typing.Tuple:
+    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
         """
         Beats of measurewise q-target.
         """

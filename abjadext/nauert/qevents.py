@@ -3,7 +3,7 @@ import abc
 import abjad
 
 
-class QEvent:
+class QEvent(metaclass=abc.ABCMeta):
     """
     Abstract Q-event.
 

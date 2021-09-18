@@ -11,7 +11,7 @@ from .qtargets import BeatwiseQTarget, MeasurewiseQTarget
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 
-class QSchema:
+class QSchema(metaclass=abc.ABCMeta):
     """
     Abstract Q-schema.
 

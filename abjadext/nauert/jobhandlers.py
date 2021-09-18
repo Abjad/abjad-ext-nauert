@@ -3,7 +3,7 @@ import multiprocessing
 import pickle
 
 
-class JobHandler:
+class JobHandler(metaclass=abc.ABCMeta):
     """
     Abstact job-handler.
 
@@ -59,16 +59,20 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
         Returns none.
         """
         while True:
-            job = self.job_queue.get()
+            job = None
+            if hasattr(self.job_queue, "get"):
+                job = self.job_queue.get()
             if job is None:
                 # poison pill causes worker shutdown
                 # print '{}: Exiting'.format(process_name)
+                assert hasattr(self.job_queue, "task_done")
                 self.job_queue.task_done()
                 break
             # print '{}: {!r}'.format(process_name, job)
             job = pickle.loads(job)
             job()
             self.job_queue.task_done()
+            assert hasattr(self.result_queue, "put")
             self.result_queue.put(pickle.dumps(job, protocol=0))
         return
 

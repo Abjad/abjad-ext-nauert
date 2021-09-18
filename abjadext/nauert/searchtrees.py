@@ -6,7 +6,7 @@ import abjad
 from .qgrid import QGrid
 
 
-class SearchTree:
+class SearchTree(metaclass=abc.ABCMeta):
     """
     Abstract search tree.
 

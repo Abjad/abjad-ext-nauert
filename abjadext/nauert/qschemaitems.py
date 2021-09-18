@@ -6,7 +6,7 @@ import abjad
 from .searchtrees import SearchTree
 
 
-class QSchemaItem:
+class QSchemaItem(metaclass=abc.ABCMeta):
     """
     Abstract q-schema item.
 

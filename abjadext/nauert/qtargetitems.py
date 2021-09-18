@@ -1,3 +1,4 @@
+import abc
 import typing
 
 import abjad
@@ -9,7 +10,21 @@ from .quantizationjob import QuantizationJob
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 
-class QTargetBeat:
+class QTargetItem(abc.ABC):
+    """
+    Abstract class for QTargetBeat and QTargetMeasure.
+    """
+
+    @abc.abstractproperty
+    def offset_in_ms(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def duration_in_ms(self):
+        raise NotImplementedError
+
+
+class QTargetBeat(QTargetItem):
     """
     Q-target beat.
 
@@ -283,7 +298,7 @@ class QTargetBeat:
         return self._tempo
 
 
-class QTargetMeasure:
+class QTargetMeasure(QTargetItem):
     """
     Q-target measure.
 

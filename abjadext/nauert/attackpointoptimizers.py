@@ -3,7 +3,7 @@ import abc
 import abjad
 
 
-class AttackPointOptimizer:
+class AttackPointOptimizer(metaclass=abc.ABCMeta):
     """
     Abstract attack-point optimizer.
 

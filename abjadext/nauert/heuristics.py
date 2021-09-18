@@ -4,7 +4,7 @@ from .qgrid import QGrid
 from .qtargetitems import QTargetBeat
 
 
-class Heuristic:
+class Heuristic(metaclass=abc.ABCMeta):
     """
     Abstract heuristic.
 
