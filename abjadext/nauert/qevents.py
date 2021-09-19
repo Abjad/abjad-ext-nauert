@@ -1,4 +1,5 @@
 import abc
+import typing
 
 import abjad
 
@@ -16,15 +17,16 @@ class QEvent(metaclass=abc.ABCMeta):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_index", "_offset")
+    __slots__ = ("_attachments", "_index", "_offset")
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, offset=0, index=None):
+    def __init__(self, offset=0, index=None, attachments=None):
         offset = abjad.Offset(offset)
         self._offset = offset
         self._index = index
+        self._attachments = attachments
 
     ### SPECIAL METHODS ###
 
@@ -65,6 +67,13 @@ class QEvent(metaclass=abc.ABCMeta):
         )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def attachments(self):
+        """
+        The attachments of the QEvent.
+        """
+        return self._attachments
 
     @property
     def index(self):
@@ -152,7 +161,7 @@ class PitchedQEvent(QEvent):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attachments(self):
+    def attachments(self) -> typing.Tuple:
         """
         Attachments of pitched q-event.
         """

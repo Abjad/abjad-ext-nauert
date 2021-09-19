@@ -1,11 +1,12 @@
 import abc
+import typing
 
 import abjad
 
-from .qevents import PitchedQEvent, SilentQEvent
+from .qevents import PitchedQEvent, QEvent, SilentQEvent
 
 
-def _find_last_pitched_q_event(q_events) -> int:
+def _find_last_pitched_q_event(q_events: typing.Sequence[QEvent]) -> int:
     for index, q_event in enumerate(reversed(q_events)):
         if isinstance(q_event, PitchedQEvent):
             return len(q_events) - index - 1
@@ -40,7 +41,13 @@ class GraceHandler(metaclass=abc.ABCMeta):
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
-    def __call__(self, q_events):
+    def __call__(
+        self, q_events
+    ) -> typing.Tuple[
+        typing.Tuple[abjad.NamedPitch, ...],
+        typing.Optional[typing.Tuple],
+        typing.Optional[abjad.BeforeGraceContainer],
+    ]:
         """
         Calls grace handler.
         """
@@ -89,12 +96,14 @@ class CollapsingGraceHandler(GraceHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_events):
+    def __call__(
+        self, q_events: typing.Sequence[QEvent]
+    ) -> typing.Tuple[typing.Tuple[abjad.NamedPitch, ...], typing.Tuple, None]:
         """
         Calls collapsing grace handler.
         """
-        pitches = []
-        attachments = []
+        pitches: typing.List[abjad.NamedPitch] = []
+        attachments: typing.List = []
         for q_event in q_events:
             if isinstance(q_event, PitchedQEvent):
                 pitches.extend(q_event.pitches)
@@ -289,11 +298,18 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_events):
+    def __call__(
+        self, q_events: typing.Sequence[QEvent]
+    ) -> typing.Tuple[
+        typing.Tuple[abjad.NamedPitch, ...],
+        typing.Optional[typing.Tuple],
+        typing.Optional[abjad.BeforeGraceContainer],
+    ]:
         """
         Calls concatenating grace handler.
         """
         grace_events, final_event = q_events[:-1], q_events[-1]
+        attachments: typing.Optional[typing.Tuple]
         if grace_events and self._replace_rest_with_final_grace_note:
             index = _find_last_pitched_q_event(q_events)
             grace_events, final_event = q_events[:index], q_events[index]
@@ -313,9 +329,11 @@ class ConcatenatingGraceHandler(GraceHandler):
                     grace_events_list.remove(q_event)
         grace_events = tuple(grace_events_list)
 
+        grace_container: typing.Optional[abjad.BeforeGraceContainer]
         if grace_events:
             grace_container = abjad.BeforeGraceContainer()
             for q_event in grace_events:
+                leaf: abjad.Leaf
                 if isinstance(q_event, PitchedQEvent):
                     if len(q_event.pitches) == 1:
                         leaf = abjad.Note(q_event.pitches[0], self.grace_duration)
@@ -323,8 +341,13 @@ class ConcatenatingGraceHandler(GraceHandler):
                         leaf = abjad.Chord(q_event.pitches, self.grace_duration)
                 else:
                     leaf = abjad.Rest(self.grace_duration)
-                if q_event.attachments is not None:
-                    abjad.annotate(leaf, "q_event_attachments", q_event.attachments)
+                q_event_attachments = (
+                    None if not hasattr(q_event, "attachments") else q_event.attachments
+                )
+                # assert hasattr(q_event, "attachments")
+                # q_event_attachments = q_event.attachments
+                if q_event_attachments is not None:
+                    abjad.annotate(leaf, "q_event_attachments", q_event_attachments)
                 grace_container.append(leaf)
         else:
             grace_container = None
@@ -469,7 +492,9 @@ class DiscardingGraceHandler(GraceHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_events):
+    def __call__(
+        self, q_events: typing.Sequence[QEvent]
+    ) -> typing.Tuple[typing.Tuple[abjad.NamedPitch, ...], tuple, None]:
         """
         Calls discarding grace handler.
         """
