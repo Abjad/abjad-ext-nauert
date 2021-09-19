@@ -53,7 +53,13 @@ class QuantizationJob:
 
     ### INITIALIZER ###
 
-    def __init__(self, job_id=1, search_tree=None, q_event_proxies=None, q_grids=None):
+    def __init__(
+        self,
+        job_id: int = 1,
+        search_tree: typing.Optional[SearchTree] = None,
+        q_event_proxies: typing.Optional[typing.Sequence[QEventProxy]] = None,
+        q_grids: typing.Optional[typing.Sequence[QGrid]] = None,
+    ):
         search_tree = search_tree or UnweightedSearchTree()
         q_event_proxies = q_event_proxies or []
         assert isinstance(search_tree, SearchTree)
@@ -61,6 +67,7 @@ class QuantizationJob:
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
+        self._q_grids: typing.Tuple[QGrid, ...]
         if q_grids is None:
             self._q_grids = ()
         else:
@@ -69,8 +76,9 @@ class QuantizationJob:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
-        r"""Calls quantization job.
+    def __call__(self) -> None:
+        """
+        Calls quantization job.
 
         Returns none.
         """
@@ -114,7 +122,7 @@ class QuantizationJob:
                             return True
         return False
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         """
         Formats object.
         """
@@ -146,7 +154,7 @@ class QuantizationJob:
         return self._job_id
 
     @property
-    def q_event_proxies(self) -> typing.Tuple:
+    def q_event_proxies(self) -> typing.Tuple[QEventProxy, ...]:
         r"""
         The ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
 
@@ -199,7 +207,7 @@ class QuantizationJob:
         return self._q_event_proxies
 
     @property
-    def q_grids(self) -> typing.Tuple:
+    def q_grids(self) -> typing.Tuple[QGrid, ...]:
         r"""
         The generated ``QGrids``.
 

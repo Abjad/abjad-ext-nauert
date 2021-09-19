@@ -1,9 +1,12 @@
 import abc
 import multiprocessing
 import pickle
+import typing
+
+from .quantizationjob import QuantizationJob
 
 
-class JobHandler(metaclass=abc.ABCMeta):
+class JobHandler(abc.ABC):
     """
     Abstact job-handler.
 
@@ -129,7 +132,9 @@ class SerialJobHandler(JobHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, jobs):
+    def __call__(
+        self, jobs: typing.Sequence[QuantizationJob]
+    ) -> typing.Sequence[QuantizationJob]:
         """
         Calls serial job handler.
 
