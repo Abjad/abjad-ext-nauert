@@ -104,6 +104,7 @@ class QTarget(metaclass=abc.ABCMeta):
         jobs = [job for job in jobs if job]
         jobs = job_handler(jobs)
         for job in jobs:
+            assert job is not None
             beats[job.job_id]._q_grids = job.q_grids
 
         # for i, beat in enumerate(beats):
@@ -234,7 +235,7 @@ class QTarget(metaclass=abc.ABCMeta):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def beats(self):
+    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
         """
         Beats of q-target.
         """
@@ -293,7 +294,7 @@ class BeatwiseQTarget(QTarget):
         voice = abjad.Voice()
         # generate the first
         beat = self._items[0]
-        assert isinstance(beat, QTargetBeat)
+        assert isinstance(beat, QTargetBeat) and beat.q_grid is not None
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
             attachment_target = components[0]
