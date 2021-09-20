@@ -1,3 +1,5 @@
+import typing
+
 import abjad
 
 from .qevents import QEvent
@@ -16,7 +18,8 @@ class QEventProxy:
         >>> string = abjad.storage(proxy)
         >>> print(string)
         nauert.QEventProxy(
-            nauert.PitchedQEvent(
+            abjad.Offset((1, 2)),
+            q_event=nauert.PitchedQEvent(
                 offset=abjad.Offset((130, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
@@ -24,7 +27,6 @@ class QEventProxy:
                     abjad.NamedPitch("e'"),
                     ),
                 ),
-            abjad.Offset((1, 2))
             )
 
     Not composer-safe.
@@ -40,26 +42,29 @@ class QEventProxy:
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        if len(arguments) == 2:
-            q_event, offset = arguments[0], abjad.Offset(arguments[1])
+    def __init__(
+        self,
+        q_event: typing.Optional[QEvent] = None,
+        *offsets: typing.Union[int, abjad.typings.IntegerPair],
+    ):
+        if len(offsets) == 1:
+            offset = abjad.Offset(offsets[0])
             assert isinstance(q_event, QEvent)
             assert 0 <= offset <= 1
-        elif len(arguments) == 3:
-            q_event, minimum, maximum = (
-                arguments[0],
-                abjad.Offset(arguments[1]),
-                abjad.Offset(arguments[2]),
+        elif len(offsets) == 2:
+            minimum, maximum = (
+                abjad.Offset(offsets[0]),
+                abjad.Offset(offsets[1]),
             )
             assert isinstance(q_event, QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
-        elif len(arguments) == 0:
-            q_event = None
+        elif len(offsets) == 0:
+            assert q_event is None
             offset = abjad.Offset(0)
         else:
             message = "can not initialize {}: {!r}."
-            message = message.format(type(self).__name__, arguments)
+            message = message.format(type(self).__name__, offsets)
             raise ValueError(message)
         self._q_event = q_event
         self._offset = abjad.Offset(offset)
@@ -77,7 +82,7 @@ class QEventProxy:
                     return True
         return False
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         """
         Formats q-event.
 
@@ -98,10 +103,8 @@ class QEventProxy:
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
+    def _get_format_specification(self) -> abjad.FormatSpecification:
         values = []
-        if self.q_event:
-            values.append(self.q_event)
         if self.offset:
             values.append(self.offset)
         return abjad.FormatSpecification(client=self, storage_format_args_values=values)
@@ -109,21 +112,22 @@ class QEventProxy:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def index(self):
+    def index(self) -> int:
         """
         Index of q-event proxy.
         """
+        assert self._q_event is not None, "There is no QEvent is this proxy."
         return self._q_event.index
 
     @property
-    def offset(self):
+    def offset(self) -> abjad.Offset:
         """
         Offset of q-event proxy.
         """
         return self._offset
 
     @property
-    def q_event(self):
+    def q_event(self) -> typing.Optional[QEvent]:
         """
         Q-event of q-event proxy.
         """

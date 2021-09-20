@@ -1,8 +1,8 @@
 import abjad
-import abjadext.nauert
+from abjadext import nauert
 
 
-class Job:
+class Job(nauert.QuantizationJob):
 
     ### INITIALIZER ###
 
@@ -23,5 +23,5 @@ class Job:
 def test_SerialJobHandler___call___01():
 
     jobs = [Job(x) for x in range(1, 11)]
-    job_handler = abjadext.nauert.SerialJobHandler()
+    job_handler = nauert.SerialJobHandler()
     job_handler(jobs)

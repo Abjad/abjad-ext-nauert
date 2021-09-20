@@ -177,30 +177,30 @@ class QuantizationJob:
         ...     print(string)
         ...
         nauert.QEventProxy(
-            nauert.PitchedQEvent(
+            abjad.Offset((1, 4)),
+            q_event=nauert.PitchedQEvent(
                 offset=abjad.Offset((250, 1)),
                 pitches=(
                     abjad.NamedPitch("c'"),
                     abjad.NamedPitch("cs'"),
                     ),
                 ),
-            abjad.Offset((1, 4))
             )
         nauert.QEventProxy(
-            nauert.SilentQEvent(
+            abjad.Offset((1, 2)),
+            q_event=nauert.SilentQEvent(
                 offset=abjad.Offset((500, 1)),
                 ),
-            abjad.Offset((1, 2))
             )
         nauert.QEventProxy(
-            nauert.PitchedQEvent(
+            abjad.Offset((3, 4)),
+            q_event=nauert.PitchedQEvent(
                 offset=abjad.Offset((750, 1)),
                 pitches=(
                     abjad.NamedPitch("ef'"),
                     abjad.NamedPitch("g'"),
                     ),
                 ),
-            abjad.Offset((3, 4))
             )
 
         """
