@@ -63,7 +63,7 @@ class SearchTree(abc.ABC):
         """
         Formats object.
         """
-        return abjad.StorageFormatManager(self).get_storage_format()
+        return abjad.storage(self)
 
     def __hash__(self) -> int:
         """
@@ -77,7 +77,7 @@ class SearchTree(abc.ABC):
         """
         Gets interpreter representation.
         """
-        return abjad.StorageFormatManager(self).get_repr_format()
+        return abjad.format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -133,8 +133,8 @@ class SearchTree(abc.ABC):
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        return abjad.FormatSpecification(client=self)
+    def _get_format_specification(self):
+        return abjad.FormatSpecification()
 
     @abc.abstractmethod
     def _is_valid_definition(self, definition: dict) -> bool:

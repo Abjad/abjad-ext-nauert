@@ -153,7 +153,7 @@ class QTarget(abc.ABC):
         all_attachments: typing.Sequence[typing.Optional[tuple]],
     ):
         logical_tie_list = list(
-            abjad.iterate(voice).logical_ties(grace=False, pitched=True)
+            abjad.iterate.logical_ties(voice, grace=False, pitched=True)
         )
         assert len(logical_tie_list) == len(all_attachments)
         for logical_tie, attachments in zip(logical_tie_list, all_attachments):

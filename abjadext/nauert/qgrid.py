@@ -78,14 +78,15 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        agent = abjad.StorageFormatManager(self)
-        names = agent.signature_names
+    def _get_format_specification(self):
+        result = abjad.format._inspect_signature(self)
+        signature_positional_names = result[0]
+        signature_keyword_names = result[1]
+        names = list(signature_positional_names) + list(signature_keyword_names)
         template_names = names[:]
         if "q_event_proxies" in names and not self.q_event_proxies:
             names.remove("q_event_proxies")
         return abjad.FormatSpecification(
-            client=self,
             repr_is_indented=True,
             storage_format_keyword_names=names,
             template_names=template_names,
@@ -280,7 +281,7 @@ class QGrid:
         """
         result = self.root_node(beatspan)
         result_logical_ties = [
-            logical_tie for logical_tie in abjad.iterate(result).logical_ties()
+            logical_tie for logical_tie in abjad.iterate.logical_ties(result)
         ]
         assert len(result_logical_ties) == len(self.leaves[:-1])
         for logical_tie, q_grid_leaf in zip(result_logical_ties, self.leaves[:-1]):
@@ -328,7 +329,7 @@ class QGrid:
 
         Returns string.
         """
-        return abjad.StorageFormatManager(self).get_storage_format()
+        return abjad.storage(self)
 
     def __hash__(self) -> int:
         """
@@ -344,12 +345,17 @@ class QGrid:
         """
         Gets interpreter representation.
         """
-        return abjad.StorageFormatManager(self).get_repr_format()
+        return abjad.format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
+<<<<<<< HEAD
     def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(client=self)
+=======
+    def _get_format_specification(self):
+        return abjad.FormatSpecification()
+>>>>>>> cc0562e (2021-10 update 1.)
 
     ### PUBLIC PROPERTIES ###
 

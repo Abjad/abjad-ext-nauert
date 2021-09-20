@@ -163,7 +163,7 @@ class QEventSequence:
 
         """
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return abjad.storage(self)
         return str(self)
 
     @typing.overload
@@ -214,7 +214,6 @@ class QEventSequence:
         if self.sequence:
             values.append(self.sequence)
         return abjad.FormatSpecification(
-            client=self,
             storage_format_args_values=values,
             storage_format_keyword_names=[],
         )
