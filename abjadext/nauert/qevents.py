@@ -1,10 +1,11 @@
 import abc
+import numbers
 import typing
 
 import abjad
 
 
-class QEvent(metaclass=abc.ABCMeta):
+class QEvent(abc.ABC):
     """
     Abstract Q-event.
 
@@ -22,15 +23,20 @@ class QEvent(metaclass=abc.ABCMeta):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, offset=0, index=None, attachments=None):
+    def __init__(
+        self,
+        offset: typing.Union[int, abjad.IntegerPair] = 0,
+        index: typing.Optional[int] = None,
+        attachments: typing.Optional[typing.Iterable] = None,
+    ):
         offset = abjad.Offset(offset)
         self._offset = offset
         self._index = index
-        self._attachments = attachments
+        self._attachments = tuple(attachments or ())
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         """
         Formats object.
         """
@@ -54,7 +60,7 @@ class QEvent(metaclass=abc.ABCMeta):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
+    def _get_format_specification(self) -> abjad.FormatSpecification:
         agent = abjad.StorageFormatManager(self)
         names = agent.signature_keyword_names
         for name in ("attachments",):
@@ -69,21 +75,21 @@ class QEvent(metaclass=abc.ABCMeta):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attachments(self):
+    def attachments(self) -> tuple:
         """
         The attachments of the QEvent.
         """
         return self._attachments
 
     @property
-    def index(self):
+    def index(self) -> typing.Optional[int]:
         """
         The optional index, for sorting QEvents with identical offsets.
         """
         return self._index
 
     @property
-    def offset(self):
+    def offset(self) -> abjad.Offset:
         """
         The offset in milliseconds of the event.
         """
@@ -121,15 +127,22 @@ class PitchedQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset=0, pitches=None, attachments=None, index=None):
+    def __init__(
+        self,
+        offset: typing.Union[int, abjad.IntegerPair] = 0,
+        pitches: typing.Optional[
+            typing.Iterable[typing.Union[numbers.Number, abjad.typings.Number]]
+        ] = None,
+        attachments: typing.Optional[typing.Iterable] = None,
+        index: typing.Optional[int] = None,
+    ):
         QEvent.__init__(self, offset=offset, index=index)
-        pitches = pitches or []
-        pitches = tuple([abjad.NamedPitch(x) for x in pitches])
         if attachments is None:
             attachments = ()
         else:
             attachments = tuple(attachments)
-        self._pitches = pitches
+        pitches = pitches or []
+        self._pitches = tuple([abjad.NamedPitch(x) for x in pitches])
         self._attachments = attachments
 
     ### SPECIAL METHODS ###
@@ -161,14 +174,14 @@ class PitchedQEvent(QEvent):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attachments(self) -> typing.Tuple:
+    def attachments(self) -> tuple:
         """
         Attachments of pitched q-event.
         """
         return self._attachments
 
     @property
-    def pitches(self):
+    def pitches(self) -> typing.Tuple[abjad.NamedPitch, ...]:
         """
         Pitches of pitched q-event.
         """
@@ -198,7 +211,12 @@ class SilentQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset=0, attachments=None, index=None):
+    def __init__(
+        self,
+        offset: typing.Union[int, abjad.IntegerPair] = 0,
+        attachments: typing.Optional[typing.Iterable] = None,
+        index: typing.Optional[int] = None,
+    ):
         QEvent.__init__(self, offset=offset, index=index)
         if attachments is None:
             attachments = ()
@@ -232,7 +250,7 @@ class SilentQEvent(QEvent):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attachments(self):
+    def attachments(self) -> tuple:
         """
         Gets attachments of silent q-event.
         """
@@ -263,7 +281,7 @@ class TerminalQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset=0):
+    def __init__(self, offset: typing.Union[int, abjad.IntegerPair] = 0):
         QEvent.__init__(self, offset=offset)
 
     ### SPECIAL METHODS ###

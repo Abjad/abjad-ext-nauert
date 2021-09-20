@@ -112,7 +112,7 @@ class QEventProxy:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def index(self) -> int:
+    def index(self) -> typing.Optional[int]:
         """
         Index of q-event proxy.
         """
