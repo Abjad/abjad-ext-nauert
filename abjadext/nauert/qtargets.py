@@ -13,7 +13,7 @@ from .attackpointoptimizers import (
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
-from .qevents import SilentQEvent, TerminalQEvent
+from .qevents import QEvent, SilentQEvent, TerminalQEvent
 from .qeventsequence import QEventSequence
 from .qtargetitems import QTargetBeat, QTargetItem, QTargetMeasure
 
@@ -85,16 +85,18 @@ class QTarget(metaclass=abc.ABCMeta):
             )
             raise TypeError(message)
 
+        # TODO: this step seems unnecessary now (23/09/2021), (maybe) write more tests to verify
+
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
-        q_events = q_event_sequence
-        if isinstance(q_event_sequence[-2], SilentQEvent):
-            q_events = q_event_sequence[:-1]
+        # q_events = q_event_sequence
+        # if isinstance(q_event_sequence[-2], SilentQEvent):
+        #     q_events = q_event_sequence[:-1]
 
         # parcel QEvents out to each beat
         beats = self.beats
         offsets = sorted([beat.offset_in_ms for beat in beats])
-        for q_event in q_events:
+        for q_event in q_event_sequence:
             index = bisect.bisect(offsets, q_event.offset) - 1
             beat = beats[index]
             beat.q_events.append(q_event)

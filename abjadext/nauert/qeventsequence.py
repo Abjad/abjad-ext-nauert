@@ -2,6 +2,7 @@ import collections
 import copy
 import itertools
 import numbers
+import quicktions
 import typing
 
 import abjad
@@ -70,13 +71,14 @@ class QEventSequence:
 
     ### INITIALIZER ###
 
-    def __init__(self, sequence=None):
+    def __init__(self, sequence: typing.Optional[typing.Sequence[QEvent]] = None):
 
         q_event_classes = (
             PitchedQEvent,
             SilentQEvent,
         )
         # sequence = sequence or []
+        self._sequence: typing.Tuple[QEvent, ...]
         if sequence is None:
             self._sequence = ()
             return
@@ -87,8 +89,8 @@ class QEventSequence:
             )
             assert isinstance(sequence[-1], TerminalQEvent)
             offsets = [x.offset for x in sequence]
-            offsets = abjad.Sequence(offsets)
-            assert offsets.is_increasing(strict=False)
+            offset_sequence = abjad.Sequence(offsets)
+            assert offset_sequence.is_increasing(strict=False)
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
 
@@ -109,7 +111,7 @@ class QEventSequence:
                 return True
         return False
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         r"""
         Formats q-event sequence.
 
@@ -159,7 +161,17 @@ class QEventSequence:
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, argument):
+    @typing.overload
+    def __getitem__(self, argument: int) -> QEvent:
+        ...
+
+    @typing.overload
+    def __getitem__(self, argument: slice) -> typing.Tuple[QEvent, ...]:
+        ...
+
+    def __getitem__(
+        self, argument: typing.Union[int, slice]
+    ) -> typing.Union[QEvent, typing.Tuple[QEvent, ...]]:
         """
         Gets item or slice identified by `argument`.
 
@@ -175,7 +187,7 @@ class QEventSequence:
         """
         return super(QEventSequence, self).__hash__()
 
-    def __iter__(self):
+    def __iter__(self) -> typing.Iterator[QEvent]:
         """
         Iterates q-event sequence.
 
@@ -192,7 +204,7 @@ class QEventSequence:
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
+    def _get_format_specification(self) -> abjad.FormatSpecification:
         values = []
         if self.sequence:
             values.append(self.sequence)
@@ -267,7 +279,9 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_durations(
-        class_, milliseconds, fuse_silences=False
+        class_,
+        milliseconds: typing.Union[typing.Sequence[abjad.typings.Number]],
+        fuse_silences: bool = False,
     ) -> "QEventSequence":
         r"""
         Changes sequence of millisecond durations ``durations`` to a ``QEventSequence``:
@@ -306,6 +320,9 @@ class QEventSequence:
             )
 
         """
+        durations: typing.Union[
+            typing.Sequence[numbers.Real], typing.Sequence[abjad.typings.Number]
+        ]
         if fuse_silences:
             durations = [
                 x for x in abjad.Sequence(milliseconds).sum_by_sign(sign=[-1]) if x
@@ -313,7 +330,7 @@ class QEventSequence:
         else:
             durations = milliseconds
         offsets = abjad.math.cumulative_sums([abs(x) for x in durations])
-        q_events = []
+        q_events: typing.List[QEvent] = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
             duration = pair[1]
@@ -328,7 +345,12 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
-    def from_millisecond_offsets(class_, offsets) -> "QEventSequence":
+    def from_millisecond_offsets(
+        class_,
+        offsets: typing.Union[
+            typing.Sequence[numbers.Real], typing.Sequence[abjad.typings.Number]
+        ],
+    ) -> "QEventSequence":
         r"""
         Changes millisecond offsets ``offsets`` to a ``QEventSequence``:
 
@@ -381,7 +403,16 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
-    def from_millisecond_pitch_attachment_tuples(class_, tuples) -> "QEventSequence":
+    def from_millisecond_pitch_attachment_tuples(
+        class_,
+        tuples: typing.Iterable[
+            typing.Tuple[
+                abjad.typings.Number,
+                typing.Optional[typing.Tuple[abjad.typings.Number, ...]],
+                typing.Optional[tuple],
+            ]
+        ],
+    ) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch:attachment tuples ``tuples`` into a ``QEventSequence``:
 
@@ -469,7 +500,15 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
-    def from_millisecond_pitch_pairs(class_, pairs) -> "QEventSequence":
+    def from_millisecond_pitch_pairs(
+        class_,
+        pairs: typing.Iterable[
+            typing.Tuple[
+                abjad.typings.Number,
+                typing.Optional[typing.Tuple[abjad.typings.Number, ...]],
+            ]
+        ],
+    ) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
 
@@ -517,13 +556,13 @@ class QEventSequence:
         assert all(isinstance(x, collections.abc.Iterable) for x in pairs)
         assert all(len(x) == 2 for x in pairs)
         assert all(0 < x[0] for x in pairs)
-        for pair in pairs:
+        for _, pitches in pairs:
             assert isinstance(
-                pair[1], (numbers.Number, type(None), collections.abc.Sequence)
+                pitches, (numbers.Number, type(None), collections.abc.Sequence)
             )
-            if isinstance(pair[1], collections.abc.Sequence):
-                assert 0 < len(pair[1])
-                assert all(isinstance(x, numbers.Number) for x in pair[1])
+            if isinstance(pitches, collections.abc.Sequence):
+                assert 0 < len(pitches)
+                assert all(isinstance(x, numbers.Number) for x in pitches)
         # fuse silences
         g = itertools.groupby(pairs, lambda x: x[1] is not None)
         groups = []
@@ -551,7 +590,11 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_durations(class_, durations, tempo=None) -> "QEventSequence":
+    def from_tempo_scaled_durations(
+        class_,
+        durations: abjad.typings.DurationSequenceTyping,
+        tempo: abjad.MetronomeMark,
+    ) -> "QEventSequence":
         r"""
         Changes ``durations``, scaled by ``tempo`` into a ``QEventSequence``:
 
@@ -595,7 +638,8 @@ class QEventSequence:
         q_events = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
-            duration = pair[1]
+            assert isinstance(pair[1], abjad.Duration)
+            duration: abjad.Duration = pair[1]
             q_event: QEvent
             # negative duration indicates silence
             if duration < 0:
@@ -609,7 +653,21 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_leaves(class_, leaves, tempo=None) -> "QEventSequence":
+    def from_tempo_scaled_leaves(
+        class_,
+        leaves: typing.Union[
+            abjad.Selection,
+            typing.Sequence[typing.Union[abjad.Component, abjad.Selection]],
+        ],
+        tempo: typing.Optional[
+            typing.Union[
+                abjad.MetronomeMark,
+                typing.Tuple[
+                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
+                ],
+            ]
+        ] = None,
+    ) -> "QEventSequence":
         r"""
         Changes ``leaves``, optionally with ``tempo`` into a ``QEventSequence``:
 
