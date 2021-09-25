@@ -505,7 +505,11 @@ class QEventSequence:
         pairs: typing.Iterable[
             typing.Tuple[
                 abjad.typings.Number,
-                typing.Optional[typing.Tuple[abjad.typings.Number, ...]],
+                typing.Optional[
+                    typing.Union[
+                        abjad.typings.Number, typing.Tuple[abjad.typings.Number, ...]
+                    ]
+                ],
             ]
         ],
     ) -> "QEventSequence":
