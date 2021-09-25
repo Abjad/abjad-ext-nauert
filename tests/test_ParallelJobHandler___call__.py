@@ -19,7 +19,6 @@ class Job:
         ]
 
 
-@pytest.mark.skip()
 def test_ParallelJobHandler___call___01():
 
     jobs = [Job(x) for x in range(1, 11)]
@@ -27,7 +26,6 @@ def test_ParallelJobHandler___call___01():
     job_handler(jobs)
 
 
-@pytest.mark.skip()
 def test_ParallelJobHandler___call___02():
 
     job_id = 1
@@ -77,12 +75,14 @@ def test_ParallelJobHandler___call___02():
     b_jobs = abjadext.nauert.ParallelJobHandler()([job_b])
 
     assert len(a_jobs) == len(b_jobs)
+    # assert False, (abjad.storage(a_jobs), abjad.storage(b_jobs))
 
     a_rtms = sorted([q_grid.root_node.rtm_format for q_grid in a_jobs[0].q_grids])
     b_rtms = sorted([q_grid.root_node.rtm_format for q_grid in b_jobs[0].q_grids])
 
     assert a_rtms == b_rtms
+    # assert False, print(*(a_rtms, b_rtms), sep="\n")
 
-    assert sorted(a_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format) == sorted(
-        b_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format
-    )
+    sorted_a_q_grids = sorted(a_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format)
+    sorted_b_q_grids = sorted(b_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format)
+    assert sorted_a_q_grids == sorted_b_q_grids
