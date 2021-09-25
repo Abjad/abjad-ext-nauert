@@ -1,4 +1,5 @@
 import abc
+import quicktions
 import typing
 
 import abjad
@@ -6,7 +7,7 @@ import abjad
 from .searchtrees import SearchTree
 
 
-class QSchemaItem(metaclass=abc.ABCMeta):
+class QSchemaItem(abc.ABC):
     """
     Abstract q-schema item.
 
@@ -20,7 +21,18 @@ class QSchemaItem(metaclass=abc.ABCMeta):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, search_tree=None, tempo=None):
+    def __init__(
+        self,
+        search_tree: typing.Optional[SearchTree] = None,
+        tempo: typing.Optional[
+            typing.Union[
+                abjad.MetronomeMark,
+                typing.Tuple[
+                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
+                ],
+            ]
+        ] = None,
+    ):
         if search_tree is not None:
             assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
@@ -32,7 +44,7 @@ class QSchemaItem(metaclass=abc.ABCMeta):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         """
         Formats q schema item.
 
@@ -46,7 +58,7 @@ class QSchemaItem(metaclass=abc.ABCMeta):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def search_tree(self):
+    def search_tree(self) -> typing.Optional[SearchTree]:
         """
         The optionally defined search tree.
 
@@ -109,7 +121,19 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     ### INITIALIZER ###
 
-    def __init__(self, beatspan=None, search_tree=None, tempo=None):
+    def __init__(
+        self,
+        beatspan: typing.Optional[typing.Union[abjad.typings.Duration, int]] = None,
+        search_tree: typing.Optional[SearchTree] = None,
+        tempo: typing.Optional[
+            typing.Union[
+                abjad.MetronomeMark,
+                typing.Tuple[
+                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
+                ],
+            ]
+        ] = None,
+    ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
             beatspan = abjad.Duration(beatspan)
@@ -176,15 +200,24 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        search_tree=None,
-        tempo=None,
-        time_signature=None,
-        use_full_measure=None,
+        search_tree: typing.Optional[SearchTree] = None,
+        tempo: typing.Optional[
+            typing.Union[
+                abjad.MetronomeMark,
+                typing.Tuple[
+                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
+                ],
+            ]
+        ] = None,
+        time_signature: typing.Optional[abjad.typings.IntegerPair] = None,
+        use_full_measure: typing.Optional[bool] = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
+        self._time_signature: typing.Optional[abjad.TimeSignature]
         if time_signature is not None:
-            time_signature = abjad.TimeSignature(time_signature)
-        self._time_signature = time_signature
+            self._time_signature = abjad.TimeSignature(time_signature)
+        else:
+            self._time_signature = None
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)
         self._use_full_measure = use_full_measure
