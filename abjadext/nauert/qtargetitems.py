@@ -1,4 +1,5 @@
 import abc
+import quicktions
 import typing
 
 import abjad
@@ -86,7 +87,14 @@ class QTargetBeat(QTargetItem):
         beatspan: typing.Optional[abjad.typings.DurationTyping] = None,
         offset_in_ms: typing.Optional[typing.Union[abjad.Duration, int]] = None,
         search_tree: typing.Optional[SearchTree] = None,
-        tempo=None,
+        tempo: typing.Optional[
+            typing.Union[
+                abjad.MetronomeMark,
+                typing.Tuple[
+                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
+                ],
+            ]
+        ] = None,
     ):
         beatspan = beatspan or abjad.Duration(0)
         beatspan = abjad.Duration(beatspan)
@@ -115,7 +123,7 @@ class QTargetBeat(QTargetItem):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, job_id) -> typing.Optional[QuantizationJob]:
+    def __call__(self, job_id: int) -> typing.Optional[QuantizationJob]:
         """
         Calls q-target beat.
 
@@ -134,7 +142,7 @@ class QTargetBeat(QTargetItem):
             q_event_proxies.append(q_event_proxy)
         return QuantizationJob(job_id, self.search_tree, q_event_proxies)
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         """
         Formats q-event.
 
@@ -376,11 +384,18 @@ class QTargetMeasure(QTargetItem):
 
     def __init__(
         self,
-        offset_in_ms=None,
-        search_tree=None,
-        time_signature=None,
-        tempo=None,
-        use_full_measure=False,
+        offset_in_ms: typing.Optional[typing.Union[abjad.Duration, int]] = None,
+        search_tree: typing.Optional[SearchTree] = None,
+        time_signature: typing.Optional[abjad.typings.IntegerPair] = None,
+        tempo: typing.Optional[
+            typing.Union[
+                abjad.MetronomeMark,
+                typing.Tuple[
+                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
+                ],
+            ]
+        ] = None,
+        use_full_measure: bool = False,
     ):
         offset_in_ms = offset_in_ms or 0
         offset_in_ms = abjad.Offset(offset_in_ms)
@@ -394,13 +409,13 @@ class QTargetMeasure(QTargetItem):
             tempo = abjad.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
         time_signature = time_signature or (4, 4)
-        time_signature = abjad.TimeSignature(time_signature)
+        _time_signature = abjad.TimeSignature(time_signature)
         use_full_measure = bool(use_full_measure)
 
         beats = []
 
         if use_full_measure:
-            beatspan = time_signature.duration
+            beatspan = _time_signature.duration
             beat = QTargetBeat(
                 beatspan=beatspan,
                 offset_in_ms=offset_in_ms,
@@ -409,10 +424,10 @@ class QTargetMeasure(QTargetItem):
             )
             beats.append(beat)
         else:
-            beatspan = abjad.Duration(1, time_signature.denominator)
+            beatspan = abjad.Duration(1, _time_signature.denominator)
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = tempo.duration_to_milliseconds(beatspan)
-            for i in range(time_signature.numerator):
+            for i in range(_time_signature.numerator):
                 beat = QTargetBeat(
                     beatspan=beatspan,
                     offset_in_ms=current_offset_in_ms,
@@ -426,7 +441,7 @@ class QTargetMeasure(QTargetItem):
         self._offset_in_ms = offset_in_ms
         self._search_tree = search_tree
         self._tempo = tempo
-        self._time_signature = time_signature
+        self._time_signature = _time_signature
         self._use_full_measure = use_full_measure
 
     ### SPECIAL METHODS ###
@@ -568,7 +583,7 @@ class QTargetMeasure(QTargetItem):
         return self._offset_in_ms
 
     @property
-    def search_tree(self) -> UnweightedSearchTree:
+    def search_tree(self) -> SearchTree:
         """
         The search tree of the ``QTargetMeasure``:
 
