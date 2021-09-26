@@ -13,12 +13,13 @@ from .attackpointoptimizers import (
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
+from .qeventproxy import QEventProxy
 from .qevents import TerminalQEvent
 from .qeventsequence import QEventSequence
 from .qtargetitems import QTargetBeat, QTargetItem, QTargetMeasure
 
 
-class QTarget(metaclass=abc.ABCMeta):
+class QTarget(abc.ABC):
     """
     Abstract q-target.
 
@@ -146,7 +147,11 @@ class QTarget(metaclass=abc.ABCMeta):
 
     ### PRIVATE METHODS ###
 
-    def _attach_attachments_to_logical_ties(self, voice, all_attachments):
+    def _attach_attachments_to_logical_ties(
+        self,
+        voice: abjad.Voice,
+        all_attachments: typing.Sequence[typing.Optional[tuple]],
+    ):
         logical_tie_list = list(
             abjad.iterate(voice).logical_ties(grace=False, pitched=True)
         )
@@ -158,24 +163,27 @@ class QTarget(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def _notate(
         self,
-        grace_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
+        grace_handler: GraceHandler,
+        attack_point_optimizer: AttackPointOptimizer,
+        attach_tempos: bool = True,
     ) -> abjad.Voice:
-        pass
+        raise NotImplementedError
 
-    def _notate_leaves(self, grace_handler=None, voice=None):
-        all_q_event_attachments = []
+    def _notate_leaves(
+        self, grace_handler: GraceHandler, voice: typing.Optional[abjad.Voice] = None
+    ) -> typing.List[typing.Optional[tuple]]:
+        all_q_event_attachments: typing.List[typing.Optional[tuple]] = []
         for leaf in abjad.iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
                 q_events = annotation["q_events"]
                 pitches, attachments, grace_container = grace_handler(q_events)
+                new_leaf: abjad.Leaf
                 if not pitches:
                     new_leaf = abjad.Rest(leaf)
                 elif 1 < len(pitches):
                     new_leaf = abjad.Chord(leaf)
-                    new_leaf.written_pitches = pitches
+                    new_leaf.written_pitches = abjad.PitchSegment(pitches)
                 else:
                     new_leaf = abjad.Note(leaf)
                     new_leaf.written_pitch = pitches[0]
@@ -221,8 +229,9 @@ class QTarget(metaclass=abc.ABCMeta):
         for beat in self.beats:
             beat.q_grid.regroup_leaves_with_unencessary_divisions()
 
-    def _shift_downbeat_q_events_to_next_q_grid(self):
+    def _shift_downbeat_q_events_to_next_q_grid(self) -> typing.List[QEventProxy]:
         beats = self.beats
+        assert beats[-1].q_grid is not None
         for one, two in abjad.Sequence(beats).nwise():
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
@@ -289,9 +298,9 @@ class BeatwiseQTarget(QTarget):
 
     def _notate(
         self,
-        grace_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
+        grace_handler: GraceHandler,
+        attack_point_optimizer: AttackPointOptimizer,
+        attach_tempos: bool = True,
     ) -> abjad.Voice:
         voice = abjad.Voice()
         # generate the first
@@ -371,9 +380,9 @@ class MeasurewiseQTarget(QTarget):
 
     def _notate(
         self,
-        grace_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
+        grace_handler: GraceHandler,
+        attack_point_optimizer: AttackPointOptimizer,
+        attach_tempos: bool = True,
     ) -> abjad.Voice:
         voice = abjad.Voice()
 
