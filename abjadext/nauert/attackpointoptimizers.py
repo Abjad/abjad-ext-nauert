@@ -4,7 +4,7 @@ import typing
 import abjad
 
 
-class AttackPointOptimizer(metaclass=abc.ABCMeta):
+class AttackPointOptimizer(abc.ABC):
     """
     Abstract attack-point optimizer.
 

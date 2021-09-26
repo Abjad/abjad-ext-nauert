@@ -6,15 +6,7 @@ import abjad
 from .qevents import PitchedQEvent, QEvent, SilentQEvent
 
 
-def _find_last_pitched_q_event(q_events: typing.Sequence[QEvent]) -> int:
-    for index, q_event in enumerate(reversed(q_events)):
-        if isinstance(q_event, PitchedQEvent):
-            return len(q_events) - index - 1
-    message = "There should be at least one PitchedQEvent in q_events"
-    raise ValueError(message)
-
-
-class GraceHandler(metaclass=abc.ABCMeta):
+class GraceHandler(abc.ABC):
     """
     Abstract grace-handler.
 
@@ -311,7 +303,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         grace_events, final_event = q_events[:-1], q_events[-1]
         attachments: typing.Optional[typing.Tuple]
         if grace_events and self._replace_rest_with_final_grace_note:
-            index = _find_last_pitched_q_event(q_events)
+            index = self._find_last_pitched_q_event(q_events)
             grace_events, final_event = q_events[:index], q_events[index]
 
         if isinstance(final_event, PitchedQEvent):
@@ -353,6 +345,16 @@ class ConcatenatingGraceHandler(GraceHandler):
             grace_container = None
 
         return tuple(pitches), attachments, grace_container
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _find_last_pitched_q_event(q_events: typing.Sequence[QEvent]) -> int:
+        for index, q_event in enumerate(reversed(q_events)):
+            if isinstance(q_event, PitchedQEvent):
+                return len(q_events) - index - 1
+        message = "There should be at least one PitchedQEvent in q_events"
+        raise ValueError(message)
 
     ### PUBLIC METHODS ###
 
