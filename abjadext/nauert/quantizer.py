@@ -1,3 +1,11 @@
+import typing
+
+import abjad
+
+from .attackpointoptimizers import AttackPointOptimizer
+from .gracehandlers import GraceHandler
+from .heuristics import Heuristic
+from .jobhandlers import JobHandler
 from .qeventsequence import QEventSequence
 from .qschemas import MeasurewiseQSchema, QSchema
 
@@ -272,14 +280,14 @@ class Quantizer:
 
     def __call__(
         self,
-        q_event_sequence,
-        q_schema=None,
-        grace_handler=None,
-        heuristic=None,
-        job_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
-    ):
+        q_event_sequence: QEventSequence,
+        q_schema: typing.Optional[QSchema] = None,
+        grace_handler: typing.Optional[GraceHandler] = None,
+        heuristic: typing.Optional[Heuristic] = None,
+        job_handler: typing.Optional[JobHandler] = None,
+        attack_point_optimizer: typing.Optional[AttackPointOptimizer] = None,
+        attach_tempos: bool = True,
+    ) -> abjad.Voice:
         """
         Calls quantizer.
 

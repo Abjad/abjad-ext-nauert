@@ -72,13 +72,17 @@ class QEventSequence:
 
     ### INITIALIZER ###
 
-    def __init__(self, sequence: typing.Optional[typing.Sequence[QEvent]] = None):
+    def __init__(
+        self,
+        sequence: typing.Optional[
+            typing.Union["QEventSequence", typing.Sequence[QEvent]]
+        ] = None,
+    ):
 
         q_event_classes = (
             PitchedQEvent,
             SilentQEvent,
         )
-        # sequence = sequence or []
         self._sequence: typing.Tuple[QEvent, ...]
         if sequence is None:
             self._sequence = ()

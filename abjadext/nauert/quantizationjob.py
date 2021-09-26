@@ -138,7 +138,7 @@ class QuantizationJob:
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
+    def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(client=self)
 
     ### PUBLIC PROPERTIES ###
