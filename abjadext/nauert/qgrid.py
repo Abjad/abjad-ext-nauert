@@ -1,6 +1,5 @@
 import bisect
 import copy
-import quicktions
 import typing
 
 import uqbar.containers

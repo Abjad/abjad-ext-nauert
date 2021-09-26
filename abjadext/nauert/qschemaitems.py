@@ -1,6 +1,7 @@
 import abc
-import quicktions
 import typing
+
+import quicktions
 
 import abjad
 

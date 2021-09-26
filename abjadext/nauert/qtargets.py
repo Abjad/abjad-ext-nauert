@@ -13,7 +13,7 @@ from .attackpointoptimizers import (
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
-from .qevents import QEvent, SilentQEvent, TerminalQEvent
+from .qevents import TerminalQEvent
 from .qeventsequence import QEventSequence
 from .qtargetitems import QTargetBeat, QTargetItem, QTargetMeasure
 

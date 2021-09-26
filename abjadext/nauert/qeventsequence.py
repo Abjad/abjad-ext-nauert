@@ -2,8 +2,9 @@ import collections
 import copy
 import itertools
 import numbers
-import quicktions
 import typing
+
+import quicktions
 
 import abjad
 
