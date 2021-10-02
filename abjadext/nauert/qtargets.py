@@ -13,12 +13,13 @@ from .attackpointoptimizers import (
 from .gracehandlers import ConcatenatingGraceHandler, GraceHandler
 from .heuristics import DistanceHeuristic, Heuristic
 from .jobhandlers import JobHandler, SerialJobHandler
-from .qevents import SilentQEvent, TerminalQEvent
+from .qeventproxy import QEventProxy
+from .qevents import TerminalQEvent
 from .qeventsequence import QEventSequence
-from .qtargetitems import QTargetBeat, QTargetMeasure
+from .qtargetitems import QTargetBeat, QTargetItem, QTargetMeasure
 
 
-class QTarget:
+class QTarget(abc.ABC):
     """
     Abstract q-target.
 
@@ -37,21 +38,25 @@ class QTarget:
 
     ### INITIALIZATION ###
 
-    def __init__(self, items=None):
-        items = items or []
+    def __init__(
+        self,
+        items: typing.Sequence[QTargetItem] = [],
+    ):
         assert all(isinstance(x, self.item_class) for x in items)
-        self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
+        self._items: typing.Sequence[QTargetItem] = ()
+        if len(items) > 0:
+            self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
 
     ### SPECIAL METHODS ###
 
     def __call__(
         self,
-        q_event_sequence,
-        grace_handler=None,
-        heuristic=None,
-        job_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
+        q_event_sequence: QEventSequence,
+        grace_handler: typing.Optional[GraceHandler] = None,
+        heuristic: typing.Optional[Heuristic] = None,
+        job_handler: typing.Optional[JobHandler] = None,
+        attack_point_optimizer: typing.Optional[AttackPointOptimizer] = None,
+        attach_tempos: bool = True,
     ):
         """
         Calls q-target.
@@ -81,16 +86,18 @@ class QTarget:
             )
             raise TypeError(message)
 
+        # TODO: this step seems unnecessary now (23/09/2021), (maybe) write more tests to verify
+
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
-        q_events = q_event_sequence
-        if isinstance(q_event_sequence[-2], SilentQEvent):
-            q_events = q_event_sequence[:-1]
+        # q_events = q_event_sequence
+        # if isinstance(q_event_sequence[-2], SilentQEvent):
+        #     q_events = q_event_sequence[:-1]
 
         # parcel QEvents out to each beat
         beats = self.beats
         offsets = sorted([beat.offset_in_ms for beat in beats])
-        for q_event in q_events:
+        for q_event in q_event_sequence:
             index = bisect.bisect(offsets, q_event.offset) - 1
             beat = beats[index]
             beat.q_events.append(q_event)
@@ -100,6 +107,7 @@ class QTarget:
         jobs = [job for job in jobs if job]
         jobs = job_handler(jobs)
         for job in jobs:
+            assert job is not None
             beats[job.job_id]._q_grids = job.q_grids
 
         # for i, beat in enumerate(beats):
@@ -139,7 +147,11 @@ class QTarget:
 
     ### PRIVATE METHODS ###
 
-    def _attach_attachments_to_logical_ties(self, voice, all_attachments):
+    def _attach_attachments_to_logical_ties(
+        self,
+        voice: abjad.Voice,
+        all_attachments: typing.Sequence[typing.Optional[tuple]],
+    ):
         logical_tie_list = list(
             abjad.iterate(voice).logical_ties(grace=False, pitched=True)
         )
@@ -151,24 +163,27 @@ class QTarget:
     @abc.abstractmethod
     def _notate(
         self,
-        grace_handler=None,
-        attack_point_optimizer=None,
-        attach_tempos=True,
-    ):
-        pass
+        grace_handler: GraceHandler,
+        attack_point_optimizer: AttackPointOptimizer,
+        attach_tempos: bool = True,
+    ) -> abjad.Voice:
+        raise NotImplementedError
 
-    def _notate_leaves(self, grace_handler=None, voice=None):
-        all_q_event_attachments = []
+    def _notate_leaves(
+        self, grace_handler: GraceHandler, voice: typing.Optional[abjad.Voice] = None
+    ) -> typing.List[typing.Optional[tuple]]:
+        all_q_event_attachments: typing.List[typing.Optional[tuple]] = []
         for leaf in abjad.iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
                 q_events = annotation["q_events"]
                 pitches, attachments, grace_container = grace_handler(q_events)
+                new_leaf: abjad.Leaf
                 if not pitches:
                     new_leaf = abjad.Rest(leaf)
                 elif 1 < len(pitches):
                     new_leaf = abjad.Chord(leaf)
-                    new_leaf.written_pitches = pitches
+                    new_leaf.written_pitches = abjad.PitchSegment(pitches)
                 else:
                     new_leaf = abjad.Note(leaf)
                     new_leaf.written_pitch = pitches[0]
@@ -214,8 +229,9 @@ class QTarget:
         for beat in self.beats:
             beat.q_grid.regroup_leaves_with_unencessary_divisions()
 
-    def _shift_downbeat_q_events_to_next_q_grid(self):
+    def _shift_downbeat_q_events_to_next_q_grid(self) -> typing.List[QEventProxy]:
         beats = self.beats
+        assert beats[-1].q_grid is not None
         for one, two in abjad.Sequence(beats).nwise():
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
@@ -230,7 +246,7 @@ class QTarget:
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def beats(self):
+    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
         """
         Beats of q-target.
         """
@@ -272,17 +288,24 @@ class BeatwiseQTarget(QTarget):
 
     __slots__ = ()
 
+    ### INITIALIZATION ###
+
+    def __init__(self, items: typing.Sequence[QTargetBeat] = []):
+        self._items: typing.Sequence[QTargetBeat]
+        super().__init__(items)
+
     ### PRIVATE METHODS ###
 
     def _notate(
         self,
-        attach_tempos=True,
-        attack_point_optimizer=None,
-        grace_handler=None,
-    ):
+        grace_handler: GraceHandler,
+        attack_point_optimizer: AttackPointOptimizer,
+        attach_tempos: bool = True,
+    ) -> abjad.Voice:
         voice = abjad.Voice()
         # generate the first
-        beat = self.items[0]
+        beat = self._items[0]
+        assert isinstance(beat, QTargetBeat) and beat.q_grid is not None
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
             attachment_target = components[0]
@@ -321,11 +344,11 @@ class BeatwiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self):
+    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
         """
         Beats of beatwise q-target.
         """
-        return tuple(self.items)
+        return tuple(self._items)
 
     @property
     def item_class(self) -> typing.Type[QTargetBeat]:
@@ -348,18 +371,24 @@ class MeasurewiseQTarget(QTarget):
 
     __slots__ = ()
 
+    ### INITIALIZATION ###
+
+    def __init__(self, items: typing.Sequence[QTargetMeasure] = []):
+        super().__init__(items)
+
     ### PRIVATE METHODS ###
 
     def _notate(
         self,
-        attach_tempos=True,
-        attack_point_optimizer=None,
-        grace_handler=None,
-    ):
+        grace_handler: GraceHandler,
+        attack_point_optimizer: AttackPointOptimizer,
+        attach_tempos: bool = True,
+    ) -> abjad.Voice:
         voice = abjad.Voice()
 
         # generate the first
-        q_target_measure = self.items[0]
+        q_target_measure = self._items[0]
+        assert isinstance(q_target_measure, QTargetMeasure)
         time_signature = q_target_measure.time_signature
         measure = abjad.Container()
         for beat in q_target_measure.beats:
@@ -415,7 +444,7 @@ class MeasurewiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self) -> typing.Tuple:
+    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
         """
         Beats of measurewise q-target.
         """

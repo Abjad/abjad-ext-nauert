@@ -5,13 +5,13 @@ import typing
 
 import abjad
 
-from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem
+from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem, QSchemaItem
 from .qtargetitems import QTargetBeat, QTargetMeasure
-from .qtargets import BeatwiseQTarget, MeasurewiseQTarget
+from .qtargets import BeatwiseQTarget, MeasurewiseQTarget, QTarget
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 
-class QSchema:
+class QSchema(abc.ABC):
     """
     Abstract Q-schema.
 
@@ -34,6 +34,12 @@ class QSchema:
     ### CLASS VARIABLES ###
 
     __slots__ = ("_items", "_lookups")
+
+    _keyword_argument_names: typing.Tuple[str, ...] = ()
+
+    _search_tree = UnweightedSearchTree()
+
+    _tempo = abjad.MetronomeMark()
 
     ### INITIALIZER ###
 
@@ -67,7 +73,7 @@ class QSchema:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration):
+    def __call__(self, duration: abjad.typings.DurationTyping) -> QTarget:
         """
         Calls QSchema on ``duration``.
         """
@@ -81,9 +87,10 @@ class QSchema:
             target_items.append(target_item)
             current_offset += target_item.duration_in_ms
             idx += 1
+        # assert all(isinstance(item, self.target_item_class) for item in target_items)
         return self.target_class(target_items)
 
-    def __format__(self, format_specification="") -> str:
+    def __format__(self, format_specification: str = "") -> str:
         """
         Formats q-event.
 
@@ -94,7 +101,7 @@ class QSchema:
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, argument):
+    def __getitem__(self, argument: int) -> dict:
         """
         Gets item or slice identified by `argument`.
         """
@@ -116,7 +123,7 @@ class QSchema:
 
     ### PRIVATE METHODS ###
 
-    def _create_lookups(self):
+    def _create_lookups(self) -> typing.Dict[str, dict]:
         names = self._keyword_argument_names
         lookups = {}
         for name in names:
@@ -138,14 +145,14 @@ class QSchema:
         raise NotImplementedError
 
     @property
-    def items(self):
+    def items(self) -> typing.Dict[int, QSchemaItem]:
         """
         The item dictionary.
         """
         return self._items
 
     @property
-    def search_tree(self):
+    def search_tree(self) -> SearchTree:
         """
         The default search tree.
         """
@@ -166,7 +173,7 @@ class QSchema:
         raise NotImplementedError
 
     @property
-    def tempo(self):
+    def tempo(self) -> abjad.MetronomeMark:
         """
         The default tempo.
         """
@@ -425,7 +432,7 @@ class BeatwiseQSchema(QSchema):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
+    def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),
@@ -435,7 +442,7 @@ class BeatwiseQSchema(QSchema):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beatspan(self):
+    def beatspan(self) -> abjad.Duration:
         """
         Default beatspan of beatwise q-schema.
         """
@@ -695,7 +702,7 @@ class MeasurewiseQSchema(QSchema):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
+    def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=self.items or (),

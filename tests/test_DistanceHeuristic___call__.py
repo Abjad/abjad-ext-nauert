@@ -19,7 +19,7 @@ def test_DistanceHeuristic___call___01():
     job()
     q_target_beat = nauert.QTargetBeat()
     q_target_beat._q_grids = job.q_grids
-    q_target_beats = heuristic([q_target_beat])
+    q_target_beats = heuristic((q_target_beat,))
     q_target_beat = q_target_beats[0]
     q_grid = q_target_beat.q_grid
     assert q_grid.distance == 0
@@ -44,7 +44,7 @@ def test_DistanceHeuristic___call___02():
     job()
     q_target_beat = nauert.QTargetBeat()
     q_target_beat._q_grids = job.q_grids
-    q_target_beats = heuristic([q_target_beat])
+    q_target_beats = heuristic((q_target_beat,))
     q_target_beat = q_target_beats[0]
     q_grid = q_target_beat.q_grid
     assert q_grid.distance == abjad.Duration(1, 15)
