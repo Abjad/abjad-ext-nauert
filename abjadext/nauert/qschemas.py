@@ -98,7 +98,7 @@ class QSchema(abc.ABC):
         equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return abjad.storage(self)
         return str(self)
 
     def __getitem__(self, argument: int) -> dict:
@@ -434,9 +434,8 @@ class BeatwiseQSchema(QSchema):
 
     def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(
-            client=self,
-            storage_format_args_values=self.items or (),
-            storage_format_keyword_names=["beatspan", "search_tree", "tempo"],
+            storage_format_args_values=tuple(self.items) or (),
+            storage_format_keyword_names=("beatspan", "search_tree", "tempo"),
         )
 
     ### PUBLIC PROPERTIES ###
@@ -704,14 +703,13 @@ class MeasurewiseQSchema(QSchema):
 
     def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(
-            client=self,
-            storage_format_args_values=self.items or (),
-            storage_format_keyword_names=[
+            storage_format_args_values=tuple(self.items) or (),
+            storage_format_keyword_names=(
                 "search_tree",
                 "tempo",
                 "time_signature",
                 "use_full_measure",
-            ],
+            ),
         )
 
     ### PUBLIC PROPERTIES ###

@@ -312,8 +312,8 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         """
         Calls naive attack-point optimizer.
         """
-        for logical_tie in abjad.iterate(argument).logical_ties(
-            grace=False, reverse=True
+        for logical_tie in abjad.iterate.logical_ties(
+            argument, grace=False, reverse=True
         ):
             sub_logical_ties = []
             current_sub_logical_tie = []

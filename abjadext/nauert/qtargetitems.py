@@ -151,7 +151,7 @@ class QTargetBeat(QTargetItem):
         equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return abjad.storage(self)
         return str(self)
 
     ### PUBLIC PROPERTIES ###
@@ -455,7 +455,7 @@ class QTargetMeasure(QTargetItem):
         equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return abjad.storage(self)
         return str(self)
 
     ### PUBLIC PROPERTIES ###

@@ -126,7 +126,7 @@ class QuantizationJob:
         """
         Formats object.
         """
-        return abjad.StorageFormatManager(self).get_storage_format()
+        return abjad.storage(self)
 
     def __hash__(self) -> int:
         """
@@ -138,8 +138,8 @@ class QuantizationJob:
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        return abjad.FormatSpecification(client=self)
+    def _get_format_specification(self):
+        return abjad.FormatSpecification()
 
     ### PUBLIC PROPERTIES ###
 

@@ -90,7 +90,7 @@ class QEventProxy:
         Interprets `''` equal to `'storage'`.
         """
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return abjad.storage(self)
         return str(self)
 
     def __hash__(self) -> int:
@@ -107,7 +107,7 @@ class QEventProxy:
         values = []
         if self.offset:
             values.append(self.offset)
-        return abjad.FormatSpecification(client=self, storage_format_args_values=values)
+        return abjad.FormatSpecification(storage_format_args_values=tuple(values))
 
     ### PUBLIC PROPERTIES ###
 

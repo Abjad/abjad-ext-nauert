@@ -153,7 +153,7 @@ class QTarget(abc.ABC):
         all_attachments: typing.Sequence[typing.Optional[tuple]],
     ):
         logical_tie_list = list(
-            abjad.iterate(voice).logical_ties(grace=False, pitched=True)
+            abjad.iterate.logical_ties(voice, grace=False, pitched=True)
         )
         assert len(logical_tie_list) == len(all_attachments)
         for logical_tie, attachments in zip(logical_tie_list, all_attachments):
@@ -173,7 +173,7 @@ class QTarget(abc.ABC):
         self, grace_handler: GraceHandler, voice: typing.Optional[abjad.Voice] = None
     ) -> typing.List[typing.Optional[tuple]]:
         all_q_event_attachments: typing.List[typing.Optional[tuple]] = []
-        for leaf in abjad.iterate(voice).leaves():
+        for leaf in abjad.iterate.leaves(voice):
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
                 q_events = annotation["q_events"]

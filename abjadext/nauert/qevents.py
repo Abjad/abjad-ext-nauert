@@ -40,7 +40,7 @@ class QEvent(abc.ABC):
         """
         Formats object.
         """
-        return abjad.StorageFormatManager(self).get_storage_format()
+        return abjad.storage(self)
 
     def __lt__(self, argument) -> bool:
         """
@@ -56,18 +56,18 @@ class QEvent(abc.ABC):
         """
         Gets interpreter representation.
         """
-        return abjad.StorageFormatManager(self).get_repr_format()
+        return abjad.format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        agent = abjad.StorageFormatManager(self)
-        names = agent.signature_keyword_names
+    def _get_format_specification(self):
+        result = abjad.format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         for name in ("attachments",):
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
         return abjad.FormatSpecification(
-            client=self,
             repr_is_indented=False,
             storage_format_keyword_names=names,
         )
