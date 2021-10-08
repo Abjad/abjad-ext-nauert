@@ -349,13 +349,8 @@ class QGrid:
 
     ### PRIVATE METHODS ###
 
-<<<<<<< HEAD
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        return abjad.FormatSpecification(client=self)
-=======
     def _get_format_specification(self):
         return abjad.FormatSpecification()
->>>>>>> cc0562e (2021-10 update 1.)
 
     ### PUBLIC PROPERTIES ###
 
