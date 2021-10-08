@@ -107,7 +107,7 @@ class QEventProxy:
         values = []
         if self.offset:
             values.append(self.offset)
-        return abjad.FormatSpecification(storage_format_args_values=values)
+        return abjad.FormatSpecification(storage_format_args_values=tuple(values))
 
     ### PUBLIC PROPERTIES ###
 

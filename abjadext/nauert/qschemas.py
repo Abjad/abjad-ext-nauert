@@ -434,8 +434,8 @@ class BeatwiseQSchema(QSchema):
 
     def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(
-            storage_format_args_values=self.items or (),
-            storage_format_keyword_names=["beatspan", "search_tree", "tempo"],
+            storage_format_args_values=tuple(self.items) or (),
+            storage_format_keyword_names=("beatspan", "search_tree", "tempo"),
         )
 
     ### PUBLIC PROPERTIES ###
@@ -703,13 +703,13 @@ class MeasurewiseQSchema(QSchema):
 
     def _get_format_specification(self) -> abjad.FormatSpecification:
         return abjad.FormatSpecification(
-            storage_format_args_values=self.items or (),
-            storage_format_keyword_names=[
+            storage_format_args_values=tuple(self.items) or (),
+            storage_format_keyword_names=(
                 "search_tree",
                 "tempo",
                 "time_signature",
                 "use_full_measure",
-            ],
+            ),
         )
 
     ### PUBLIC PROPERTIES ###
