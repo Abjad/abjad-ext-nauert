@@ -327,7 +327,7 @@ class QTargetMeasure(QTargetItem):
                 definition={   2: None,
                     },
                 ),
-            time_signature=TimeSignature((4, 4), hide=False),
+            time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
             tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
@@ -650,7 +650,7 @@ class QTargetMeasure(QTargetItem):
             ...     )
 
             >>> q_target_measure.time_signature
-            TimeSignature((4, 4), hide=False)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         """
         return self._time_signature

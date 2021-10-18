@@ -519,7 +519,7 @@ class MeasurewiseQSchema(QSchema):
                 reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
                 ),
-            time_signature=TimeSignature((4, 4), hide=False),
+            time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
             use_full_measure=False,
             )
 
@@ -628,28 +628,28 @@ class MeasurewiseQSchema(QSchema):
         >>> q_schema = nauert.MeasurewiseQSchema(settings)
 
         >>> q_schema[0]["time_signature"]
-        TimeSignature((4, 4), hide=False)
+        TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         >>> q_schema[1]["time_signature"]
-        TimeSignature((4, 4), hide=False)
+        TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         >>> q_schema[2]["time_signature"]
-        TimeSignature((7, 32), hide=False)
+        TimeSignature(pair=(7, 32), hide=False, partial=None)
 
         >>> q_schema[3]["time_signature"]
-        TimeSignature((7, 32), hide=False)
+        TimeSignature(pair=(7, 32), hide=False, partial=None)
 
         >>> q_schema[4]["time_signature"]
-        TimeSignature((3, 4), hide=False)
+        TimeSignature(pair=(3, 4), hide=False, partial=None)
 
         >>> q_schema[5]["time_signature"]
-        TimeSignature((3, 4), hide=False)
+        TimeSignature(pair=(3, 4), hide=False, partial=None)
 
         >>> q_schema[6]["time_signature"]
-        TimeSignature((5, 8), hide=False)
+        TimeSignature(pair=(5, 8), hide=False, partial=None)
 
         >>> q_schema[1000]["time_signature"]
-        TimeSignature((5, 8), hide=False)
+        TimeSignature(pair=(5, 8), hide=False, partial=None)
 
     ..  container:: example
 
@@ -746,7 +746,7 @@ class MeasurewiseQSchema(QSchema):
             ...     time_signature=abjad.TimeSignature((3, 4))
             ... )
             >>> q_schema.time_signature
-            TimeSignature((3, 4), hide=False)
+            TimeSignature(pair=(3, 4), hide=False, partial=None)
 
         ..  container:: example
 
@@ -765,7 +765,7 @@ class MeasurewiseQSchema(QSchema):
 
             >>> q_schema = nauert.MeasurewiseQSchema(settings)
             >>> q_schema.time_signature
-            TimeSignature((4, 4), hide=False)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
         """
         return self._time_signature
 
