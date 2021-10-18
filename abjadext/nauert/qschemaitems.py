@@ -181,7 +181,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         >>> string = abjad.storage(q_schema_item)
         >>> print(string)
         nauert.MeasurewiseQSchemaItem(
-            time_signature=abjad.TimeSignature((6, 8)),
+            time_signature=TimeSignature((6, 8), hide=False),
             )
 
     ..  container:: example
