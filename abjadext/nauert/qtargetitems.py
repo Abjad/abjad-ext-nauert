@@ -55,10 +55,7 @@ class QTargetBeat(QTargetItem):
                 definition={   3: None,
                     },
                 ),
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=56,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             )
 
     Not composer-safe.
@@ -294,7 +291,7 @@ class QTargetBeat(QTargetItem):
         ...     )
 
         >>> q_target_beat.tempo
-        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56)
+        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False)
 
         """
         return self._tempo
@@ -328,10 +325,7 @@ class QTargetMeasure(QTargetItem):
                     },
                 ),
             time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             use_full_measure=False,
             )
 
@@ -490,10 +484,7 @@ class QTargetMeasure(QTargetItem):
                     definition={   2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
             nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
@@ -502,10 +493,7 @@ class QTargetMeasure(QTargetItem):
                     definition={   2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
             nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
@@ -514,10 +502,7 @@ class QTargetMeasure(QTargetItem):
                     definition={   2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
             nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
@@ -526,10 +511,7 @@ class QTargetMeasure(QTargetItem):
                     definition={   2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
 
         """
@@ -626,7 +608,7 @@ class QTargetMeasure(QTargetItem):
             ...     )
 
             >>> q_target_measure.tempo
-            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
+            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False)
 
         """
         return self._tempo

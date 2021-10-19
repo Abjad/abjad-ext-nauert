@@ -227,10 +227,7 @@ class BeatwiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             )
 
     ..  container:: example
@@ -515,10 +512,7 @@ class MeasurewiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
             use_full_measure=False,
             )

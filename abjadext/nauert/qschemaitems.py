@@ -95,10 +95,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         >>> string = abjad.storage(q_schema_item)
         >>> print(string)
         nauert.BeatwiseQSchemaItem(
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             )
 
     ..  container:: example
@@ -167,10 +164,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         >>> string = abjad.storage(q_schema_item)
         >>> print(string)
         nauert.MeasurewiseQSchemaItem(
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             )
 
     ..  container:: example
