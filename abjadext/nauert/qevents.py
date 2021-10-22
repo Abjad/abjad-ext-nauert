@@ -20,7 +20,7 @@ class QEvent(abc.ABC):
 
     ### CLASS VARIABLES ###
 
-    offset: typing.Union[abjad.typings.Number, abjad.Offset] = 0
+    offset: typing.Union[abjad.typings.Number, abjad.IntegerPair, abjad.Offset] = 0
     index: typing.Optional[int] = None
 
     ### INITIALIZER ###
