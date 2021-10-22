@@ -206,8 +206,8 @@ class QGrid:
         ``QEventProxies`` can be "loaded in" to the node contained by the
         ``QGrid`` closest to their virtual offset:
 
-        >>> q_event_a = nauert.PitchedQEvent(250, [0])
-        >>> q_event_b = nauert.PitchedQEvent(750, [1])
+        >>> q_event_a = nauert.PitchedQEvent(250, pitches=[0])
+        >>> q_event_b = nauert.PitchedQEvent(750, pitches=[1])
         >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
         >>> proxy_b = nauert.QEventProxy(q_event_b, 0.75)
 
@@ -367,8 +367,8 @@ class QGrid:
 
             >>> q_grid = nauert.QGrid()
 
-            >>> q_event_a = nauert.PitchedQEvent(250, [0], ["A"])
-            >>> q_event_b = nauert.PitchedQEvent(750, [1], ["B"])
+            >>> q_event_a = nauert.PitchedQEvent(250, pitches=[0], attachments=["A"])
+            >>> q_event_b = nauert.PitchedQEvent(750, pitches=[1], attachments=["B"])
             >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
             >>> proxy_b = nauert.QEventProxy(q_event_b, 0.75)
             >>> q_grid.fit_q_events([proxy_a, proxy_b])

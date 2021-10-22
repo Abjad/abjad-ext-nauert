@@ -5,21 +5,27 @@ import abjadext.nauert
 def test_QGrid___call___01():
 
     q_grid = abjadext.nauert.QGrid()
-    a = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(0, ["A"]), 0)
+    a = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent(0, attachments=["A"]), 0
+    )
     b = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((1, 20), ["B"]), (1, 20)
+        abjadext.nauert.SilentQEvent((1, 20), attachments=["B"]), (1, 20)
     )
     c = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
+        abjadext.nauert.SilentQEvent((9, 20), attachments=["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
+    d = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent((1, 2), attachments=["D"]), (1, 2)
+    )
     e = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
+        abjadext.nauert.SilentQEvent((11, 20), attachments=["E"]), (11, 20)
     )
     f = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((19, 20), ["F"]), (19, 20)
+        abjadext.nauert.SilentQEvent((19, 20), attachments=["F"]), (19, 20)
     )
-    g = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1, ["G"]), 1)
+    g = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent(1, attachments=["G"]), 1
+    )
     q_grid.fit_q_events([a, b, c, d, e, f, g])
     result = q_grid((1, 4))
 
@@ -42,21 +48,27 @@ def test_QGrid___call___02():
     q_grid.subdivide_leaves([(0, (1, 1, 1))])
     q_grid.subdivide_leaves([(1, (1, 1))])
     q_grid.subdivide_leaves([(-2, (1, 1, 1))])
-    a = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(0, ["A"]), 0)
+    a = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent(0, attachments=["A"]), 0
+    )
     b = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((1, 20), ["B"]), (1, 20)
+        abjadext.nauert.SilentQEvent((1, 20), attachments=["B"]), (1, 20)
     )
     c = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
+        abjadext.nauert.SilentQEvent((9, 20), attachments=["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
+    d = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent((1, 2), attachments=["D"]), (1, 2)
+    )
     e = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
+        abjadext.nauert.SilentQEvent((11, 20), attachments=["E"]), (11, 20)
     )
     f = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((19, 20), ["F"]), (19, 20)
+        abjadext.nauert.SilentQEvent((19, 20), attachments=["F"]), (19, 20)
     )
-    g = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1, ["G"]), 1)
+    g = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent(1, attachments=["G"]), 1
+    )
     q_grid.fit_q_events([a, b, c, d, e, f, g])
     result = q_grid((1, 4))
 
@@ -110,21 +122,27 @@ def test_QGrid___call___03():
     q_grid = abjadext.nauert.QGrid()
     q_grid.subdivide_leaves([(0, (1, 1))])
 
-    a = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(0, ["A"]), 0)
+    a = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent(0, attachments=["A"]), 0
+    )
     b = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((1, 20), ["B"]), (1, 20)
+        abjadext.nauert.SilentQEvent((1, 20), attachments=["B"]), (1, 20)
     )
     c = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((9, 20), ["C"]), (9, 20)
+        abjadext.nauert.SilentQEvent((9, 20), attachments=["C"]), (9, 20)
     )
-    d = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent((1, 2), ["D"]), (1, 2))
+    d = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent((1, 2), attachments=["D"]), (1, 2)
+    )
     e = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((11, 20), ["E"]), (11, 20)
+        abjadext.nauert.SilentQEvent((11, 20), attachments=["E"]), (11, 20)
     )
     f = abjadext.nauert.QEventProxy(
-        abjadext.nauert.SilentQEvent((19, 20), ["F"]), (19, 20)
+        abjadext.nauert.SilentQEvent((19, 20), attachments=["F"]), (19, 20)
     )
-    g = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1, ["G"]), 1)
+    g = abjadext.nauert.QEventProxy(
+        abjadext.nauert.SilentQEvent(1, attachments=["G"]), 1
+    )
 
     q_grid.fit_q_events([a, b, c, d, e, f, g])
 

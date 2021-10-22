@@ -1,10 +1,12 @@
 import abc
+import dataclasses
 import numbers
 import typing
 
 import abjad
 
 
+@dataclasses.dataclass
 class QEvent(abc.ABC):
     """
     Abstract Q-event.
@@ -18,21 +20,13 @@ class QEvent(abc.ABC):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_attachments", "_index", "_offset")
+    offset: typing.Union[abjad.typings.Number, abjad.Offset] = 0
+    index: typing.Optional[int] = None
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
-    def __init__(
-        self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-        index: typing.Optional[int] = None,
-        attachments: typing.Optional[typing.Iterable] = None,
-    ):
-        offset = abjad.Offset(offset)
-        self._offset = offset
-        self._index = index
-        self._attachments = tuple(attachments or ())
+    def __post_init__(self):
+        self.offset = abjad.Offset(self.offset)
 
     ### SPECIAL METHODS ###
 
@@ -52,12 +46,6 @@ class QEvent(abc.ABC):
                 return True
         return False
 
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return abjad.format.get_repr(self)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -72,30 +60,8 @@ class QEvent(abc.ABC):
             storage_format_keyword_names=names,
         )
 
-    ### PUBLIC PROPERTIES ###
 
-    @property
-    def attachments(self) -> tuple:
-        """
-        The attachments of the QEvent.
-        """
-        return self._attachments
-
-    @property
-    def index(self) -> typing.Optional[int]:
-        """
-        The optional index, for sorting QEvents with identical offsets.
-        """
-        return self._index
-
-    @property
-    def offset(self) -> abjad.Offset:
-        """
-        The offset in milliseconds of the event.
-        """
-        return self._offset
-
-
+@dataclasses.dataclass
 class PitchedQEvent(QEvent):
     """
     Pitched q-event.
@@ -105,7 +71,7 @@ class PitchedQEvent(QEvent):
     ..  container:: example
 
         >>> pitches = [0, 1, 4]
-        >>> q_event = nauert.PitchedQEvent(1000, pitches)
+        >>> q_event = nauert.PitchedQEvent(1000, pitches=pitches)
         >>> string = abjad.storage(q_event)
         >>> print(string)
         nauert.PitchedQEvent(
@@ -121,73 +87,21 @@ class PitchedQEvent(QEvent):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_attachments", "_index", "_offset", "_pitches")
-
-    _publish_storage_format = True
+    pitches: typing.Optional[
+        typing.Iterable[typing.Union[numbers.Number, abjad.typings.Number]]
+    ] = None
+    attachments: typing.Optional[typing.Iterable] = None
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-        pitches: typing.Optional[
-            typing.Iterable[typing.Union[numbers.Number, abjad.typings.Number]]
-        ] = None,
-        attachments: typing.Optional[typing.Iterable] = None,
-        index: typing.Optional[int] = None,
-    ):
-        QEvent.__init__(self, offset=offset, index=index)
-        if attachments is None:
-            attachments = ()
-        else:
-            attachments = tuple(attachments)
-        pitches = pitches or []
-        self._pitches = tuple([abjad.NamedPitch(x) for x in pitches])
-        self._attachments = attachments
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when `argument` is a pitched q-event with offset, pitches,
-        attachments and index equal to those of this pitched q-event. Otherwise
-        false.
-        """
-        if (
-            type(self) == type(argument)
-            and self.offset == argument.offset
-            and self.pitches == argument.pitches
-            and self.attachments == argument.attachments
-            and self.index == argument.index
-        ):
-            return True
-        return False
-
-    def __hash__(self) -> int:
-        """
-        Hashes pitched q-event.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-        """
-        return super(PitchedQEvent, self).__hash__()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def attachments(self) -> tuple:
-        """
-        Attachments of pitched q-event.
-        """
-        return self._attachments
-
-    @property
-    def pitches(self) -> typing.Tuple[abjad.NamedPitch, ...]:
-        """
-        Pitches of pitched q-event.
-        """
-        return self._pitches
+    def __post_init__(self):
+        super().__post_init__()
+        pitches = self.pitches or []
+        self.pitches = tuple([abjad.NamedPitch(x) for x in pitches])
+        self.attachments = tuple(self.attachments or ())
 
 
+@dataclasses.dataclass
 class SilentQEvent(QEvent):
     """
     Silent q-event.
@@ -205,58 +119,16 @@ class SilentQEvent(QEvent):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_attachments",)
-
-    _publish_storage_format = True
+    attachments: typing.Optional[typing.Iterable] = None
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-        attachments: typing.Optional[typing.Iterable] = None,
-        index: typing.Optional[int] = None,
-    ):
-        QEvent.__init__(self, offset=offset, index=index)
-        if attachments is None:
-            attachments = ()
-        else:
-            attachments = tuple(attachments)
-        self._attachments = attachments
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when `argument` is a silent q-event with offset, attachments
-        and index equal to those of this silent q-event. Otherwise false.
-        """
-        if (
-            type(self) == type(argument)
-            and self._offset == argument._offset
-            and self._attachments == argument._attachments
-            and self._index == argument._index
-        ):
-            return True
-        return False
-
-    def __hash__(self) -> int:
-        """Hashes silent q-event.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-        """
-        return super(SilentQEvent, self).__hash__()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def attachments(self) -> tuple:
-        """
-        Gets attachments of silent q-event.
-        """
-        return self._attachments
+    def __post_init__(self):
+        super().__post_init__()
+        self.attachments = tuple(self.attachments or ())
 
 
+@dataclasses.dataclass
 class TerminalQEvent(QEvent):
     """
     Terminal q-event.
@@ -273,35 +145,4 @@ class TerminalQEvent(QEvent):
     Carries no significance outside the context of a ``QEventSequence``.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_offset",)
-
-    _publish_storage_format = True
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-    ):
-        QEvent.__init__(self, offset=offset)
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when `argument` is a terminal q-event with offset equal to that
-        of this terminal q-event. Otherwise false.
-        """
-        if type(self) == type(argument) and self.offset == argument.offset:
-            return True
-        return False
-
-    def __hash__(self) -> int:
-        """
-        Hashes terminal q-event.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-        """
-        return super(TerminalQEvent, self).__hash__()
+    pass

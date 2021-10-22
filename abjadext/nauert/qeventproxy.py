@@ -13,7 +13,7 @@ class QEventProxy:
 
     ..  container:: example
 
-        >>> q_event = nauert.PitchedQEvent(130, [0, 1, 4])
+        >>> q_event = nauert.PitchedQEvent(130, pitches=[0, 1, 4])
         >>> proxy = nauert.QEventProxy(q_event, 0.5)
         >>> string = abjad.storage(proxy)
         >>> print(string)

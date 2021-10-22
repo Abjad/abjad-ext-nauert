@@ -343,7 +343,7 @@ class QEventSequence:
             if duration < 0:
                 q_event = SilentQEvent(offset)
             else:
-                q_event = PitchedQEvent(offset, [0])
+                q_event = PitchedQEvent(offset, pitches=[0])
             q_events.append(q_event)
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
@@ -402,7 +402,7 @@ class QEventSequence:
 
         """
         q_events: typing.List[QEvent] = []
-        q_events.extend([PitchedQEvent(x, [0]) for x in offsets[:-1]])
+        q_events.extend([PitchedQEvent(x, pitches=[0]) for x in offsets[:-1]])
         q_events.append(TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
@@ -495,11 +495,15 @@ class QEventSequence:
             attachments = pair[1][2]
             if isinstance(pitches, collections.abc.Iterable):
                 assert all(isinstance(x, numbers.Number) for x in pitches)
-                q_events.append(PitchedQEvent(offset, pitches, attachments))
+                q_events.append(
+                    PitchedQEvent(offset, pitches=pitches, attachments=attachments)
+                )
             elif isinstance(pitches, type(None)):
                 q_events.append(SilentQEvent(offset))
             elif isinstance(pitches, numbers.Number):
-                q_events.append(PitchedQEvent(offset, [pitches], attachments))
+                q_events.append(
+                    PitchedQEvent(offset, pitches=[pitches], attachments=attachments)
+                )
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
@@ -589,11 +593,11 @@ class QEventSequence:
             pitches = pair[1][1]
             if isinstance(pitches, collections.abc.Iterable):
                 assert all(isinstance(x, numbers.Number) for x in pitches)
-                q_events.append(PitchedQEvent(offset, pitches))
+                q_events.append(PitchedQEvent(offset, pitches=pitches))
             elif isinstance(pitches, type(None)):
                 q_events.append(SilentQEvent(offset))
             elif isinstance(pitches, numbers.Number):
-                q_events.append(PitchedQEvent(offset, [pitches]))
+                q_events.append(PitchedQEvent(offset, pitches=[pitches]))
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
@@ -654,7 +658,7 @@ class QEventSequence:
                 q_event = SilentQEvent(offset)
             # otherwise use middle C
             else:
-                q_event = PitchedQEvent(offset, [0])
+                q_event = PitchedQEvent(offset, pitches=[0])
             q_events.append(q_event)
         # insert terminating silence QEvent
         q_events.append(TerminalQEvent(offsets[-1]))

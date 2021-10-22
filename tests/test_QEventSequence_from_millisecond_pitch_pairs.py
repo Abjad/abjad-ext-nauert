@@ -9,18 +9,20 @@ def test_QEventSequence_from_millisecond_pitch_pairs_01():
     q_events = abjadext.nauert.QEventSequence.from_millisecond_pitch_pairs(pairs)
     assert q_events == abjadext.nauert.QEventSequence(
         (
-            abjadext.nauert.PitchedQEvent(abjad.Offset(0), (abjad.NamedPitch("c'"),)),
+            abjadext.nauert.PitchedQEvent(
+                abjad.Offset(0), pitches=(abjad.NamedPitch("c'"),)
+            ),
             abjadext.nauert.SilentQEvent(abjad.Offset(100, 1)),
             abjadext.nauert.PitchedQEvent(
                 abjad.Offset(400, 1),
-                (abjad.NamedPitch("cs'"), abjad.NamedPitch("e'")),
+                pitches=(abjad.NamedPitch("cs'"), abjad.NamedPitch("e'")),
             ),
             abjadext.nauert.SilentQEvent(abjad.Offset(700, 1)),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(1050, 1), (abjad.NamedPitch("f'"),)
+                abjad.Offset(1050, 1), pitches=(abjad.NamedPitch("f'"),)
             ),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(1450, 1), (abjad.NamedPitch("g'"),)
+                abjad.Offset(1450, 1), pitches=(abjad.NamedPitch("g'"),)
             ),
             abjadext.nauert.TerminalQEvent(abjad.Offset(2050, 1)),
         )

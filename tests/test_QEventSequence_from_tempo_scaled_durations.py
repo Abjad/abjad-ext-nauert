@@ -14,19 +14,19 @@ def test_QEventSequence_from_tempo_scaled_durations_01():
     assert q_events == abjadext.nauert.QEventSequence(
         (
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(0, 1), (abjad.NamedPitch("c'"),)
+                abjad.Offset(0, 1), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(12000, 11), (abjad.NamedPitch("c'"),)
+                abjad.Offset(12000, 11), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(28000, 11), (abjad.NamedPitch("c'"),)
+                abjad.Offset(28000, 11), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(244000, 77), (abjad.NamedPitch("c'"),)
+                abjad.Offset(244000, 77), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(34400, 7), (abjad.NamedPitch("c'"),)
+                abjad.Offset(34400, 7), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.TerminalQEvent(abjad.Offset(630400, 77)),
         )
@@ -48,18 +48,18 @@ def test_QEventSequence_from_tempo_scaled_durations_02():
     assert q_events == abjadext.nauert.QEventSequence(
         (
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(0, 1), (abjad.NamedPitch("c'"),)
+                abjad.Offset(0, 1), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.SilentQEvent(abjad.Offset(60000, 77)),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(120000, 77), (abjad.NamedPitch("c'"),)
+                abjad.Offset(120000, 77), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(180000, 77), (abjad.NamedPitch("c'"),)
+                abjad.Offset(180000, 77), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.SilentQEvent(abjad.Offset(240000, 77)),
             abjadext.nauert.PitchedQEvent(
-                abjad.Offset(360000, 77), (abjad.NamedPitch("c'"),)
+                abjad.Offset(360000, 77), pitches=(abjad.NamedPitch("c'"),)
             ),
             abjadext.nauert.TerminalQEvent(abjad.Offset(60000, 11)),
         )

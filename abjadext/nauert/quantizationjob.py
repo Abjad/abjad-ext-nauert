@@ -158,9 +158,9 @@ class QuantizationJob:
         r"""
         The ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
 
-        >>> q_event_a = nauert.PitchedQEvent(250, [0, 1])
+        >>> q_event_a = nauert.PitchedQEvent(250, pitches=[0, 1])
         >>> q_event_b = nauert.SilentQEvent(500)
-        >>> q_event_c = nauert.PitchedQEvent(750, [3, 7])
+        >>> q_event_c = nauert.PitchedQEvent(750, pitches=[3, 7])
         >>> proxy_a = nauert.QEventProxy(q_event_a, 0.25)
         >>> proxy_b = nauert.QEventProxy(q_event_b, 0.5)
         >>> proxy_c = nauert.QEventProxy(q_event_c, 0.75)
