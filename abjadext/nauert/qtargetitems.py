@@ -55,10 +55,7 @@ class QTargetBeat(QTargetItem):
                 definition={   3: None,
                     },
                 ),
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=56,
-                ),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             )
 
     Not composer-safe.
@@ -294,7 +291,7 @@ class QTargetBeat(QTargetItem):
         ...     )
 
         >>> q_target_beat.tempo
-        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56)
+        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False)
 
         """
         return self._tempo
@@ -324,14 +321,12 @@ class QTargetMeasure(QTargetItem):
         nauert.QTargetMeasure(
             offset_in_ms=abjad.Offset((1000, 1)),
             search_tree=nauert.UnweightedSearchTree(
-                definition={   2: None,
+                definition={
+                    2: None,
                     },
                 ),
-            time_signature=abjad.TimeSignature((4, 4)),
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
+            time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
+            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
             use_full_measure=False,
             )
 
@@ -487,49 +482,41 @@ class QTargetMeasure(QTargetItem):
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((1000, 1)),
                 search_tree=nauert.UnweightedSearchTree(
-                    definition={   2: None,
+                    definition={
+                        2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
             nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((2000, 1)),
                 search_tree=nauert.UnweightedSearchTree(
-                    definition={   2: None,
+                    definition={
+                        2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
             nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((3000, 1)),
                 search_tree=nauert.UnweightedSearchTree(
-                    definition={   2: None,
+                    definition={
+                        2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
             nauert.QTargetBeat(
                 beatspan=abjad.Duration(1, 4),
                 offset_in_ms=abjad.Offset((4000, 1)),
                 search_tree=nauert.UnweightedSearchTree(
-                    definition={   2: None,
+                    definition={
+                        2: None,
                         },
                     ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
+                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
                 )
 
         """
@@ -626,7 +613,7 @@ class QTargetMeasure(QTargetItem):
             ...     )
 
             >>> q_target_measure.tempo
-            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
+            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False)
 
         """
         return self._tempo
@@ -650,7 +637,7 @@ class QTargetMeasure(QTargetItem):
             ...     )
 
             >>> q_target_measure.time_signature
-            TimeSignature((4, 4))
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         """
         return self._time_signature
