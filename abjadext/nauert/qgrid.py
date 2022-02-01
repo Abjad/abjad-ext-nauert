@@ -31,7 +31,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     def __init__(
         self,
-        preprolated_duration: typing.Union[abjad.typings.Duration, int] = 1,
+        preprolated_duration: typing.Union[abjad.typings.DurationTyping, int] = 1,
         q_event_proxies: typing.Optional[typing.Sequence[QEventProxy]] = None,
         is_divisible: bool = True,
     ):
@@ -47,7 +47,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, pulse_duration: typing.Union[abjad.typings.Duration, int]
+        self, pulse_duration: typing.Union[abjad.typings.DurationTyping, int]
     ) -> abjad.Selection:
         """
         Calls q-grid leaf.
@@ -274,7 +274,7 @@ class QGrid:
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, beatspan: typing.Union[abjad.typings.Duration, int]
+        self, beatspan: typing.Union[abjad.typings.DurationTyping, int]
     ) -> abjad.Selection:
         """
         Calls q-grid.
@@ -534,7 +534,7 @@ class QGrid:
     def subdivide_leaf(
         self,
         leaf: QGridLeaf,
-        subdivisions: typing.Sequence[typing.Union[abjad.typings.Duration, int]],
+        subdivisions: typing.Sequence[typing.Union[abjad.typings.DurationTyping, int]],
     ) -> typing.List[QEventProxy]:
         r"""Replace the ``QGridLeaf`` ``leaf`` contained in a ``QGrid``
         by a ``QGridContainer`` containing ``QGridLeaves`` with durations
