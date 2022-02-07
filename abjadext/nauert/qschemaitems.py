@@ -121,7 +121,9 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        beatspan: typing.Optional[typing.Union[abjad.typings.Duration, int]] = None,
+        beatspan: typing.Optional[
+            typing.Union[abjad.typings.DurationTyping, int]
+        ] = None,
         search_tree: typing.Optional[SearchTree] = None,
         tempo: typing.Optional[
             typing.Union[
