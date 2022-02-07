@@ -40,7 +40,7 @@ if __name__ == "__main__":
         description=description,
         include_package_data=True,
         install_requires=[
-            "abjad==3.4",
+            "abjad==3.5",
             "black>=20.8b1",
             "flake8",
             "isort",
