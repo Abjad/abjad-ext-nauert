@@ -520,6 +520,7 @@ class QEventSequence:
                     for x in group
                 )
             durations.append(duration)
+            pitch: typing.Any
             # get pitch of first leaf in group
             if isinstance(group[0], (abjad.Rest, abjad.Skip)):
                 pitch = None

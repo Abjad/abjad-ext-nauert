@@ -65,6 +65,12 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         graph.append(node)
         return graph
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(preprolated_duration={self.preprolated_duration!r}, q_event_proxies={self.q_event_proxies!r}, is_divisible={self.is_divisible!r})"
+
     ### PRIVATE PROPERTIES ###
 
     @property
