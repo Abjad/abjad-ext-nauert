@@ -760,6 +760,7 @@ class MeasurewiseQSchema(QSchema):
             >>> q_schema = nauert.MeasurewiseQSchema(settings)
             >>> q_schema.time_signature
             TimeSignature(pair=(4, 4), hide=False, partial=None)
+
         """
         return self._time_signature
 

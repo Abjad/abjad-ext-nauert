@@ -80,6 +80,7 @@ class CollapsingGraceHandler(GraceHandler):
                     r4
                 }
             }
+
     """
 
     ### CLASS VARIABLES ###
@@ -262,6 +263,7 @@ class ConcatenatingGraceHandler(GraceHandler):
                     r4
                 }
             }
+
     """
 
     ### CLASS VARIABLES ###
@@ -412,6 +414,7 @@ class ConcatenatingGraceHandler(GraceHandler):
                         }
                     }
                 }
+
         """
         grace_container = abjad.AfterGraceContainer() if q_event_proxies else None
         for proxy in q_event_proxies:
@@ -486,6 +489,7 @@ class DiscardingGraceHandler(GraceHandler):
                     r4
                 }
             }
+
     """
 
     ### CLASS VARIABLES ###
