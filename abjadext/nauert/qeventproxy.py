@@ -14,20 +14,8 @@ class QEventProxy:
     ..  container:: example
 
         >>> q_event = nauert.PitchedQEvent(130, [0, 1, 4])
-        >>> proxy = nauert.QEventProxy(q_event, 0.5)
-        >>> string = abjad.storage(proxy)
-        >>> print(string)
-        nauert.QEventProxy(
-            abjad.Offset((1, 2)),
-            q_event=nauert.PitchedQEvent(
-                offset=abjad.Offset((130, 1)),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("cs'"),
-                    abjad.NamedPitch("e'"),
-                    ),
-                ),
-            )
+        >>> nauert.QEventProxy(q_event, 0.5)
+        QEventProxy(q_event=PitchedQEvent(offset=Offset((130, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")), index=None, attachments=()), offset=Offset((1, 2)))
 
     Not composer-safe.
 
@@ -37,8 +25,6 @@ class QEventProxy:
     ### CLASS VARIABLES ###
 
     __slots__ = ("_offset", "_q_event")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -82,17 +68,6 @@ class QEventProxy:
                     return True
         return False
 
-    def __format__(self, format_specification: str = "") -> str:
-        """
-        Formats q-event.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-        """
-        if format_specification in ("", "storage"):
-            return abjad.storage(self)
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes q-event proxy.
@@ -101,13 +76,13 @@ class QEventProxy:
         """
         return super(QEventProxy, self).__hash__()
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        values = []
-        if self.offset:
-            values.append(self.offset)
-        return abjad.FormatSpecification(storage_format_args_values=tuple(values))
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return (
+            f"{type(self).__name__}(q_event={self.q_event!r}, offset={self.offset!r})"
+        )
 
     ### PUBLIC PROPERTIES ###
 

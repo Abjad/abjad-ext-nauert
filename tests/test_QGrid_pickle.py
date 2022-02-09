@@ -1,6 +1,5 @@
 import pickle
 
-import abjad
 import abjadext.nauert
 
 
@@ -28,6 +27,6 @@ def test_QGrid_pickle_01():
     )
     pickled = pickle.loads(pickle.dumps(q_grid))
 
-    assert format(pickled) == format(q_grid)
+    assert repr(pickled) == repr(q_grid)
     assert pickled is not q_grid
-    assert pickled != q_grid, abjad.TestManager.diff(pickled, q_grid, "Diff:")
+    assert pickled != q_grid

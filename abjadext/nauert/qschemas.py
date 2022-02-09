@@ -90,17 +90,6 @@ class QSchema(abc.ABC):
         # assert all(isinstance(item, self.target_item_class) for item in target_items)
         return self.target_class(target_items)
 
-    def __format__(self, format_specification: str = "") -> str:
-        """
-        Formats q-event.
-
-        Set `format_specification` to `''` or `'storage'`. Interprets `''`
-        equal to `'storage'`.
-        """
-        if format_specification in ("", "storage"):
-            return abjad.storage(self)
-        return str(self)
-
     def __getitem__(self, argument: int) -> dict:
         """
         Gets item or slice identified by `argument`.
@@ -192,43 +181,8 @@ class BeatwiseQSchema(QSchema):
 
         Without arguments, it uses smart defaults:
 
-        >>> string = abjad.storage(q_schema)
-        >>> print(string)
-        nauert.BeatwiseQSchema(
-            beatspan=abjad.Duration(1, 4),
-            search_tree=nauert.UnweightedSearchTree(
-                definition={
-                    2: {
-                        2: {
-                            2: {
-                                2: None,
-                                },
-                            3: None,
-                            },
-                        3: None,
-                        5: None,
-                        7: None,
-                        },
-                    3: {
-                        2: {
-                            2: None,
-                            },
-                        3: None,
-                        5: None,
-                        },
-                    5: {
-                        2: None,
-                        3: None,
-                        },
-                    7: {
-                        2: None,
-                        },
-                    11: None,
-                    13: None,
-                    },
-                ),
-            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-            )
+        >>> q_schema
+        BeatwiseQSchema(beatspan=Duration(1, 4), search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
 
     ..  container:: example
 
@@ -315,73 +269,11 @@ class BeatwiseQSchema(QSchema):
 
         >>> q_schema = nauert.BeatwiseQSchema(settings)
 
-        >>> string = abjad.storage(q_schema[0]["search_tree"])
-        >>> print(string)
-        nauert.UnweightedSearchTree(
-            definition={
-                2: {
-                    2: {
-                        2: {
-                            2: None,
-                            },
-                        3: None,
-                        },
-                    3: None,
-                    5: None,
-                    7: None,
-                    },
-                3: {
-                    2: {
-                        2: None,
-                        },
-                    3: None,
-                    5: None,
-                    },
-                5: {
-                    2: None,
-                    3: None,
-                    },
-                7: {
-                    2: None,
-                    },
-                11: None,
-                13: None,
-                },
-            )
+        >>> q_schema[0]["search_tree"]
+        UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None})
 
-        >>> string = abjad.storage(q_schema[1]["search_tree"])
-        >>> print(string)
-        nauert.UnweightedSearchTree(
-            definition={
-                2: {
-                    2: {
-                        2: {
-                            2: None,
-                            },
-                        3: None,
-                        },
-                    3: None,
-                    5: None,
-                    7: None,
-                    },
-                3: {
-                    2: {
-                        2: None,
-                        },
-                    3: None,
-                    5: None,
-                    },
-                5: {
-                    2: None,
-                    3: None,
-                    },
-                7: {
-                    2: None,
-                    },
-                11: None,
-                13: None,
-                },
-            )
+        >>> q_schema[1]["search_tree"]
+        UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None})
 
         >>> q_schema[2]["search_tree"]
         UnweightedSearchTree(definition={2: None})
@@ -412,8 +304,6 @@ class BeatwiseQSchema(QSchema):
 
     _keyword_argument_names = ("beatspan", "search_tree", "tempo")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
@@ -427,13 +317,11 @@ class BeatwiseQSchema(QSchema):
         self._tempo = tempo
         QSchema.__init__(self, *arguments, **keywords)
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        return abjad.FormatSpecification(
-            storage_format_args_values=tuple(self.items) or (),
-            storage_format_keyword_names=("beatspan", "search_tree", "tempo"),
-        )
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(beatspan={self.beatspan!r}, search_tree={self.search_tree!r}, tempo={self.tempo!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -478,44 +366,8 @@ class MeasurewiseQSchema(QSchema):
 
         Without arguments, it uses smart defaults:
 
-        >>> string = abjad.storage(q_schema)
-        >>> print(string)
-        nauert.MeasurewiseQSchema(
-            search_tree=nauert.UnweightedSearchTree(
-                definition={
-                    2: {
-                        2: {
-                            2: {
-                                2: None,
-                                },
-                            3: None,
-                            },
-                        3: None,
-                        5: None,
-                        7: None,
-                        },
-                    3: {
-                        2: {
-                            2: None,
-                            },
-                        3: None,
-                        5: None,
-                        },
-                    5: {
-                        2: None,
-                        3: None,
-                        },
-                    7: {
-                        2: None,
-                        },
-                    11: None,
-                    13: None,
-                    },
-                ),
-            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-            time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
-            use_full_measure=False,
-            )
+        >>> q_schema
+        MeasurewiseQSchema(search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False), time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None), use_full_measure=False)
 
     ..  container:: example
 
@@ -675,8 +527,6 @@ class MeasurewiseQSchema(QSchema):
         "use_full_measure",
     )
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
@@ -693,18 +543,11 @@ class MeasurewiseQSchema(QSchema):
         self._use_full_measure = bool(keywords.get("use_full_measure"))
         QSchema.__init__(self, *arguments, **keywords)
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        return abjad.FormatSpecification(
-            storage_format_args_values=tuple(self.items) or (),
-            storage_format_keyword_names=(
-                "search_tree",
-                "tempo",
-                "time_signature",
-                "use_full_measure",
-            ),
-        )
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(search_tree={self.search_tree!r}, tempo={self.tempo!r}, time_signature={self.time_signature!r}, use_full_measure={self.use_full_measure})"
 
     ### PUBLIC PROPERTIES ###
 

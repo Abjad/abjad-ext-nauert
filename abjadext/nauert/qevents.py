@@ -36,12 +36,6 @@ class QEvent(abc.ABC):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification: str = "") -> str:
-        """
-        Formats object.
-        """
-        return abjad.storage(self)
-
     def __lt__(self, argument) -> bool:
         """
         Is true when `epxr` is a q-event with offset greater than that of this
@@ -52,25 +46,11 @@ class QEvent(abc.ABC):
                 return True
         return False
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return abjad.format.get_repr(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        result = abjad.format._inspect_signature(self)
-        signature_keyword_names = result[1]
-        names = list(signature_keyword_names)
-        for name in ("attachments",):
-            if not getattr(self, name, None) and name in names:
-                names.remove(name)
-        return abjad.FormatSpecification(
-            repr_is_indented=False,
-            storage_format_keyword_names=names,
-        )
+        return f"{type(self).__name__}(offset={self.offset!r}, index={self.index!r}, attachments={self.attachments!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -105,25 +85,14 @@ class PitchedQEvent(QEvent):
     ..  container:: example
 
         >>> pitches = [0, 1, 4]
-        >>> q_event = nauert.PitchedQEvent(1000, pitches)
-        >>> string = abjad.storage(q_event)
-        >>> print(string)
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((1000, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                abjad.NamedPitch("cs'"),
-                abjad.NamedPitch("e'"),
-                ),
-            )
+        >>> nauert.PitchedQEvent(1000, pitches)
+        PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")), index=None, attachments=())
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = ("_attachments", "_index", "_offset", "_pitches")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -171,6 +140,12 @@ class PitchedQEvent(QEvent):
         """
         return super(PitchedQEvent, self).__hash__()
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(offset={self.offset!r}, pitches={self.pitches!r}, index={self.index!r}, attachments={self.attachments!r})"
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -195,19 +170,14 @@ class SilentQEvent(QEvent):
     ..  container:: example
 
         >>> q_event = nauert.SilentQEvent(1000)
-        >>> string = abjad.storage(q_event)
-        >>> print(string)
-        nauert.SilentQEvent(
-            offset=abjad.Offset((1000, 1)),
-            )
+        >>> q_event
+        SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = ("_attachments",)
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -263,12 +233,8 @@ class TerminalQEvent(QEvent):
 
     ..  container:: example
 
-        >>> q_event = nauert.TerminalQEvent(1000)
-        >>> string = abjad.storage(q_event)
-        >>> print(string)
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((1000, 1)),
-            )
+        >>> nauert.TerminalQEvent(1000)
+        TerminalQEvent(offset=Offset((1000, 1)), index=None, attachments=())
 
     Carries no significance outside the context of a ``QEventSequence``.
     """
@@ -276,8 +242,6 @@ class TerminalQEvent(QEvent):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_offset",)
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

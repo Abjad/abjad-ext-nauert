@@ -46,17 +46,8 @@ class QTargetBeat(QTargetItem):
         ...     tempo=tempo,
         ... )
 
-        >>> string = abjad.storage(q_target_beat)
-        >>> print(string)
-        nauert.QTargetBeat(
-            beatspan=abjad.Duration(1, 8),
-            offset_in_ms=abjad.Offset((1500, 1)),
-            search_tree=nauert.UnweightedSearchTree(
-                definition={   3: None,
-                    },
-                ),
-            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-            )
+        >>> q_target_beat
+        QTargetBeat(beatspan=Duration(1, 8), offset_in_ms=Offset((1500, 1)), search_tree=UnweightedSearchTree(definition={3: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False))
 
     Not composer-safe.
 
@@ -75,8 +66,6 @@ class QTargetBeat(QTargetItem):
         "_search_tree",
         "_tempo",
     )
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -140,16 +129,11 @@ class QTargetBeat(QTargetItem):
             q_event_proxies.append(q_event_proxy)
         return QuantizationJob(job_id, self.search_tree, q_event_proxies)
 
-    def __format__(self, format_specification: str = "") -> str:
+    def __repr__(self):
         """
-        Formats q-event.
-
-        Set `format_specification` to `''` or `'storage'`. Interprets `''`
-        equal to `'storage'`.
+        Gets repr.
         """
-        if format_specification in ("", "storage"):
-            return abjad.storage(self)
-        return str(self)
+        return f"{type(self).__name__}(beatspan={self.beatspan!r}, offset_in_ms={self.offset_in_ms!r}, search_tree={self.search_tree!r}, tempo={self.tempo!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -316,19 +300,8 @@ class QTargetMeasure(QTargetItem):
         ...     time_signature=time_signature,
         ... )
 
-        >>> string = abjad.storage(q_target_measure)
-        >>> print(string)
-        nauert.QTargetMeasure(
-            offset_in_ms=abjad.Offset((1000, 1)),
-            search_tree=nauert.UnweightedSearchTree(
-                definition={
-                    2: None,
-                    },
-                ),
-            time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None),
-            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-            use_full_measure=False,
-            )
+        >>> q_target_measure
+        QTargetMeasure(offset_in_ms=Offset((1000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False), use_full_measure=False)
 
     ..  container:: example
 
@@ -373,8 +346,6 @@ class QTargetMeasure(QTargetItem):
         "_time_signature",
         "_use_full_measure",
     )
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -442,16 +413,11 @@ class QTargetMeasure(QTargetItem):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification="") -> str:
+    def __repr__(self):
         """
-        Formats q-event.
-
-        Set `format_specification` to `''` or `'storage'`. Interprets `''`
-        equal to `'storage'`.
+        Gets repr.
         """
-        if format_specification in ("", "storage"):
-            return abjad.storage(self)
-        return str(self)
+        return f"{type(self).__name__}(offset_in_ms={self.offset_in_ms!r}, search_tree={self.search_tree!r}, tempo={self.tempo!r}, use_full_measure={self.use_full_measure!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -475,49 +441,12 @@ class QTargetMeasure(QTargetItem):
             ...     )
 
             >>> for q_target_beat in q_target_measure.beats:
-            ...     string = abjad.storage(q_target_beat)
-            ...     print(string)
+            ...     q_target_beat
             ...
-            nauert.QTargetBeat(
-                beatspan=abjad.Duration(1, 4),
-                offset_in_ms=abjad.Offset((1000, 1)),
-                search_tree=nauert.UnweightedSearchTree(
-                    definition={
-                        2: None,
-                        },
-                    ),
-                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-                )
-            nauert.QTargetBeat(
-                beatspan=abjad.Duration(1, 4),
-                offset_in_ms=abjad.Offset((2000, 1)),
-                search_tree=nauert.UnweightedSearchTree(
-                    definition={
-                        2: None,
-                        },
-                    ),
-                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-                )
-            nauert.QTargetBeat(
-                beatspan=abjad.Duration(1, 4),
-                offset_in_ms=abjad.Offset((3000, 1)),
-                search_tree=nauert.UnweightedSearchTree(
-                    definition={
-                        2: None,
-                        },
-                    ),
-                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-                )
-            nauert.QTargetBeat(
-                beatspan=abjad.Duration(1, 4),
-                offset_in_ms=abjad.Offset((4000, 1)),
-                search_tree=nauert.UnweightedSearchTree(
-                    definition={
-                        2: None,
-                        },
-                    ),
-                tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-                )
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((1000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((2000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((3000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((4000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
 
         """
         return self._beats

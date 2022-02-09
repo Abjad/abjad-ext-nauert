@@ -43,19 +43,6 @@ class QSchemaItem(abc.ABC):
             assert not tempo.is_imprecise
         self._tempo = tempo
 
-    ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification: str = "") -> str:
-        """
-        Formats q schema item.
-
-        Set `format_specification` to `''` or `'storage'`. Interprets `''`
-        equal to `'storage'`.
-        """
-        if format_specification in ("", "storage"):
-            return abjad.storage(self)
-        return str(self)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -82,40 +69,28 @@ class BeatwiseQSchemaItem(QSchemaItem):
     Represents a change of state in the timeline of an unmetered quantization
     process.
 
-    >>> q_schema_item = nauert.BeatwiseQSchemaItem()
-    >>> string = abjad.storage(q_schema_item)
-    >>> print(string)
-    nauert.BeatwiseQSchemaItem()
+    >>> nauert.BeatwiseQSchemaItem()
+    BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=None)
 
     ..  container:: example
 
         Defines a change in tempo:
 
-        >>> q_schema_item = nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
-        >>> string = abjad.storage(q_schema_item)
-        >>> print(string)
-        nauert.BeatwiseQSchemaItem(
-            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-            )
+        >>> nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
+        BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
 
     ..  container:: example
 
         Defines a change in beatspan:
 
-        >>> q_schema_item = nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
-        >>> string = abjad.storage(q_schema_item)
-        >>> print(string)
-        nauert.BeatwiseQSchemaItem(
-            beatspan=abjad.Duration(1, 8),
-            )
+        >>> nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
+        BeatwiseQSchemaItem(beatspan=Duration(1, 8), search_tree=None, tempo=None)
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = ("_beatspan",)
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -140,6 +115,12 @@ class BeatwiseQSchemaItem(QSchemaItem):
             assert 0 < beatspan
         self._beatspan = beatspan
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(beatspan={self.beatspan!r}, search_tree={self.search_tree!r}, tempo={self.tempo!r})"
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -162,29 +143,21 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> q_schema_item = nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
-        >>> string = abjad.storage(q_schema_item)
-        >>> print(string)
-        nauert.MeasurewiseQSchemaItem(
-            tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False),
-            )
+        >>> nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
+        MeasurewiseQSchemaItem(search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False), time_signature=None, use_full_measure=None)
 
     ..  container:: example
 
         Defines a change in time signature:
 
-        >>> q_schema_item = nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
-        >>> string = abjad.storage(q_schema_item)
-        >>> print(string)
-        nauert.MeasurewiseQSchemaItem(
-            time_signature=TimeSignature(pair=(6, 8), hide=False, partial=None),
-            )
+        >>> nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
+        MeasurewiseQSchemaItem(search_tree=None, tempo=None, time_signature=TimeSignature(pair=(6, 8), hide=False, partial=None), use_full_measure=None)
 
     ..  container:: example
 
         Tests for beatspan given a defined time signature:
 
-        >>> q_schema_item.beatspan
+        >>> nauert.MeasurewiseQSchemaItem(time_signature=(6, 8)).beatspan
         Duration(1, 8)
 
     """
@@ -218,6 +191,12 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)
         self._use_full_measure = use_full_measure
+
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(search_tree={self.search_tree!r}, tempo={self.tempo!r}, time_signature={self.time_signature!r}, use_full_measure={self.use_full_measure!r})"
 
     ### PUBLIC PROPERTIES ###
 
