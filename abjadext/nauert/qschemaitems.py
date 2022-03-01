@@ -77,7 +77,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         Defines a change in tempo:
 
         >>> nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
-        BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+        BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
     ..  container:: example
 
@@ -144,7 +144,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         Defines a change in tempo:
 
         >>> nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
-        MeasurewiseQSchemaItem(search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False), time_signature=None, use_full_measure=None)
+        MeasurewiseQSchemaItem(search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), time_signature=None, use_full_measure=None)
 
     ..  container:: example
 
