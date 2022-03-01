@@ -182,7 +182,7 @@ class BeatwiseQSchema(QSchema):
         Without arguments, it uses smart defaults:
 
         >>> q_schema
-        BeatwiseQSchema(beatspan=Duration(1, 4), search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+        BeatwiseQSchema(beatspan=Duration(1, 4), search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
     ..  container:: example
 
@@ -367,7 +367,7 @@ class MeasurewiseQSchema(QSchema):
         Without arguments, it uses smart defaults:
 
         >>> q_schema
-        MeasurewiseQSchema(search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False), time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None), use_full_measure=False)
+        MeasurewiseQSchema(search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None), use_full_measure=False)
 
     ..  container:: example
 

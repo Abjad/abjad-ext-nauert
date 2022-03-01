@@ -47,7 +47,7 @@ class QTargetBeat(QTargetItem):
         ... )
 
         >>> q_target_beat
-        QTargetBeat(beatspan=Duration(1, 8), offset_in_ms=Offset((1500, 1)), search_tree=UnweightedSearchTree(definition={3: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+        QTargetBeat(beatspan=Duration(1, 8), offset_in_ms=Offset((1500, 1)), search_tree=UnweightedSearchTree(definition={3: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
     Not composer-safe.
 
@@ -275,7 +275,7 @@ class QTargetBeat(QTargetItem):
         ...     )
 
         >>> q_target_beat.tempo
-        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=None, hide=False)
+        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56, textual_indication=None, custom_markup=None, decimal=False, hide=False)
 
         """
         return self._tempo
@@ -301,7 +301,7 @@ class QTargetMeasure(QTargetItem):
         ... )
 
         >>> q_target_measure
-        QTargetMeasure(offset_in_ms=Offset((1000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False), use_full_measure=False)
+        QTargetMeasure(offset_in_ms=Offset((1000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), use_full_measure=False)
 
     ..  container:: example
 
@@ -443,10 +443,10 @@ class QTargetMeasure(QTargetItem):
             >>> for q_target_beat in q_target_measure.beats:
             ...     q_target_beat
             ...
-            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((1000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
-            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((2000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
-            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((3000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
-            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((4000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((1000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((2000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((3000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
+            QTargetBeat(beatspan=Duration(1, 4), offset_in_ms=Offset((4000, 1)), search_tree=UnweightedSearchTree(definition={2: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
         """
         return self._beats
@@ -542,7 +542,7 @@ class QTargetMeasure(QTargetItem):
             ...     )
 
             >>> q_target_measure.tempo
-            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=None, hide=False)
+            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False)
 
         """
         return self._tempo
