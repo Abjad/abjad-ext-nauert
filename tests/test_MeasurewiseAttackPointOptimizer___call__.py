@@ -30,13 +30,13 @@ def test_MeasurewiseAttackPointOptimizer___call___01():
             r8
         }
         """
-    string = abjad.String.normalize(string)
+    string = abjad.string.normalize(string)
     container = abjad.Container(string)
     time_signature = abjad.TimeSignature((4, 4))
     attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
     attack_point_optimizer(container, time_signature)
     string = abjad.lilypond(container)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         {
             \times 8/11

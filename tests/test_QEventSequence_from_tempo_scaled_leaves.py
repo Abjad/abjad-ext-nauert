@@ -24,7 +24,7 @@ def test_QEventSequence_from_tempo_scaled_leaves_01():
 
     tempo = abjad.MetronomeMark((1, 4), 55)
 
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     q_events = abjadext.nauert.QEventSequence.from_tempo_scaled_leaves(leaves, tempo)
 
     assert q_events == abjadext.nauert.QEventSequence(
@@ -84,7 +84,7 @@ def test_QEventSequence_from_tempo_scaled_leaves_02():
     tempo = abjad.MetronomeMark((1, 4), 77)
     abjad.attach(tempo, staff[9], context="Staff")
 
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     q_events = abjadext.nauert.QEventSequence.from_tempo_scaled_leaves(leaves)
 
     assert q_events == abjadext.nauert.QEventSequence(

@@ -18,7 +18,7 @@ def test_Quantizer___call___01():
     result = quantizer(q_events)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -48,7 +48,7 @@ def test_Quantizer___call___02():
     result = quantizer(q_events, attack_point_optimizer=optimizer)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -86,7 +86,7 @@ def test_Quantizer___call___03():
 
     score = abjad.Score([abjad.Staff([result])])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -135,7 +135,7 @@ def test_Quantizer___call___04():
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -193,7 +193,7 @@ def test_Quantizer___call___05():
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -257,7 +257,7 @@ def test_Quantizer___call___06():
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -295,7 +295,7 @@ def test_Quantizer___call___07():
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -352,7 +352,7 @@ def test_Quantizer___call___08():
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -439,7 +439,7 @@ def test_Quantizer___call___10():
     )
     result = quantizer(q_event_sequence, grace_handler=grace_handler)
     string = abjad.lilypond(result)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -501,7 +501,7 @@ def test_Quantizer___call___11():
     )
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -543,7 +543,7 @@ def test_Quantizer___call___12():
     result = quantizer(q_event_sequence, q_schema=q_schema, attach_tempos=True)
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -602,7 +602,7 @@ def test_Quantizer___call___13():
     result = quantizer(q_event_sequence, q_schema=q_schema, attach_tempos=True)
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -672,7 +672,7 @@ def test_Quantizer___call___14():
     )
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -726,7 +726,7 @@ def test_Quantizer___call___15():
 
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -785,7 +785,7 @@ def test_Quantizer___call___16():
 
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {

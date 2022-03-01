@@ -11,7 +11,7 @@ def test_CollapsingGraceHandler___call___01():
         tuple(zip(durations, pitches))
     )
     result = quantizer(q_event_sequence, grace_handler=grace_handler)
-    assert abjad.lilypond(result) == abjad.String.normalize(
+    assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -37,7 +37,7 @@ def test_CollapsingGraceHandler___call___02():
         tuple(zip(durations, pitches))
     )
     result = quantizer(q_event_sequence, grace_handler=grace_handler)
-    assert abjad.lilypond(result) == abjad.String.normalize(
+    assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -63,7 +63,7 @@ def test_CollapsingGraceHandler___call___03():
         tuple(zip(durations, pitches))
     )
     result = quantizer(q_event_sequence, grace_handler=grace_handler)
-    assert abjad.lilypond(result) == abjad.String.normalize(
+    assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -89,7 +89,7 @@ def test_CollapsingGraceHandler___call___04():
         tuple(zip(durations, pitches))
     )
     result = quantizer(q_event_sequence, grace_handler=grace_handler)
-    assert abjad.lilypond(result) == abjad.String.normalize(
+    assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
         {

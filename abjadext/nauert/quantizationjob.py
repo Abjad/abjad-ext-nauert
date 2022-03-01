@@ -1,14 +1,13 @@
 import typing
 
-import abjad
-
 from .qeventproxy import QEventProxy
 from .qgrid import QGrid
 from .searchtrees import SearchTree, UnweightedSearchTree
 
 
 class QuantizationJob:
-    r"""Quantization job.
+    r"""
+    Quantization job.
 
     Copiable, picklable class for generating all ``QGrids`` which are valid
     under a given ``SearchTree`` for a sequence of ``QEventProxies``.
@@ -122,12 +121,6 @@ class QuantizationJob:
                             return True
         return False
 
-    def __format__(self, format_specification: str = "") -> str:
-        """
-        Formats object.
-        """
-        return abjad.storage(self)
-
     def __hash__(self) -> int:
         """
         Hashes quantization job.
@@ -136,10 +129,11 @@ class QuantizationJob:
         """
         return super(QuantizationJob, self).__hash__()
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return abjad.FormatSpecification()
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(job_id={self.job_id!r}, search_tree={self.search_tree!r}, q_event_proxies={self.q_event_proxies!r}, q_grids={self.q_grids})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -173,35 +167,11 @@ class QuantizationJob:
         >>> job()
 
         >>> for q_event_proxy in job.q_event_proxies:
-        ...     string = abjad.storage(q_event_proxy)
-        ...     print(string)
+        ...     q_event_proxy
         ...
-        nauert.QEventProxy(
-            abjad.Offset((1, 4)),
-            q_event=nauert.PitchedQEvent(
-                offset=abjad.Offset((250, 1)),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("cs'"),
-                    ),
-                ),
-            )
-        nauert.QEventProxy(
-            abjad.Offset((1, 2)),
-            q_event=nauert.SilentQEvent(
-                offset=abjad.Offset((500, 1)),
-                ),
-            )
-        nauert.QEventProxy(
-            abjad.Offset((3, 4)),
-            q_event=nauert.PitchedQEvent(
-                offset=abjad.Offset((750, 1)),
-                pitches=(
-                    abjad.NamedPitch("ef'"),
-                    abjad.NamedPitch("g'"),
-                    ),
-                ),
-            )
+        QEventProxy(q_event=PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'")), index=None, attachments=()), offset=Offset((1, 4)))
+        QEventProxy(q_event=SilentQEvent(offset=Offset((500, 1)), index=None, attachments=()), offset=Offset((1, 2)))
+        QEventProxy(q_event=PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("ef'"), NamedPitch("g'")), index=None, attachments=()), offset=Offset((3, 4)))
 
         """
         return self._q_event_proxies

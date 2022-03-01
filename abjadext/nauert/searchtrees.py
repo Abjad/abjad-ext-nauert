@@ -59,12 +59,6 @@ class SearchTree(abc.ABC):
                 return True
         return False
 
-    def __format__(self, format_specification: str = "") -> str:
-        """
-        Formats object.
-        """
-        return abjad.storage(self)
-
     def __hash__(self) -> int:
         """
         Hashes search tree.
@@ -77,7 +71,7 @@ class SearchTree(abc.ABC):
         """
         Gets interpreter representation.
         """
-        return abjad.format.get_repr(self)
+        return f"{type(self).__name__}(definition={self.definition!r})"
 
     ### PRIVATE METHODS ###
 
@@ -94,7 +88,7 @@ class SearchTree(abc.ABC):
         indices, subdivisions = [], []
         leaves = list(q_grid.leaves)
         i = 0
-        for leaf_one, leaf_two in abjad.Sequence(leaves).nwise():
+        for leaf_one, leaf_two in abjad.sequence.nwise(leaves):
             if leaf_one.is_divisible:
                 succeeding_proxies = leaf_one.succeeding_q_event_proxies
                 preceding_proxies = leaf_two.preceding_q_event_proxies
@@ -133,9 +127,6 @@ class SearchTree(abc.ABC):
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 
-    def _get_format_specification(self):
-        return abjad.FormatSpecification()
-
     @abc.abstractmethod
     def _is_valid_definition(self, definition: dict) -> bool:
         raise NotImplementedError
@@ -164,39 +155,8 @@ class UnweightedSearchTree(SearchTree):
     ..  container:: example
 
         >>> search_tree = nauert.UnweightedSearchTree()
-        >>> string = abjad.storage(search_tree)
-        >>> print(string)
-        nauert.UnweightedSearchTree(
-            definition={
-                2: {
-                    2: {
-                        2: {
-                            2: None,
-                            },
-                        3: None,
-                        },
-                    3: None,
-                    5: None,
-                    7: None,
-                    },
-                3: {
-                    2: {
-                        2: None,
-                        },
-                    3: None,
-                    5: None,
-                    },
-                5: {
-                    2: None,
-                    3: None,
-                    },
-                7: {
-                    2: None,
-                    },
-                11: None,
-                13: None,
-                },
-            )
+        >>> search_tree
+        UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None})
 
     ..  container:: example
 
@@ -258,8 +218,6 @@ class UnweightedSearchTree(SearchTree):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-
-    _publish_storage_format = True
 
     ### PRIVATE METHODS ###
 
@@ -343,16 +301,8 @@ class WeightedSearchTree(SearchTree):
         Allows for dividing nodes in a q-grid into parts with unequal weights.
 
         >>> search_tree = nauert.WeightedSearchTree()
-
-        >>> string = abjad.storage(search_tree)
-        >>> print(string)
-        nauert.WeightedSearchTree(
-            definition={
-                'divisors': (2, 3, 5, 7),
-                'max_depth': 3,
-                'max_divisions': 2,
-                },
-            )
+        >>> search_tree
+        WeightedSearchTree(definition={'divisors': (2, 3, 5, 7), 'max_depth': 3, 'max_divisions': 2})
 
     ..  container:: example
 
@@ -389,8 +339,6 @@ class WeightedSearchTree(SearchTree):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_all_compositions", "_compositions", "_definition")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

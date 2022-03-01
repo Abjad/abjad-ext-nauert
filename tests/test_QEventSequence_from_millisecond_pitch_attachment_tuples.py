@@ -26,4 +26,4 @@ def test_QEventSequence_from_millisecond_pitch_attachment_tuples_01():
             ),
             nauert.TerminalQEvent(abjad.Offset(2050, 1)),
         )
-    ), print(abjad.storage(q_events))
+    ), repr(q_events)

@@ -31,44 +31,20 @@ class QEventSequence:
         ... )
 
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((1000, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((1500, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((2750, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((3250, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((1500, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((2750, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((3250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = ("_sequence",)
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -94,8 +70,8 @@ class QEventSequence:
             )
             assert isinstance(sequence[-1], TerminalQEvent)
             offsets = [x.offset for x in sequence]
-            offset_sequence = abjad.Sequence(offsets)
-            assert offset_sequence.is_increasing(strict=False)
+            offset_sequence = list(offsets)
+            assert abjad.sequence.is_increasing(offset_sequence, strict=False)
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
 
@@ -115,56 +91,6 @@ class QEventSequence:
             if self.sequence == argument.sequence:
                 return True
         return False
-
-    def __format__(self, format_specification: str = "") -> str:
-        r"""
-        Formats q-event sequence.
-
-        Set ``format_specification`` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
-        ...     durations)
-
-        >>> string = format(sequence)
-        >>> print(string)
-        nauert.QEventSequence(
-            (
-                nauert.PitchedQEvent(
-                    offset=abjad.Offset((0, 1)),
-                    pitches=(
-                        abjad.NamedPitch("c'"),
-                        ),
-                    ),
-                nauert.SilentQEvent(
-                    offset=abjad.Offset((1000, 1)),
-                    ),
-                nauert.PitchedQEvent(
-                    offset=abjad.Offset((1500, 1)),
-                    pitches=(
-                        abjad.NamedPitch("c'"),
-                        ),
-                    ),
-                nauert.SilentQEvent(
-                    offset=abjad.Offset((2750, 1)),
-                    ),
-                nauert.PitchedQEvent(
-                    offset=abjad.Offset((3250, 1)),
-                    pitches=(
-                        abjad.NamedPitch("c'"),
-                        ),
-                    ),
-                nauert.TerminalQEvent(
-                    offset=abjad.Offset((4000, 1)),
-                    ),
-                )
-            )
-
-        """
-        if format_specification in ("", "storage"):
-            return abjad.storage(self)
-        return str(self)
 
     @typing.overload
     def __getitem__(self, argument: int) -> QEvent:
@@ -207,17 +133,6 @@ class QEventSequence:
         """
         return len(self._sequence)
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self) -> abjad.FormatSpecification:
-        values = []
-        if self.sequence:
-            values.append(self.sequence)
-        return abjad.FormatSpecification(
-            storage_format_args_values=tuple(values),
-            storage_format_keyword_names=None,
-        )
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -245,36 +160,14 @@ class QEventSequence:
         ...     durations)
 
         >>> for q_event in sequence.sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((1000, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((1500, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((2750, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((3250, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((1500, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((2750, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((3250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
         return self._sequence
@@ -295,33 +188,14 @@ class QEventSequence:
         ...     durations)
 
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.SilentQEvent(
-            offset=abjad.Offset((0, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((250, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((750, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((1750, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((3000, 1)),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
+        SilentQEvent(offset=Offset((0, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((750, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((1750, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((3000, 1)), index=None, attachments=())
+        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
         durations: typing.Union[
@@ -329,11 +203,11 @@ class QEventSequence:
         ]
         if fuse_silences:
             durations = [
-                x for x in abjad.Sequence(milliseconds).sum_by_sign(sign=[-1]) if x
+                _ for _ in abjad.sequence.sum_by_sign(milliseconds, sign=[-1]) if _
             ]
         else:
             durations = milliseconds
-        offsets = abjad.math.cumulative_sums([abs(x) for x in durations])
+        offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events: typing.List[QEvent] = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
@@ -363,46 +237,18 @@ class QEventSequence:
         ...     offsets)
 
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((250, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((750, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((1750, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((3000, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        PitchedQEvent(offset=Offset((1750, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
         q_events: typing.List[QEvent] = []
-        q_events.extend([PitchedQEvent(x, [0]) for x in offsets[:-1]])
+        q_events.extend([PitchedQEvent(_, [0]) for _ in offsets[:-1]])
         q_events.append(TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
@@ -428,65 +274,40 @@ class QEventSequence:
         ...     tuples
         ... )
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            attachments=('foo',),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((250, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((750, 1)),
-            pitches=(
-                abjad.NamedPitch("d'"),
-                abjad.NamedPitch("ef'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((1750, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((3000, 1)),
-            pitches=(
-                abjad.NamedPitch("cs'"),
-                ),
-            attachments=('foobar', 'foo'),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=('foo',))
+        SilentQEvent(offset=Offset((250, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("d'"), NamedPitch("ef'")), index=None, attachments=())
+        SilentQEvent(offset=Offset((1750, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch("cs'"),), index=None, attachments=('foobar', 'foo'))
+        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
         assert isinstance(tuples, collections.abc.Iterable)
-        assert all(isinstance(x, collections.abc.Iterable) for x in tuples)
-        assert all(len(x) == 3 for x in tuples)
-        assert all(0 < x[0] for x in tuples)
+        assert all(isinstance(_, collections.abc.Iterable) for _ in tuples)
+        assert all(len(_) == 3 for _ in tuples)
+        assert all(0 < _[0] for _ in tuples)
         for tuple_ in tuples:
             assert isinstance(
                 tuple_[1], (numbers.Number, type(None), collections.abc.Sequence)
             )
             if isinstance(tuple_[1], collections.abc.Sequence):
                 assert 0 < len(tuple_[1])
-                assert all(isinstance(x, numbers.Number) for x in tuple_[1])
+                assert all(isinstance(_, numbers.Number) for _ in tuple_[1])
             if tuple_[1] is None:
                 assert tuple_[2] is None
         # fuse silences
-        g = itertools.groupby(tuples, lambda x: x[1] is not None)
+        g = itertools.groupby(tuples, lambda _: _[1] is not None)
         groups = []
         for value, group in g:
             if value:
                 groups.extend(list(group))
             else:
-                duration = sum(x[0] for x in group)
+                duration = sum(_[0] for _ in group)
                 groups.append((duration, None, None))
         # find offsets
-        offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
+        offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
         # build QEvents
         q_events: typing.List[QEvent] = []
         for pair in zip(offsets, groups):
@@ -494,7 +315,7 @@ class QEventSequence:
             pitches = pair[1][1]
             attachments = pair[1][2]
             if isinstance(pitches, collections.abc.Iterable):
-                assert all(isinstance(x, numbers.Number) for x in pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
                 q_events.append(PitchedQEvent(offset, pitches, attachments))
             elif isinstance(pitches, type(None)):
                 q_events.append(SilentQEvent(offset))
@@ -527,50 +348,27 @@ class QEventSequence:
         ...     pairs)
 
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((250, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((750, 1)),
-            pitches=(
-                abjad.NamedPitch("d'"),
-                abjad.NamedPitch("ef'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((1750, 1)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((3000, 1)),
-            pitches=(
-                abjad.NamedPitch("cs'"),
-                ),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((4000, 1)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((250, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("d'"), NamedPitch("ef'")), index=None, attachments=())
+        SilentQEvent(offset=Offset((1750, 1)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch("cs'"),), index=None, attachments=())
+        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
         assert isinstance(pairs, collections.abc.Iterable)
-        assert all(isinstance(x, collections.abc.Iterable) for x in pairs)
-        assert all(len(x) == 2 for x in pairs)
-        assert all(0 < x[0] for x in pairs)
+        assert all(isinstance(_, collections.abc.Iterable) for _ in pairs)
+        assert all(len(_) == 2 for _ in pairs)
+        assert all(0 < _[0] for _ in pairs)
         for _, pitches in pairs:
             assert isinstance(
                 pitches, (numbers.Number, type(None), collections.abc.Sequence)
             )
             if isinstance(pitches, collections.abc.Sequence):
                 assert 0 < len(pitches)
-                assert all(isinstance(x, numbers.Number) for x in pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
         # fuse silences
         g = itertools.groupby(pairs, lambda x: x[1] is not None)
         groups = []
@@ -612,35 +410,18 @@ class QEventSequence:
         ...     durations, tempo=tempo)
 
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((10000, 29)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((17500, 29)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((20000, 29)),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((40000, 29)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((10000, 29)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((17500, 29)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        SilentQEvent(offset=Offset((20000, 29)), index=None, attachments=())
+        TerminalQEvent(offset=Offset((40000, 29)), index=None, attachments=())
 
         """
         durations = [abjad.Duration(x) for x in durations]
         assert isinstance(tempo, abjad.MetronomeMark)
-        durations = [x for x in abjad.Sequence(durations).sum_by_sign(sign=[-1]) if x]
+        durations = [x for x in abjad.sequence.sum_by_sign(durations, sign=[-1]) if x]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events = []
@@ -687,40 +468,18 @@ class QEventSequence:
         ... )
 
         >>> for q_event in sequence:
-        ...     string = abjad.storage(q_event)
-        ...     print(string)
+        ...     q_event
         ...
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((0, 1)),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((2500, 3)),
-            pitches=(
-                abjad.NamedPitch("d'"),
-                abjad.NamedPitch("fs'"),
-                ),
-            )
-        nauert.SilentQEvent(
-            offset=abjad.Offset((4375, 3)),
-            )
-        nauert.PitchedQEvent(
-            offset=abjad.Offset((5000, 3)),
-            pitches=(
-                abjad.NamedPitch("gqs'"),
-                ),
-            )
-        nauert.TerminalQEvent(
-            offset=abjad.Offset((10000, 3)),
-            )
+        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+        PitchedQEvent(offset=Offset((2500, 3)), pitches=(NamedPitch("d'"), NamedPitch("fs'")), index=None, attachments=())
+        SilentQEvent(offset=Offset((4375, 3)), index=None, attachments=())
+        PitchedQEvent(offset=Offset((5000, 3)), pitches=(NamedPitch("gqs'"),), index=None, attachments=())
+        TerminalQEvent(offset=Offset((10000, 3)), index=None, attachments=())
 
         If ``tempo`` is ``None``, all leaves in ``leaves`` must have an
         effective, non-imprecise tempo. The millisecond-duration of each leaf
         will be determined by its effective tempo.
         """
-        assert abjad.select(leaves).are_contiguous_logical_voice()
         assert len(leaves)
         if tempo is None:
             prototype = abjad.MetronomeMark
@@ -760,6 +519,7 @@ class QEventSequence:
                     for x in group
                 )
             durations.append(duration)
+            pitch: typing.Any
             # get pitch of first leaf in group
             if isinstance(group[0], (abjad.Rest, abjad.Skip)):
                 pitch = None
