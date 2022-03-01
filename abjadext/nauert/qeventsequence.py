@@ -70,8 +70,8 @@ class QEventSequence:
             )
             assert isinstance(sequence[-1], TerminalQEvent)
             offsets = [x.offset for x in sequence]
-            offset_sequence = abjad.Sequence(offsets)
-            assert offset_sequence.is_increasing(strict=False)
+            offset_sequence = list(offsets)
+            assert abjad.sequence.is_increasing(offset_sequence, strict=False)
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
 
@@ -203,11 +203,11 @@ class QEventSequence:
         ]
         if fuse_silences:
             durations = [
-                x for x in abjad.Sequence(milliseconds).sum_by_sign(sign=[-1]) if x
+                _ for _ in abjad.sequence.sum_by_sign(milliseconds, sign=[-1]) if _
             ]
         else:
             durations = milliseconds
-        offsets = abjad.math.cumulative_sums([abs(x) for x in durations])
+        offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events: typing.List[QEvent] = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
@@ -248,7 +248,7 @@ class QEventSequence:
 
         """
         q_events: typing.List[QEvent] = []
-        q_events.extend([PitchedQEvent(x, [0]) for x in offsets[:-1]])
+        q_events.extend([PitchedQEvent(_, [0]) for _ in offsets[:-1]])
         q_events.append(TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
@@ -285,29 +285,29 @@ class QEventSequence:
 
         """
         assert isinstance(tuples, collections.abc.Iterable)
-        assert all(isinstance(x, collections.abc.Iterable) for x in tuples)
-        assert all(len(x) == 3 for x in tuples)
-        assert all(0 < x[0] for x in tuples)
+        assert all(isinstance(_, collections.abc.Iterable) for _ in tuples)
+        assert all(len(_) == 3 for _ in tuples)
+        assert all(0 < _[0] for _ in tuples)
         for tuple_ in tuples:
             assert isinstance(
                 tuple_[1], (numbers.Number, type(None), collections.abc.Sequence)
             )
             if isinstance(tuple_[1], collections.abc.Sequence):
                 assert 0 < len(tuple_[1])
-                assert all(isinstance(x, numbers.Number) for x in tuple_[1])
+                assert all(isinstance(_, numbers.Number) for _ in tuple_[1])
             if tuple_[1] is None:
                 assert tuple_[2] is None
         # fuse silences
-        g = itertools.groupby(tuples, lambda x: x[1] is not None)
+        g = itertools.groupby(tuples, lambda _: _[1] is not None)
         groups = []
         for value, group in g:
             if value:
                 groups.extend(list(group))
             else:
-                duration = sum(x[0] for x in group)
+                duration = sum(_[0] for _ in group)
                 groups.append((duration, None, None))
         # find offsets
-        offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
+        offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
         # build QEvents
         q_events: typing.List[QEvent] = []
         for pair in zip(offsets, groups):
@@ -315,7 +315,7 @@ class QEventSequence:
             pitches = pair[1][1]
             attachments = pair[1][2]
             if isinstance(pitches, collections.abc.Iterable):
-                assert all(isinstance(x, numbers.Number) for x in pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
                 q_events.append(PitchedQEvent(offset, pitches, attachments))
             elif isinstance(pitches, type(None)):
                 q_events.append(SilentQEvent(offset))
@@ -359,16 +359,16 @@ class QEventSequence:
 
         """
         assert isinstance(pairs, collections.abc.Iterable)
-        assert all(isinstance(x, collections.abc.Iterable) for x in pairs)
-        assert all(len(x) == 2 for x in pairs)
-        assert all(0 < x[0] for x in pairs)
+        assert all(isinstance(_, collections.abc.Iterable) for _ in pairs)
+        assert all(len(_) == 2 for _ in pairs)
+        assert all(0 < _[0] for _ in pairs)
         for _, pitches in pairs:
             assert isinstance(
                 pitches, (numbers.Number, type(None), collections.abc.Sequence)
             )
             if isinstance(pitches, collections.abc.Sequence):
                 assert 0 < len(pitches)
-                assert all(isinstance(x, numbers.Number) for x in pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
         # fuse silences
         g = itertools.groupby(pairs, lambda x: x[1] is not None)
         groups = []
@@ -421,7 +421,7 @@ class QEventSequence:
         """
         durations = [abjad.Duration(x) for x in durations]
         assert isinstance(tempo, abjad.MetronomeMark)
-        durations = [x for x in abjad.Sequence(durations).sum_by_sign(sign=[-1]) if x]
+        durations = [x for x in abjad.sequence.sum_by_sign(durations, sign=[-1]) if x]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events = []
@@ -480,7 +480,6 @@ class QEventSequence:
         effective, non-imprecise tempo. The millisecond-duration of each leaf
         will be determined by its effective tempo.
         """
-        assert abjad.select(leaves).are_contiguous_logical_voice()
         assert len(leaves)
         if tempo is None:
             prototype = abjad.MetronomeMark

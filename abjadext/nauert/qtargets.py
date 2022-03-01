@@ -210,7 +210,7 @@ class QTarget(abc.ABC):
                     )
                 abjad.mutate.replace(leaf, new_leaf)
                 if abjad.get.annotation(previous_leaf, "tie_to_next") is True:
-                    leaves = abjad.select([previous_leaf, new_leaf])
+                    leaves = [previous_leaf, new_leaf]
                     abjad.tie(leaves)
                     abjad.annotate(new_leaf, "tie_to_next", True)
             if leaf._has_indicator(abjad.MetronomeMark):
@@ -232,7 +232,7 @@ class QTarget(abc.ABC):
     def _shift_downbeat_q_events_to_next_q_grid(self) -> typing.List[QEventProxy]:
         beats = self.beats
         assert beats[-1].q_grid is not None
-        for one, two in abjad.Sequence(beats).nwise():
+        for one, two in abjad.sequence.nwise(beats):
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
@@ -308,8 +308,8 @@ class BeatwiseQTarget(QTarget):
         assert isinstance(beat, QTargetBeat) and beat.q_grid is not None
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
-            attachment_target = components[0]
-            leaves = abjad.select(attachment_target).leaves()
+            attachment_target: abjad.Component = components[0]
+            leaves = abjad.select.leaves(attachment_target)
             if isinstance(attachment_target, abjad.Container):
                 attachment_target = leaves[0]
             tempo = copy.deepcopy(beat.tempo)
@@ -317,11 +317,11 @@ class BeatwiseQTarget(QTarget):
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
-        for beat_one, beat_two in abjad.Sequence(self.items).nwise():
+        for beat_one, beat_two in abjad.sequence.nwise(self.items):
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]
-                leaves = abjad.select(attachment_target).leaves()
+                leaves = abjad.select.leaves(attachment_target)
                 if isinstance(attachment_target, abjad.Container):
                     attachment_target = leaves[0]
                 tempo = copy.deepcopy(beat_two.tempo)
@@ -402,7 +402,7 @@ class MeasurewiseQTarget(QTarget):
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
-        pairs = abjad.Sequence(self.items).nwise()
+        pairs = abjad.sequence.nwise(self.items)
         for q_target_measure_one, q_target_measure_two in pairs:
             measure = abjad.Container()
             for beat in q_target_measure_two.beats:

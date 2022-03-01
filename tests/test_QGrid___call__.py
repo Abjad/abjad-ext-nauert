@@ -61,7 +61,7 @@ def test_QGrid___call___02():
     result = q_grid((1, 4))
 
     assert isinstance(result, list) and len(result) == 1
-    assert abjad.lilypond(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -78,7 +78,7 @@ def test_QGrid___call___02():
         """
     ), print(format(result[0]))
 
-    leaves = abjad.select(result[0]).leaves()
+    leaves = abjad.select.leaves(result[0])
     leaf = leaves[0]
     annotation = abjad.get.indicator(leaf, dict)
     q_events = annotation["q_events"]
@@ -131,7 +131,7 @@ def test_QGrid___call___03():
     result = q_grid((1, 3))
 
     assert isinstance(result, list) and len(result) == 1
-    assert abjad.lilypond(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 2/3

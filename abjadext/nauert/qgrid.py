@@ -43,7 +43,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     def __call__(
         self, pulse_duration: typing.Union[abjad.typings.DurationTyping, int]
-    ) -> abjad.Selection:
+    ) -> list[abjad.Note | abjad.Tuplet]:
         """
         Calls q-grid leaf.
         """
@@ -225,7 +225,7 @@ class QGrid:
 
     def __call__(
         self, beatspan: typing.Union[abjad.typings.DurationTyping, int]
-    ) -> abjad.Selection:
+    ) -> list[abjad.Note | abjad.Tuplet]:
         """
         Calls q-grid.
         """
