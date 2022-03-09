@@ -183,7 +183,7 @@ class QTarget(abc.ABC):
                     new_leaf = abjad.Rest(leaf)
                 elif 1 < len(pitches):
                     new_leaf = abjad.Chord(leaf)
-                    new_leaf.written_pitches = abjad.PitchSegment(pitches)
+                    new_leaf.written_pitches = abjad.NamedPitchSegment(pitches)
                 else:
                     new_leaf = abjad.Note(leaf)
                     new_leaf.written_pitch = pitches[0]
