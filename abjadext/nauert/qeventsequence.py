@@ -4,8 +4,6 @@ import itertools
 import numbers
 import typing
 
-import quicktions
-
 import abjad
 
 from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
@@ -444,18 +442,8 @@ class QEventSequence:
     @classmethod
     def from_tempo_scaled_leaves(
         class_,
-        leaves: typing.Union[
-            abjad.Selection,
-            typing.Sequence[typing.Union[abjad.Component, abjad.Selection]],
-        ],
-        tempo: typing.Optional[
-            typing.Union[
-                abjad.MetronomeMark,
-                typing.Tuple[
-                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
-                ],
-            ]
-        ] = None,
+        leaves,
+        tempo=None,
     ) -> "QEventSequence":
         r"""
         Changes ``leaves``, optionally with ``tempo`` into a ``QEventSequence``:
