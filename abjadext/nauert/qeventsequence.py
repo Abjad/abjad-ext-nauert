@@ -444,10 +444,7 @@ class QEventSequence:
     @classmethod
     def from_tempo_scaled_leaves(
         class_,
-        leaves: typing.Union[
-            abjad.Selection,
-            typing.Sequence[typing.Union[abjad.Component, abjad.Selection]],
-        ],
+        leaves: list | typing.Sequence[abjad.Component | list],
         tempo: typing.Optional[
             typing.Union[
                 abjad.MetronomeMark,
