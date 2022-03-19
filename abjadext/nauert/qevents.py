@@ -25,9 +25,9 @@ class QEvent(abc.ABC):
     @abc.abstractmethod
     def __init__(
         self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-        index: typing.Optional[int] = None,
-        attachments: typing.Optional[typing.Iterable] = None,
+        offset: abjad.OffsetTyping = 0,
+        index: int | None = None,
+        attachments: typing.Iterable | None = None,
     ):
         offset = abjad.Offset(offset)
         self._offset = offset
@@ -98,12 +98,10 @@ class PitchedQEvent(QEvent):
 
     def __init__(
         self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-        pitches: typing.Optional[
-            typing.Iterable[typing.Union[numbers.Number, abjad.typings.Number]]
-        ] = None,
-        attachments: typing.Optional[typing.Iterable] = None,
-        index: typing.Optional[int] = None,
+        offset: abjad.OffsetTyping = 0,
+        pitches: typing.Iterable[abjad.Number] | None = None,
+        attachments: typing.Iterable | None = None,
+        index: int | None = None,
     ):
         QEvent.__init__(self, offset=offset, index=index)
         if attachments is None:
@@ -183,9 +181,9 @@ class SilentQEvent(QEvent):
 
     def __init__(
         self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-        attachments: typing.Optional[typing.Iterable] = None,
-        index: typing.Optional[int] = None,
+        offset: abjad.OffsetTyping = 0,
+        attachments: typing.Iterable | None = None,
+        index: int | None = None,
     ):
         QEvent.__init__(self, offset=offset, index=index)
         if attachments is None:
@@ -245,10 +243,7 @@ class TerminalQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        offset: typing.Union[numbers.Real, abjad.typings.Number, abjad.IntegerPair] = 0,
-    ):
+    def __init__(self, offset: abjad.OffsetTyping = 0):
         QEvent.__init__(self, offset=offset)
 
     ### SPECIAL METHODS ###

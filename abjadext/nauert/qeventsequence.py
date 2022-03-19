@@ -167,7 +167,7 @@ class QEventSequence:
     @classmethod
     def from_millisecond_durations(
         class_,
-        milliseconds: typing.Sequence[numbers.Real],
+        milliseconds: typing.Sequence[abjad.Number],
         fuse_silences: bool = False,
     ) -> "QEventSequence":
         r"""
@@ -188,7 +188,7 @@ class QEventSequence:
         TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
-        durations: typing.Sequence[numbers.Real]
+        durations: abjad.DurationSequenceTyping
         if fuse_silences:
             durations = [
                 _ for _ in abjad.sequence.sum_by_sign(milliseconds, sign=[-1]) if _
@@ -212,7 +212,7 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_offsets(
-        class_, offsets: typing.Sequence[numbers.Real]
+        class_, offsets: abjad.OffsetSequenceTyping
     ) -> "QEventSequence":
         r"""
         Changes millisecond offsets ``offsets`` to a ``QEventSequence``:
@@ -268,7 +268,7 @@ class QEventSequence:
         assert all(0 < _[0] for _ in tuples)
         for tuple_ in tuples:
             assert isinstance(
-                tuple_[1], (numbers.Number, type(None), collections.abc.Sequence)
+                tuple_[1], numbers.Number | type(None) | collections.abc.Sequence
             )
             if isinstance(tuple_[1], collections.abc.Sequence):
                 assert 0 < len(tuple_[1])
@@ -297,7 +297,7 @@ class QEventSequence:
                 q_events.append(PitchedQEvent(offset, pitches, attachments))
             elif isinstance(pitches, type(None)):
                 q_events.append(SilentQEvent(offset))
-            elif isinstance(pitches, numbers.Number):
+            elif isinstance(pitches, int | float):
                 q_events.append(PitchedQEvent(offset, [pitches], attachments))
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
