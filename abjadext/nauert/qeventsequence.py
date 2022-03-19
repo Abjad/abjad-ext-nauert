@@ -46,17 +46,9 @@ class QEventSequence:
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        sequence: typing.Optional[
-            typing.Union["QEventSequence", typing.Sequence[QEvent]]
-        ] = None,
-    ):
+    def __init__(self, sequence):
 
-        q_event_classes = (
-            PitchedQEvent,
-            SilentQEvent,
-        )
+        q_event_classes = (PitchedQEvent, SilentQEvent)
         self._sequence: typing.Tuple[QEvent, ...]
         if sequence is None:
             self._sequence = ()
@@ -175,7 +167,7 @@ class QEventSequence:
     @classmethod
     def from_millisecond_durations(
         class_,
-        milliseconds: typing.Union[typing.Sequence[abjad.typings.Number]],
+        milliseconds: typing.Sequence[numbers.Real],
         fuse_silences: bool = False,
     ) -> "QEventSequence":
         r"""
@@ -196,9 +188,7 @@ class QEventSequence:
         TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
-        durations: typing.Union[
-            typing.Sequence[numbers.Real], typing.Sequence[abjad.typings.Number]
-        ]
+        durations: typing.Sequence[numbers.Real]
         if fuse_silences:
             durations = [
                 _ for _ in abjad.sequence.sum_by_sign(milliseconds, sign=[-1]) if _
@@ -222,10 +212,7 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_offsets(
-        class_,
-        offsets: typing.Union[
-            typing.Sequence[numbers.Real], typing.Sequence[abjad.typings.Number]
-        ],
+        class_, offsets: typing.Sequence[numbers.Real]
     ) -> "QEventSequence":
         r"""
         Changes millisecond offsets ``offsets`` to a ``QEventSequence``:
@@ -252,14 +239,7 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_pitch_attachment_tuples(
-        class_,
-        tuples: typing.Iterable[
-            typing.Tuple[
-                abjad.typings.Number,
-                typing.Optional[typing.Tuple[abjad.typings.Number, ...]],
-                typing.Optional[tuple],
-            ]
-        ],
+        class_, tuples: typing.Iterable[typing.Tuple]
     ) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch:attachment tuples ``tuples`` into a ``QEventSequence``:
@@ -324,17 +304,7 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_pitch_pairs(
-        class_,
-        pairs: typing.Iterable[
-            typing.Tuple[
-                abjad.typings.Number,
-                typing.Optional[
-                    typing.Union[
-                        abjad.typings.Number, typing.Tuple[abjad.typings.Number, ...]
-                    ]
-                ],
-            ]
-        ],
+        class_, pairs: typing.Iterable[typing.Tuple]
     ) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
@@ -396,7 +366,7 @@ class QEventSequence:
     @classmethod
     def from_tempo_scaled_durations(
         class_,
-        durations: abjad.typings.DurationSequenceTyping,
+        durations: abjad.DurationSequenceTyping,
         tempo: abjad.MetronomeMark,
     ) -> "QEventSequence":
         r"""
@@ -440,11 +410,7 @@ class QEventSequence:
         return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_leaves(
-        class_,
-        leaves,
-        tempo=None,
-    ) -> "QEventSequence":
+    def from_tempo_scaled_leaves(class_, leaves, tempo=None) -> "QEventSequence":
         r"""
         Changes ``leaves``, optionally with ``tempo`` into a ``QEventSequence``:
 
