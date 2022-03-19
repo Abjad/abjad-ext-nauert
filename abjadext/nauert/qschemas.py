@@ -215,7 +215,7 @@ class BeatwiseQSchema(QSchema):
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
 
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()):
@@ -223,7 +223,7 @@ class BeatwiseQSchema(QSchema):
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
 
     ..  container:: example
 
@@ -414,8 +414,8 @@ class MeasurewiseQSchema(QSchema):
         ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
-        time_signature: 3/4
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        time_signature: TimeSignature(pair=(3, 4), hide=False, partial=None)
         use_full_measure: True
 
         >>> index = 1000
@@ -423,8 +423,8 @@ class MeasurewiseQSchema(QSchema):
         ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
-        time_signature: 3/4
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        time_signature: TimeSignature(pair=(3, 4), hide=False, partial=None)
         use_full_measure: True
 
     ..  container:: example
