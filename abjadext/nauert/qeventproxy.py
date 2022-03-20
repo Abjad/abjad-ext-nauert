@@ -29,9 +29,7 @@ class QEventProxy:
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        q_event: typing.Optional[QEvent] = None,
-        *offsets: typing.Union[int, abjad.typings.IntegerPair],
+        self, q_event: typing.Optional[QEvent] = None, *offsets: abjad.OffsetTyping
     ):
         if len(offsets) == 1:
             offset = abjad.Offset(offsets[0])
