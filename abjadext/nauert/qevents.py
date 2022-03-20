@@ -1,5 +1,4 @@
 import abc
-import numbers
 import typing
 
 import abjad
@@ -154,7 +153,7 @@ class PitchedQEvent(QEvent):
         return self._attachments
 
     @property
-    def pitches(self) -> typing.Tuple[abjad.NamedPitch, ...]:
+    def pitches(self) -> tuple[abjad.NamedPitch, ...]:
         """
         Pitches of pitched q-event.
         """

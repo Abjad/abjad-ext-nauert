@@ -1,5 +1,4 @@
 import abc
-import typing
 
 from .qgrid import QGrid
 from .qtargetitems import QTargetBeat
@@ -28,8 +27,8 @@ class Heuristic(abc.ABC):
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, q_target_beats: typing.Tuple[QTargetBeat, ...]
-    ) -> typing.Tuple[QTargetBeat, ...]:
+        self, q_target_beats: tuple[QTargetBeat, ...]
+    ) -> tuple[QTargetBeat, ...]:
         """
         Calls heuristic.
         """
@@ -41,8 +40,8 @@ class Heuristic(abc.ABC):
 
     @abc.abstractmethod
     def _process(
-        self, q_target_beats: typing.Tuple[QTargetBeat, ...]
-    ) -> typing.Tuple[QTargetBeat, ...]:
+        self, q_target_beats: tuple[QTargetBeat, ...]
+    ) -> tuple[QTargetBeat, ...]:
         raise NotImplementedError
 
 
@@ -100,8 +99,8 @@ class DistanceHeuristic(Heuristic):
     ### PRIVATE METHODS ###
 
     def _process(
-        self, q_target_beats: typing.Tuple[QTargetBeat, ...]
-    ) -> typing.Tuple[QTargetBeat, ...]:
+        self, q_target_beats: tuple[QTargetBeat, ...]
+    ) -> tuple[QTargetBeat, ...]:
         for q_target_beat in q_target_beats:
             q_grids = q_target_beat.q_grids
             if q_grids:

@@ -1,6 +1,5 @@
 import abc
 import copy
-import typing
 
 import abjad
 
@@ -26,7 +25,7 @@ class SearchTree(abc.ABC):
 
     ### INITIALIZER ###
 
-    def __init__(self, definition: typing.Optional[dict] = None):
+    def __init__(self, definition: dict | None = None):
         if definition is None:
             definition = self.default_definition
         else:
@@ -35,7 +34,7 @@ class SearchTree(abc.ABC):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_grid: QGrid) -> typing.List[QGrid]:
+    def __call__(self, q_grid: QGrid) -> list[QGrid]:
         """
         Calls search tree.
         """
@@ -77,9 +76,7 @@ class SearchTree(abc.ABC):
 
     def _find_divisible_leaf_indices_and_subdivisions(
         self, q_grid: QGrid
-    ) -> typing.Tuple[
-        typing.List[int], typing.List[typing.Tuple[typing.Tuple[int, ...], ...]]
-    ]:
+    ) -> tuple[list[int], list[tuple[tuple[int, ...], ...]]]:
         # TODO: This should actually check for all QEvents which fall
         # within the leaf's duration,
         # including QEvents attached to the next leaf
@@ -110,14 +107,12 @@ class SearchTree(abc.ABC):
     @abc.abstractmethod
     def _find_leaf_subdivisions(
         self, parentage_ratios: tuple
-    ) -> typing.Tuple[typing.Tuple[int, ...], ...]:
+    ) -> tuple[tuple[int, ...], ...]:
         raise NotImplementedError
 
     def _generate_all_subdivision_commands(
         self, q_grid: QGrid
-    ) -> typing.Tuple[
-        typing.Tuple[typing.Tuple[int, typing.Tuple[int, int]], ...], ...
-    ]:
+    ) -> tuple[tuple[tuple[int, tuple[int, int]], ...], ...]:
         indices, subdivisions = self._find_divisible_leaf_indices_and_subdivisions(
             q_grid
         )
@@ -223,7 +218,7 @@ class UnweightedSearchTree(SearchTree):
 
     def _find_leaf_subdivisions(
         self, parentage_ratios: tuple
-    ) -> typing.Tuple[typing.Tuple[int, ...], ...]:
+    ) -> tuple[tuple[int, ...], ...]:
         parentage = [x[1] for x in parentage_ratios[1:]]
         if not parentage:
             return tuple((1,) * x for x in sorted(self._definition.keys()))
@@ -342,7 +337,7 @@ class WeightedSearchTree(SearchTree):
 
     ### INITIALIZER ###
 
-    def __init__(self, definition: typing.Optional[dict] = None):
+    def __init__(self, definition: dict | None = None):
         SearchTree.__init__(self, definition)
         self._compositions = self._precompute_compositions()
         all_compositions = []
@@ -354,7 +349,7 @@ class WeightedSearchTree(SearchTree):
 
     def _find_leaf_subdivisions(
         self, parentage_ratios: tuple
-    ) -> typing.Tuple[typing.Tuple[int, ...], ...]:
+    ) -> tuple[tuple[int, ...], ...]:
         if len(parentage_ratios[1:]) < self._definition["max_depth"]:
             return self._all_compositions
         return ()
@@ -386,7 +381,7 @@ class WeightedSearchTree(SearchTree):
 
     def _precompute_compositions(
         self,
-    ) -> typing.Dict[int, typing.List[typing.Tuple[int, ...]]]:
+    ) -> dict[int, list[tuple[int, ...]]]:
         compositions = {}
         max_divisions = self._definition["max_divisions"]
         for divisor in self._definition["divisors"]:
@@ -400,7 +395,7 @@ class WeightedSearchTree(SearchTree):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def all_compositions(self) -> typing.Tuple[typing.Tuple[int, ...], ...]:
+    def all_compositions(self) -> tuple[tuple[int, ...], ...]:
         """
         All compositions of weighted search tree.
         """

@@ -49,7 +49,7 @@ class QEventSequence:
     def __init__(self, sequence):
 
         q_event_classes = (PitchedQEvent, SilentQEvent)
-        self._sequence: typing.Tuple[QEvent, ...]
+        self._sequence: tuple[QEvent, ...]
         if sequence is None:
             self._sequence = ()
             return
@@ -87,12 +87,10 @@ class QEventSequence:
         ...
 
     @typing.overload
-    def __getitem__(self, argument: slice) -> typing.Tuple[QEvent, ...]:
+    def __getitem__(self, argument: slice) -> tuple[QEvent, ...]:
         ...
 
-    def __getitem__(
-        self, argument: typing.Union[int, slice]
-    ) -> typing.Union[QEvent, typing.Tuple[QEvent, ...]]:
+    def __getitem__(self, argument: int | slice) -> QEvent | tuple[QEvent, ...]:
         """
         Gets item or slice identified by `argument`.
 
@@ -141,7 +139,7 @@ class QEventSequence:
         return abjad.Duration(self[-1].offset)
 
     @property
-    def sequence(self) -> typing.Tuple:
+    def sequence(self) -> tuple:
         r"""
         Sequence of q-events.
 
@@ -196,7 +194,7 @@ class QEventSequence:
         else:
             durations = milliseconds
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
-        q_events: typing.List[QEvent] = []
+        q_events: list[QEvent] = []
         for pair in zip(offsets, durations):
             offset = abjad.Offset(pair[0])
             duration = pair[1]
@@ -232,14 +230,14 @@ class QEventSequence:
         TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
-        q_events: typing.List[QEvent] = []
+        q_events: list[QEvent] = []
         q_events.extend([PitchedQEvent(_, [0]) for _ in offsets[:-1]])
         q_events.append(TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
     @classmethod
     def from_millisecond_pitch_attachment_tuples(
-        class_, tuples: typing.Iterable[typing.Tuple]
+        class_, tuples: typing.Iterable[tuple]
     ) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch:attachment tuples ``tuples`` into a ``QEventSequence``:
@@ -287,7 +285,7 @@ class QEventSequence:
         # find offsets
         offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
         # build QEvents
-        q_events: typing.List[QEvent] = []
+        q_events: list[QEvent] = []
         for pair in zip(offsets, groups):
             offset = abjad.Offset(pair[0])
             pitches = pair[1][1]
@@ -304,7 +302,7 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_pitch_pairs(
-        class_, pairs: typing.Iterable[typing.Tuple]
+        class_, pairs: typing.Iterable[tuple]
     ) -> "QEventSequence":
         r"""
         Changes millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
@@ -349,7 +347,7 @@ class QEventSequence:
         # find offsets
         offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
         # build QEvents
-        q_events: typing.List[QEvent] = []
+        q_events: list[QEvent] = []
         for pair in zip(offsets, groups):
             offset = abjad.Offset(pair[0])
             pitches = pair[1][1]

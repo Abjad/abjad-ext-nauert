@@ -38,10 +38,8 @@ class QTarget(abc.ABC):
 
     ### INITIALIZATION ###
 
-    def __init__(
-        self,
-        items: typing.Sequence[QTargetItem] = [],
-    ):
+    def __init__(self, items: typing.Sequence[QTargetItem] | None = None):
+        items = [] if items is None else items
         assert all(isinstance(x, self.item_class) for x in items)
         self._items: typing.Sequence[QTargetItem] = ()
         if len(items) > 0:
@@ -52,10 +50,10 @@ class QTarget(abc.ABC):
     def __call__(
         self,
         q_event_sequence: QEventSequence,
-        grace_handler: typing.Optional[GraceHandler] = None,
-        heuristic: typing.Optional[Heuristic] = None,
-        job_handler: typing.Optional[JobHandler] = None,
-        attack_point_optimizer: typing.Optional[AttackPointOptimizer] = None,
+        grace_handler: GraceHandler | None = None,
+        heuristic: Heuristic | None = None,
+        job_handler: JobHandler | None = None,
+        attack_point_optimizer: AttackPointOptimizer | None = None,
         attach_tempos: bool = True,
     ):
         """
@@ -150,7 +148,7 @@ class QTarget(abc.ABC):
     def _attach_attachments_to_logical_ties(
         self,
         voice: abjad.Voice,
-        all_attachments: typing.Sequence[typing.Optional[tuple]],
+        all_attachments: typing.Sequence[tuple | None],
     ):
         logical_tie_list = list(
             abjad.iterate.logical_ties(voice, grace=False, pitched=True)
@@ -170,9 +168,9 @@ class QTarget(abc.ABC):
         raise NotImplementedError
 
     def _notate_leaves(
-        self, grace_handler: GraceHandler, voice: typing.Optional[abjad.Voice] = None
-    ) -> typing.List[typing.Optional[tuple]]:
-        all_q_event_attachments: typing.List[typing.Optional[tuple]] = []
+        self, grace_handler: GraceHandler, voice: abjad.Voice | None = None
+    ) -> list[tuple | None]:
+        all_q_event_attachments: list[tuple | None] = []
         for leaf in abjad.iterate.leaves(voice):
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
@@ -229,7 +227,7 @@ class QTarget(abc.ABC):
         for beat in self.beats:
             beat.q_grid.regroup_leaves_with_unencessary_divisions()
 
-    def _shift_downbeat_q_events_to_next_q_grid(self) -> typing.List[QEventProxy]:
+    def _shift_downbeat_q_events_to_next_q_grid(self) -> list[QEventProxy]:
         beats = self.beats
         assert beats[-1].q_grid is not None
         for one, two in abjad.sequence.nwise(beats):
@@ -246,7 +244,7 @@ class QTarget(abc.ABC):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
+    def beats(self) -> tuple[QTargetBeat, ...]:
         """
         Beats of q-target.
         """
@@ -290,7 +288,8 @@ class BeatwiseQTarget(QTarget):
 
     ### INITIALIZATION ###
 
-    def __init__(self, items: typing.Sequence[QTargetBeat] = []):
+    def __init__(self, items: typing.Sequence[QTargetBeat] | None = None):
+        items = [] if items is None else items
         self._items: typing.Sequence[QTargetBeat]
         super().__init__(items)
 
@@ -344,7 +343,7 @@ class BeatwiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
+    def beats(self) -> tuple[QTargetBeat, ...]:
         """
         Beats of beatwise q-target.
         """
@@ -373,7 +372,7 @@ class MeasurewiseQTarget(QTarget):
 
     ### INITIALIZATION ###
 
-    def __init__(self, items: typing.Sequence[QTargetMeasure] = []):
+    def __init__(self, items: typing.Sequence[QTargetMeasure] | None = None):
         super().__init__(items)
 
     ### PRIVATE METHODS ###
@@ -444,14 +443,14 @@ class MeasurewiseQTarget(QTarget):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beats(self) -> typing.Tuple[QTargetBeat, ...]:
+    def beats(self) -> tuple[QTargetBeat, ...]:
         """
         Beats of measurewise q-target.
         """
         return tuple([beat for item in self.items for beat in item.beats])
 
     @property
-    def item_class(self) -> typing.Type[QTargetMeasure]:
+    def item_class(self) -> type[QTargetMeasure]:
         """
         Item class of measurewise q-target.
         """

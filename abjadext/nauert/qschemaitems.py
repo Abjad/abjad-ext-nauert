@@ -1,8 +1,6 @@
 import abc
 import typing
 
-import quicktions
-
 import abjad
 
 from .searchtrees import SearchTree
@@ -24,15 +22,8 @@ class QSchemaItem(abc.ABC):
     @abc.abstractmethod
     def __init__(
         self,
-        search_tree: typing.Optional[SearchTree] = None,
-        tempo: typing.Optional[
-            typing.Union[
-                abjad.MetronomeMark,
-                typing.Tuple[
-                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
-                ],
-            ]
-        ] = None,
+        search_tree: SearchTree | None = None,
+        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
     ):
         if search_tree is not None:
             assert isinstance(search_tree, SearchTree)
@@ -96,18 +87,9 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        beatspan: typing.Optional[
-            typing.Union[abjad.typings.DurationTyping, int]
-        ] = None,
-        search_tree: typing.Optional[SearchTree] = None,
-        tempo: typing.Optional[
-            typing.Union[
-                abjad.MetronomeMark,
-                typing.Tuple[
-                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
-                ],
-            ]
-        ] = None,
+        beatspan: abjad.DurationTyping | int | None = None,
+        search_tree: SearchTree | None = None,
+        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
@@ -170,20 +152,13 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        search_tree: typing.Optional[SearchTree] = None,
-        tempo: typing.Optional[
-            typing.Union[
-                abjad.MetronomeMark,
-                typing.Tuple[
-                    abjad.typings.DurationTyping, typing.Union[int, quicktions.Fraction]
-                ],
-            ]
-        ] = None,
-        time_signature: typing.Optional[abjad.typings.IntegerPair] = None,
-        use_full_measure: typing.Optional[bool] = None,
+        search_tree: SearchTree | None = None,
+        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
+        time_signature: abjad.IntegerPair | None = None,
+        use_full_measure: bool | None = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
-        self._time_signature: typing.Optional[abjad.TimeSignature]
+        self._time_signature: abjad.TimeSignature | None
         if time_signature is not None:
             self._time_signature = abjad.TimeSignature(time_signature)
         else:
