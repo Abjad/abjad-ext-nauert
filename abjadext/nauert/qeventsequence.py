@@ -188,7 +188,7 @@ class QEventSequence:
         TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
-        durations: abjad.DurationSequenceTyping
+        durations: typing.Sequence[abjad.Number]
         if fuse_silences:
             durations = [
                 _ for _ in abjad.sequence.sum_by_sign(milliseconds, sign=[-1]) if _
@@ -358,7 +358,7 @@ class QEventSequence:
                 q_events.append(PitchedQEvent(offset, pitches))
             elif isinstance(pitches, type(None)):
                 q_events.append(SilentQEvent(offset))
-            elif isinstance(pitches, numbers.Number):
+            elif isinstance(pitches, int | float):
                 q_events.append(PitchedQEvent(offset, [pitches]))
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
