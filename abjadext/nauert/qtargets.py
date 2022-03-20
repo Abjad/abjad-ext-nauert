@@ -350,7 +350,7 @@ class BeatwiseQTarget(QTarget):
         return tuple(self._items)
 
     @property
-    def item_class(self) -> typing.Type[QTargetBeat]:
+    def item_class(self) -> type[QTargetBeat]:
         """
         Item class of beatwise q-target.
         """

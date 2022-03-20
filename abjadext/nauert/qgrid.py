@@ -135,11 +135,11 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _leaf_class(self) -> typing.Type:
+    def _leaf_class(self) -> type:
         return QGridLeaf
 
     @property
-    def _node_class(self) -> tuple[typing.Type, typing.Type]:
+    def _node_class(self) -> tuple[type, type]:
         return (type(self), QGridLeaf)
 
     ### PUBLIC PROPERTIES ###
