@@ -1,5 +1,4 @@
 import abc
-import typing
 
 import abjad
 
@@ -195,7 +194,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     def __call__(
         self,
         argument: abjad.Container,
-        time_signature: typing.Optional[abjad.TimeSignature] = None,
+        time_signature: abjad.TimeSignature | None = None,
     ) -> None:
         """
         Calls measurewise attack-point optimizer.

@@ -24,7 +24,7 @@ def test_QGrid___call___01():
     result = q_grid((1, 4))
 
     assert len(result) == 1
-    assert format(result[0]) == "c'4"
+    assert repr(result[0]) == """Note("c'4")"""
 
     annotation = abjad.get.indicator(result[0], dict)
     q_events = annotation["q_events"]

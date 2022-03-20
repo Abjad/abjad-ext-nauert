@@ -1,5 +1,3 @@
-import typing
-
 import abjad
 
 from .attackpointoptimizers import AttackPointOptimizer
@@ -281,11 +279,11 @@ class Quantizer:
     def __call__(
         self,
         q_event_sequence: QEventSequence,
-        q_schema: typing.Optional[QSchema] = None,
-        grace_handler: typing.Optional[GraceHandler] = None,
-        heuristic: typing.Optional[Heuristic] = None,
-        job_handler: typing.Optional[JobHandler] = None,
-        attack_point_optimizer: typing.Optional[AttackPointOptimizer] = None,
+        q_schema: QSchema | None = None,
+        grace_handler: GraceHandler | None = None,
+        heuristic: Heuristic | None = None,
+        job_handler: JobHandler | None = None,
+        attack_point_optimizer: AttackPointOptimizer | None = None,
         attach_tempos: bool = True,
     ) -> abjad.Voice:
         """

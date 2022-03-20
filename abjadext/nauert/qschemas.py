@@ -1,7 +1,6 @@
 import abc
 import bisect
 import copy
-import typing
 
 import abjad
 
@@ -35,7 +34,7 @@ class QSchema(abc.ABC):
 
     __slots__ = ("_items", "_lookups")
 
-    _keyword_argument_names: typing.Tuple[str, ...] = ()
+    _keyword_argument_names: tuple[str, ...] = ()
 
     _search_tree = UnweightedSearchTree()
 
@@ -73,7 +72,7 @@ class QSchema(abc.ABC):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration: abjad.typings.DurationTyping) -> QTarget:
+    def __call__(self, duration: abjad.DurationTyping) -> QTarget:
         """
         Calls QSchema on ``duration``.
         """
@@ -112,7 +111,7 @@ class QSchema(abc.ABC):
 
     ### PRIVATE METHODS ###
 
-    def _create_lookups(self) -> typing.Dict[str, dict]:
+    def _create_lookups(self) -> dict[str, dict]:
         names = self._keyword_argument_names
         lookups = {}
         for name in names:
@@ -134,7 +133,7 @@ class QSchema(abc.ABC):
         raise NotImplementedError
 
     @property
-    def items(self) -> typing.Dict[int, QSchemaItem]:
+    def items(self) -> dict[int, QSchemaItem]:
         """
         The item dictionary.
         """
@@ -215,7 +214,7 @@ class BeatwiseQSchema(QSchema):
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
 
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()):
@@ -223,7 +222,7 @@ class BeatwiseQSchema(QSchema):
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
 
     ..  container:: example
 
@@ -333,21 +332,21 @@ class BeatwiseQSchema(QSchema):
         return self._beatspan
 
     @property
-    def item_class(self) -> typing.Type[BeatwiseQSchemaItem]:
+    def item_class(self) -> type[BeatwiseQSchemaItem]:
         """
         The schema's item class.
         """
         return BeatwiseQSchemaItem
 
     @property
-    def target_class(self) -> typing.Type[BeatwiseQTarget]:
+    def target_class(self) -> type[BeatwiseQTarget]:
         """
         Target class of beatwise q-schema.
         """
         return BeatwiseQTarget
 
     @property
-    def target_item_class(self) -> typing.Type[QTargetBeat]:
+    def target_item_class(self) -> type[QTargetBeat]:
         """
         Target item class of beatwise q-schema.
         """
@@ -414,8 +413,8 @@ class MeasurewiseQSchema(QSchema):
         ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
-        time_signature: 3/4
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        time_signature: TimeSignature(pair=(3, 4), hide=False, partial=None)
         use_full_measure: True
 
         >>> index = 1000
@@ -423,8 +422,8 @@ class MeasurewiseQSchema(QSchema):
         ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: 4=54
-        time_signature: 3/4
+        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        time_signature: TimeSignature(pair=(3, 4), hide=False, partial=None)
         use_full_measure: True
 
     ..  container:: example
@@ -552,21 +551,21 @@ class MeasurewiseQSchema(QSchema):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def item_class(self) -> typing.Type[MeasurewiseQSchemaItem]:
+    def item_class(self) -> type[MeasurewiseQSchemaItem]:
         """
         Item class of measurewise q-schema.
         """
         return MeasurewiseQSchemaItem
 
     @property
-    def target_class(self) -> typing.Type[MeasurewiseQTarget]:
+    def target_class(self) -> type[MeasurewiseQTarget]:
         """
         Target class of measurewise q-schema.
         """
         return MeasurewiseQTarget
 
     @property
-    def target_item_class(self) -> typing.Type[QTargetMeasure]:
+    def target_item_class(self) -> type[QTargetMeasure]:
         """
         Target item class of measurewise q-schema.
         """
