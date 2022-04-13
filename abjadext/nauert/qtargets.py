@@ -195,7 +195,7 @@ class QTarget(abc.ABC):
                 elif abjad.get.indicator(new_leaf, abjad.Tie):
                     abjad.detach(abjad.Tie, new_leaf)
             else:
-                previous_leaf = abjad._iterate._get_leaf(leaf, -1)
+                previous_leaf = abjad._iterlib._get_leaf(leaf, -1)
                 if isinstance(previous_leaf, abjad.Rest):
                     new_leaf = type(previous_leaf)(leaf.written_duration)
                 elif isinstance(previous_leaf, abjad.Note):

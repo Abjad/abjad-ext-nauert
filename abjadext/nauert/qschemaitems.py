@@ -23,7 +23,7 @@ class QSchemaItem(abc.ABC):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
+        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
     ):
         if search_tree is not None:
             assert isinstance(search_tree, SearchTree)
@@ -87,9 +87,9 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        beatspan: abjad.DurationTyping | int | None = None,
+        beatspan: abjad.typings.Duration | int | None = None,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
+        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
@@ -153,8 +153,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
-        time_signature: abjad.IntegerPair | None = None,
+        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
+        time_signature: tuple[int, int] | None = None,
         use_full_measure: bool | None = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)

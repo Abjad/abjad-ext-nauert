@@ -165,7 +165,7 @@ class QEventSequence:
     @classmethod
     def from_millisecond_durations(
         class_,
-        milliseconds: typing.Sequence[abjad.Number],
+        milliseconds: typing.Sequence[int | float],
         fuse_silences: bool = False,
     ) -> "QEventSequence":
         r"""
@@ -186,7 +186,7 @@ class QEventSequence:
         TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
 
         """
-        durations: typing.Sequence[abjad.Number]
+        durations: typing.Sequence[int | float]
         if fuse_silences:
             durations = [
                 _ for _ in abjad.sequence.sum_by_sign(milliseconds, sign=[-1]) if _
@@ -210,7 +210,7 @@ class QEventSequence:
 
     @classmethod
     def from_millisecond_offsets(
-        class_, offsets: abjad.OffsetSequenceTyping
+        class_, offsets: typing.Sequence[abjad.typings.Offset]
     ) -> "QEventSequence":
         r"""
         Changes millisecond offsets ``offsets`` to a ``QEventSequence``:
@@ -364,7 +364,7 @@ class QEventSequence:
     @classmethod
     def from_tempo_scaled_durations(
         class_,
-        durations: abjad.DurationSequenceTyping,
+        durations: typing.Sequence[abjad.typings.Duration],
         tempo: abjad.MetronomeMark,
     ) -> "QEventSequence":
         r"""
@@ -451,7 +451,7 @@ class QEventSequence:
                 groups.append(list(rgroup))
             else:
                 for tvalue, tgroup in itertools.groupby(
-                    rgroup, lambda x: abjad._iterate._get_logical_tie_leaves(x)
+                    rgroup, lambda x: abjad._iterlib._get_logical_tie_leaves(x)
                 ):
                     groups.append(list(tgroup))
         # calculate lists of pitches and durations
