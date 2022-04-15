@@ -24,7 +24,7 @@ class QEvent(abc.ABC):
     @abc.abstractmethod
     def __init__(
         self,
-        offset: abjad.OffsetTyping = 0,
+        offset: abjad.typings.Offset = 0,
         index: int | None = None,
         attachments: typing.Iterable | None = None,
     ):
@@ -97,8 +97,8 @@ class PitchedQEvent(QEvent):
 
     def __init__(
         self,
-        offset: abjad.OffsetTyping = 0,
-        pitches: typing.Iterable[abjad.Number] | None = None,
+        offset: abjad.typings.Offset = 0,
+        pitches: typing.Iterable[int | float] | None = None,
         attachments: typing.Iterable | None = None,
         index: int | None = None,
     ):
@@ -180,7 +180,7 @@ class SilentQEvent(QEvent):
 
     def __init__(
         self,
-        offset: abjad.OffsetTyping = 0,
+        offset: abjad.typings.Offset = 0,
         attachments: typing.Iterable | None = None,
         index: int | None = None,
     ):
@@ -242,7 +242,7 @@ class TerminalQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset: abjad.OffsetTyping = 0):
+    def __init__(self, offset: abjad.typings.Offset = 0):
         QEvent.__init__(self, offset=offset)
 
     ### SPECIAL METHODS ###

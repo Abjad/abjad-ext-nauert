@@ -28,7 +28,7 @@ class QEventProxy:
 
     ### INITIALIZER ###
 
-    def __init__(self, q_event: QEvent | None = None, *offsets: abjad.OffsetTyping):
+    def __init__(self, q_event: QEvent | None = None, *offsets: abjad.typings.Offset):
         if len(offsets) == 1:
             offset = abjad.Offset(offsets[0])
             assert isinstance(q_event, QEvent)

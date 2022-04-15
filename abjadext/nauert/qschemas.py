@@ -72,7 +72,7 @@ class QSchema(abc.ABC):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration: abjad.DurationTyping) -> QTarget:
+    def __call__(self, duration: abjad.typings.Duration) -> QTarget:
         """
         Calls QSchema on ``duration``.
         """
