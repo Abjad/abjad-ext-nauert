@@ -69,10 +69,10 @@ class QTargetBeat(QTargetItem):
 
     def __init__(
         self,
-        beatspan: abjad.DurationTyping | None = None,
+        beatspan: abjad.typings.Duration | None = None,
         offset_in_ms: abjad.Duration | int | None = None,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
+        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
     ):
         beatspan = beatspan or abjad.Duration(0)
         beatspan = abjad.Duration(beatspan)
@@ -344,8 +344,8 @@ class QTargetMeasure(QTargetItem):
         self,
         offset_in_ms: abjad.Duration | int | None = None,
         search_tree: SearchTree | None = None,
-        time_signature: abjad.IntegerPair | None = None,
-        tempo: abjad.MetronomeMark | abjad.DurationTyping | None = None,
+        time_signature: tuple[int, int] | None = None,
+        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
         use_full_measure: bool = False,
     ):
         offset_in_ms = offset_in_ms or 0
