@@ -225,7 +225,7 @@ class QGrid:
 
     def __call__(
         self, beatspan: abjad.typings.Duration | int
-    ) -> list[abjad.Note | abjad.Tuplet]:
+    ) -> list[abjad.Note | abjad.Tuplet] | list[abjad.Leaf | abjad.Tuplet]:
         """
         Calls q-grid.
         """
