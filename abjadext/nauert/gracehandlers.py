@@ -157,7 +157,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         ...     tuple(zip(durations, pitches))
         ... )
         >>> grace_handler = nauert.ConcatenatingGraceHandler()
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
@@ -182,7 +182,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         discarded.
 
         >>> grace_handler = nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
@@ -248,7 +248,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         by the last pitched grace note in the grace container.
 
         >>> grace_handler = nauert.ConcatenatingGraceHandler()
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
