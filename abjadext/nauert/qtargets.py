@@ -29,7 +29,7 @@ class QTarget(abc.ABC):
 
     Not composer-safe.
 
-    Used internally by the ``Quantizer``.
+    Used internally by the ``quantize`` function.
     """
 
     ### CLASS VARIABLES ###
@@ -279,7 +279,7 @@ class BeatwiseQTarget(QTarget):
 
     Not composer-safe.
 
-    Used internally by ``Quantizer``.
+    Used internally by the ``quantize`` function.
     """
 
     ### CLASS VARIABLES ###
@@ -363,7 +363,7 @@ class MeasurewiseQTarget(QTarget):
 
     Not composer-safe.
 
-    Used internally by ``Quantizer``.
+    Used internally by the ``quantize`` function.
     """
 
     ### CLASS VARIABLES ###

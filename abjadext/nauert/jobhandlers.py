@@ -10,8 +10,8 @@ class JobHandler(abc.ABC):
     """
     Abstact job-handler.
 
-    ``JobHandlers`` control how ``QuantizationJob`` instances are
-    processed by the ``Quantizer``, either serially or in parallel.
+    ``JobHandlers`` control how ``QuantizationJob`` instances are processed by
+    the ``quantize`` function, either serially or in parallel.
     """
 
     ### CLASS VARIABLES ###

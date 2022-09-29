@@ -55,14 +55,15 @@ class CollapsingGraceHandler(GraceHandler):
 
     ..  container:: example
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 1, 997]
         >>> pitches = [0, 7, 4, 0]
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
         >>> grace_handler = nauert.CollapsingGraceHandler()
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(
+        ...     q_event_sequence, grace_handler=grace_handler
+        ... )
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
@@ -116,14 +117,15 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ..  container:: example
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 999]
         >>> pitches = [0, 2, 0]
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
         >>> grace_handler = nauert.ConcatenatingGraceHandler()
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(
+        ...     q_event_sequence, grace_handler=grace_handler
+        ... )
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
@@ -207,7 +209,6 @@ class ConcatenatingGraceHandler(GraceHandler):
         When ``replace_rest_with_final_grace_note`` is set to ``False``, grace
         notes are allowed to be attached to a rest.
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 999, 1000]
         >>> pitches = [0, 0, None, 0]
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
@@ -216,7 +217,9 @@ class ConcatenatingGraceHandler(GraceHandler):
         >>> grace_handler = nauert.ConcatenatingGraceHandler(
         ...     replace_rest_with_final_grace_note=False
         ... )
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(
+        ...     q_event_sequence, grace_handler=grace_handler
+        ... )
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
@@ -369,7 +372,6 @@ class ConcatenatingGraceHandler(GraceHandler):
 
             >>> durations = [1000, 1000, 1000, 400, 50, 50]
             >>> pitches = range(len(durations))
-            >>> quantizer = nauert.Quantizer()
             >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
             ...     tuple(zip(durations, pitches))
             ... )
@@ -378,7 +380,7 @@ class ConcatenatingGraceHandler(GraceHandler):
             >>> q_schema = nauert.MeasurewiseQSchema(
             ...     search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
             ... )
-            >>> result = quantizer(
+            >>> result = nauert.quantize(
             ...     q_event_sequence,
             ...     q_schema=q_schema,
             ...     attach_tempos=True,
@@ -465,14 +467,15 @@ class DiscardingGraceHandler(GraceHandler):
 
     ..  container:: example
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000, 1, 999]
         >>> pitches = [0, 0, 1]
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
         >>> grace_handler = nauert.DiscardingGraceHandler()
-        >>> result = quantizer(q_event_sequence, grace_handler=grace_handler)
+        >>> result = nauert.quantize(
+        ...     q_event_sequence, grace_handler=grace_handler
+        ... )
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::

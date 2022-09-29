@@ -58,14 +58,13 @@ class DistanceHeuristic(Heuristic):
 
     ..  container:: example
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000] * 8
         >>> pitches = range(8)
         >>> q_event_sequence = \
         ...     nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches)))
         >>> heuristic = nauert.DistanceHeuristic()
-        >>> result = quantizer(q_event_sequence, heuristic=heuristic)
+        >>> result = nauert.quantize(q_event_sequence, heuristic=heuristic)
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::

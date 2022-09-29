@@ -393,7 +393,7 @@ class MeasurewiseQSchema(QSchema):
 
         All of these settings are self-descriptive, except for
         ``use_full_measure``, which controls whether the measure is subdivided by
-        the ``Quantizer`` into beats according to its time signature.
+        the ``quantize`` function into beats according to its time signature.
 
         If ``use_full_measure`` is ``False``, the time-step's measure will be
         divided into units according to its time-signature.  For example, a 4/4

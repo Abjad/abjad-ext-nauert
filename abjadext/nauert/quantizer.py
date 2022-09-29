@@ -8,16 +8,23 @@ from .qeventsequence import QEventSequence
 from .qschemas import MeasurewiseQSchema, QSchema
 
 
-class Quantizer:
+def quantize(
+    q_event_sequence: QEventSequence,
+    q_schema: QSchema | None = None,
+    grace_handler: GraceHandler | None = None,
+    heuristic: Heuristic | None = None,
+    job_handler: JobHandler | None = None,
+    attack_point_optimizer: AttackPointOptimizer | None = None,
+    attach_tempos: bool = True,
+) -> abjad.Voice:
     r"""
-    Quantizer.
+    Quantizer function.
 
     ..  container:: example
 
         Quantizes sequences of attack-points, encapsulated by
         ``QEventSequences``, into score trees.
 
-        >>> quantizer = nauert.Quantizer()
         >>> durations = [1000] * 8
         >>> pitches = range(8)
         >>> q_event_sequence = \
@@ -28,7 +35,7 @@ class Quantizer:
 
         Quantization defaults to outputting into a 4/4, quarter=60 musical structure:
 
-        >>> result = quantizer(q_event_sequence)
+        >>> result = nauert.quantize(q_event_sequence)
         >>> staff = abjad.Staff([result])
         >>> score = abjad.Score([staff])
         >>> abjad.show(score) # doctest: +SKIP
@@ -63,20 +70,20 @@ class Quantizer:
 
     ..  container:: example
 
-        However, the behavior of the ``Quantizer`` can be modified at
+        However, the behavior of the ``quantize`` function can be modified at
         call-time. Passing a ``QSchema`` instance will alter the
         macro-structure of the output.
 
         Here, we quantize using settings specified by a ``MeasurewiseQSchema``,
-        which will cause the ``Quantizer`` to group the output into measures
-        with different tempi and time signatures:
+        which will cause the ``quantize`` function to group the output into
+        measures with different tempi and time signatures:
 
         >>> measurewise_q_schema = nauert.MeasurewiseQSchema(
         ...     {"tempo": ((1, 4), 78), "time_signature": (2, 4)},
         ...     {"tempo": ((1, 8), 57), "time_signature": (5, 4)},
         ... )
 
-        >>> result = quantizer(
+        >>> result = nauert.quantize(
         ...     q_event_sequence,
         ...     q_schema=measurewise_q_schema,
         ... )
@@ -157,9 +164,9 @@ class Quantizer:
     ..  container:: example
 
         Here we quantize using settings specified by a ``BeatwiseQSchema``,
-        which keeps the output of the quantizer "flattened", without measures
-        or explicit time signatures.  The default beat-wise settings of
-        quarter=60 persists until the third "beatspan":
+        which keeps the output of the ``quantize`` function "flattened",
+        without measures or explicit time signatures.  The default beat-wise
+        settings of quarter=60 persists until the third "beatspan":
 
         >>> beatwise_q_schema = nauert.BeatwiseQSchema(
         ... {
@@ -168,7 +175,7 @@ class Quantizer:
         ...     7: {"tempo": ((1, 4), 30)},
         ... })
 
-        >>> result = quantizer(
+        >>> result = nauert.quantize(
         ...     q_event_sequence,
         ...     q_schema=beatwise_q_schema,
         ... )
@@ -229,7 +236,7 @@ class Quantizer:
 
         >>> q_schema = nauert.BeatwiseQSchema()
         >>> attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
-        >>> result = quantizer(
+        >>> result = nauert.quantize(
         ...     q_event_sequence,
         ...     attack_point_optimizer=attack_point_optimizer,
         ...     q_schema=q_schema,
@@ -261,47 +268,21 @@ class Quantizer:
 
     Refer to the reference pages for ``BeatwiseQSchema`` and
     ``MeasurewiseQSchema`` for more information on controlling the
-    ``Quantizer``'s output, and to the reference on ``SearchTree`` for
+    ``quantize`` function's output, and to the reference on ``SearchTree`` for
     information on controlling the rhythmic complexity of that same output.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        pass
-
-    ### SPECIAL METHODS ###
-
-    def __call__(
-        self,
-        q_event_sequence: QEventSequence,
-        q_schema: QSchema | None = None,
-        grace_handler: GraceHandler | None = None,
-        heuristic: Heuristic | None = None,
-        job_handler: JobHandler | None = None,
-        attack_point_optimizer: AttackPointOptimizer | None = None,
-        attach_tempos: bool = True,
-    ) -> abjad.Voice:
-        """
-        Calls quantizer.
-
-        Returns Abjad components.
-        """
-        q_event_sequence = QEventSequence(q_event_sequence)
-        if q_schema is None:
-            q_schema = MeasurewiseQSchema()
-        assert isinstance(q_schema, QSchema)
-        q_target = q_schema(q_event_sequence.duration_in_ms)
-        notation = q_target(
-            q_event_sequence,
-            grace_handler=grace_handler,
-            heuristic=heuristic,
-            job_handler=job_handler,
-            attack_point_optimizer=attack_point_optimizer,
-            attach_tempos=attach_tempos,
-        )
-        return notation
+    q_event_sequence = QEventSequence(q_event_sequence)
+    if q_schema is None:
+        q_schema = MeasurewiseQSchema()
+    assert isinstance(q_schema, QSchema)
+    q_target = q_schema(q_event_sequence.duration_in_ms)
+    notation = q_target(
+        q_event_sequence,
+        grace_handler=grace_handler,
+        heuristic=heuristic,
+        job_handler=job_handler,
+        attack_point_optimizer=attack_point_optimizer,
+        attach_tempos=attach_tempos,
+    )
+    return notation
