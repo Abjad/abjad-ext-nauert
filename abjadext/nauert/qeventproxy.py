@@ -19,7 +19,7 @@ class QEventProxy:
 
     Not composer-safe.
 
-    Used internally by ``Quantizer``.
+    Used internally by the ``quantize`` function.
     """
 
     ### CLASS VARIABLES ###

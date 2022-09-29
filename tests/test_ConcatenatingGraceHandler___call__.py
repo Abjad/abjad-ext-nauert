@@ -4,13 +4,12 @@ from abjadext import nauert
 
 def test_ConcatenatingGraceHandler___call___01():
     grace_handler = nauert.ConcatenatingGraceHandler()
-    quantizer = nauert.Quantizer()
     durations = [1000, 1, 999]
     pitches = [0, None, 0]
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         tuple(zip(durations, pitches))
     )
-    result = quantizer(q_event_sequence, grace_handler=grace_handler)
+    result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
     assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
@@ -30,13 +29,12 @@ def test_ConcatenatingGraceHandler___call___01():
 
 def test_ConcatenatingGraceHandler___call___02():
     grace_handler = nauert.ConcatenatingGraceHandler(discard_grace_rest=False)
-    quantizer = nauert.Quantizer()
     durations = [1000, 1, 999]
     pitches = [0, None, 0]
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         tuple(zip(durations, pitches))
     )
-    result = quantizer(q_event_sequence, grace_handler=grace_handler)
+    result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
     assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
@@ -61,13 +59,12 @@ def test_ConcatenatingGraceHandler___call___03():
     grace_handler = nauert.ConcatenatingGraceHandler(
         replace_rest_with_final_grace_note=False
     )
-    quantizer = nauert.Quantizer()
     durations = [1000, 1, 999, 1000]
     pitches = [0, 0, None, 0]
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         tuple(zip(durations, pitches))
     )
-    result = quantizer(q_event_sequence, grace_handler=grace_handler)
+    result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
     assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice
@@ -92,13 +89,12 @@ def test_ConcatenatingGraceHandler___call___04():
     grace_handler = nauert.ConcatenatingGraceHandler(
         replace_rest_with_final_grace_note=True
     )
-    quantizer = nauert.Quantizer()
     durations = [1000, 1, 999, 1000]
     pitches = [0, 0, None, 0]
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         tuple(zip(durations, pitches))
     )
-    result = quantizer(q_event_sequence, grace_handler=grace_handler)
+    result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
     assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Voice

@@ -193,7 +193,7 @@ class QGrid:
         ...
         QEventProxy(q_event=PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("cs'"),), index=None, attachments=()), offset=Offset((3, 4)))
 
-    Used internally by the ``Quantizer``.
+    Used internally by the ``quantize`` function.
     """
 
     ### CLASS VARIABLES ###

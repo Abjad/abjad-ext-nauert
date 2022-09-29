@@ -49,16 +49,12 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
         ... )
-        >>> quantizer = nauert.Quantizer()
 
     ..  container:: example
 
         Without the measure-wise attack-point optimizer:
 
-        >>> result = quantizer(
-        ...     q_events,
-        ...     q_schema=q_schema,
-        ... )
+        >>> result = nauert.quantize(q_events, q_schema=q_schema)
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
@@ -120,7 +116,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         With the measure-wise attack-point optimizer:
 
         >>> optimizer = nauert.MeasurewiseAttackPointOptimizer()
-        >>> result = quantizer(
+        >>> result = nauert.quantize(
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,
@@ -232,12 +228,11 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
         ... )
-        >>> quantizer = nauert.Quantizer()
 
     ..  container:: example
 
         >>> optimizer = nauert.NaiveAttackPointOptimizer()
-        >>> result = quantizer(
+        >>> result = nauert.quantize(
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,
@@ -353,12 +348,11 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
         ... )
-        >>> quantizer = nauert.Quantizer()
 
     ..  container:: example
 
         >>> optimizer = nauert.NullAttackPointOptimizer()
-        >>> result = quantizer(
+        >>> result = nauert.quantize(
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,

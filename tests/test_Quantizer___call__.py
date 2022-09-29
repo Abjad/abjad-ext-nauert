@@ -11,11 +11,10 @@ def assert_q_event_attachments(result, all_attachments):
         assert q_event_attachments == attachments, print(q_event_attachments)
 
 
-def test_Quantizer___call___01():
+def test_quantize_01():
     milliseconds = [1500, 1500]
     q_events = nauert.QEventSequence.from_millisecond_durations(milliseconds)
-    quantizer = nauert.Quantizer()
-    result = quantizer(q_events)
+    result = nauert.quantize(q_events)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
     assert abjad.lilypond(score) == abjad.string.normalize(
@@ -40,12 +39,11 @@ def test_Quantizer___call___01():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___02():
+def test_Quantize_02():
     milliseconds = [750, 750]
     q_events = nauert.QEventSequence.from_millisecond_durations(milliseconds)
-    quantizer = nauert.Quantizer()
     optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    result = quantizer(q_events, attack_point_optimizer=optimizer)
+    result = nauert.quantize(q_events, attack_point_optimizer=optimizer)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
     assert abjad.lilypond(score) == abjad.string.normalize(
@@ -73,13 +71,12 @@ def test_Quantizer___call___02():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___03():
+def test_Quantize_03():
     milliseconds = [1500, -1000, 1000, 1000, -1000, 1000, -1000, 500]
     sequence = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     attack_point_optimizer = nauert.NullAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
 
-    result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
+    result = nauert.quantize(sequence, attack_point_optimizer=attack_point_optimizer)
 
     assert isinstance(result, abjad.Voice)
     assert abjad.get.duration(result) == 2
@@ -126,12 +123,11 @@ def test_Quantizer___call___03():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___04():
+def test_Quantize_04():
     milliseconds = [250, 1000, 1000, 1000, 750]
     sequence = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     attack_point_optimizer = nauert.NullAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
-    result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
+    result = nauert.quantize(sequence, attack_point_optimizer=attack_point_optimizer)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
@@ -173,7 +169,7 @@ def test_Quantizer___call___04():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___05():
+def test_Quantize_05():
     q_schema = nauert.BeatwiseQSchema(
         {"search_tree": nauert.UnweightedSearchTree({2: None})},
         {"search_tree": nauert.UnweightedSearchTree({3: None})},
@@ -183,9 +179,8 @@ def test_Quantizer___call___05():
     milliseconds = [250, 250, 250, 250] * 4
     q_events = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     attack_point_optimizer = nauert.NullAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
 
-    result = quantizer(
+    result = nauert.quantize(
         q_events,
         q_schema=q_schema,
         attack_point_optimizer=attack_point_optimizer,
@@ -248,12 +243,11 @@ def test_Quantizer___call___05():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___06():
+def test_Quantize_06():
     milliseconds = [1000] * 8
     sequence = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
-    result = quantizer(sequence, attack_point_optimizer=optimizer)
+    result = nauert.quantize(sequence, attack_point_optimizer=optimizer)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
@@ -286,12 +280,11 @@ def test_Quantizer___call___06():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___07():
+def test_Quantize_07():
     milliseconds = [1000, 750, 1000, 1250] * 2
     sequence = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
-    result = quantizer(sequence, attack_point_optimizer=optimizer)
+    result = nauert.quantize(sequence, attack_point_optimizer=optimizer)
     staff = abjad.Staff([result], lilypond_type="RhythmicStaff")
     score = abjad.Score([staff])
 
@@ -332,7 +325,7 @@ def test_Quantizer___call___07():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___08():
+def test_Quantize_08():
     q_schema = nauert.BeatwiseQSchema(
         {"search_tree": nauert.UnweightedSearchTree({2: None})},
         {"search_tree": nauert.UnweightedSearchTree({3: None})},
@@ -342,9 +335,8 @@ def test_Quantizer___call___08():
     milliseconds = [250, 250, 250, 250] * 4
     q_events = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     attack_point_optimizer = nauert.NaiveAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
 
-    result = quantizer(
+    result = nauert.quantize(
         q_events,
         q_schema=q_schema,
         attack_point_optimizer=attack_point_optimizer,
@@ -399,7 +391,7 @@ def test_Quantizer___call___08():
     ), print(abjad.lilypond(score))
 
 
-def test_Quantizer___call___09():
+def test_Quantize_09():
     q_schema = nauert.BeatwiseQSchema(
         {"search_tree": nauert.UnweightedSearchTree({2: None})},
         {"search_tree": nauert.UnweightedSearchTree({3: None})},
@@ -409,10 +401,9 @@ def test_Quantizer___call___09():
     milliseconds = [250, 250, 250, 250] * 4
     q_events = nauert.QEventSequence.from_millisecond_durations(milliseconds)
     attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    quantizer = nauert.Quantizer()
 
     try:
-        quantizer(
+        nauert.quantize(
             q_events,
             q_schema=q_schema,
             attack_point_optimizer=attack_point_optimizer,
@@ -425,8 +416,7 @@ def test_Quantizer___call___09():
         )
 
 
-def test_Quantizer___call___10():
-    quantizer = nauert.Quantizer()
+def test_Quantize_10():
     durations = [1000, 1000, 1000, 2000, 1000, 1000, 500, 500]
     pitches = range(8)
     all_attachments = [(x,) for x in pitches]
@@ -437,7 +427,7 @@ def test_Quantizer___call___10():
     grace_handler = nauert.ConcatenatingGraceHandler(
         replace_rest_with_final_grace_note=True
     )
-    result = quantizer(q_event_sequence, grace_handler=grace_handler)
+    result = nauert.quantize(q_event_sequence, grace_handler=grace_handler)
     string = abjad.lilypond(result)
     assert string == abjad.string.normalize(
         r"""
@@ -465,8 +455,7 @@ def test_Quantizer___call___10():
     assert_q_event_attachments(result, all_attachments)
 
 
-def test_Quantizer___call___11():
-    quantizer = nauert.Quantizer()
+def test_Quantize_11():
     durations = [250, 1250, 750, 1000, 250]
     pitches = range(5)
     all_attachments = [(x,) for x in pitches]
@@ -493,7 +482,7 @@ def test_Quantizer___call___11():
         replace_rest_with_final_grace_note=True
     )
     attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    result = quantizer(
+    result = nauert.quantize(
         q_event_sequence,
         q_schema=q_schema,
         grace_handler=grace_handler,
@@ -527,10 +516,9 @@ def test_Quantizer___call___11():
     assert_q_event_attachments(result, all_attachments)
 
 
-def test_Quantizer___call___12():
+def test_Quantize_12():
     definition = {"divisors": (2, 3, 5, 7), "max_depth": 2, "max_divisions": 2}
     search_tree = nauert.WeightedSearchTree(definition=definition)
-    quantizer = nauert.Quantizer()
     durations = [457.14285, 814.1, 228.5714, 1440, 960]
     pitches = range(len(durations))
     all_attachments = [(x,) for x in pitches]
@@ -540,7 +528,7 @@ def test_Quantizer___call___12():
     q_schema = nauert.MeasurewiseQSchema(
         search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
     )
-    result = quantizer(q_event_sequence, q_schema=q_schema, attach_tempos=True)
+    result = nauert.quantize(q_event_sequence, q_schema=q_schema, attach_tempos=True)
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
@@ -587,10 +575,9 @@ def test_Quantizer___call___12():
     assert_q_event_attachments(result, all_attachments)
 
 
-def test_Quantizer___call___13():
+def test_Quantize_13():
     definition = {"divisors": (2, 3, 5, 7), "max_depth": 2, "max_divisions": 2}
     search_tree = nauert.WeightedSearchTree(definition=definition)
-    quantizer = nauert.Quantizer()
     durations = [400, 1000, 1260, 840, 20, 610, 420, 2450, 3500]
     pitches = range(len(durations))
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
@@ -599,7 +586,7 @@ def test_Quantizer___call___13():
     q_schema = nauert.MeasurewiseQSchema(
         search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
     )
-    result = quantizer(q_event_sequence, q_schema=q_schema, attach_tempos=True)
+    result = nauert.quantize(q_event_sequence, q_schema=q_schema, attach_tempos=True)
     staff = abjad.Staff([result])
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
@@ -651,10 +638,9 @@ def test_Quantizer___call___13():
     ), print(string)
 
 
-def test_Quantizer___call___14():
+def test_Quantize_14():
     definition = {"divisors": (2, 3, 5, 7), "max_depth": 2, "max_divisions": 2}
     search_tree = nauert.WeightedSearchTree(definition=definition)
-    quantizer = nauert.Quantizer()
     durations = [1000, 1000, 1000, 400, 50, 50, 3500]
     pitches = range(len(durations))
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
@@ -664,7 +650,7 @@ def test_Quantizer___call___14():
         search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
     )
     attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    result = quantizer(
+    result = nauert.quantize(
         q_event_sequence,
         q_schema=q_schema,
         attack_point_optimizer=attack_point_optimizer,
@@ -703,11 +689,10 @@ def test_Quantizer___call___14():
     ), print(string)
 
 
-def test_Quantizer___call___15():
+def test_Quantize_15():
     durations = [1000, 1000, 1000, 400, 50, 50]
     pitches = range(len(durations))
 
-    quantizer = nauert.Quantizer()
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         tuple(zip(durations, pitches))
     )
@@ -717,7 +702,7 @@ def test_Quantizer___call___15():
         search_tree=search_tree, time_signature=(7, 8), use_full_measure=True
     )
 
-    result = quantizer(
+    result = nauert.quantize(
         q_event_sequence,
         q_schema=q_schema,
         attach_tempos=True,
@@ -755,14 +740,13 @@ def test_Quantizer___call___15():
     ), print(string)
 
 
-def test_Quantizer___call___16():
+def test_Quantize_16():
     durations = [1546, 578, 375, 589, 144, 918, 137]
     pitches = list(range(len(durations)))
     pitches[0] = None
     all_attachments = [(x,) for x in pitches]
     all_attachments[0] = None
 
-    quantizer = nauert.Quantizer()
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_attachment_tuples(
         tuple(zip(durations, pitches, all_attachments))
     )
@@ -776,7 +760,7 @@ def test_Quantizer___call___16():
         use_full_measure=True,
     )
 
-    result = quantizer(
+    result = nauert.quantize(
         q_event_sequence,
         q_schema=q_schema,
         attach_tempos=True,

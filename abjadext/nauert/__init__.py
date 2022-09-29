@@ -30,7 +30,7 @@ from .qschemas import BeatwiseQSchema, MeasurewiseQSchema, QSchema
 from .qtargetitems import QTargetBeat, QTargetMeasure
 from .qtargets import BeatwiseQTarget, MeasurewiseQTarget, QTarget
 from .quantizationjob import QuantizationJob
-from .quantizer import Quantizer
+from .quantizer import quantize
 from .searchtrees import SearchTree, UnweightedSearchTree, WeightedSearchTree
 
 __all__ = [
@@ -68,11 +68,11 @@ __all__ = [
     "QTargetBeat",
     "QTargetMeasure",
     "QuantizationJob",
-    "Quantizer",
     "SearchTree",
     "SerialJobHandler",
     "SilentQEvent",
     "TerminalQEvent",
     "UnweightedSearchTree",
     "WeightedSearchTree",
+    "quantize",
 ]
