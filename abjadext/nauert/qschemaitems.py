@@ -23,14 +23,20 @@ class QSchemaItem(abc.ABC):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
+        tempo: abjad.MetronomeMark | tuple | None = None,
     ):
         if search_tree is not None:
             assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
             if isinstance(tempo, tuple):
-                tempo = abjad.MetronomeMark(*tempo)
+                assert len(tempo) == 2
+                reference_duration_, units_per_minute = tempo
+                reference_duration = abjad.Duration(reference_duration_)
+                tempo = abjad.MetronomeMark(
+                    reference_duration=reference_duration,
+                    units_per_minute=units_per_minute,
+                )
             assert not tempo.is_imprecise
         self._tempo = tempo
 
@@ -89,7 +95,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         self,
         beatspan: abjad.typings.Duration | int | None = None,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
+        tempo: abjad.MetronomeMark | tuple | None = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
@@ -153,7 +159,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
+        tempo: abjad.MetronomeMark | tuple | None = None,
         time_signature: tuple[int, int] | None = None,
         use_full_measure: bool | None = None,
     ):

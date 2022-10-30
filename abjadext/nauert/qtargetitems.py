@@ -72,7 +72,7 @@ class QTargetBeat(QTargetItem):
         beatspan: abjad.typings.Duration | None = None,
         offset_in_ms: abjad.Duration | int | None = None,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
+        tempo: abjad.MetronomeMark | tuple | None = None,
     ):
         beatspan = beatspan or abjad.Duration(0)
         beatspan = abjad.Duration(beatspan)
@@ -82,10 +82,12 @@ class QTargetBeat(QTargetItem):
         if search_tree is None:
             search_tree = UnweightedSearchTree()
         assert isinstance(search_tree, SearchTree)
-        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
-        # tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
-            tempo = abjad.MetronomeMark(*tempo)
+            assert len(tempo) == 2
+            reference_duration = abjad.Duration(tempo[0])
+            units_per_minute = tempo[1]
+            tempo = abjad.MetronomeMark(reference_duration, units_per_minute)
+        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
         assert not tempo.is_imprecise
 
         q_events: list[QEvent] = []
@@ -345,7 +347,7 @@ class QTargetMeasure(QTargetItem):
         offset_in_ms: abjad.Duration | int | None = None,
         search_tree: SearchTree | None = None,
         time_signature: tuple[int, int] | None = None,
-        tempo: abjad.MetronomeMark | abjad.typings.Duration | None = None,
+        tempo: abjad.MetronomeMark | tuple | None = None,
         use_full_measure: bool = False,
     ):
         offset_in_ms = offset_in_ms or 0
@@ -354,17 +356,17 @@ class QTargetMeasure(QTargetItem):
         if search_tree is None:
             search_tree = UnweightedSearchTree()
         assert isinstance(search_tree, SearchTree)
-        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
-        # tempo = abjad.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
-            tempo = abjad.MetronomeMark(*tempo)
+            assert len(tempo) == 2
+            reference_duration = abjad.Duration(tempo[0])
+            units_per_minute = tempo[1]
+            tempo = abjad.MetronomeMark(reference_duration, units_per_minute)
+        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
         assert not tempo.is_imprecise
         time_signature = time_signature or (4, 4)
         _time_signature = abjad.TimeSignature(time_signature)
         use_full_measure = bool(use_full_measure)
-
         beats = []
-
         if use_full_measure:
             beatspan = _time_signature.duration
             beat = QTargetBeat(
@@ -387,7 +389,6 @@ class QTargetMeasure(QTargetItem):
                 )
                 beats.append(beat)
                 current_offset_in_ms += beatspan_duration_in_ms
-
         self._beats = tuple(beats)
         self._offset_in_ms = offset_in_ms
         self._search_tree = search_tree
