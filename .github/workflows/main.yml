@@ -34,7 +34,7 @@ jobs:
     - name: Install Abjad
       run: |
         git clone https://github.com/Abjad/abjad.git /tmp/abjad
-        pip install /tmp/abjad
+        pip install /tmp/abjad[dev]
     - name: Install dependencies
       run: |
         python -m pip install -e .
