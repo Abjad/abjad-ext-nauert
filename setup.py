@@ -53,6 +53,7 @@ if __name__ == "__main__":
         name=f"abjad-ext-{name}",
         packages=["abjadext"],
         platforms="Any",
+        python_requires="<3.12,>=3.10.*",
         url="http://abjad.github.io",
         version=read_version(),
     )
