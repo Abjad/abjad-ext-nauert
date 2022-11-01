@@ -49,8 +49,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         """
         pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
-        maker = abjad.NoteMaker()
-        return maker(0, total_duration)
+        return abjad.makers.make_notes(0, total_duration)
 
     def __graph__(self, **keywords: None) -> uqbar.graphs.Graph:
         """
