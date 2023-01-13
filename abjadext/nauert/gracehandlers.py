@@ -282,7 +282,7 @@ class ConcatenatingGraceHandler(GraceHandler):
     def __init__(
         self,
         discard_grace_rest: bool = True,
-        grace_duration: abjad.typings.Duration = None,
+        grace_duration: abjad.typings.Duration | None = None,
         replace_rest_with_final_grace_note: bool = True,
     ):
         self._discard_grace_rest = discard_grace_rest
