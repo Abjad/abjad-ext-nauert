@@ -47,9 +47,7 @@ class QEventSequence:
     ### INITIALIZER ###
 
     def __init__(self, sequence):
-
         q_event_classes = (PitchedQEvent, SilentQEvent)
-        self._sequence: tuple[QEvent, ...]
         if sequence is None:
             self._sequence = ()
             return
