@@ -1,28 +1,53 @@
 import copy
 
+import abjad
 import abjadext.nauert
 
 
 def test_QGridContainer___copy___01():
     tree = abjadext.nauert.QGridContainer(
+<<<<<<< HEAD
         preprolated_duration=(1, 1),
+=======
+        preprolated_duration=abjad.Duration(1, 1),
+>>>>>>> a3d7af7 (CHANGED:)
         children=[
-            abjadext.nauert.QGridLeaf(preprolated_duration=1),
+            abjadext.nauert.QGridLeaf(preprolated_duration=abjad.Duration(1, 1)),
             abjadext.nauert.QGridContainer(
+<<<<<<< HEAD
                 preprolated_duration=(2, 1),
+=======
+                preprolated_duration=abjad.Duration(2, 1),
+>>>>>>> a3d7af7 (CHANGED:)
                 children=[
-                    abjadext.nauert.QGridLeaf(preprolated_duration=3),
+                    abjadext.nauert.QGridLeaf(
+                        preprolated_duration=abjad.Duration(3, 1)
+                    ),
                     abjadext.nauert.QGridContainer(
+<<<<<<< HEAD
                         preprolated_duration=(4, 1),
                         children=[
                             abjadext.nauert.QGridLeaf(preprolated_duration=(1, 1)),
                             abjadext.nauert.QGridLeaf(preprolated_duration=(1, 1)),
                             abjadext.nauert.QGridLeaf(preprolated_duration=(1, 1)),
+=======
+                        preprolated_duration=abjad.Duration(4, 1),
+                        children=[
+                            abjadext.nauert.QGridLeaf(
+                                preprolated_duration=abjad.Duration(1, 1)
+                            ),
+                            abjadext.nauert.QGridLeaf(
+                                preprolated_duration=abjad.Duration(1, 1)
+                            ),
+                            abjadext.nauert.QGridLeaf(
+                                preprolated_duration=abjad.Duration(1, 1)
+                            ),
+>>>>>>> a3d7af7 (CHANGED:)
                         ],
                     ),
                 ],
             ),
-            abjadext.nauert.QGridLeaf(preprolated_duration=2),
+            abjadext.nauert.QGridLeaf(preprolated_duration=abjad.Duration(2, 1)),
         ],
     )
 
