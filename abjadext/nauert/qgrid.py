@@ -457,8 +457,10 @@ class QGrid:
                 if len(leaves) > 1 and all(
                     [_leaf.q_event_proxies == [] for _leaf in leaves[1:]]
                 ):
+                    parent_preprolated_duration = parent.preprolated_duration
+                    assert isinstance(parent_preprolated_duration, abjad.Duration)
                     new_leaf = QGridLeaf(
-                        preprolated_duration=parent.preprolated_duration,
+                        preprolated_duration=parent_preprolated_duration,
                         q_event_proxies=leaves[0].q_event_proxies,
                     )
                     index = parent.parent.index(parent)
