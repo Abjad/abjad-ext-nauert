@@ -26,11 +26,14 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
 
     def __init__(
         self,
-        preprolated_duration: abjad.typings.Duration | int = 1,
+        preprolated_duration: abjad.typings.Duration = abjad.Duration(1),
         q_event_proxies: typing.Sequence[QEventProxy] | None = None,
         is_divisible: bool = True,
     ):
         uqbar.containers.UniqueTreeNode.__init__(self)
+        assert isinstance(preprolated_duration, abjad.Duration), repr(
+            preprolated_duration
+        )
         abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
@@ -207,13 +210,13 @@ class QGrid:
         next_downbeat: QGridLeaf | None = None,
     ):
         if root_node is None:
-            root_node = QGridLeaf(preprolated_duration=1)
+            root_node = QGridLeaf(preprolated_duration=abjad.Duration(1, 1))
         assert isinstance(
             root_node,
             (QGridLeaf, QGridContainer),
         )
         if next_downbeat is None:
-            next_downbeat = QGridLeaf(preprolated_duration=1)
+            next_downbeat = QGridLeaf(preprolated_duration=abjad.Duration(1, 1))
         assert isinstance(next_downbeat, QGridLeaf)
         self._root_node = root_node
         self._next_downbeat = next_downbeat
@@ -478,7 +481,7 @@ class QGrid:
         container = QGridContainer(
             preprolated_duration=leaf.preprolated_duration,
             children=[
-                QGridLeaf(preprolated_duration=subdivision)
+                QGridLeaf(preprolated_duration=abjad.Duration(subdivision))
                 for subdivision in subdivisions
             ],
         )

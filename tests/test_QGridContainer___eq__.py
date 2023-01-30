@@ -1,10 +1,15 @@
+import abjad
 import abjadext.nauert
 
 
 def test_QGridContainer___eq___01():
 
-    a = abjadext.nauert.QGridContainer(preprolated_duration=1, children=[])
-    b = abjadext.nauert.QGridContainer(preprolated_duration=1, children=[])
+    a = abjadext.nauert.QGridContainer(
+        preprolated_duration=abjad.Duration(1, 1), children=[]
+    )
+    b = abjadext.nauert.QGridContainer(
+        preprolated_duration=abjad.Duration(1, 1), children=[]
+    )
 
     assert format(a) == format(b)
     assert a != b
@@ -13,12 +18,12 @@ def test_QGridContainer___eq___01():
 def test_QGridContainer___eq___02():
 
     a = abjadext.nauert.QGridContainer(
-        preprolated_duration=1,
-        children=[abjadext.nauert.QGridLeaf(preprolated_duration=1)],
+        preprolated_duration=abjad.Duration(1, 1),
+        children=[abjadext.nauert.QGridLeaf(preprolated_duration=abjad.Duration(1, 1))],
     )
     b = abjadext.nauert.QGridContainer(
-        preprolated_duration=1,
-        children=[abjadext.nauert.QGridLeaf(preprolated_duration=1)],
+        preprolated_duration=abjad.Duration(1, 1),
+        children=[abjadext.nauert.QGridLeaf(preprolated_duration=abjad.Duration(1, 1))],
     )
 
     assert format(a) == format(b)
@@ -27,18 +32,23 @@ def test_QGridContainer___eq___02():
 
 def test_QGridContainer___eq___03():
 
-    a = abjadext.nauert.QGridContainer(preprolated_duration=1, children=[])
-    b = abjadext.nauert.QGridContainer(preprolated_duration=2, children=[])
+    a = abjadext.nauert.QGridContainer(
+        preprolated_duration=abjad.Duration(1, 1), children=[]
+    )
+    b = abjadext.nauert.QGridContainer(
+        preprolated_duration=abjad.Duration(2, 1), children=[]
+    )
     c = abjadext.nauert.QGridContainer(
-        preprolated_duration=1,
-        children=[abjadext.nauert.QGridLeaf(preprolated_duration=1)],
+        preprolated_duration=abjad.Duration(1, 1),
+        children=[abjadext.nauert.QGridLeaf(preprolated_duration=abjad.Duration(1, 1))],
     )
     d = abjadext.nauert.QGridContainer(
-        preprolated_duration=2,
-        children=[abjadext.nauert.QGridLeaf(preprolated_duration=1)],
+        preprolated_duration=abjad.Duration(2, 1),
+        children=[abjadext.nauert.QGridLeaf(preprolated_duration=abjad.Duration(1, 1))],
     )
     e = abjadext.nauert.QGridContainer(
-        preprolated_duration=2, children=[abjadext.nauert.QGridLeaf(2)]
+        preprolated_duration=abjad.Duration(2, 1),
+        children=[abjadext.nauert.QGridLeaf(abjad.Duration(2))],
     )
 
     assert a != b

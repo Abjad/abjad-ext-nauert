@@ -1,3 +1,4 @@
+import abjad
 import abjadext.nauert
 
 
@@ -23,9 +24,13 @@ def test_QGrid_subdivide_leaf_01():
     assert result == [a, b, c, d]
     root_node = abjadext.nauert.QGridContainer(
         children=[
-            abjadext.nauert.QGridLeaf(preprolated_duration=2, q_event_proxies=[]),
-            abjadext.nauert.QGridLeaf(preprolated_duration=3, q_event_proxies=[]),
+            abjadext.nauert.QGridLeaf(
+                preprolated_duration=abjad.Duration(2, 1), q_event_proxies=[]
+            ),
+            abjadext.nauert.QGridLeaf(
+                preprolated_duration=abjad.Duration(3, 1), q_event_proxies=[]
+            ),
         ],
-        preprolated_duration=1,
+        preprolated_duration=abjad.Duration(1, 1),
     )
     assert format(q_grid.root_node) == format(root_node)
