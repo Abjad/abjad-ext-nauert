@@ -3,7 +3,6 @@ import abjadext.nauert
 
 
 def test_QGrid_subdivide_leaf_01():
-
     q_grid = abjadext.nauert.QGrid()
 
     a = abjadext.nauert.QEventProxy(abjadext.nauert.PitchedQEvent(0, [0]), 0)

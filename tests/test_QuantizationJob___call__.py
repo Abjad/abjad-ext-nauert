@@ -2,7 +2,6 @@ import abjadext.nauert
 
 
 def test_QuantizationJob___call___01():
-
     job_id = 1
     definition = {2: {2: {2: None}, 3: None}, 5: None}
     search_tree = abjadext.nauert.UnweightedSearchTree(definition)

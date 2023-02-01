@@ -5,7 +5,6 @@ import abjadext.nauert
 
 
 def test_QGridContainer___copy___01():
-
     tree = abjadext.nauert.QGridContainer(
         preprolated_duration=abjad.Duration(1, 1),
         children=[

@@ -3,7 +3,6 @@ import abjadext.nauert
 
 
 def test_QGrid_distance_01():
-
     q_grid = abjadext.nauert.QGrid()
 
     assert q_grid.distance is None

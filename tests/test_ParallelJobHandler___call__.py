@@ -5,7 +5,6 @@ import abjadext.nauert
 
 
 class Job:
-
     ### INITIALIZER ###
 
     def __init__(self, number):
@@ -21,7 +20,6 @@ class Job:
 
 @pytest.mark.skip()
 def test_ParallelJobHandler___call___01():
-
     jobs = [Job(x) for x in range(1, 11)]
     job_handler = abjadext.nauert.ParallelJobHandler()
     job_handler(jobs)
@@ -29,7 +27,6 @@ def test_ParallelJobHandler___call___01():
 
 @pytest.mark.skip()
 def test_ParallelJobHandler___call___02():
-
     job_id = 1
     definition = {2: {2: {2: None}, 3: None}, 5: None}
     search_tree = abjadext.nauert.UnweightedSearchTree(definition)

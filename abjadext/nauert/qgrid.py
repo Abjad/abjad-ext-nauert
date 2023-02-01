@@ -515,7 +515,6 @@ class QGrid:
 
         q_event_proxies = []
         for i, leaf in enumerate(leaves_to_subdivide):
-
             next_leaf = all_leaves[all_leaves.index(leaf) + 1]
             if next_leaf is self.next_downbeat:
                 next_leaf_offset = abjad.Offset(1)
