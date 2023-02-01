@@ -4,10 +4,13 @@ import abjadext.nauert
 
 def test_QGridContainer___eq___01():
 <<<<<<< HEAD
+<<<<<<< HEAD
     a = abjadext.nauert.QGridContainer(preprolated_duration=(1, 1), children=[])
     b = abjadext.nauert.QGridContainer(preprolated_duration=(1, 1), children=[])
 =======
 
+=======
+>>>>>>> 6400b88 (Blacked code.)
     a = abjadext.nauert.QGridContainer(
         preprolated_duration=abjad.Duration(1, 1), children=[]
     )
@@ -45,6 +48,7 @@ def test_QGridContainer___eq___02():
 
 def test_QGridContainer___eq___03():
 <<<<<<< HEAD
+<<<<<<< HEAD
     a = abjadext.nauert.QGridContainer(preprolated_duration=(1, 1), children=[])
     b = abjadext.nauert.QGridContainer(preprolated_duration=(2, 1), children=[])
     c = abjadext.nauert.QGridContainer(
@@ -59,6 +63,8 @@ def test_QGridContainer___eq___03():
         preprolated_duration=(2, 1), children=[abjadext.nauert.QGridLeaf(2)]
 =======
 
+=======
+>>>>>>> 6400b88 (Blacked code.)
     a = abjadext.nauert.QGridContainer(
         preprolated_duration=abjad.Duration(1, 1), children=[]
     )
