@@ -3,7 +3,6 @@ import abjadext.nauert
 
 
 def test_BeatwiseQSchema___getitem___01():
-
     schema = abjadext.nauert.BeatwiseQSchema()
 
     assert (
@@ -19,7 +18,6 @@ def test_BeatwiseQSchema___getitem___01():
 
 
 def test_BeatwiseQSchema___getitem___02():
-
     item_a = abjadext.nauert.BeatwiseQSchemaItem(
         search_tree=abjadext.nauert.UnweightedSearchTree({2: None})
     )

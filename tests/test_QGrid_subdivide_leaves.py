@@ -2,7 +2,6 @@ import abjadext.nauert
 
 
 def test_QGrid_subdivide_leaves_01():
-
     q_grid = abjadext.nauert.QGrid()
 
     a = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(0, ["A"]), 0)
@@ -42,7 +41,6 @@ def test_QGrid_subdivide_leaves_01():
 
 
 def test_QGrid_subdivide_leaves_02():
-
     q_grid = abjadext.nauert.QGrid()
 
     a = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(0, ["A"]), 0)

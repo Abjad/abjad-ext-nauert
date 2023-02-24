@@ -4,7 +4,6 @@ import abjadext.nauert
 
 
 def test_UnweightedSearchTree__generate_all_subdivision_commands_01():
-
     definition = {2: {2: {2: None}, 3: None}, 5: None}
     search_tree = abjadext.nauert.UnweightedSearchTree(definition)
 

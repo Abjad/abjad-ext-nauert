@@ -30,6 +30,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         q_event_proxies: typing.Sequence[QEventProxy] | None = None,
         is_divisible: bool = True,
     ):
+        preprolated_duration = abjad.Duration(preprolated_duration)
         uqbar.containers.UniqueTreeNode.__init__(self)
         abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
         if q_event_proxies is None:
@@ -48,7 +49,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         Calls q-grid leaf.
         """
         pulse_duration = abjad.Duration(pulse_duration)
-        total_duration = pulse_duration * self.preprolated_duration
+        total_duration = pulse_duration * abjad.Duration(self.preprolated_duration)
         return abjad.makers.make_notes(0, total_duration)
 
     def __graph__(self, **keywords: None) -> uqbar.graphs.Graph:
@@ -207,13 +208,13 @@ class QGrid:
         next_downbeat: QGridLeaf | None = None,
     ):
         if root_node is None:
-            root_node = QGridLeaf(preprolated_duration=1)
+            root_node = QGridLeaf(preprolated_duration=(1, 1))
         assert isinstance(
             root_node,
             (QGridLeaf, QGridContainer),
         )
         if next_downbeat is None:
-            next_downbeat = QGridLeaf(preprolated_duration=1)
+            next_downbeat = QGridLeaf(preprolated_duration=(1, 1))
         assert isinstance(next_downbeat, QGridLeaf)
         self._root_node = root_node
         self._next_downbeat = next_downbeat
@@ -475,12 +476,14 @@ class QGrid:
 
         Returns the ``QEventProxies`` attached to ``leaf``.
         """
+        children = []
+        for subdivision in subdivisions:
+            if isinstance(subdivision, int):
+                subdivision = abjad.Duration(subdivision)
+                child = QGridLeaf(preprolated_duration=subdivision)
+                children.append(child)
         container = QGridContainer(
-            preprolated_duration=leaf.preprolated_duration,
-            children=[
-                QGridLeaf(preprolated_duration=subdivision)
-                for subdivision in subdivisions
-            ],
+            preprolated_duration=leaf.preprolated_duration, children=children
         )
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)
@@ -510,7 +513,6 @@ class QGrid:
 
         q_event_proxies = []
         for i, leaf in enumerate(leaves_to_subdivide):
-
             next_leaf = all_leaves[all_leaves.index(leaf) + 1]
             if next_leaf is self.next_downbeat:
                 next_leaf_offset = abjad.Offset(1)

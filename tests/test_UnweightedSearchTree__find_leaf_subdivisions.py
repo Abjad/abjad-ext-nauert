@@ -2,7 +2,6 @@ import abjadext.nauert
 
 
 def test_UnweightedSearchTree__find_leaf_subdivisions_01():
-
     definition = {2: {2: {2: None}, 3: None}, 5: None}
     search_tree = abjadext.nauert.UnweightedSearchTree(definition)
 

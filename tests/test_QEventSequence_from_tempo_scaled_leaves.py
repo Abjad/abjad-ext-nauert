@@ -3,7 +3,6 @@ import abjadext.nauert
 
 
 def test_QEventSequence_from_tempo_scaled_leaves_01():
-
     staff = abjad.Staff([])
 
     staff.append(abjad.Note(0, (1, 4)))
@@ -60,7 +59,6 @@ def test_QEventSequence_from_tempo_scaled_leaves_01():
 
 
 def test_QEventSequence_from_tempo_scaled_leaves_02():
-
     staff = abjad.Staff([])
 
     staff.append(abjad.Note(0, (1, 4)))

@@ -2,7 +2,6 @@ import abjadext.nauert
 
 
 def test_QGrid_subdivide_leaf_01():
-
     q_grid = abjadext.nauert.QGrid()
 
     a = abjadext.nauert.QEventProxy(abjadext.nauert.PitchedQEvent(0, [0]), 0)
@@ -26,6 +25,6 @@ def test_QGrid_subdivide_leaf_01():
             abjadext.nauert.QGridLeaf(preprolated_duration=2, q_event_proxies=[]),
             abjadext.nauert.QGridLeaf(preprolated_duration=3, q_event_proxies=[]),
         ],
-        preprolated_duration=1,
+        preprolated_duration=(1, 1),
     )
     assert format(q_grid.root_node) == format(root_node)

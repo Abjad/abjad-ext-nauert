@@ -2,7 +2,6 @@ import abjadext.nauert
 
 
 def test_QGrid_fit_q_events_01():
-
     q_grid = abjadext.nauert.QGrid()
 
     a = abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(0, ["A"]), 0)

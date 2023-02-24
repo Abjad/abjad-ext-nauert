@@ -3,7 +3,6 @@ import abjadext.nauert
 
 
 def test_MeasurewiseQSchema___init___01():
-
     item_a = abjadext.nauert.MeasurewiseQSchemaItem(
         search_tree=abjadext.nauert.UnweightedSearchTree({2: None})
     )
@@ -27,7 +26,6 @@ def test_MeasurewiseQSchema___init___01():
 
 
 def test_MeasurewiseQSchema___init___02():
-
     schema = abjadext.nauert.MeasurewiseQSchema()
 
     assert len(schema.items) == 0
