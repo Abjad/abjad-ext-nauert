@@ -20,10 +20,10 @@ def quantize(
     r"""
     Quantizer function.
 
-    ..  container:: example
+    Quantizes sequences of attack-points, encapsulated by ``QEventSequences``,
+    into score trees.
 
-        Quantizes sequences of attack-points, encapsulated by
-        ``QEventSequences``, into score trees.
+    ..  container:: example
 
         >>> durations = [1000] * 8
         >>> pitches = range(8)

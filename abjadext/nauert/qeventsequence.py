@@ -368,19 +368,21 @@ class QEventSequence:
         r"""
         Changes ``durations``, scaled by ``tempo`` into a ``QEventSequence``:
 
-        >>> tempo = abjad.MetronomeMark((1, 4), 174)
-        >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
-        >>> sequence = nauert.QEventSequence.from_tempo_scaled_durations(
-        ...     durations, tempo=tempo)
+        ..  container:: example
 
-        >>> for q_event in sequence:
-        ...     q_event
-        ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((10000, 29)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((17500, 29)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((20000, 29)), index=None, attachments=())
-        TerminalQEvent(offset=Offset((40000, 29)), index=None, attachments=())
+            >>> tempo = abjad.MetronomeMark((1, 4), 174)
+            >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
+            >>> sequence = nauert.QEventSequence.from_tempo_scaled_durations(
+            ...     durations, tempo=tempo)
+
+            >>> for q_event in sequence:
+            ...     q_event
+            ...
+            PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+            SilentQEvent(offset=Offset((10000, 29)), index=None, attachments=())
+            PitchedQEvent(offset=Offset((17500, 29)), pitches=(NamedPitch("c'"),), index=None, attachments=())
+            SilentQEvent(offset=Offset((20000, 29)), index=None, attachments=())
+            TerminalQEvent(offset=Offset((40000, 29)), index=None, attachments=())
 
         """
         durations = [abjad.Duration(x) for x in durations]
@@ -412,11 +414,7 @@ class QEventSequence:
 
         >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
         >>> tempo = abjad.MetronomeMark((1, 4), 72)
-        >>> sequence = nauert.QEventSequence.from_tempo_scaled_leaves(
-        ...     staff[:],
-        ...     tempo=tempo,
-        ... )
-
+        >>> sequence = nauert.QEventSequence.from_tempo_scaled_leaves(staff[:], tempo)
         >>> for q_event in sequence:
         ...     q_event
         ...
