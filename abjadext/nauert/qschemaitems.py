@@ -165,9 +165,12 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         self._time_signature: abjad.TimeSignature | None
-        if time_signature is not None:
+        if isinstance(time_signature, abjad.TimeSignature):
+            self._time_signature = abjad.TimeSignature(time_signature.pair)
+        elif isinstance(time_signature, tuple):
             self._time_signature = abjad.TimeSignature(time_signature)
         else:
+            assert time_signature is None
             self._time_signature = None
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)

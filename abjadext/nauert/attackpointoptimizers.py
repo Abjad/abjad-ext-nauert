@@ -40,12 +40,12 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> source_tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> source_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> q_events = nauert.QEventSequence.from_tempo_scaled_leaves(
         ...     staff[:],
         ...     tempo=source_tempo,
         ... )
-        >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> target_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
         ... )
@@ -219,12 +219,12 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> source_tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> source_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> q_events = nauert.QEventSequence.from_tempo_scaled_leaves(
         ...     staff[:],
         ...     tempo=source_tempo,
         ... )
-        >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> target_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
         ... )
@@ -339,12 +339,12 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> source_tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> source_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> q_events = nauert.QEventSequence.from_tempo_scaled_leaves(
         ...     staff[:],
         ...     tempo=source_tempo,
         ... )
-        >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> target_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     tempo=target_tempo,
         ... )

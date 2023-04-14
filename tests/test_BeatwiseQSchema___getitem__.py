@@ -12,7 +12,7 @@ def test_BeatwiseQSchema___getitem___01():
         == {
             "beatspan": abjad.Duration(1, 4),
             "search_tree": abjadext.nauert.UnweightedSearchTree(),
-            "tempo": abjad.MetronomeMark((1, 4), 60),
+            "tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 60),
         }
     )
 
@@ -31,7 +31,7 @@ def test_BeatwiseQSchema___getitem___02():
         {2: item_a, 4: item_b, 7: item_c},
         beatspan=abjad.Duration(1, 32),
         search_tree=abjadext.nauert.UnweightedSearchTree({3: None}),
-        tempo=abjad.MetronomeMark((1, 16), 36),
+        tempo=abjad.MetronomeMark(abjad.Duration(1, 16), 36),
     )
 
     assert (
@@ -40,7 +40,7 @@ def test_BeatwiseQSchema___getitem___02():
         == {
             "beatspan": abjad.Duration(1, 32),
             "search_tree": abjadext.nauert.UnweightedSearchTree({3: None}),
-            "tempo": abjad.MetronomeMark((1, 16), 36),
+            "tempo": abjad.MetronomeMark(abjad.Duration(1, 16), 36),
         }
     )
 
@@ -50,7 +50,7 @@ def test_BeatwiseQSchema___getitem___02():
         == {
             "beatspan": abjad.Duration(1, 32),
             "search_tree": abjadext.nauert.UnweightedSearchTree({2: None}),
-            "tempo": abjad.MetronomeMark((1, 16), 36),
+            "tempo": abjad.MetronomeMark(abjad.Duration(1, 16), 36),
         }
     )
 
@@ -61,7 +61,7 @@ def test_BeatwiseQSchema___getitem___02():
         == {
             "beatspan": abjad.Duration(1, 32),
             "search_tree": abjadext.nauert.UnweightedSearchTree({2: None}),
-            "tempo": abjad.MetronomeMark((1, 4), 76),
+            "tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 76),
         }
     )
 
@@ -72,6 +72,6 @@ def test_BeatwiseQSchema___getitem___02():
         == {
             "beatspan": abjad.Duration(1, 8),
             "search_tree": abjadext.nauert.UnweightedSearchTree({5: None}),
-            "tempo": abjad.MetronomeMark((1, 4), 76),
+            "tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 76),
         }
     )

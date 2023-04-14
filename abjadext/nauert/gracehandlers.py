@@ -387,6 +387,7 @@ class ConcatenatingGraceHandler(GraceHandler):
             ...     attack_point_optimizer=attack_point_optimizer,
             ... )
             >>> staff = abjad.Staff([result])
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::

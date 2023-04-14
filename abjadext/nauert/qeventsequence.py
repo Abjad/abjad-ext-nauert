@@ -370,7 +370,7 @@ class QEventSequence:
 
         ..  container:: example
 
-            >>> tempo = abjad.MetronomeMark((1, 4), 174)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 174)
             >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
             >>> sequence = nauert.QEventSequence.from_tempo_scaled_durations(
             ...     durations, tempo=tempo)
@@ -413,7 +413,7 @@ class QEventSequence:
         Changes ``leaves``, optionally with ``tempo`` into a ``QEventSequence``:
 
         >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
-        >>> tempo = abjad.MetronomeMark((1, 4), 72)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 72)
         >>> sequence = nauert.QEventSequence.from_tempo_scaled_leaves(staff[:], tempo)
         >>> for q_event in sequence:
         ...     q_event
