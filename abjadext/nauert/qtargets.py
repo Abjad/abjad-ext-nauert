@@ -431,6 +431,8 @@ class MeasurewiseQTarget(QTarget):
             grace_handler=grace_handler, voice=voice
         )
         # partition logical ties in each measure
+        root = abjad.get.parentage(voice).root
+        score = abjad.Score([root], simultaneous=False)
         for index, measure in enumerate(voice):
             if isinstance(attack_point_optimizer, MeasurewiseAttackPointOptimizer):
                 # then we need to pass the time signature of each measure
@@ -439,6 +441,7 @@ class MeasurewiseQTarget(QTarget):
                 attack_point_optimizer(measure)
         if isinstance(grace_handler, ConcatenatingGraceHandler):
             self._attach_attachments_to_logical_ties(voice, q_events_attachments)
+        score[:] = []
         return voice
 
     ### PUBLIC PROPERTIES ###
