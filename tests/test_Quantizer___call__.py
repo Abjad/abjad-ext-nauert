@@ -746,7 +746,6 @@ def test_Quantize_16():
     pitches[0] = None
     all_attachments = [(x,) for x in pitches]
     all_attachments[0] = None
-
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_attachment_tuples(
         tuple(zip(durations, pitches, all_attachments))
     )
@@ -759,15 +758,14 @@ def test_Quantize_16():
         time_signature=(7, 8),
         use_full_measure=True,
     )
-
     result = nauert.quantize(
         q_event_sequence,
         q_schema=q_schema,
         attach_tempos=True,
         attack_point_optimizer=attack_point_optimizer,
     )
-
     staff = abjad.Staff([result])
+    score = abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
