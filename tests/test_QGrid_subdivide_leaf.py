@@ -30,10 +30,6 @@ def test_QGrid_subdivide_leaf_01():
                 preprolated_duration=abjad.Duration(3, 1), q_event_proxies=[]
             ),
         ],
-<<<<<<< HEAD
-        preprolated_duration=(1, 1),
-=======
         preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
     )
     assert format(q_grid.root_node) == format(root_node)

@@ -211,21 +211,13 @@ class QGrid:
         next_downbeat: QGridLeaf | None = None,
     ):
         if root_node is None:
-<<<<<<< HEAD
-            root_node = QGridLeaf(preprolated_duration=(1, 1))
-=======
             root_node = QGridLeaf(preprolated_duration=abjad.Duration(1, 1))
->>>>>>> a3d7af7 (CHANGED:)
         assert isinstance(
             root_node,
             (QGridLeaf, QGridContainer),
         )
         if next_downbeat is None:
-<<<<<<< HEAD
-            next_downbeat = QGridLeaf(preprolated_duration=(1, 1))
-=======
             next_downbeat = QGridLeaf(preprolated_duration=abjad.Duration(1, 1))
->>>>>>> a3d7af7 (CHANGED:)
         assert isinstance(next_downbeat, QGridLeaf)
         self._root_node = root_node
         self._next_downbeat = next_downbeat
@@ -496,15 +488,11 @@ class QGrid:
                 child = QGridLeaf(preprolated_duration=subdivision)
                 children.append(child)
         container = QGridContainer(
-<<<<<<< HEAD
-            preprolated_duration=leaf.preprolated_duration, children=children
-=======
             preprolated_duration=leaf.preprolated_duration,
             children=[
                 QGridLeaf(preprolated_duration=abjad.Duration(subdivision))
                 for subdivision in subdivisions
             ],
->>>>>>> a3d7af7 (CHANGED:)
         )
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)

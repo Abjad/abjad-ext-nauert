@@ -12,17 +12,10 @@ def test_QGrid___eq___01():
 def test_QGrid___eq___02():
     a = abjadext.nauert.QGrid(
         root_node=abjadext.nauert.QGridContainer(
-<<<<<<< HEAD
-            preprolated_duration=(1, 1),
-            children=[
-                abjadext.nauert.QGridLeaf(
-                    preprolated_duration=(1, 1),
-=======
             preprolated_duration=abjad.Duration(1, 1),
             children=[
                 abjadext.nauert.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
                             abjadext.nauert.SilentQEvent(100), 0.5
@@ -32,11 +25,7 @@ def test_QGrid___eq___02():
             ],
         ),
         next_downbeat=abjadext.nauert.QGridLeaf(
-<<<<<<< HEAD
-            preprolated_duration=(1, 1),
-=======
             preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
             q_event_proxies=[
                 abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
             ],
@@ -44,17 +33,10 @@ def test_QGrid___eq___02():
     )
     b = abjadext.nauert.QGrid(
         root_node=abjadext.nauert.QGridContainer(
-<<<<<<< HEAD
-            preprolated_duration=(1, 1),
-            children=[
-                abjadext.nauert.QGridLeaf(
-                    preprolated_duration=(1, 1),
-=======
             preprolated_duration=abjad.Duration(1, 1),
             children=[
                 abjadext.nauert.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
                             abjadext.nauert.SilentQEvent(100), 0.5
@@ -64,11 +46,7 @@ def test_QGrid___eq___02():
             ],
         ),
         next_downbeat=abjadext.nauert.QGridLeaf(
-<<<<<<< HEAD
-            preprolated_duration=(1, 1),
-=======
             preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
             q_event_proxies=[
                 abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
             ],
@@ -82,17 +60,10 @@ def test_QGrid___eq___03():
     a = abjadext.nauert.QGrid()
     b = abjadext.nauert.QGrid(
         root_node=abjadext.nauert.QGridContainer(
-<<<<<<< HEAD
-            preprolated_duration=(1, 1),
-            children=[
-                abjadext.nauert.QGridLeaf(
-                    preprolated_duration=(1, 1),
-=======
             preprolated_duration=abjad.Duration(1, 1),
             children=[
                 abjadext.nauert.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
                             abjadext.nauert.SilentQEvent(100), 0.5
@@ -104,11 +75,7 @@ def test_QGrid___eq___03():
     )
     c = abjadext.nauert.QGrid(
         next_downbeat=abjadext.nauert.QGridLeaf(
-<<<<<<< HEAD
-            preprolated_duration=(1, 1),
-=======
             preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
             q_event_proxies=[
                 abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
             ],
@@ -117,17 +84,10 @@ def test_QGrid___eq___03():
     d = (
         abjadext.nauert.QGrid(
             root_node=abjadext.nauert.QGridContainer(
-<<<<<<< HEAD
-                preprolated_duration=(1, 1),
-                children=[
-                    abjadext.nauert.QGridLeaf(
-                        preprolated_duration=(1, 1),
-=======
                 preprolated_duration=abjad.Duration(1, 1),
                 children=[
                     abjadext.nauert.QGridLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
                         q_event_proxies=[
                             abjadext.nauert.QEventProxy(
                                 abjadext.nauert.SilentQEvent(100), 0.5
@@ -137,11 +97,7 @@ def test_QGrid___eq___03():
                 ],
             ),
             next_downbeat=abjadext.nauert.QGridLeaf(
-<<<<<<< HEAD
-                preprolated_duration=(1, 1),
-=======
                 preprolated_duration=abjad.Duration(1, 1),
->>>>>>> a3d7af7 (CHANGED:)
                 q_event_proxies=[
                     abjadext.nauert.QEventProxy(
                         abjadext.nauert.TerminalQEvent(200), 0.9
