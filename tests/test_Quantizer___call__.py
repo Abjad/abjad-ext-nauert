@@ -765,7 +765,6 @@ def test_Quantize_16():
         attack_point_optimizer=attack_point_optimizer,
     )
     staff = abjad.Staff([result])
-    score = abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
