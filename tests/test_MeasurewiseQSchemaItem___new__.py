@@ -16,7 +16,7 @@ def test_MeasurewiseQSchemaItem___new___02():
     item = abjadext.nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
     assert item.beatspan is None
     assert item.search_tree is None
-    assert item.tempo == abjad.MetronomeMark((1, 4), 60)
+    assert item.tempo == abjad.MetronomeMark(abjad.Duration(1, 4), 60)
     assert item.time_signature is None
 
 
@@ -34,7 +34,7 @@ def test_MeasurewiseQSchemaItem___new___04():
     )
     assert item.beatspan == abjad.Duration(1, 8)
     assert item.search_tree is None
-    assert item.tempo == abjad.MetronomeMark((1, 4), 57)
+    assert item.tempo == abjad.MetronomeMark(abjad.Duration(1, 4), 57)
     assert item.time_signature == abjad.TimeSignature((6, 8))
 
 

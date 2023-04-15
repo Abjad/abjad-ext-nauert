@@ -196,7 +196,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> beatspan = abjad.Duration(5, 16)
         >>> search_tree = nauert.UnweightedSearchTree({7: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
         >>> q_schema = nauert.BeatwiseQSchema(
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,
@@ -310,7 +310,7 @@ class BeatwiseQSchema(QSchema):
         search_tree = keywords.get("search_tree", UnweightedSearchTree())
         assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
-        tempo = keywords.get("tempo", ((1, 4), 60))
+        tempo = keywords.get("tempo", (abjad.Duration(1, 4), 60))
         if isinstance(tempo, tuple):
             tempo = abjad.MetronomeMark(*tempo)
         self._tempo = tempo
@@ -382,7 +382,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> search_tree = nauert.UnweightedSearchTree({7: None})
         >>> time_signature = abjad.TimeSignature((3, 4))
-        >>> tempo = abjad.MetronomeMark((1, 4), 54)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
         >>> use_full_measure = True
         >>> q_schema = nauert.MeasurewiseQSchema(
         ...     search_tree=search_tree,
@@ -532,13 +532,17 @@ class MeasurewiseQSchema(QSchema):
         search_tree = keywords.get("search_tree", UnweightedSearchTree())
         assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
-        tempo = keywords.get("tempo", ((1, 4), 60))
+        tempo = keywords.get("tempo", (abjad.Duration(1, 4), 60))
         if isinstance(tempo, tuple):
             tempo = abjad.MetronomeMark(*tempo)
         self._tempo = tempo
-        self._time_signature = abjad.TimeSignature(
-            keywords.get("time_signature", (4, 4))
-        )
+        time_signature = keywords.get("time_signature", (4, 4))
+        if isinstance(time_signature, abjad.TimeSignature):
+            self._time_signature = abjad.TimeSignature(time_signature.pair)
+        elif isinstance(time_signature, tuple):
+            self._time_signature = abjad.TimeSignature(time_signature)
+        else:
+            raise TypeError(time_signature)
         self._use_full_measure = bool(keywords.get("use_full_measure"))
         QSchema.__init__(self, *arguments, **keywords)
 

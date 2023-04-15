@@ -35,7 +35,7 @@ class QTargetBeat(QTargetItem):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = nauert.UnweightedSearchTree({3: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 56)
 
         >>> q_target_beat = nauert.QTargetBeat(
         ...     beatspan=beatspan,
@@ -87,7 +87,7 @@ class QTargetBeat(QTargetItem):
             reference_duration = abjad.Duration(tempo[0])
             units_per_minute = tempo[1]
             tempo = abjad.MetronomeMark(reference_duration, units_per_minute)
-        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
+        tempo = tempo or abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         assert not tempo.is_imprecise
 
         q_events: list[QEvent] = []
@@ -138,7 +138,7 @@ class QTargetBeat(QTargetItem):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = nauert.UnweightedSearchTree({3: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 56)
 
         >>> q_target_beat = nauert.QTargetBeat(
         ...     beatspan=beatspan,
@@ -161,7 +161,7 @@ class QTargetBeat(QTargetItem):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = nauert.UnweightedSearchTree({3: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 56)
 
         >>> q_target_beat = nauert.QTargetBeat(
         ...     beatspan=beatspan,
@@ -184,7 +184,7 @@ class QTargetBeat(QTargetItem):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = nauert.UnweightedSearchTree({3: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 56)
 
         >>> q_target_beat = nauert.QTargetBeat(
         ...     beatspan=beatspan,
@@ -234,7 +234,7 @@ class QTargetBeat(QTargetItem):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = nauert.UnweightedSearchTree({3: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 56)
 
         >>> q_target_beat = nauert.QTargetBeat(
         ...     beatspan=beatspan,
@@ -258,7 +258,7 @@ class QTargetBeat(QTargetItem):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = nauert.UnweightedSearchTree({3: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 56)
 
         >>> q_target_beat = nauert.QTargetBeat(
         ...     beatspan=beatspan,
@@ -283,7 +283,7 @@ class QTargetMeasure(QTargetItem):
     ..  container:: example
 
         >>> search_tree = nauert.UnweightedSearchTree({2: None})
-        >>> tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> time_signature = abjad.TimeSignature((4, 4))
 
         >>> q_target_measure = nauert.QTargetMeasure(
@@ -352,7 +352,8 @@ class QTargetMeasure(QTargetItem):
     ):
         offset_in_ms = offset_in_ms or 0
         offset_in_ms = abjad.Offset(offset_in_ms)
-
+        if time_signature is not None:
+            assert isinstance(time_signature, abjad.TimeSignature), repr(time_signature)
         if search_tree is None:
             search_tree = UnweightedSearchTree()
         assert isinstance(search_tree, SearchTree)
@@ -361,10 +362,13 @@ class QTargetMeasure(QTargetItem):
             reference_duration = abjad.Duration(tempo[0])
             units_per_minute = tempo[1]
             tempo = abjad.MetronomeMark(reference_duration, units_per_minute)
-        tempo = tempo or abjad.MetronomeMark((1, 4), 60)
+        tempo = tempo or abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         assert not tempo.is_imprecise
-        time_signature = time_signature or (4, 4)
-        _time_signature = abjad.TimeSignature(time_signature)
+        if time_signature is None:
+            pair = (4, 4)
+        else:
+            pair = time_signature.pair
+        _time_signature = abjad.TimeSignature(pair)
         use_full_measure = bool(use_full_measure)
         beats = []
         if use_full_measure:
@@ -415,7 +419,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(
@@ -444,7 +448,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(
@@ -468,7 +472,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(
@@ -492,7 +496,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(
@@ -516,7 +520,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(
@@ -540,7 +544,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(
@@ -564,7 +568,7 @@ class QTargetMeasure(QTargetItem):
         ..  container:: example
 
             >>> search_tree = nauert.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> time_signature = abjad.TimeSignature((4, 4))
 
             >>> q_target_measure = nauert.QTargetMeasure(

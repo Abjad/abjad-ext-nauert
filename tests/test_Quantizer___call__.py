@@ -489,6 +489,7 @@ def test_Quantize_11():
         attack_point_optimizer=attack_point_optimizer,
     )
     staff = abjad.Staff([result])
+    abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
@@ -530,6 +531,7 @@ def test_Quantize_12():
     )
     result = nauert.quantize(q_event_sequence, q_schema=q_schema, attach_tempos=True)
     staff = abjad.Staff([result])
+    abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
@@ -588,6 +590,7 @@ def test_Quantize_13():
     )
     result = nauert.quantize(q_event_sequence, q_schema=q_schema, attach_tempos=True)
     staff = abjad.Staff([result])
+    abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
@@ -657,6 +660,7 @@ def test_Quantize_14():
         attach_tempos=True,
     )
     staff = abjad.Staff([result])
+    abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
@@ -710,6 +714,7 @@ def test_Quantize_15():
     )
 
     staff = abjad.Staff([result])
+    abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
@@ -754,7 +759,7 @@ def test_Quantize_16():
     attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
     q_schema = nauert.MeasurewiseQSchema(
         search_tree=search_tree,
-        tempo=abjad.MetronomeMark((1, 4), 72),
+        tempo=abjad.MetronomeMark(abjad.Duration(1, 4), 72),
         time_signature=(7, 8),
         use_full_measure=True,
     )
@@ -765,6 +770,7 @@ def test_Quantize_16():
         attack_point_optimizer=attack_point_optimizer,
     )
     staff = abjad.Staff([result])
+    abjad.Score([staff], name="Score")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
