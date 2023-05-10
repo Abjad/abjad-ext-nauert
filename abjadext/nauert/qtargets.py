@@ -387,6 +387,9 @@ class MeasurewiseQTarget(QTarget):
         attach_tempos: bool = True,
     ) -> abjad.Voice:
         voice = abjad.Voice()
+        temporary_score = abjad.Score(
+            [voice], name="TemporaryScore", simultaneous=False
+        )
         # generate the first
         q_target_measure = self._items[0]
         assert isinstance(q_target_measure, QTargetMeasure)
@@ -394,19 +397,18 @@ class MeasurewiseQTarget(QTarget):
         measure = abjad.Container()
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
-        score = abjad.Score([measure], simultaneous=False)
+        voice.append(measure)
         leaf = abjad.get.leaf(measure, 0)
         abjad.attach(time_signature, leaf)
-        score[:] = []
         if attach_tempos:
             tempo = copy.deepcopy(q_target_measure.tempo)
             leaf = abjad.get.leaf(measure, 0)
             abjad.attach(tempo, leaf)
-        voice.append(measure)
         # generate the rest pairwise, comparing tempi
         pairs = abjad.sequence.nwise(self.items)
         for q_target_measure_one, q_target_measure_two in pairs:
             measure = abjad.Container()
+            voice.append(measure)
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
             if (
@@ -416,23 +418,18 @@ class MeasurewiseQTarget(QTarget):
                 time_signature = q_target_measure_two.time_signature
                 leaf = abjad.get.leaf(measure, 0)
                 root = abjad.get.parentage(leaf).root
-                score = abjad.Score([root], simultaneous=False)
                 abjad.attach(time_signature, leaf)
-                score[:] = []
             if (
                 q_target_measure_two.tempo != q_target_measure_one.tempo
             ) and attach_tempos:
                 tempo = copy.deepcopy(q_target_measure_two.tempo)
                 leaf = abjad.get.leaf(measure, 0)
                 abjad.attach(tempo, leaf)
-            voice.append(measure)
         # apply logical ties, pitches, grace containers
         q_events_attachments = self._notate_leaves(
             grace_handler=grace_handler, voice=voice
         )
         # partition logical ties in each measure
-        root = abjad.get.parentage(voice).root
-        score = abjad.Score([root], simultaneous=False)
         for index, measure in enumerate(voice):
             if isinstance(attack_point_optimizer, MeasurewiseAttackPointOptimizer):
                 # then we need to pass the time signature of each measure
@@ -441,7 +438,7 @@ class MeasurewiseQTarget(QTarget):
                 attack_point_optimizer(measure)
         if isinstance(grace_handler, ConcatenatingGraceHandler):
             self._attach_attachments_to_logical_ties(voice, q_events_attachments)
-        score[:] = []
+        temporary_score[:] = []
         return voice
 
     ### PUBLIC PROPERTIES ###
