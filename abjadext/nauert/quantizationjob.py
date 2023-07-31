@@ -113,7 +113,7 @@ class QuantizationJob:
         q-event proxies and q-grids equal to those of this quantization job.
         Otherwise false.
         """
-        if type(self) == type(argument):
+        if type(self) is type(argument):
             if self.job_id == argument.job_id:
                 if self.search_tree == argument.search_tree:
                     if self.q_event_proxies == argument.q_event_proxies:

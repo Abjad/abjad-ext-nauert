@@ -75,7 +75,7 @@ class QEventSequence:
         """
         Is true when q-event sequence equals ``argument``. Otherwise false.
         """
-        if type(self) == type(argument):
+        if type(self) is type(argument):
             if self.sequence == argument.sequence:
                 return True
         return False

@@ -267,7 +267,7 @@ class QGrid:
 
         Returns true or false.
         """
-        if type(self) == type(argument):
+        if type(self) is type(argument):
             if self.root_node == argument.root_node:
                 if self.next_downbeat == argument.next_downbeat:
                     return True

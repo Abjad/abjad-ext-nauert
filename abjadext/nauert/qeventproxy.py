@@ -58,7 +58,7 @@ class QEventProxy:
         Is true when `argument` is a q-event proxy with offset and q-event
         equal to those of this q-event proxy. Otherwise false.
         """
-        if type(self) == type(argument):
+        if type(self) is type(argument):
             if self.offset == argument.offset:
                 if self.q_event == argument.q_event:
                     return True

@@ -40,7 +40,7 @@ class QEvent(abc.ABC):
         Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
         """
-        if type(self) == type(self):
+        if type(self) is type(self):
             if self.offset < argument.offset:
                 return True
         return False
@@ -120,7 +120,7 @@ class PitchedQEvent(QEvent):
         false.
         """
         if (
-            type(self) == type(argument)
+            type(self) is type(argument)
             and self.offset == argument.offset
             and self.pitches == argument.pitches
             and self.attachments == argument.attachments
@@ -199,7 +199,7 @@ class SilentQEvent(QEvent):
         and index equal to those of this silent q-event. Otherwise false.
         """
         if (
-            type(self) == type(argument)
+            type(self) is type(argument)
             and self._offset == argument._offset
             and self._attachments == argument._attachments
             and self._index == argument._index
@@ -252,7 +252,7 @@ class TerminalQEvent(QEvent):
         Is true when `argument` is a terminal q-event with offset equal to that
         of this terminal q-event. Otherwise false.
         """
-        if type(self) == type(argument) and self.offset == argument.offset:
+        if type(self) is type(argument) and self.offset == argument.offset:
             return True
         return False
 
