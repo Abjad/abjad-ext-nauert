@@ -808,3 +808,32 @@ def test_Quantize_16():
         """
     ), print(string)
     assert_q_event_attachments(result, all_attachments[1:])
+
+
+def test_Quantize_17():
+    durations = [2268, 1154, 655, 152, 497, 784, 420, 1031, 1305, 577, 959, 61]
+    pitches = [None, 12, 13, None, 12, None, 12, None, 12, 16, None, 18]
+    q_events = nauert.QEventSequence.from_millisecond_pitch_pairs(
+        tuple(zip(durations, pitches))
+    )
+    search_tree = nauert.UnweightedSearchTree(
+        definition={
+            2: {2: None},
+            3: {2: None},
+            5: None,
+        }
+    )
+    q_schema = nauert.MeasurewiseQSchema(
+        search_tree=search_tree, tempo=(abjad.Duration(1, 4), 78), time_signature=(4, 4)
+    )
+    grace_handler = nauert.ConcatenatingGraceHandler(
+        replace_rest_with_final_grace_note=False
+    )
+    optimizer = nauert.MeasurewiseAttackPointOptimizer()
+    result = nauert.quantize(
+        q_events,
+        q_schema=q_schema,
+        grace_handler=grace_handler,
+        attack_point_optimizer=optimizer,
+        attach_tempos=True,
+    )
