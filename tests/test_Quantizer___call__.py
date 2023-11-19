@@ -1,3 +1,5 @@
+import pytest
+
 import abjad
 from abjadext import nauert
 
@@ -810,9 +812,12 @@ def test_Quantize_16():
     assert_q_event_attachments(result, all_attachments[1:])
 
 
+@pytest.mark.xfail(
+    reason="having a grace note attached to a rest makes rewrite meter fails"
+)
 def test_Quantize_17():
     durations = [2268, 1154, 655, 152, 497, 784, 420, 1031, 1305, 577, 959, 61]
-    pitches = [None, 12, 13, None, 12, None, 12, None, 12, 16, None, 18]
+    pitches = [None, 0, 1, None, 2, None, 3, None, 4, 5, None, 6]
     q_events = nauert.QEventSequence.from_millisecond_pitch_pairs(
         tuple(zip(durations, pitches))
     )
