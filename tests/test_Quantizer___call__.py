@@ -835,7 +835,7 @@ def test_Quantize_17():
         replace_rest_with_final_grace_note=False
     )
     optimizer = nauert.MeasurewiseAttackPointOptimizer()
-    result = nauert.quantize(
+    nauert.quantize(
         q_events,
         q_schema=q_schema,
         grace_handler=grace_handler,
