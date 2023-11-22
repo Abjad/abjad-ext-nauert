@@ -468,8 +468,8 @@ class DiscardingGraceHandler(GraceHandler):
 
     ..  container:: example
 
-        >>> durations = [1000, 1, 999]
-        >>> pitches = [0, 0, 1]
+        >>> durations = [1000, 1, 1, 998]
+        >>> pitches = [0, 1, 2, 3]
         >>> q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(
         ...     tuple(zip(durations, pitches))
         ... )
@@ -488,14 +488,14 @@ class DiscardingGraceHandler(GraceHandler):
                     \tempo 4=60
                     %%% \time 4/4 %%%
                     c'4
-                    cs'4
+                    ef'4
                     r4
                     r4
                 }
             }
 
         >>> grace_handler.discarded_q_events
-        [[(PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=()),)]]
+        [(PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch("cs'"),), index=None, attachments=()), PitchedQEvent(offset=Offset((1001, 1)), pitches=(NamedPitch("d'"),), index=None, attachments=()))]
 
     """
 
@@ -505,8 +505,8 @@ class DiscardingGraceHandler(GraceHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self):
-        self._discarded_q_events: [QEvent] = []
+    def __init__(self) -> None:
+        self._discarded_q_events: list[typing.Sequence[QEvent]] = []
 
     ### SPECIAL METHODS ###
 
@@ -517,14 +517,14 @@ class DiscardingGraceHandler(GraceHandler):
         Calls discarding grace handler.
         """
         if q_events[:-1]:
-            self._discarded_q_events.append([q_events[:-1]])
+            self._discarded_q_events.append(q_events[:-1])
         q_event = q_events[-1]
         if isinstance(q_event, PitchedQEvent):
             return tuple(q_event.pitches), tuple(q_event.attachments), None
         return (), (), None
 
     @property
-    def discarded_q_events(self):
+    def discarded_q_events(self) -> list[typing.Sequence[QEvent]]:
         """
         Returns the discarded QEvents.
         """
