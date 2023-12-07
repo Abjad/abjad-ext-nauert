@@ -64,8 +64,8 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
             \new Voice
             {
                 {
-                    \tempo 4=54
                     %%% \time 4/4 %%%
+                    \tempo 4=54
                     c'16..
                     d'64
                     ~
@@ -130,8 +130,8 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
             \new Voice
             {
                 {
-                    \tempo 4=54
                     %%% \time 4/4 %%%
+                    \tempo 4=54
                     c'16..
                     d'64
                     ~
@@ -246,8 +246,8 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
             \new Voice
             {
                 {
-                    \tempo 4=54
                     %%% \time 4/4 %%%
+                    \tempo 4=54
                     c'16..
                     d'64
                     ~
@@ -366,8 +366,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
             \new Voice
             {
                 {
-                    \tempo 4=54
                     %%% \time 4/4 %%%
+                    \tempo 4=54
                     c'16
                     ~
                     c'32

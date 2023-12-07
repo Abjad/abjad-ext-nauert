@@ -74,8 +74,8 @@ class DistanceHeuristic(Heuristic):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     cs'4
                     d'4

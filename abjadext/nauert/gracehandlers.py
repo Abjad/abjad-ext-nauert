@@ -73,8 +73,8 @@ class CollapsingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     <c' e' g'>4
                     r4
@@ -134,8 +134,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     \grace {
                         d'16
@@ -167,8 +167,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     c'4
                     r4
@@ -192,8 +192,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     \grace {
                         r16
@@ -229,8 +229,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     \grace {
                         c'16
@@ -258,8 +258,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     c'4
                     c'4
@@ -485,8 +485,8 @@ class DiscardingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     ef'4
                     r4

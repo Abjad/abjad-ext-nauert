@@ -434,8 +434,8 @@ def test_Quantize_10():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 <c' g'>4
                 <cs' af'>4
                 <d' a'>4

@@ -15,8 +15,8 @@ def test_DiscardingGraceHandler___call___01():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 ef'4
                 f'4
