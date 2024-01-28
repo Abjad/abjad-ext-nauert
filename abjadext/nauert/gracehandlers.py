@@ -33,9 +33,7 @@ class GraceHandler(abc.ABC):
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
-    def __call__(
-        self, q_events
-    ) -> tuple[
+    def __call__(self, q_events) -> tuple[
         tuple[abjad.NamedPitch, ...],
         typing.Optional[tuple],
         typing.Optional[abjad.BeforeGraceContainer],
@@ -295,9 +293,7 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(
-        self, q_events: typing.Sequence[QEvent]
-    ) -> tuple[
+    def __call__(self, q_events: typing.Sequence[QEvent]) -> tuple[
         tuple[abjad.NamedPitch, ...],
         typing.Optional[tuple],
         typing.Optional[abjad.BeforeGraceContainer],

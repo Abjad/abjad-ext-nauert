@@ -82,11 +82,11 @@ class QEventSequence:
 
     @typing.overload
     def __getitem__(self, argument: int) -> QEvent:
-        ...
+        pass
 
     @typing.overload
     def __getitem__(self, argument: slice) -> tuple[QEvent, ...]:
-        ...
+        pass
 
     def __getitem__(self, argument: int | slice) -> QEvent | tuple[QEvent, ...]:
         """
