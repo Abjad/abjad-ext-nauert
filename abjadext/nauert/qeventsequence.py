@@ -260,16 +260,16 @@ class QEventSequence:
         assert isinstance(tuples, collections.abc.Iterable)
         assert all(isinstance(_, collections.abc.Iterable) for _ in tuples)
         assert all(len(_) == 3 for _ in tuples)
-        assert all(0 < _[0] for _ in tuples)
-        for tuple_ in tuples:
+        assert all(0 < duration for duration, _, _ in tuples)
+        for duration, pitches, attachments in tuples:
             assert isinstance(
-                tuple_[1], numbers.Number | type(None) | collections.abc.Sequence
+                pitches, numbers.Number | type(None) | collections.abc.Sequence
             )
-            if isinstance(tuple_[1], collections.abc.Sequence):
-                assert 0 < len(tuple_[1])
-                assert all(isinstance(_, numbers.Number) for _ in tuple_[1])
-            if tuple_[1] is None:
-                assert tuple_[2] is None
+            if isinstance(pitches, collections.abc.Sequence):
+                assert 0 < len(pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
+            if pitches is None:
+                assert attachments is None
         # fuse silences
         g = itertools.groupby(tuples, lambda _: _[1] is not None)
         groups = []
@@ -317,7 +317,7 @@ class QEventSequence:
         assert isinstance(pairs, collections.abc.Iterable)
         assert all(isinstance(_, collections.abc.Iterable) for _ in pairs)
         assert all(len(_) == 2 for _ in pairs)
-        assert all(0 < _[0] for _ in pairs)
+        assert all(0 < duration for duration, _ in pairs)
         for _, pitches in pairs:
             assert isinstance(
                 pitches, (numbers.Number, type(None), collections.abc.Sequence)
