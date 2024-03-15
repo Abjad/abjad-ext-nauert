@@ -193,9 +193,8 @@ class QEventSequence:
             durations = milliseconds
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events: list[QEvent] = []
-        for pair in zip(offsets, durations):
-            offset = abjad.Offset(pair[0])
-            duration = pair[1]
+        for offset, duration in zip(offsets, durations):
+            offset = abjad.Offset(offset)
             q_event: QEvent
             # negative duration indicates silence
             if duration < 0:
@@ -284,10 +283,10 @@ class QEventSequence:
         offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
         # build QEvents
         q_events: list[QEvent] = []
-        for pair in zip(offsets, groups):
-            offset = abjad.Offset(pair[0])
-            pitches = pair[1][1]
-            attachments = pair[1][2]
+        for offset, group_ in zip(offsets, groups):
+            offset = abjad.Offset(offset)
+            pitches = group_[1]
+            attachments = group_[2]
             if isinstance(pitches, collections.abc.Iterable):
                 assert all(isinstance(_, numbers.Number) for _ in pitches)
                 q_events.append(PitchedQEvent(offset, pitches, attachments))
@@ -346,9 +345,9 @@ class QEventSequence:
         offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
         # build QEvents
         q_events: list[QEvent] = []
-        for pair in zip(offsets, groups):
-            offset = abjad.Offset(pair[0])
-            pitches = pair[1][1]
+        for offset, group_ in zip(offsets, groups):
+            offset = abjad.Offset(offset)
+            pitches = group_[1]
             if isinstance(pitches, collections.abc.Iterable):
                 assert all(isinstance(x, numbers.Number) for x in pitches)
                 q_events.append(PitchedQEvent(offset, pitches))
@@ -391,10 +390,9 @@ class QEventSequence:
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events = []
-        for pair in zip(offsets, durations):
-            offset = abjad.Offset(pair[0])
-            assert isinstance(pair[1], abjad.Duration)
-            duration: abjad.Duration = pair[1]
+        for offset, duration in zip(offsets, durations):
+            offset = abjad.Offset(offset)
+            assert isinstance(duration, abjad.Duration)
             q_event: QEvent
             # negative duration indicates silence
             if duration < 0:
