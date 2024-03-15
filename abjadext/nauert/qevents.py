@@ -89,7 +89,7 @@ class QEvent(abc.ABC):
             case int() | float():
                 return PitchedQEvent(offset, [pitches], attachments)
             case _:
-                raise TypeError(pitches)
+                raise TypeError(type(pitches))
 
 
 class PitchedQEvent(QEvent):
