@@ -283,10 +283,8 @@ class QEventSequence:
         offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
         # build QEvents
         q_events: list[QEvent] = []
-        for offset, group_ in zip(offsets, groups):
+        for offset, (_, pitches, attachments) in zip(offsets, groups):
             offset = abjad.Offset(offset)
-            pitches = group_[1]
-            attachments = group_[2]
             q_event = QEvent.from_offset_pitches_attachments(
                 offset, pitches, attachments
             )
