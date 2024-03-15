@@ -1,4 +1,6 @@
 import abc
+import collections
+import numbers
 import typing
 
 import abjad
@@ -73,6 +75,21 @@ class QEvent(abc.ABC):
         The offset in milliseconds of the event.
         """
         return self._offset
+
+    @classmethod
+    def from_offset_pitches_attachments(
+        class_, offset, pitches, attachments
+    ) -> "QEvent":
+        match pitches:
+            case collections.abc.Iterable():
+                assert all(isinstance(x, numbers.Number) for x in pitches)
+                return PitchedQEvent(offset, pitches, attachments)
+            case None:
+                return SilentQEvent(offset, attachments)
+            case int() | float():
+                return PitchedQEvent(offset, [pitches], attachments)
+            case _:
+                raise TypeError(pitches)
 
 
 class PitchedQEvent(QEvent):

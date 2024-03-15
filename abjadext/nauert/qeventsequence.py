@@ -9,19 +9,6 @@ import abjad
 from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
 
 
-def _map_offset_pitches_attachments_to_q_event(offset, pitches, attachments) -> QEvent:
-    match pitches:
-        case collections.abc.Iterable():
-            assert all(isinstance(x, numbers.Number) for x in pitches)
-            return PitchedQEvent(offset, pitches, attachments)
-        case None:
-            return SilentQEvent(offset, attachments)
-        case int() | float():
-            return PitchedQEvent(offset, [pitches], attachments)
-        case _:
-            raise TypeError(pitches)
-
-
 class QEventSequence:
     r"""
     Q-event sequence.
@@ -300,7 +287,7 @@ class QEventSequence:
             offset = abjad.Offset(offset)
             pitches = group_[1]
             attachments = group_[2]
-            q_event = _map_offset_pitches_attachments_to_q_event(
+            q_event = QEvent.from_offset_pitches_attachments(
                 offset, pitches, attachments
             )
             q_events.append(q_event)
