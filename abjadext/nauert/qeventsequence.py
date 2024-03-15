@@ -342,26 +342,9 @@ class QEventSequence:
             if isinstance(pitches, collections.abc.Sequence):
                 assert 0 < len(pitches)
                 assert all(isinstance(_, numbers.Number) for _ in pitches)
-        # fuse silences
-        g = itertools.groupby(pairs, lambda x: x[1] is not None)
-        groups = []
-        for value, group in g:
-            if value:
-                groups.extend(list(group))
-            else:
-                duration = sum(x[0] for x in group)
-                groups.append((duration, None))
-        # find offsets
-        offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
-        # build QEvents
-        q_events: list[QEvent] = []
-        for offset, group_ in zip(offsets, groups):
-            offset = abjad.Offset(offset)
-            pitches = group_[1]
-            q_event = _map_offset_pitches_attachments_to_q_event(offset, pitches, None)
-            q_events.append(q_event)
-        q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
-        return class_(q_events)
+        return class_.from_millisecond_pitch_attachment_tuples(
+            [(duration, pitches, None) for duration, pitches in pairs]
+        )
 
     @classmethod
     def from_tempo_scaled_durations(
