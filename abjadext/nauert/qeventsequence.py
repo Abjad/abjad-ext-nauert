@@ -281,15 +281,13 @@ class QEventSequence:
                 groups.append((duration, None, None))
         # find offsets
         offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
+        offsets = [abjad.Offset(_) for _ in offsets]
         # build QEvents
-        q_events: list[QEvent] = []
-        for offset, (_, pitches, attachments) in zip(offsets, groups):
-            offset = abjad.Offset(offset)
-            q_event = QEvent.from_offset_pitches_attachments(
-                offset, pitches, attachments
-            )
-            q_events.append(q_event)
-        q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
+        q_events = [
+            QEvent.from_offset_pitches_attachments(offset, pitches, attachments)
+            for offset, (_, pitches, attachments) in zip(offsets, groups)
+        ]
+        q_events.append(TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
     @classmethod
