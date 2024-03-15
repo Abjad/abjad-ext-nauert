@@ -9,6 +9,19 @@ import abjad
 from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
 
 
+def _map_offset_pitches_attachments_to_q_event(offset, pitches, attachments) -> QEvent:
+    match pitches:
+        case collections.abc.Iterable():
+            assert all(isinstance(x, numbers.Number) for x in pitches)
+            return PitchedQEvent(offset, pitches, attachments)
+        case None:
+            return SilentQEvent(offset, attachments)
+        case int() | float():
+            return PitchedQEvent(offset, [pitches], attachments)
+        case _:
+            raise TypeError(pitches)
+
+
 class QEventSequence:
     r"""
     Q-event sequence.
@@ -287,13 +300,10 @@ class QEventSequence:
             offset = abjad.Offset(offset)
             pitches = group_[1]
             attachments = group_[2]
-            if isinstance(pitches, collections.abc.Iterable):
-                assert all(isinstance(_, numbers.Number) for _ in pitches)
-                q_events.append(PitchedQEvent(offset, pitches, attachments))
-            elif isinstance(pitches, type(None)):
-                q_events.append(SilentQEvent(offset))
-            elif isinstance(pitches, int | float):
-                q_events.append(PitchedQEvent(offset, [pitches], attachments))
+            q_event = _map_offset_pitches_attachments_to_q_event(
+                offset, pitches, attachments
+            )
+            q_events.append(q_event)
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
@@ -348,13 +358,8 @@ class QEventSequence:
         for offset, group_ in zip(offsets, groups):
             offset = abjad.Offset(offset)
             pitches = group_[1]
-            if isinstance(pitches, collections.abc.Iterable):
-                assert all(isinstance(x, numbers.Number) for x in pitches)
-                q_events.append(PitchedQEvent(offset, pitches))
-            elif isinstance(pitches, type(None)):
-                q_events.append(SilentQEvent(offset))
-            elif isinstance(pitches, int | float):
-                q_events.append(PitchedQEvent(offset, [pitches]))
+            q_event = _map_offset_pitches_attachments_to_q_event(offset, pitches, None)
+            q_events.append(q_event)
         q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
         return class_(q_events)
 
