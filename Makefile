@@ -55,7 +55,8 @@ isort-reformat:
 	.
 
 mypy:
-	mypy .
+	mypy abjadext
+	mypy tests
 
 project = abjadext
 
