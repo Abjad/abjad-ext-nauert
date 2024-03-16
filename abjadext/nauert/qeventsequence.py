@@ -398,15 +398,16 @@ class QEventSequence:
         will be determined by its effective tempo.
         """
         assert len(leaves)
-        if tempo is None:
-            prototype = abjad.MetronomeMark
-            assert abjad.get.effective(leaves[0], prototype) is not None
-        elif isinstance(tempo, abjad.MetronomeMark):
-            tempo = copy.deepcopy(tempo)
-        elif isinstance(tempo, tuple):
-            tempo = abjad.MetronomeMark(*tempo)
-        else:
-            raise TypeError(tempo)
+        match tempo:
+            case None:
+                prototype = abjad.MetronomeMark
+                assert abjad.get.effective(leaves[0], prototype) is not None
+            case abjad.MetronomeMark():
+                tempo = copy.deepcopy(tempo)
+            case tuple():
+                tempo = abjad.MetronomeMark(*tempo)
+            case _:
+                raise TypeError(tempo)
         # sort by silence and tied leaves
         groups = []
         for rvalue, rgroup in itertools.groupby(
