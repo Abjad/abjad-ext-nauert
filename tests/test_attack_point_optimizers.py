@@ -55,9 +55,15 @@ def test_MeasurewiseAttackPointOptimizer___call___01():
 
 
 def test_annotations_survive_measurewise_attack_point_optimimzer():
-    container = abjad.Container("c'8~ c'8 c'4 c'4 c'4")
-    abjad.annotate(container[0], "test_annotation", "test_indicator")
-    assert abjad.get.annotation(container[0], "test_annotation") == "test_indicator"
+    container = abjad.Container("c'8~ c'8 c'8 c'4. c'4")
+    abjad.annotate(container[0], "q_event_attachments", "test_indicator_0")
+    assert (
+        abjad.get.annotation(container[0], "q_event_attachments") == "test_indicator_0"
+    )
+    abjad.annotate(container[3], "q_event_attachments", "test_indicator_1")
+    assert (
+        abjad.get.annotation(container[3], "q_event_attachments") == "test_indicator_1"
+    )
     time_signature = abjad.TimeSignature((4, 4))
     attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()
     attack_point_optimizer(container, time_signature)
@@ -66,17 +72,24 @@ def test_annotations_survive_measurewise_attack_point_optimimzer():
         r"""
         {
             c'4
-            c'4
+            c'8
+            c'8
+            ~
             c'4
             c'4
         }
         """
     )
-    assert abjad.get.annotation(container[0], "test_annotation") == "test_indicator"
+    assert (
+        abjad.get.annotation(container[0], "q_event_attachments") == "test_indicator_0"
+    )
+    assert (
+        abjad.get.annotation(container[2], "q_event_attachments") == "test_indicator_1"
+    )
 
 
 def test_annotations_survive_naive_attack_point_optimimzer():
-    container = abjad.Container("c'8~ c'8 c'4 c'4 c'4")
+    container = abjad.Container("c'8~ c'8 c'8 c'4. c'4")
     abjad.annotate(container[0], "test_annotation", "test_indicator")
     assert abjad.get.annotation(container[0], "test_annotation") == "test_indicator"
     attack_point_optimizer = nauert.NaiveAttackPointOptimizer()
@@ -86,8 +99,8 @@ def test_annotations_survive_naive_attack_point_optimimzer():
         r"""
         {
             c'4
-            c'4
-            c'4
+            c'8
+            c'4.
             c'4
         }
         """
