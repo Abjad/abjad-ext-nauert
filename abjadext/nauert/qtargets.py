@@ -305,9 +305,6 @@ class BeatwiseQTarget(QTarget):
         attach_tempos: bool = True,
     ) -> abjad.Voice:
         voice = abjad.Voice()
-        temporary_score = abjad.Score(
-            [voice], name="TemporaryScore", simultaneous=False
-        )
         # generate the first
         beat = self._items[0]
         assert isinstance(beat, QTargetBeat) and beat.q_grid is not None
@@ -339,7 +336,6 @@ class BeatwiseQTarget(QTarget):
         attack_point_optimizer(voice)
         if isinstance(grace_handler, ConcatenatingGraceHandler):
             self._attach_attachments_to_logical_ties(voice, q_events_attachments)
-        temporary_score[:] = []
         return voice
 
     ### PUBLIC PROPERTIES ###
@@ -386,9 +382,6 @@ class MeasurewiseQTarget(QTarget):
         attach_tempos: bool = True,
     ) -> abjad.Voice:
         voice = abjad.Voice()
-        temporary_score = abjad.Score(
-            [voice], name="TemporaryScore", simultaneous=False
-        )
         # generate the first
         q_target_measure = self._items[0]
         assert isinstance(q_target_measure, QTargetMeasure)
@@ -436,7 +429,6 @@ class MeasurewiseQTarget(QTarget):
                 attack_point_optimizer(measure)
         if isinstance(grace_handler, ConcatenatingGraceHandler):
             self._attach_attachments_to_logical_ties(voice, q_events_attachments)
-        temporary_score[:] = []
         return voice
 
     ### PUBLIC PROPERTIES ###
