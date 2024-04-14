@@ -193,9 +193,8 @@ class QEventSequence:
             durations = milliseconds
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events: list[QEvent] = []
-        for pair in zip(offsets, durations):
-            offset = abjad.Offset(pair[0])
-            duration = pair[1]
+        for offset, duration in zip(offsets, durations):
+            offset = abjad.Offset(offset)
             q_event: QEvent
             # negative duration indicates silence
             if duration < 0:
@@ -261,16 +260,16 @@ class QEventSequence:
         assert isinstance(tuples, collections.abc.Iterable)
         assert all(isinstance(_, collections.abc.Iterable) for _ in tuples)
         assert all(len(_) == 3 for _ in tuples)
-        assert all(0 < _[0] for _ in tuples)
-        for tuple_ in tuples:
+        assert all(0 < duration for duration, _, _ in tuples)
+        for _, pitches, attachments in tuples:
             assert isinstance(
-                tuple_[1], numbers.Number | type(None) | collections.abc.Sequence
+                pitches, numbers.Number | type(None) | collections.abc.Sequence
             )
-            if isinstance(tuple_[1], collections.abc.Sequence):
-                assert 0 < len(tuple_[1])
-                assert all(isinstance(_, numbers.Number) for _ in tuple_[1])
-            if tuple_[1] is None:
-                assert tuple_[2] is None
+            if isinstance(pitches, collections.abc.Sequence):
+                assert 0 < len(pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
+            if pitches is None:
+                assert attachments is None
         # fuse silences
         g = itertools.groupby(tuples, lambda _: _[1] is not None)
         groups = []
@@ -282,20 +281,13 @@ class QEventSequence:
                 groups.append((duration, None, None))
         # find offsets
         offsets = abjad.math.cumulative_sums([abs(_[0]) for _ in groups])
+        offsets = [abjad.Offset(_) for _ in offsets]
         # build QEvents
-        q_events: list[QEvent] = []
-        for pair in zip(offsets, groups):
-            offset = abjad.Offset(pair[0])
-            pitches = pair[1][1]
-            attachments = pair[1][2]
-            if isinstance(pitches, collections.abc.Iterable):
-                assert all(isinstance(_, numbers.Number) for _ in pitches)
-                q_events.append(PitchedQEvent(offset, pitches, attachments))
-            elif isinstance(pitches, type(None)):
-                q_events.append(SilentQEvent(offset))
-            elif isinstance(pitches, int | float):
-                q_events.append(PitchedQEvent(offset, [pitches], attachments))
-        q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
+        q_events = [
+            QEvent.from_offset_pitches_attachments(offset, pitches, attachments)
+            for offset, (_, pitches, attachments) in zip(offsets, groups)
+        ]
+        q_events.append(TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
     @classmethod
@@ -325,7 +317,7 @@ class QEventSequence:
         assert isinstance(pairs, collections.abc.Iterable)
         assert all(isinstance(_, collections.abc.Iterable) for _ in pairs)
         assert all(len(_) == 2 for _ in pairs)
-        assert all(0 < _[0] for _ in pairs)
+        assert all(0 < duration for duration, _ in pairs)
         for _, pitches in pairs:
             assert isinstance(
                 pitches, (numbers.Number, type(None), collections.abc.Sequence)
@@ -333,31 +325,9 @@ class QEventSequence:
             if isinstance(pitches, collections.abc.Sequence):
                 assert 0 < len(pitches)
                 assert all(isinstance(_, numbers.Number) for _ in pitches)
-        # fuse silences
-        g = itertools.groupby(pairs, lambda x: x[1] is not None)
-        groups = []
-        for value, group in g:
-            if value:
-                groups.extend(list(group))
-            else:
-                duration = sum(x[0] for x in group)
-                groups.append((duration, None))
-        # find offsets
-        offsets = abjad.math.cumulative_sums([abs(x[0]) for x in groups])
-        # build QEvents
-        q_events: list[QEvent] = []
-        for pair in zip(offsets, groups):
-            offset = abjad.Offset(pair[0])
-            pitches = pair[1][1]
-            if isinstance(pitches, collections.abc.Iterable):
-                assert all(isinstance(x, numbers.Number) for x in pitches)
-                q_events.append(PitchedQEvent(offset, pitches))
-            elif isinstance(pitches, type(None)):
-                q_events.append(SilentQEvent(offset))
-            elif isinstance(pitches, int | float):
-                q_events.append(PitchedQEvent(offset, [pitches]))
-        q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
-        return class_(q_events)
+        return class_.from_millisecond_pitch_attachment_tuples(
+            [(duration, pitches, None) for duration, pitches in pairs]
+        )
 
     @classmethod
     def from_tempo_scaled_durations(
@@ -391,10 +361,9 @@ class QEventSequence:
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
         offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
         q_events = []
-        for pair in zip(offsets, durations):
-            offset = abjad.Offset(pair[0])
-            assert isinstance(pair[1], abjad.Duration)
-            duration: abjad.Duration = pair[1]
+        for offset, duration in zip(offsets, durations):
+            offset = abjad.Offset(offset)
+            assert isinstance(duration, abjad.Duration)
             q_event: QEvent
             # negative duration indicates silence
             if duration < 0:
@@ -429,15 +398,16 @@ class QEventSequence:
         will be determined by its effective tempo.
         """
         assert len(leaves)
-        if tempo is None:
-            prototype = abjad.MetronomeMark
-            assert abjad.get.effective(leaves[0], prototype) is not None
-        elif isinstance(tempo, abjad.MetronomeMark):
-            tempo = copy.deepcopy(tempo)
-        elif isinstance(tempo, tuple):
-            tempo = abjad.MetronomeMark(*tempo)
-        else:
-            raise TypeError(tempo)
+        match tempo:
+            case None:
+                prototype = abjad.MetronomeMark
+                assert abjad.get.effective(leaves[0], prototype) is not None
+            case abjad.MetronomeMark():
+                tempo = copy.deepcopy(tempo)
+            case tuple():
+                tempo = abjad.MetronomeMark(*tempo)
+            case _:
+                raise TypeError(tempo)
         # sort by silence and tied leaves
         groups = []
         for rvalue, rgroup in itertools.groupby(
