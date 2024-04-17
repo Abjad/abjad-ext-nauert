@@ -261,7 +261,7 @@ class QEventSequence:
         assert all(isinstance(_, collections.abc.Iterable) for _ in tuples)
         assert all(len(_) == 3 for _ in tuples)
         assert all(0 < duration for duration, _, _ in tuples)
-        for duration, pitches, attachments in tuples:
+        for _, pitches, attachments in tuples:
             assert isinstance(
                 pitches, numbers.Number | type(None) | collections.abc.Sequence
             )
