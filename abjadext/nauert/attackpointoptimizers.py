@@ -201,7 +201,29 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
             leaf, abjad.TimeSignature
         )
         assert time_signature is not None, repr(time_signature)
+        all_annotations = self._get_attachment_annotations_of_logical_ties(argument[:])
         abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
+        assert len(all_annotations) == len(
+            list(abjad.iterate.logical_ties(argument[:], pitched=True))
+        )
+        self._reannotate_logical_ties(argument[:], all_annotations)
+
+    @staticmethod
+    def _get_attachment_annotations_of_logical_ties(components):
+        all_annotations = []
+        for logical_tie in abjad.iterate.logical_ties(components, pitched=True):
+            first_leaf = abjad.get.leaf(logical_tie, 0)
+            annotation = abjad.get.annotation(first_leaf, "q_event_attachments")
+            all_annotations.append(annotation)
+        return all_annotations
+
+    @staticmethod
+    def _reannotate_logical_ties(components, all_annotations):
+        for logical_tie, annotation in zip(
+            abjad.iterate.logical_ties(components, pitched=True), all_annotations
+        ):
+            first_leaf = abjad.get.leaf(logical_tie, 0)
+            abjad.annotate(first_leaf, "q_event_attachments", annotation)
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
