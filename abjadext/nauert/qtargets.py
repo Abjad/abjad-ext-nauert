@@ -206,7 +206,6 @@ class QTarget(abc.ABC):
                 time_signature = leaf._get_indicator(abjad.TimeSignature)
                 abjad.detach(abjad.TimeSignature, leaf)
                 abjad.detach(abjad.TimeSignature, new_leaf)
-                root = abjad.get.parentage(new_leaf).root
                 abjad.attach(time_signature, new_leaf)
 
     def _regroup_q_grid_with_unnecessary_divisions(self):
