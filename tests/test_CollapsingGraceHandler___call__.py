@@ -15,8 +15,8 @@ def test_CollapsingGraceHandler___call___01():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 <c' e' g'>4
                 r4
@@ -40,8 +40,8 @@ def test_CollapsingGraceHandler___call___02():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 <c' e' g'>4
                 r4
@@ -65,8 +65,8 @@ def test_CollapsingGraceHandler___call___03():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 <c' e' g'>4
                 r4
@@ -90,8 +90,8 @@ def test_CollapsingGraceHandler___call___04():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 <c' e' g'>4
                 r4

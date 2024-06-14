@@ -33,9 +33,7 @@ class GraceHandler(abc.ABC):
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
-    def __call__(
-        self, q_events
-    ) -> tuple[
+    def __call__(self, q_events) -> tuple[
         tuple[abjad.NamedPitch, ...],
         typing.Optional[tuple],
         typing.Optional[abjad.BeforeGraceContainer],
@@ -73,8 +71,8 @@ class CollapsingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     <c' e' g'>4
                     r4
@@ -134,8 +132,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     \grace {
                         d'16
@@ -167,8 +165,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     c'4
                     r4
@@ -192,8 +190,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     \grace {
                         r16
@@ -229,8 +227,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     \grace {
                         c'16
@@ -258,8 +256,8 @@ class ConcatenatingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     c'4
                     c'4
@@ -295,9 +293,7 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(
-        self, q_events: typing.Sequence[QEvent]
-    ) -> tuple[
+    def __call__(self, q_events: typing.Sequence[QEvent]) -> tuple[
         tuple[abjad.NamedPitch, ...],
         typing.Optional[tuple],
         typing.Optional[abjad.BeforeGraceContainer],
@@ -485,8 +481,8 @@ class DiscardingGraceHandler(GraceHandler):
             \new Voice
             {
                 {
-                    \tempo 4=60
                     %%% \time 4/4 %%%
+                    \tempo 4=60
                     c'4
                     cs'4
                     r4

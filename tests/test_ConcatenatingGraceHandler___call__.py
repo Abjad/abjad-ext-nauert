@@ -15,8 +15,8 @@ def test_ConcatenatingGraceHandler___call___01():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 c'4
                 r4
@@ -40,8 +40,8 @@ def test_ConcatenatingGraceHandler___call___02():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 \grace {
                     r16
@@ -70,8 +70,8 @@ def test_ConcatenatingGraceHandler___call___03():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 \grace {
                     c'16
@@ -100,8 +100,8 @@ def test_ConcatenatingGraceHandler___call___04():
         \new Voice
         {
             {
-                \tempo 4=60
                 %%% \time 4/4 %%%
+                \tempo 4=60
                 c'4
                 c'4
                 c'4

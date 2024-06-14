@@ -61,12 +61,12 @@ def test_QGrid___call___02():
     assert isinstance(result, list) and len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             c'16
             c'16
-            \times 2/3
+            \tuplet 3/2
             {
                 c'16
                 c'16
@@ -132,7 +132,7 @@ def test_QGrid___call___03():
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 2/3
+        \tuplet 3/2
         {
             c'4
             c'4

@@ -53,7 +53,7 @@ class SearchTree(abc.ABC):
         Is true when `argument` is a search tree with definition equal to that of
         this search tree. Otherwise false.
         """
-        if type(self) == type(argument):
+        if type(self) is type(argument):
             if self.definition == argument.definition:
                 return True
         return False
