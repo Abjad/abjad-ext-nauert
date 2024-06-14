@@ -69,19 +69,22 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
                     c'16..
                     d'64
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         d'8
                         e'32
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         e'8
                         ~
                         e'32
                         f'16
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         f'16.
                         g'16
                         ~
@@ -89,19 +92,22 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
                     g'16
                     a'16
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         a'16
                         b'16.
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         b'16
                         c''8
                         ~
                         c''32
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         c''32
                         r32
                         r32
@@ -135,21 +141,24 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
                     c'16..
                     d'64
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         d'16.
                         ~
                         d'32
                         e'32
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         e'16.
                         ~
                         e'16
                         f'16
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         f'16.
                         g'16
                         ~
@@ -157,21 +166,24 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
                     g'16
                     a'16
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         a'16
                         b'32
                         ~
                         b'16
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         b'16
                         c''32
                         ~
                         c''8
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         c''32
                         r16
                         r16
@@ -273,19 +285,22 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                     c'16..
                     d'64
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         d'8
                         e'32
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         e'8
                         ~
                         e'32
                         f'16
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         f'16.
                         g'16
                         ~
@@ -293,19 +308,22 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                     g'16
                     a'16
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         a'16
                         b'16.
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         b'16
                         c''8
                         ~
                         c''32
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         c''32
                         r32
                         r32
@@ -397,7 +415,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                     c'64
                     d'64
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         d'32
                         ~
                         d'32
@@ -408,7 +427,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                         e'32
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         e'32
                         ~
                         e'32
@@ -423,7 +443,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                         f'32
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         f'32
                         ~
                         f'32
@@ -437,7 +458,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                     g'16
                     a'16
                     ~
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         a'32
                         ~
                         a'32
@@ -448,7 +470,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                         b'32
                         ~
                     }
-                    \times 4/7 {
+                    \tuplet 7/4
+                    {
                         b'32
                         ~
                         b'32
@@ -463,7 +486,8 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                         c''32
                         ~
                     }
-                    \times 4/5 {
+                    \tuplet 5/4
+                    {
                         c''32
                         r32
                         r32
