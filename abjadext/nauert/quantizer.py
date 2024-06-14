@@ -106,31 +106,31 @@ def quantize(
                             \time 2/4
                             c'4
                             ~
-                            \times 4/5 {
+                            \tuplet 5/4 {
                                 c'16.
                                 cs'8..
                                 ~
                             }
                         }
                         {
-                            \times 4/7 {
+                            \tuplet 7/4 {
                                 \tempo 8=57
                                 \time 5/4
                                 cs'16.
                                 d'8
                                 ~
                             }
-                            \times 4/5 {
+                            \tuplet 5/4 {
                                 d'16
                                 ef'16.
                                 ~
                             }
-                            \times 2/3 {
+                            \tuplet 3/2 {
                                 ef'16
                                 e'8
                                 ~
                             }
-                            \times 4/7 {
+                            \tuplet 7/4 {
                                 e'16
                                 f'8
                                 ~
@@ -140,12 +140,12 @@ def quantize(
                             f'32
                             fs'16.
                             ~
-                            \times 4/5 {
+                            \tuplet 5/4 {
                                 fs'32
                                 g'8
                                 ~
                             }
-                            \times 4/7 {
+                            \tuplet 7/4 {
                                 g'32
                                 r32
                                 r16
@@ -206,7 +206,7 @@ def quantize(
                         ~
                         e'16
                         ~
-                        \times 2/3 {
+                        \tuplet 3/2 {
                             \tempo 4=30
                             e'32
                             f'8.
@@ -215,7 +215,7 @@ def quantize(
                             fs'32
                             ~
                         }
-                        \times 2/3 {
+                        \tuplet 3/2 {
                             fs'32
                             g'8.
                             r32

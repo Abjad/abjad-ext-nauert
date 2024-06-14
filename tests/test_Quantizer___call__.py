@@ -205,7 +205,7 @@ def test_Quantize_05():
                         c'16
                     }
                     c'8
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'8
                         \grace {
@@ -214,7 +214,7 @@ def test_Quantize_05():
                         c'8
                         c'8
                     }
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         c'16
                         c'16
@@ -223,7 +223,7 @@ def test_Quantize_05():
                         c'16
                         c'16
                     }
-                    \times 4/7
+                    \tuplet 7/4
                     {
                         c'16
                         ~
@@ -361,7 +361,7 @@ def test_Quantize_08():
                         c'16
                     }
                     c'8
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'8
                         \grace {
@@ -370,14 +370,14 @@ def test_Quantize_08():
                         c'8
                         c'8
                     }
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         c'16
                         c'16
                         c'8
                         c'16
                     }
-                    \times 4/7
+                    \tuplet 7/4
                     {
                         c'8
                         c'16
@@ -541,7 +541,7 @@ def test_Quantize_12():
             {
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7
+                    \tuplet 7/6
                     {
                         \tempo 4=60
                         \time 7/8
@@ -550,7 +550,7 @@ def test_Quantize_12():
                         ~
                         cs'16
                     }
-                    \times 4/7
+                    \tuplet 7/4
                     {
                         \grace {
                             d'16
@@ -563,7 +563,7 @@ def test_Quantize_12():
                     }
                 }
                 {
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         e'8
                         r32
@@ -600,9 +600,9 @@ def test_Quantize_13():
             {
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 7/10
+                    \tuplet 10/7
                     {
-                        \times 4/7
+                        \tuplet 7/4
                         {
                             \tempo 4=60
                             \time 7/8
@@ -612,7 +612,7 @@ def test_Quantize_13():
                             cs'8
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5
+                        \tuplet 5/3
                         {
                             d'2.
                             ef'2
@@ -620,7 +620,7 @@ def test_Quantize_13():
                     }
                 }
                 {
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         \grace {
                             e'16
@@ -780,7 +780,7 @@ def test_Quantize_16():
             {
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 5/7
+                    \tuplet 7/5
                     {
                         \tempo 4=72
                         \time 7/8
@@ -793,7 +793,7 @@ def test_Quantize_16():
                     ~
                 }
                 {
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         ef'16
                         e'32
