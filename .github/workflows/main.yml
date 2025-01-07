@@ -20,18 +20,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Log environment variable(s)
-      run: |
-        python --version
-        python -m pip install --upgrade pip coverage
-        echo HOME:
-        echo $HOME
-        echo GITHUB_WORKSPACE:
-        echo $GITHUB_WORKSPACE
-        echo PATH:
-        echo $PATH
-        echo PYTHONPATH:
-        echo $PYTHONPATH
     - name: Install LilyPond
       run: |
         lilypond_version=2.25.22
