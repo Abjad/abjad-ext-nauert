@@ -1,2 +1,1 @@
-# abjad-ext-nauert
-Abjad quantization extension, based on Paul Nauert's Q-Grids
+Abjad rhythm quantization extension, based on Paul Nauert's Q-Grids.
