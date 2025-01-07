@@ -16,10 +16,10 @@ def read_version():
     return local_dict["__version__"]
 
 
-author = ["Josiah Wolf Oberholtzer", "Tsz Kiu Pang"]
+author = ["Joséphine Wolf Oberholtzer", "Tsz Kiu Pang"]
 
 author_email = [
-    "josiah.oberholtzer@gmail.com",
+    "josephine.wolf.oberholtzer@gmail.com",
     "osamupang@gmail.com",
 ]
 
