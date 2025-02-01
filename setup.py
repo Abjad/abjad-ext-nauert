@@ -16,19 +16,10 @@ def read_version():
     return local_dict["__version__"]
 
 
-author = ["Joséphine Wolf Oberholtzer", "Tsz Kiu Pang"]
-
-author_email = [
-    "josephine.wolf.oberholtzer@gmail.com",
-    "osamupang@gmail.com",
-]
-
-description = "Nauert extends Abjad with tools for rhythmic quantization."
-
 if __name__ == "__main__":
     setuptools.setup(
-        author=", ".join(author),
-        author_email=", ".join(author_email),
+        author="Joséphine Wolf Oberholtzer, Tsz Kiu Pang",
+        author_email="josephine.wolf.oberholtzer@gmail.com, osamupang@gmail.com",
         classifiers=[
             "Development Status :: 3 - Alpha",
             "License :: OSI Approved :: GNU General Public License (GPL)",
@@ -36,18 +27,12 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.13",
             "Topic :: Artistic Software",
         ],
-        description=description,
+        description="Nauert extends Abjad with tools for rhythmic quantization.",
         include_package_data=True,
-        install_requires=["abjad>=3.20"],
+        install_requires=["abjad>=3.21"],
         license="MIT",
         long_description=pathlib.Path("README.md").read_text(),
-        keywords=", ".join(
-            [
-                "music composition",
-                "music notation",
-                "lilypond",
-            ]
-        ),
+        keywords="lilypond, music composition, music notation",
         name=f"abjad-ext-{name}",
         packages=["abjadext"],
         platforms="Any",
