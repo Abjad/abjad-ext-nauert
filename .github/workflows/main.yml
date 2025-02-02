@@ -40,6 +40,7 @@ jobs:
 
     - name: Write environment variables
       run: |
+        echo "MYPYPATH=$MYPYPATH:/tmp/abjad" >> $GITHUB_ENV
         PATH="/tmp/lilypond-${{ matrix.lilypond-version }}/bin:home/runner/bin:$PATH"
         echo "PATH=$PATH" >> $GITHUB_ENV
         echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
@@ -48,6 +49,7 @@ jobs:
       run: |
         echo "HOME: $HOME"
         echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        echo "MYPYPATH: $MYPYPATH"
         echo "PATH: $PATH"
         echo "PYTHONUNBUFFERED: ${PYTHONUNBUFFERED:-not set}"
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
@@ -65,8 +67,6 @@ jobs:
     - name: Install Abjad
       run: |
         git clone https://github.com/Abjad/abjad.git /tmp/abjad
-        # TODO maybe doesn't need [dev]?
-        # pip install /tmp/abjad[dev]
         pip install /tmp/abjad
 
     - name: Install this repo
@@ -86,9 +86,6 @@ jobs:
 
     - name: Run checks
       run: |
-        # TODO: remove MYPYPATH? Or write to GITHUB_ENV?
-        export MYPYPATH=$MYPYPATH:/tmp/abjad
-        echo $MYPYPATH
         make black-check
         make flake8
         make isort-check
