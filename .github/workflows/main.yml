@@ -69,8 +69,7 @@ jobs:
 
     - name: Install this repo
       run: |
-        # TODO: remove -e?
-        python -m pip install -e .
+        python -m pip install .
 
     - name: Log Python dependencies
       run: |
