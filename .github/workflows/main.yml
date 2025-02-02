@@ -65,11 +65,15 @@ jobs:
     - name: Install Abjad
       run: |
         git clone https://github.com/Abjad/abjad.git /tmp/abjad
-        pip install /tmp/abjad[dev]
+        # TODO maybe doesn't need [dev]?
+        # pip install /tmp/abjad[dev]
+        pip install /tmp/abjad
 
     - name: Install this repo
       run: |
-        python -m pip install .
+        # Namespace packages require -e installation;
+        # remove -e after Nauert is changed back to a vanilla package
+        python -m pip install -e .
 
     - name: Log Python dependencies
       run: |
