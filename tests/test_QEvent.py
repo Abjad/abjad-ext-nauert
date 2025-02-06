@@ -1,9 +1,8 @@
 import decimal
 
-import pytest
-
 import abjad
 import abjadext.nauert
+import pytest
 
 
 def test_PitchedQEvent___init___01():

@@ -1,7 +1,6 @@
-import pytest
-
 import abjad
 import abjadext.nauert
+import pytest
 
 
 def test_MeasurewiseQSchemaItem___new___01():

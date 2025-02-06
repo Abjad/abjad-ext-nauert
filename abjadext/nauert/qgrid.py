@@ -2,10 +2,9 @@ import bisect
 import copy
 import typing
 
+import abjad
 import uqbar.containers
 import uqbar.graphs
-
-import abjad
 
 from .qeventproxy import QEventProxy
 

@@ -1,4 +1,5 @@
-.PHONY: docs build
+.PHONY: black-check black-reformat build clean flake8 install isort-check \
+	isort-reformat mypy pytest reformat release lint test
 
 black-check:
 	black --check --diff .
@@ -9,16 +10,10 @@ black-reformat:
 build:
 	python setup.py sdist
 
+
 clean:
-	find . -name '*.pyc' | xargs rm
-	find . -name __pycache__ | xargs rm -Rf
-	rm -Rif *.egg-info/
-	rm -Rif .cache/
-	rm -Rif .tox/
-	rm -Rif build/
-	rm -Rif dist/
-	rm -Rif htmlcov/
-	rm -Rif prof/
+	find . -name '*.pyc' -delete
+	rm -rf __pycache__ *.egg-info .cache .tox build dist htmlcov prof
 
 flake_ignore = --ignore=E203,E266,E501,W503
 flake_options = --isolated --max-line-length=88
@@ -26,38 +21,19 @@ flake_options = --isolated --max-line-length=88
 flake8:
 	flake8 ${flake_ignore} ${flake_options}
 
+
 isort-check:
-	isort \
-	--case-sensitive \
-	--check-only \
-	--diff \
-	--line-width=88 \
-	--multi-line=3 \
-	--project=abjad \
-	--project=abjadext \
-	--thirdparty=ply \
-	--thirdparty=uqbar \
-	--trailing-comma \
-	--use-parentheses \
-	.
+	isort --case-sensitive --check-only --line-width=88 --multi-line=3 \
+	      --thirdparty=abjad --thirdparty=abjadext --thirdparty=baca \
+	      --thirdparty=ply --thirdparty=uqbar --trailing-comma --use-parentheses .
 
 isort-reformat:
-	isort \
-	--case-sensitive \
-	--line-width=88 \
-	--multi-line=3 \
-	--project=abjad \
-	--project=abjadext \
-	--thirdparty=ply \
-	--thirdparty=uqbar \
-	--trailing-comma \
-	--use-parentheses \
-	.
+	isort --case-sensitive --line-width=88 --multi-line=3 \
+	      --thirdparty=abjad --thirdparty=abjadext --thirdparty=baca \
+	      --thirdparty=ply --thirdparty=uqbar --trailing-comma --use-parentheses .
 
 mypy:
 	mypy .
-
-project = abjadext
 
 pytest:
 	pytest .
@@ -67,32 +43,19 @@ pytest-coverage:
 	pytest \
 	--cov-config=.coveragerc \
 	--cov-report=html \
-	--cov=${project} \
+	--cov=abjadext \
 	.
 
-pytest-x:
-	pytest -x .
-
-reformat:
-	make black-reformat
-	make isort-reformat
+reformat: black-reformat isort-reformat
 
 release:
 	make clean
-	python -m pip install --upgrade setuptools
 	make build
-	python -m pip install --upgrade twine
 	twine upload dist/*.tar.gz
 
-check:
-	make black-check
-	make flake8
-	make isort-check
-	make mypy
+lint: black-check flake8 isort-check
 
-test:
-	make black-check
-	make flake8
-	make isort-check
-	make mypy
-	make pytest
+# TODO
+# lint: black-check flake8 isort-check mypy
+
+test: lint pytest

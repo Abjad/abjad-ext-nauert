@@ -1,7 +1,6 @@
-import pytest
-
 import abjad
 import abjadext.nauert
+import pytest
 
 
 class Job:
