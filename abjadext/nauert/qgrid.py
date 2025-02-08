@@ -236,13 +236,13 @@ class QGrid:
         Calls q-grid.
         """
         if isinstance(beatspan, tuple):
-            pair = beatspan
+            duration = abjad.Duration(beatspan)
         elif isinstance(beatspan, abjad.Duration):
-            pair = beatspan.pair
+            duration = beatspan
         else:
             assert isinstance(beatspan, int), repr(beatspan)
-            pair = (beatspan, 1)
-        result = self.root_node(pair)
+            duration = abjad.Duration(beatspan, 1)
+        result = self.root_node(duration)
         result_logical_ties = [
             logical_tie for logical_tie in abjad.iterate.logical_ties(result)
         ]
