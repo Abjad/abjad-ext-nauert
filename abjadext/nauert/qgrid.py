@@ -114,7 +114,6 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNod
         """
         RTM format of q-grid leaf.
         """
-        # return str(self.preprolated_pair)
         numerator, denominator = self.preprolated_pair
         assert denominator == 1, repr(denominator)
         return str(numerator)
@@ -133,7 +132,7 @@ class QGridContainer(abjad.rhythmtrees.RhythmTreeContainer):
 
     ..  container:: example
 
-        >>> nauert.QGridContainer()
+        >>> nauert.QGridContainer((1, 1))
         QGridContainer((1, 1))
 
     Used internally by ``QGrid``.
