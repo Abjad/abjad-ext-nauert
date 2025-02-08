@@ -16,7 +16,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNod
     ..  container:: example
 
         >>> nauert.QGridLeaf()
-        QGridLeaf(preprolated_pair=(1, 1), q_event_proxies=[], is_divisible=True)
+        QGridLeaf((1, 1), q_event_proxies=[], is_divisible=True)
 
     Used internally by ``QGrid``.
     """
@@ -51,7 +51,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNod
         Calls q-grid leaf.
         """
         pulse_duration = abjad.Duration(pulse_duration)
-        total_duration = pulse_duration * abjad.Duration(self.preprolated_pair)
+        total_duration = pulse_duration * abjad.Duration(self.pair)
         return abjad.makers.make_notes(0, total_duration)
 
     def __graph__(self, **keywords: None) -> uqbar.graphs.Graph:
@@ -61,7 +61,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNod
         Returns Graphviz graph.
         """
         graph = uqbar.graphs.Graph(name="G")
-        label = str(self.preprolated_pair)
+        label = str(self.pair)
         node = uqbar.graphs.Node(attributes={"label": label, "shape": "box"})
         graph.append(node)
         return graph
@@ -70,14 +70,13 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNod
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(preprolated_pair={self.preprolated_pair!r}, q_event_proxies={self.q_event_proxies!r}, is_divisible={self.is_divisible!r})"
+        return f"{type(self).__name__}({self.pair!r}, q_event_proxies={self.q_event_proxies!r}, is_divisible={self.is_divisible!r})"
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self) -> list[str]:
-        # return [str(self.preprolated_duration)]
-        numerator, denominator = self.preprolated_pair
+        numerator, denominator = self.pair
         assert denominator == 1, repr(denominator)
         return [str(numerator)]
 
@@ -114,7 +113,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNod
         """
         RTM format of q-grid leaf.
         """
-        numerator, denominator = self.preprolated_pair
+        numerator, denominator = self.pair
         assert denominator == 1, repr(denominator)
         return str(numerator)
 
@@ -170,7 +169,7 @@ class QGrid:
     ..  container:: example
 
         >>> q_grid
-        QGrid(root_node=QGridLeaf(preprolated_pair=(1, 1), q_event_proxies=[], is_divisible=True), next_downbeat=QGridLeaf(preprolated_pair=(1, 1), q_event_proxies=[], is_divisible=True))
+        QGrid(root_node=QGridLeaf((1, 1), q_event_proxies=[], is_divisible=True), next_downbeat=QGridLeaf((1, 1), q_event_proxies=[], is_divisible=True))
 
     ..  container:: example
 
@@ -458,9 +457,7 @@ class QGrid:
                 if len(leaves) > 1 and all(
                     [_leaf.q_event_proxies == [] for _leaf in leaves[1:]]
                 ):
-                    # parent_preprolated_duration = parent.preprolated_duration
-                    # assert isinstance(parent_preprolated_duration, abjad.Duration)
-                    parent_preprolated_duration = parent.preprolated_pair
+                    parent_preprolated_duration = parent.pair
                     new_leaf = QGridLeaf(
                         preprolated_duration=parent_preprolated_duration,
                         q_event_proxies=leaves[0].q_event_proxies,
@@ -499,8 +496,7 @@ class QGrid:
                 child = QGridLeaf(preprolated_duration=subdivision)
                 children.append(child)
         container = QGridContainer(
-            # preprolated_duration=leaf.preprolated_duration,
-            preprolated_pair=leaf.preprolated_pair,
+            leaf.pair,
             children=[
                 QGridLeaf(preprolated_duration=abjad.Duration(subdivision))
                 for subdivision in subdivisions
