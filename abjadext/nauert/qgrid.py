@@ -16,7 +16,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
     ..  container:: example
 
         >>> nauert.QGridLeaf()
-        QGridLeaf(preprolated_duration=Duration(1, 1), q_event_proxies=[], is_divisible=True)
+        QGridLeaf(preprolated_pair=(1, 1), q_event_proxies=[], is_divisible=True)
 
     Used internally by ``QGrid``.
     """
@@ -34,7 +34,8 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         assert isinstance(preprolated_duration, abjad.Duration), repr(
             preprolated_duration
         )
-        abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
+        # abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
+        abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration.pair)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
@@ -51,7 +52,8 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         Calls q-grid leaf.
         """
         pulse_duration = abjad.Duration(pulse_duration)
-        total_duration = pulse_duration * abjad.Duration(self.preprolated_duration)
+        # total_duration = pulse_duration * abjad.Duration(self.preprolated_duration)
+        total_duration = pulse_duration * abjad.Duration(self.preprolated_pair)
         return abjad.makers.make_notes(0, total_duration)
 
     def __graph__(self, **keywords: None) -> uqbar.graphs.Graph:
@@ -61,9 +63,8 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         Returns Graphviz graph.
         """
         graph = uqbar.graphs.Graph(name="G")
-        node = uqbar.graphs.Node(
-            attributes={"label": str(self.preprolated_duration), "shape": "box"}
-        )
+        label = str(self.preprolated_pair)
+        node = uqbar.graphs.Node(attributes={"label": label, "shape": "box"})
         graph.append(node)
         return graph
 
@@ -71,13 +72,16 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(preprolated_duration={self.preprolated_duration!r}, q_event_proxies={self.q_event_proxies!r}, is_divisible={self.is_divisible!r})"
+        return f"{type(self).__name__}(preprolated_pair={self.preprolated_pair!r}, q_event_proxies={self.q_event_proxies!r}, is_divisible={self.is_divisible!r})"
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self) -> list[str]:
-        return [str(self.preprolated_duration)]
+        # return [str(self.preprolated_duration)]
+        numerator, denominator = self.preprolated_pair
+        assert denominator == 1, repr(denominator)
+        return [str(numerator)]
 
     ### PUBLIC PROPERTIES ###
 
@@ -112,7 +116,10 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         """
         RTM format of q-grid leaf.
         """
-        return str(self.preprolated_duration)
+        # return str(self.preprolated_pair)
+        numerator, denominator = self.preprolated_pair
+        assert denominator == 1, repr(denominator)
+        return str(numerator)
 
     @property
     def succeeding_q_event_proxies(self) -> list[QEventProxy]:
@@ -166,7 +173,7 @@ class QGrid:
     ..  container:: example
 
         >>> q_grid
-        QGrid(root_node=QGridLeaf(preprolated_duration=Duration(1, 1), q_event_proxies=[], is_divisible=True), next_downbeat=QGridLeaf(preprolated_duration=Duration(1, 1), q_event_proxies=[], is_divisible=True))
+        QGrid(root_node=QGridLeaf(preprolated_pair=(1, 1), q_event_proxies=[], is_divisible=True), next_downbeat=QGridLeaf(preprolated_pair=(1, 1), q_event_proxies=[], is_divisible=True))
 
     ..  container:: example
 
@@ -226,12 +233,19 @@ class QGrid:
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, beatspan: abjad.typings.Duration | int
+        self, beatspan: tuple | abjad.typings.Duration | int
     ) -> list[abjad.Note | abjad.Tuplet] | list[abjad.Leaf | abjad.Tuplet]:
         """
         Calls q-grid.
         """
-        result = self.root_node(beatspan)
+        if isinstance(beatspan, tuple):
+            pair = beatspan
+        elif isinstance(beatspan, abjad.Duration):
+            pair = beatspan.pair
+        else:
+            assert isinstance(beatspan, int), repr(beatspan)
+            pair = (beatspan, 1)
+        result = self.root_node(pair)
         result_logical_ties = [
             logical_tie for logical_tie in abjad.iterate.logical_ties(result)
         ]
@@ -405,9 +419,8 @@ class QGrid:
 
     @property
     def rtm_format(self) -> str:
-        r"""The RTM format of the root node of the ``QGrid``.
-
-        Returns string.
+        """
+        The RTM format of the root node of the ``QGrid``.
         """
         return self._root_node.rtm_format
 
@@ -448,8 +461,9 @@ class QGrid:
                 if len(leaves) > 1 and all(
                     [_leaf.q_event_proxies == [] for _leaf in leaves[1:]]
                 ):
-                    parent_preprolated_duration = parent.preprolated_duration
-                    assert isinstance(parent_preprolated_duration, abjad.Duration)
+                    # parent_preprolated_duration = parent.preprolated_duration
+                    # assert isinstance(parent_preprolated_duration, abjad.Duration)
+                    parent_preprolated_duration = parent.preprolated_pair
                     new_leaf = QGridLeaf(
                         preprolated_duration=parent_preprolated_duration,
                         q_event_proxies=leaves[0].q_event_proxies,
@@ -474,9 +488,10 @@ class QGrid:
         leaf: QGridLeaf,
         subdivisions: typing.Sequence[abjad.typings.Duration | int],
     ) -> list[QEventProxy]:
-        r"""Replace the ``QGridLeaf`` ``leaf`` contained in a ``QGrid``
-        by a ``QGridContainer`` containing ``QGridLeaves`` with durations
-        equal to the ratio described in ``subdivisions``
+        r"""
+        Replace the ``QGridLeaf`` ``leaf`` contained in a ``QGrid`` by a
+        ``QGridContainer`` containing ``QGridLeaves`` with durations equal to
+        the ratio described in ``subdivisions``
 
         Returns the ``QEventProxies`` attached to ``leaf``.
         """
@@ -487,7 +502,8 @@ class QGrid:
                 child = QGridLeaf(preprolated_duration=subdivision)
                 children.append(child)
         container = QGridContainer(
-            preprolated_duration=leaf.preprolated_duration,
+            # preprolated_duration=leaf.preprolated_duration,
+            preprolated_pair=leaf.preprolated_pair,
             children=[
                 QGridLeaf(preprolated_duration=abjad.Duration(subdivision))
                 for subdivision in subdivisions

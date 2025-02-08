@@ -214,7 +214,10 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         )
         assert time_signature is not None, repr(time_signature)
         all_annotations = self._get_attachment_annotations_of_logical_ties(argument[:])
-        abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
+        # abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
+        # abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
+        meter = abjad.Meter(time_signature.pair)
+        abjad.Meter.rewrite_meter(argument[:], meter, boundary_depth=1)
         assert len(all_annotations) == len(
             list(abjad.iterate.logical_ties(argument[:], pitched=True))
         )
