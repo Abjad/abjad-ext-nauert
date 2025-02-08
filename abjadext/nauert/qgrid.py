@@ -9,7 +9,7 @@ import uqbar.graphs
 from .qeventproxy import QEventProxy
 
 
-class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
+class QGridLeaf(abjad.rhythmtrees.RhythmTreeNode, uqbar.containers.UniqueTreeNode):
     """
     Q-grid leaf.
 
@@ -34,8 +34,7 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         assert isinstance(preprolated_duration, abjad.Duration), repr(
             preprolated_duration
         )
-        # abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration)
-        abjad.rhythmtrees.RhythmTreeMixin.__init__(self, preprolated_duration.pair)
+        abjad.rhythmtrees.RhythmTreeNode.__init__(self, preprolated_duration.pair)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
@@ -52,7 +51,6 @@ class QGridLeaf(abjad.rhythmtrees.RhythmTreeMixin, uqbar.containers.UniqueTreeNo
         Calls q-grid leaf.
         """
         pulse_duration = abjad.Duration(pulse_duration)
-        # total_duration = pulse_duration * abjad.Duration(self.preprolated_duration)
         total_duration = pulse_duration * abjad.Duration(self.preprolated_pair)
         return abjad.makers.make_notes(0, total_duration)
 
