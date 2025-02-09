@@ -79,10 +79,9 @@ def quantize(
         measures with different tempi and time signatures:
 
         >>> measurewise_q_schema = nauert.MeasurewiseQSchema(
-        ...     {"tempo": ((1, 4), 78), "time_signature": (2, 4)},
-        ...     {"tempo": ((1, 8), 57), "time_signature": (5, 4)},
+        ...     {"tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 78), "time_signature": (2, 4)},
+        ...     {"tempo": abjad.MetronomeMark(abjad.Duration(1, 8), 57), "time_signature": (5, 4)},
         ... )
-
         >>> result = nauert.quantize(
         ...     q_event_sequence,
         ...     q_schema=measurewise_q_schema,
@@ -170,9 +169,9 @@ def quantize(
 
         >>> beatwise_q_schema = nauert.BeatwiseQSchema(
         ... {
-        ...     2: {"tempo": ((1, 4), 120)},
-        ...     5: {"tempo": ((1, 4), 90)},
-        ...     7: {"tempo": ((1, 4), 30)},
+        ...     2: {"tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 120)},
+        ...     5: {"tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 90)},
+        ...     7: {"tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 30)},
         ... })
 
         >>> result = nauert.quantize(

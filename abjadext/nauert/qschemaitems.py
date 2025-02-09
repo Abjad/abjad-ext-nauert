@@ -23,20 +23,13 @@ class QSchemaItem(abc.ABC):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | tuple | None = None,
-    ):
+        tempo: abjad.MetronomeMark | None = None,
+    ) -> None:
         if search_tree is not None:
             assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
-            if isinstance(tempo, tuple):
-                assert len(tempo) == 2
-                reference_duration_, units_per_minute = tempo
-                reference_duration = abjad.Duration(reference_duration_)
-                tempo = abjad.MetronomeMark(
-                    reference_duration=reference_duration,
-                    units_per_minute=units_per_minute,
-                )
+            assert isinstance(tempo, abjad.MetronomeMark), repr(tempo)
             assert not tempo.is_imprecise
         self._tempo = tempo
 
@@ -73,7 +66,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
+        >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+        >>> nauert.BeatwiseQSchemaItem(tempo=metronome_mark)
         BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
     ..  container:: example
@@ -95,7 +89,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         self,
         beatspan: abjad.typings.Duration | int | None = None,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | tuple | None = None,
+        tempo: abjad.MetronomeMark | None = None,
     ):
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
@@ -131,7 +125,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
+        >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+        >>> nauert.MeasurewiseQSchemaItem(tempo=metronome_mark)
         MeasurewiseQSchemaItem(search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), time_signature=None, use_full_measure=None)
 
     ..  container:: example
@@ -159,7 +154,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | tuple | None = None,
+        tempo: abjad.MetronomeMark | None = None,
         time_signature: tuple[int, int] | None = None,
         use_full_measure: bool | None = None,
     ):
