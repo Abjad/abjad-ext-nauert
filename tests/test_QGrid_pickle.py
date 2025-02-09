@@ -7,7 +7,7 @@ import abjadext.nauert
 def test_QGrid_pickle_01():
     q_grid = abjadext.nauert.QGrid(
         root_node=abjadext.nauert.QGridContainer(
-            preprolated_duration=abjad.Duration(1, 1),
+            (1, 1),
             children=[
                 abjadext.nauert.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
