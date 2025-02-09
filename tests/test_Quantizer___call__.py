@@ -750,7 +750,7 @@ def test_Quantize_16():
     pitches = list(range(len(durations)))
     pitches[0] = None
     all_attachments = [(x,) for x in pitches]
-    all_attachments[0] = None
+    all_attachments[0] = ()
     q_event_sequence = nauert.QEventSequence.from_millisecond_pitch_attachment_tuples(
         tuple(zip(durations, pitches, all_attachments))
     )

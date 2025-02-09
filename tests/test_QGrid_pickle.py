@@ -13,7 +13,8 @@ def test_QGrid_pickle_01():
                     preprolated_duration=abjad.Duration(1, 1),
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
-                            abjadext.nauert.SilentQEvent(100), 0.5
+                            abjadext.nauert.SilentQEvent(abjad.Offset(100)),
+                            abjad.Offset(0.5),
                         )
                     ],
                 )
@@ -22,12 +23,13 @@ def test_QGrid_pickle_01():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=abjad.Duration(1, 1),
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(abjad.Offset(200)), abjad.Offset(0.9)
+                )
             ],
         ),
     )
     pickled = pickle.loads(pickle.dumps(q_grid))
-
     assert repr(pickled) == repr(q_grid)
     assert pickled is not q_grid
     assert pickled != q_grid

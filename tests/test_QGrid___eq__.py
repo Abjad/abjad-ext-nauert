@@ -18,7 +18,8 @@ def test_QGrid___eq___02():
                     preprolated_duration=abjad.Duration(1, 1),
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
-                            abjadext.nauert.SilentQEvent(100), 0.5
+                            abjadext.nauert.SilentQEvent(abjad.Offset(100)),
+                            abjad.Offset(0.5),
                         )
                     ],
                 )
@@ -27,7 +28,9 @@ def test_QGrid___eq___02():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=abjad.Duration(1, 1),
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(abjad.Offset(200)), abjad.Offset(0.9)
+                )
             ],
         ),
     )
@@ -39,7 +42,8 @@ def test_QGrid___eq___02():
                     preprolated_duration=abjad.Duration(1, 1),
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
-                            abjadext.nauert.SilentQEvent(100), 0.5
+                            abjadext.nauert.SilentQEvent(abjad.Offset(100)),
+                            abjad.Offset(0.5),
                         )
                     ],
                 )
@@ -48,7 +52,9 @@ def test_QGrid___eq___02():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=abjad.Duration(1, 1),
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(abjad.Offset(200)), abjad.Offset(0.9)
+                )
             ],
         ),
     )
@@ -66,7 +72,8 @@ def test_QGrid___eq___03():
                     preprolated_duration=abjad.Duration(1, 1),
                     q_event_proxies=[
                         abjadext.nauert.QEventProxy(
-                            abjadext.nauert.SilentQEvent(100), 0.5
+                            abjadext.nauert.SilentQEvent(abjad.Offset(100)),
+                            abjad.Offset(0.5),
                         )
                     ],
                 )
@@ -77,7 +84,9 @@ def test_QGrid___eq___03():
         next_downbeat=abjadext.nauert.QGridLeaf(
             preprolated_duration=abjad.Duration(1, 1),
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(abjadext.nauert.TerminalQEvent(200), 0.9)
+                abjadext.nauert.QEventProxy(
+                    abjadext.nauert.TerminalQEvent(abjad.Offset(200)), abjad.Offset(0.9)
+                )
             ],
         )
     )
@@ -90,7 +99,8 @@ def test_QGrid___eq___03():
                         preprolated_duration=abjad.Duration(1, 1),
                         q_event_proxies=[
                             abjadext.nauert.QEventProxy(
-                                abjadext.nauert.SilentQEvent(100), 0.5
+                                abjadext.nauert.SilentQEvent(abjad.Offset(100)),
+                                abjad.Offset(0.5),
                             )
                         ],
                     )
@@ -100,13 +110,13 @@ def test_QGrid___eq___03():
                 preprolated_duration=abjad.Duration(1, 1),
                 q_event_proxies=[
                     abjadext.nauert.QEventProxy(
-                        abjadext.nauert.TerminalQEvent(200), 0.9
+                        abjadext.nauert.TerminalQEvent(abjad.Offset(200)),
+                        abjad.Offset(0.9),
                     )
                 ],
             ),
         ),
     )
-
     assert a != b
     assert a != c
     assert a != d

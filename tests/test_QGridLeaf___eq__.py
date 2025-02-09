@@ -11,14 +11,15 @@ def test_QGridLeaf___eq___01():
 
 def test_QGridLeaf___eq___02():
     a = abjadext.nauert.QGridLeaf(abjad.Duration(1), [])
+    sqe = abjadext.nauert.SilentQEvent(abjad.Offset(1000))
     b = abjadext.nauert.QGridLeaf(
         abjad.Duration(1),
-        [abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1000), 0.5)],
+        [abjadext.nauert.QEventProxy(sqe, abjad.Offset(0.5))],
     )
     c = abjadext.nauert.QGridLeaf(abjad.Duration(2), [])
     d = abjadext.nauert.QGridLeaf(
         abjad.Duration(2),
-        [abjadext.nauert.QEventProxy(abjadext.nauert.SilentQEvent(1000), 0.5)],
+        [abjadext.nauert.QEventProxy(sqe, abjad.Offset(0.5))],
     )
     assert a != b
     assert a != c
