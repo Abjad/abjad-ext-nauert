@@ -10,7 +10,6 @@ black-reformat:
 build:
 	python setup.py sdist
 
-
 clean:
 	find . -name '*.pyc' -delete
 	rm -rf __pycache__ *.egg-info .cache .tox build dist htmlcov prof
@@ -20,7 +19,6 @@ flake_options = --isolated --max-line-length=88
 
 flake8:
 	flake8 ${flake_ignore} ${flake_options}
-
 
 isort-check:
 	isort --case-sensitive --check-only --line-width=88 --multi-line=3 \
@@ -53,9 +51,6 @@ release:
 	make build
 	twine upload dist/*.tar.gz
 
-lint: black-check flake8 isort-check
-
-# TODO
-# lint: black-check flake8 isort-check mypy
+lint: black-check flake8 isort-check mypy
 
 test: lint pytest
