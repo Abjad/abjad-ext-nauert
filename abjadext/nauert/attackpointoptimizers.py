@@ -22,7 +22,9 @@ class AttackPointOptimizer(abc.ABC):
 
     @abc.abstractmethod
     def __call__(self, argument):
-        """Calls attack-point optimizer."""
+        """
+        Calls attack-point optimizer.
+        """
         raise NotImplementedError
 
 
@@ -46,26 +48,26 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         ...     tempo=source_tempo,
         ... )
         >>> target_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
-        >>> q_schema = nauert.MeasurewiseQSchema(
-        ...     tempo=target_tempo,
-        ... )
+        >>> q_schema = nauert.MeasurewiseQSchema(tempo=target_tempo)
 
     ..  container:: example
 
         Without the measure-wise attack-point optimizer:
 
-        >>> result = nauert.quantize(q_events, q_schema=q_schema)
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> voice = nauert.quantize(q_events, q_schema=q_schema)
+        >>> staff = abjad.Staff([voice])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
             \new Voice
             {
                 {
-                    %%% \time 4/4 %%%
                     \tempo 4=54
+                    \time 4/4
                     c'16..
                     d'64
                     ~
@@ -122,22 +124,24 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         With the measure-wise attack-point optimizer:
 
         >>> optimizer = nauert.MeasurewiseAttackPointOptimizer()
-        >>> result = nauert.quantize(
+        >>> voice = nauert.quantize(
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,
         ... )
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> staff = abjad.Staff([voice])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
             \new Voice
             {
                 {
-                    %%% \time 4/4 %%%
                     \tempo 4=54
+                    \time 4/4
                     c'16..
                     d'64
                     ~
@@ -208,37 +212,32 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         Calls measurewise attack-point optimizer.
         """
         assert isinstance(argument, abjad.Container)
-        leaf = abjad.get.leaf(argument, 0)
-        time_signature = time_signature or abjad.get.indicator(
-            leaf, abjad.TimeSignature
-        )
-        assert time_signature is not None, repr(time_signature)
+        if time_signature is None:
+            leaf = abjad.get.leaf(argument, 0)
+            time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
+        assert isinstance(time_signature, abjad.TimeSignature), repr(time_signature)
         all_annotations = self._get_attachment_annotations_of_logical_ties(argument[:])
-        # abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
-        # abjad.Meter.rewrite_meter(argument[:], time_signature, boundary_depth=1)
         meter = abjad.Meter(time_signature.pair)
         abjad.Meter.rewrite_meter(argument[:], meter, boundary_depth=1)
-        assert len(all_annotations) == len(
-            list(abjad.iterate.logical_ties(argument[:], pitched=True))
-        )
+        plts = list(abjad.iterate.logical_ties(argument[:], pitched=True))
+        assert len(all_annotations) == len(plts)
         self._reannotate_logical_ties(argument[:], all_annotations)
 
     @staticmethod
     def _get_attachment_annotations_of_logical_ties(components):
         all_annotations = []
-        for logical_tie in abjad.iterate.logical_ties(components, pitched=True):
-            first_leaf = abjad.get.leaf(logical_tie, 0)
+        for plt in abjad.iterate.logical_ties(components, pitched=True):
+            first_leaf = abjad.get.leaf(plt, 0)
             annotation = abjad.get.annotation(first_leaf, "q_event_attachments")
             all_annotations.append(annotation)
         return all_annotations
 
     @staticmethod
     def _reannotate_logical_ties(components, all_annotations):
-        for logical_tie, annotation in zip(
-            abjad.iterate.logical_ties(components, pitched=True), all_annotations
-        ):
-            first_leaf = abjad.get.leaf(logical_tie, 0)
-            abjad.annotate(first_leaf, "q_event_attachments", annotation)
+        plts = abjad.iterate.logical_ties(components, pitched=True)
+        for plt, annotation in zip(plts, all_annotations, strict=True):
+            leaf = abjad.get.leaf(plt, 0)
+            abjad.annotate(leaf, "q_event_attachments", annotation)
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
@@ -262,29 +261,29 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         ...     tempo=source_tempo,
         ... )
         >>> target_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
-        >>> q_schema = nauert.MeasurewiseQSchema(
-        ...     tempo=target_tempo,
-        ... )
+        >>> q_schema = nauert.MeasurewiseQSchema(tempo=target_tempo)
 
     ..  container:: example
 
         >>> optimizer = nauert.NaiveAttackPointOptimizer()
-        >>> result = nauert.quantize(
+        >>> voice = nauert.quantize(
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,
         ... )
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> staff = abjad.Staff([voice])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
             \new Voice
             {
                 {
-                    %%% \time 4/4 %%%
                     \tempo 4=54
+                    \time 4/4
                     c'16..
                     d'64
                     ~
@@ -336,7 +335,6 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                 }
             }
 
-
     """
 
     ### CLASS VARIABLES ###
@@ -349,12 +347,11 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         """
         Calls naive attack-point optimizer.
         """
-        for logical_tie in abjad.iterate.logical_ties(
-            argument, grace=False, reverse=True
-        ):
+        lts = abjad.iterate.logical_ties(argument, grace=False, reverse=True)
+        for lt in lts:
             sub_logical_ties = []
             current_sub_logical_tie = []
-            for leaf in logical_tie:
+            for leaf in lt:
                 tempos = leaf._get_indicators(abjad.MetronomeMark)
                 if tempos:
                     if current_sub_logical_tie:
@@ -375,7 +372,7 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
     r"""
     Null attack-point optimizer.
 
-    Performs no attack point optimization.
+    Performs no attack-point optimization.
 
     ..  container:: example
 
@@ -388,29 +385,29 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
         ...     tempo=source_tempo,
         ... )
         >>> target_tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 54)
-        >>> q_schema = nauert.MeasurewiseQSchema(
-        ...     tempo=target_tempo,
-        ... )
+        >>> q_schema = nauert.MeasurewiseQSchema(tempo=target_tempo)
 
     ..  container:: example
 
         >>> optimizer = nauert.NullAttackPointOptimizer()
-        >>> result = nauert.quantize(
+        >>> voice = nauert.quantize(
         ...     q_events,
         ...     attack_point_optimizer=optimizer,
         ...     q_schema=q_schema,
         ... )
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> staff = abjad.Staff([voice])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
             \new Voice
             {
                 {
-                    %%% \time 4/4 %%%
                     \tempo 4=54
+                    \time 4/4
                     c'16
                     ~
                     c'32
@@ -499,8 +496,6 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
                     }
                 }
             }
-
-
 
     """
 

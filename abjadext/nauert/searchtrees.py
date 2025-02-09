@@ -175,13 +175,12 @@ class UnweightedSearchTree(SearchTree):
         generate all permissable subdivided ``QGrids``, according to the
         definition of the called search tree:
 
-        >>> q_event_a = nauert.PitchedQEvent(130, [0, 1, 4])
-        >>> q_event_b = nauert.PitchedQEvent(150, [2, 3, 5])
-        >>> proxy_a = nauert.QEventProxy(q_event_a, 0.5)
-        >>> proxy_b = nauert.QEventProxy(q_event_b, 0.667)
+        >>> q_event_a = nauert.PitchedQEvent(abjad.Offset(130), [0, 1, 4])
+        >>> q_event_b = nauert.PitchedQEvent(abjad.Offset(150), [2, 3, 5])
+        >>> proxy_a = nauert.QEventProxy(q_event_a, abjad.Offset(0.5))
+        >>> proxy_b = nauert.QEventProxy(q_event_b, abjad.Offset(0.667))
         >>> q_grid = nauert.QGrid()
         >>> q_grid.fit_q_events([proxy_a, proxy_b])
-
         >>> q_grids = search_tree(q_grid)
         >>> for grid in q_grids:
         ...     print(grid.rtm_format)
