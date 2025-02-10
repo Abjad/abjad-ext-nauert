@@ -24,7 +24,8 @@ def test_MeasurewiseQSchema___getitem___02():
     )
     metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 76)
     item_b = abjadext.nauert.MeasurewiseQSchemaItem(tempo=metronome_mark)
-    item_c = abjadext.nauert.MeasurewiseQSchemaItem(time_signature=(3, 4))
+    time_signature = abjad.TimeSignature((3, 4))
+    item_c = abjadext.nauert.MeasurewiseQSchemaItem(time_signature=time_signature)
     item_d = abjadext.nauert.MeasurewiseQSchemaItem(
         search_tree=abjadext.nauert.UnweightedSearchTree({5: None}),
         use_full_measure=True,

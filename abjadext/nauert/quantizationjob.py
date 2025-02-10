@@ -78,20 +78,14 @@ class QuantizationJob:
     def __call__(self) -> None:
         """
         Calls quantization job.
-
-        Returns none.
         """
         # print('XXX')
         # print(format(self.q_event_proxies[0]))
-
         q_grid = QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
-
         # print(format(q_grid))
-
         old_q_grids = []
         new_q_grids = [q_grid]
-
         while new_q_grids:
             q_grid = new_q_grids.pop()
             search_results = self.search_tree(q_grid)
@@ -100,7 +94,6 @@ class QuantizationJob:
             #    print '\t', x.rtm_format
             new_q_grids.extend(search_results)
             old_q_grids.append(q_grid)
-
         # for q_grid in old_q_grids:
         #    print('\t', q_grid)
         # print()
@@ -129,28 +122,31 @@ class QuantizationJob:
         """
         return super(QuantizationJob, self).__hash__()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(job_id={self.job_id!r}, search_tree={self.search_tree!r}, q_event_proxies={self.q_event_proxies!r}, q_grids={self.q_grids})"
+        string = f"{type(self).__name__}(job_id={self.job_id!r},"
+        string += f" search_tree={self.search_tree!r},"
+        string += f" q_event_proxies={self.q_event_proxies!r}, q_grids={self.q_grids})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def job_id(self) -> int:
         """
-        The job id of the ``QuantizationJob``.
+        Gets the job id of the ``QuantizationJob``.
 
-        Only meaningful when the job is processed via multiprocessing,
-        as the job id is necessary to reconstruct the order of jobs.
+        Only meaningful when the job is processed via multiprocessing, as the
+        job id is necessary to reconstruct the order of jobs.
         """
         return self._job_id
 
     @property
     def q_event_proxies(self) -> tuple[QEventProxy, ...]:
         r"""
-        The ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
+        Gets the ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
 
         >>> q_event_a = nauert.PitchedQEvent(abjad.Offset(250), [0, 1])
         >>> q_event_b = nauert.SilentQEvent(abjad.Offset(500))
@@ -179,7 +175,7 @@ class QuantizationJob:
     @property
     def q_grids(self) -> tuple[QGrid, ...]:
         r"""
-        The generated ``QGrids``.
+        Gets generated ``QGrids``.
 
         >>> q_event_a = nauert.PitchedQEvent(abjad.Offset(250), [0, 1])
         >>> q_event_b = nauert.SilentQEvent(abjad.Offset(500))
@@ -206,6 +202,6 @@ class QuantizationJob:
     @property
     def search_tree(self) -> SearchTree:
         """
-        The search tree the ``QuantizationJob`` was instantiated with.
+        Gets search tree ``QuantizationJob`` was instantiated with.
         """
         return self._search_tree

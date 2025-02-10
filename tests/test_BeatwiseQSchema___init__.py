@@ -8,7 +8,7 @@ def test_BeatwiseQSchema___init___01():
     )
     metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 76)
     item_b = abjadext.nauert.BeatwiseQSchemaItem(tempo=metronome_mark)
-    item_c = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
+    item_c = abjadext.nauert.BeatwiseQSchemaItem(beatspan=abjad.Duration(1, 8))
 
     schema = abjadext.nauert.BeatwiseQSchema(
         {2: item_a, 4: item_b, 7: item_c},

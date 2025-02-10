@@ -24,7 +24,7 @@ def test_BeatwiseQSchema___getitem___02():
     metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 76)
     item_b = abjadext.nauert.BeatwiseQSchemaItem(tempo=metronome_mark)
     item_c = abjadext.nauert.BeatwiseQSchemaItem(
-        beatspan=(1, 8),
+        beatspan=abjad.Duration(1, 8),
         search_tree=abjadext.nauert.UnweightedSearchTree({5: None}),
     )
 

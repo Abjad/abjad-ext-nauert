@@ -27,9 +27,9 @@ def quantize(
 
         >>> durations = [1000] * 8
         >>> pitches = range(8)
-        >>> q_event_sequence = \
-        ...     nauert.QEventSequence.from_millisecond_pitch_pairs(
-        ...     tuple(zip(durations, pitches)))
+        >>> pairs = tuple(zip(durations, pitches, strict=True))
+        >>> method = nauert.QEventSequence.from_millisecond_pitch_pairs
+        >>> q_event_sequence = method(pairs)
 
     ..  container:: example
 
@@ -79,8 +79,14 @@ def quantize(
         measures with different tempi and time signatures:
 
         >>> measurewise_q_schema = nauert.MeasurewiseQSchema(
-        ...     {"tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 78), "time_signature": (2, 4)},
-        ...     {"tempo": abjad.MetronomeMark(abjad.Duration(1, 8), 57), "time_signature": (5, 4)},
+        ...     {
+        ...         "tempo": abjad.MetronomeMark(abjad.Duration(1, 4), 78),
+        ...         "time_signature": abjad.TimeSignature((2, 4)),
+        ...     },
+        ...     {
+        ...         "tempo": abjad.MetronomeMark(abjad.Duration(1, 8), 57),
+        ...         "time_signature": abjad.TimeSignature((5, 4)),
+        ...     },
         ... )
         >>> result = nauert.quantize(
         ...     q_event_sequence,
@@ -266,11 +272,10 @@ def quantize(
           ``NaiveAttackPointOptimizer`` and ``NullAttackPointOptimizer``.
 
     Refer to the reference pages for ``BeatwiseQSchema`` and
-    ``MeasurewiseQSchema`` for more information on controlling the
-    ``quantize`` function's output, and to the reference on ``SearchTree`` for
-    information on controlling the rhythmic complexity of that same output.
+    ``MeasurewiseQSchema`` for more information on controlling the ``quantize``
+    function's output, and to the reference on ``SearchTree`` for information
+    on controlling the rhythmic complexity of that same output.
     """
-
     q_event_sequence = QEventSequence(q_event_sequence)
     if q_schema is None:
         q_schema = MeasurewiseQSchema()

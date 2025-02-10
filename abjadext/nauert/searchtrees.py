@@ -93,8 +93,8 @@ class SearchTree(abc.ABC):
                     proxy.offset == leaf_one.start_offset
                     for proxy in succeeding_proxies
                 ):
-                    pass  # proxies align perfectly with this leaf
-
+                    # proxies align perfectly with this leaf
+                    pass
                 elif preceding_proxies or succeeding_proxies:
                     parentage_ratios = leaf_one.parentage_ratios
                     leaf_subdivisions = self._find_leaf_subdivisions(parentage_ratios)
@@ -257,8 +257,8 @@ class UnweightedSearchTree(SearchTree):
     @property
     def default_definition(self) -> dict:
         """
-        The default search tree definition, based on the search tree given
-        by Paul Nauert:
+        The default search tree definition, based on the search tree given by
+        Paul Nauert:
 
         >>> import pprint
         >>> search_tree = nauert.UnweightedSearchTree()
@@ -396,7 +396,7 @@ class WeightedSearchTree(SearchTree):
     @property
     def all_compositions(self) -> tuple[tuple[int, ...], ...]:
         """
-        All compositions of weighted search tree.
+        Gets all compositions of weighted search tree.
         """
         return self._all_compositions
 

@@ -4,10 +4,10 @@ import copy
 
 import abjad
 
-from .qschemaitems import BeatwiseQSchemaItem, MeasurewiseQSchemaItem, QSchemaItem
-from .qtargetitems import QTargetBeat, QTargetMeasure
-from .qtargets import BeatwiseQTarget, MeasurewiseQTarget, QTarget
-from .searchtrees import SearchTree, UnweightedSearchTree
+from . import qschemaitems as _qschemaitems
+from . import qtargetitems as _qtargetitems
+from . import qtargets as _qtargets
+from . import searchtrees as _searchtrees
 
 
 class QSchema(abc.ABC):
@@ -20,14 +20,12 @@ class QSchema(abc.ABC):
     In practice, this provides a means for the composer to change the tempo,
     search-tree, time-signature etc., effectively creating a template into
     which quantized rhythms can be "poured", without yet knowing what those
-    rhythms might be, or even how much time the ultimate result will take.
-    Like Abjad indicators the settings made at any given time-step via
-    a ``QSchema`` instance are understood to persist until changed.
+    rhythms might be, or even how much time the ultimate result will take. Like
+    Abjad indicators the settings made at any given time-step via a ``QSchema``
+    instance are understood to persist until changed.
 
     All concrete ``QSchema`` subclasses strongly implement default values for
     all of their parameters.
-
-    `QSchema` is abstract.
     """
 
     ### CLASS VARIABLES ###
@@ -36,7 +34,7 @@ class QSchema(abc.ABC):
 
     _keyword_argument_names: tuple[str, ...] = ()
 
-    _search_tree = UnweightedSearchTree()
+    _search_tree = _searchtrees.UnweightedSearchTree()
 
     _tempo = abjad.MetronomeMark()
 
@@ -72,12 +70,13 @@ class QSchema(abc.ABC):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration: abjad.typings.Duration) -> QTarget:
+    def __call__(self, duration: abjad.Duration) -> _qtargets.QTarget:
         """
         Calls QSchema on ``duration``.
         """
+        assert isinstance(duration, abjad.Duration), repr(duration)
         target_items = []
-        idx, current_offset = 0, 0
+        idx, current_offset = 0, abjad.Offset(0)
         duration = abjad.Duration(duration)
         while current_offset < duration:
             lookup = self[idx]
@@ -86,7 +85,6 @@ class QSchema(abc.ABC):
             target_items.append(target_item)
             current_offset += target_item.duration_in_ms
             idx += 1
-        # assert all(isinstance(item, self.target_item_class) for item in target_items)
         return self.target_class(target_items)
 
     def __getitem__(self, argument: int) -> dict:
@@ -128,42 +126,42 @@ class QSchema(abc.ABC):
     @abc.abstractproperty
     def item_class(self):
         """
-        The schema's item class.
+        Gets schema's item class.
         """
         raise NotImplementedError
 
     @property
-    def items(self) -> dict[int, QSchemaItem]:
+    def items(self) -> dict[int, _qschemaitems.QSchemaItem]:
         """
-        The item dictionary.
+        Gets items dictionary.
         """
         return self._items
 
     @property
-    def search_tree(self) -> SearchTree:
+    def search_tree(self) -> _searchtrees.SearchTree:
         """
-        The default search tree.
+        Gets default search tree.
         """
         return self._search_tree
 
     @abc.abstractproperty
     def target_class(self):
         """
-        The schema's target class.
+        Gets schema's target class.
         """
         raise NotImplementedError
 
     @abc.abstractproperty
     def target_item_class(self):
         """
-        The schema's target class' item class.
+        Gets schema's target class' item class.
         """
         raise NotImplementedError
 
     @property
     def tempo(self) -> abjad.MetronomeMark:
         """
-        The default tempo.
+        Gets default tempo.
         """
         return self._tempo
 
@@ -307,8 +305,8 @@ class BeatwiseQSchema(QSchema):
 
     def __init__(self, *arguments, **keywords):
         self._beatspan = abjad.Duration(keywords.get("beatspan", (1, 4)))
-        search_tree = keywords.get("search_tree", UnweightedSearchTree())
-        assert isinstance(search_tree, SearchTree)
+        search_tree = keywords.get("search_tree", _searchtrees.UnweightedSearchTree())
+        assert isinstance(search_tree, _searchtrees.SearchTree)
         self._search_tree = search_tree
         tempo = keywords.get("tempo", (abjad.Duration(1, 4), 60))
         if isinstance(tempo, tuple):
@@ -316,41 +314,43 @@ class BeatwiseQSchema(QSchema):
         self._tempo = tempo
         QSchema.__init__(self, *arguments, **keywords)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(beatspan={self.beatspan!r}, search_tree={self.search_tree!r}, tempo={self.tempo!r})"
+        string = f"{type(self).__name__}(beatspan={self.beatspan!r},"
+        string += f" search_tree={self.search_tree!r}, tempo={self.tempo!r})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def beatspan(self) -> abjad.Duration:
         """
-        Default beatspan of beatwise q-schema.
+        Gets default beatspan of beatwise q-schema.
         """
         return self._beatspan
 
     @property
-    def item_class(self) -> type[BeatwiseQSchemaItem]:
+    def item_class(self) -> type[_qschemaitems.BeatwiseQSchemaItem]:
         """
-        The schema's item class.
+        Gets schema's item class.
         """
-        return BeatwiseQSchemaItem
+        return _qschemaitems.BeatwiseQSchemaItem
 
     @property
-    def target_class(self) -> type[BeatwiseQTarget]:
+    def target_class(self) -> type[_qtargets.BeatwiseQTarget]:
         """
-        Target class of beatwise q-schema.
+        Gets target class of beatwise q-schema.
         """
-        return BeatwiseQTarget
+        return _qtargets.BeatwiseQTarget
 
     @property
-    def target_item_class(self) -> type[QTargetBeat]:
+    def target_item_class(self) -> type[_qtargetitems.QTargetBeat]:
         """
-        Target item class of beatwise q-schema.
+        Gets target item class of beatwise q-schema.
         """
-        return QTargetBeat
+        return _qtargetitems.QTargetBeat
 
 
 class MeasurewiseQSchema(QSchema):
@@ -392,16 +392,17 @@ class MeasurewiseQSchema(QSchema):
         ... )
 
         All of these settings are self-descriptive, except for
-        ``use_full_measure``, which controls whether the measure is subdivided by
-        the ``quantize`` function into beats according to its time signature.
+        ``use_full_measure``, which controls whether the measure is subdivided
+        by the ``quantize`` function into beats according to its time
+        signature.
 
         If ``use_full_measure`` is ``False``, the time-step's measure will be
         divided into units according to its time-signature.  For example, a 4/4
         measure will be divided into 4 units, each having a beatspan of 1/4.
 
         On the other hand, if ``use_full_measure`` is set to ``True``, the
-        time-step's measure will not be subdivided into independent quantization
-        units. This usually results in full-measure tuplets.
+        time-step's measure will not be subdivided into independent
+        quantization units. This usually results in full-measure tuplets.
 
     ..  container:: example
 
@@ -431,9 +432,9 @@ class MeasurewiseQSchema(QSchema):
         Per-time-step settings can be applied in a variety of ways.
 
         Instantiating the schema via ``*arguments`` with a series of either
-        ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be used
-        to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
-        settings sequentially, starting from time-step ``0``:
+        ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be
+        used to instantiate ``MeasurewiseQSchemaItem`` instances, will apply
+        those settings sequentially, starting from time-step ``0``:
 
         >>> a = {"search_tree": nauert.UnweightedSearchTree({2: None})}
         >>> b = {"search_tree": nauert.UnweightedSearchTree({3: None})}
@@ -455,10 +456,10 @@ class MeasurewiseQSchema(QSchema):
 
     ..  container:: example
 
-        Similarly, instantiating the schema from a single dictionary, consisting of
-        integer:specification pairs, or a sequence via ``*arguments`` of (integer,
-        specification) pairs, allows for applying settings to non-sequential
-        time-steps:
+        Similarly, instantiating the schema from a single dictionary,
+        consisting of integer:specification pairs, or a sequence via
+        ``*arguments`` of (integer, specification) pairs, allows for applying
+        settings to non-sequential time-steps:
 
         >>> a = {"time_signature": abjad.TimeSignature((7, 32))}
         >>> b = {"time_signature": abjad.TimeSignature((3, 4))}
@@ -529,8 +530,8 @@ class MeasurewiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
-        search_tree = keywords.get("search_tree", UnweightedSearchTree())
-        assert isinstance(search_tree, SearchTree)
+        search_tree = keywords.get("search_tree", _searchtrees.UnweightedSearchTree())
+        assert isinstance(search_tree, _searchtrees.SearchTree)
         self._search_tree = search_tree
         tempo = keywords.get("tempo", (abjad.Duration(1, 4), 60))
         if isinstance(tempo, tuple):
@@ -546,39 +547,42 @@ class MeasurewiseQSchema(QSchema):
         self._use_full_measure = bool(keywords.get("use_full_measure"))
         QSchema.__init__(self, *arguments, **keywords)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(search_tree={self.search_tree!r}, tempo={self.tempo!r}, time_signature={self.time_signature!r}, use_full_measure={self.use_full_measure})"
+        string = f"{type(self).__name__}(search_tree={self.search_tree!r},"
+        string += f" tempo={self.tempo!r}, time_signature={self.time_signature!r},"
+        string += f" use_full_measure={self.use_full_measure})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def item_class(self) -> type[MeasurewiseQSchemaItem]:
+    def item_class(self) -> type[_qschemaitems.MeasurewiseQSchemaItem]:
         """
-        Item class of measurewise q-schema.
+        Gets item class of measurewise q-schema.
         """
-        return MeasurewiseQSchemaItem
+        return _qschemaitems.MeasurewiseQSchemaItem
 
     @property
-    def target_class(self) -> type[MeasurewiseQTarget]:
+    def target_class(self) -> type[_qtargets.MeasurewiseQTarget]:
         """
-        Target class of measurewise q-schema.
+        Gets target class of measurewise q-schema.
         """
-        return MeasurewiseQTarget
+        return _qtargets.MeasurewiseQTarget
 
     @property
-    def target_item_class(self) -> type[QTargetMeasure]:
+    def target_item_class(self) -> type[_qtargetitems.QTargetMeasure]:
         """
-        Target item class of measurewise q-schema.
+        Gets target item class of measurewise q-schema.
         """
-        return QTargetMeasure
+        return _qtargetitems.QTargetMeasure
 
     @property
     def time_signature(self) -> abjad.TimeSignature:
         """
-        Default time signature of measurewise q-schema.
+        Gets default time signature of measurewise q-schema.
 
         ..  container:: example
 
@@ -613,6 +617,6 @@ class MeasurewiseQSchema(QSchema):
     @property
     def use_full_measure(self) -> bool:
         """
-        The full-measure-as-beatspan default.
+        Is true when class uses full-measure-as-beatspan default.
         """
         return self._use_full_measure
