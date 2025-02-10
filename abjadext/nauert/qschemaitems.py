@@ -23,20 +23,13 @@ class QSchemaItem(abc.ABC):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | tuple | None = None,
-    ):
+        tempo: abjad.MetronomeMark | None = None,
+    ) -> None:
         if search_tree is not None:
             assert isinstance(search_tree, SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
-            if isinstance(tempo, tuple):
-                assert len(tempo) == 2
-                reference_duration_, units_per_minute = tempo
-                reference_duration = abjad.Duration(reference_duration_)
-                tempo = abjad.MetronomeMark(
-                    reference_duration=reference_duration,
-                    units_per_minute=units_per_minute,
-                )
+            assert isinstance(tempo, abjad.MetronomeMark), repr(tempo)
             assert not tempo.is_imprecise
         self._tempo = tempo
 
@@ -46,8 +39,6 @@ class QSchemaItem(abc.ABC):
     def search_tree(self) -> typing.Optional[SearchTree]:
         """
         The optionally defined search tree.
-
-        Returns search tree or none.
         """
         return self._search_tree
 
@@ -73,14 +64,15 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
+        >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+        >>> nauert.BeatwiseQSchemaItem(tempo=metronome_mark)
         BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
     ..  container:: example
 
         Defines a change in beatspan:
 
-        >>> nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
+        >>> nauert.BeatwiseQSchemaItem(beatspan=abjad.Duration(1, 8))
         BeatwiseQSchemaItem(beatspan=Duration(1, 8), search_tree=None, tempo=None)
 
     """
@@ -93,21 +85,25 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        beatspan: abjad.typings.Duration | int | None = None,
+        beatspan: abjad.Duration | None = None,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | tuple | None = None,
-    ):
+        tempo: abjad.MetronomeMark | None = None,
+    ) -> None:
+        if beatspan is not None:
+            assert isinstance(beatspan, abjad.Duration), repr(beatspan)
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         if beatspan is not None:
             beatspan = abjad.Duration(beatspan)
             assert 0 < beatspan
         self._beatspan = beatspan
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(beatspan={self.beatspan!r}, search_tree={self.search_tree!r}, tempo={self.tempo!r})"
+        string = f"{type(self).__name__}(beatspan={self.beatspan!r},"
+        string += f" search_tree={self.search_tree!r}, tempo={self.tempo!r})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
@@ -131,21 +127,24 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Defines a change in tempo:
 
-        >>> nauert.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
+        >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+        >>> nauert.MeasurewiseQSchemaItem(tempo=metronome_mark)
         MeasurewiseQSchemaItem(search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), time_signature=None, use_full_measure=None)
 
     ..  container:: example
 
         Defines a change in time signature:
 
-        >>> nauert.MeasurewiseQSchemaItem(time_signature=(6, 8))
+        >>> time_signature = abjad.TimeSignature((6, 8))
+        >>> nauert.MeasurewiseQSchemaItem(time_signature=time_signature)
         MeasurewiseQSchemaItem(search_tree=None, tempo=None, time_signature=TimeSignature(pair=(6, 8), hide=False, partial=None), use_full_measure=None)
 
     ..  container:: example
 
         Tests for beatspan given a defined time signature:
 
-        >>> nauert.MeasurewiseQSchemaItem(time_signature=(6, 8)).beatspan
+        >>> time_signature = abjad.TimeSignature((6, 8))
+        >>> nauert.MeasurewiseQSchemaItem(time_signature=time_signature).beatspan
         Duration(1, 8)
 
     """
@@ -159,10 +158,12 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def __init__(
         self,
         search_tree: SearchTree | None = None,
-        tempo: abjad.MetronomeMark | tuple | None = None,
-        time_signature: tuple[int, int] | None = None,
+        tempo: abjad.MetronomeMark | None = None,
+        time_signature: abjad.TimeSignature | None = None,
         use_full_measure: bool | None = None,
     ):
+        if time_signature is not None:
+            assert isinstance(time_signature, abjad.TimeSignature), repr(time_signature)
         QSchemaItem.__init__(self, search_tree=search_tree, tempo=tempo)
         self._time_signature: abjad.TimeSignature | None
         if isinstance(time_signature, abjad.TimeSignature):
@@ -176,11 +177,14 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             use_full_measure = bool(use_full_measure)
         self._use_full_measure = use_full_measure
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(search_tree={self.search_tree!r}, tempo={self.tempo!r}, time_signature={self.time_signature!r}, use_full_measure={self.use_full_measure!r})"
+        string = f"{type(self).__name__}(search_tree={self.search_tree!r},"
+        string += f" tempo={self.tempo!r}, time_signature={self.time_signature!r},"
+        string += f" use_full_measure={self.use_full_measure!r})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
@@ -199,7 +203,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     @property
     def time_signature(self) -> typing.Optional[abjad.TimeSignature]:
         """
-        The optionally defined TimeSignature.
+        The optionally defined time signature.
         """
         return self._time_signature
 

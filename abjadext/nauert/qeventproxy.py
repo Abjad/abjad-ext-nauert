@@ -2,7 +2,7 @@ import typing
 
 import abjad
 
-from .qevents import QEvent
+from . import qevents as _qevents
 
 
 class QEventProxy:
@@ -13,8 +13,8 @@ class QEventProxy:
 
     ..  container:: example
 
-        >>> q_event = nauert.PitchedQEvent(130, [0, 1, 4])
-        >>> nauert.QEventProxy(q_event, 0.5)
+        >>> q_event = nauert.PitchedQEvent(abjad.Offset(130), [0, 1, 4])
+        >>> nauert.QEventProxy(q_event, abjad.Offset(0.5))
         QEventProxy(q_event=PitchedQEvent(offset=Offset((130, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")), index=None, attachments=()), offset=Offset((1, 2)))
 
     Not composer-safe.
@@ -28,25 +28,29 @@ class QEventProxy:
 
     ### INITIALIZER ###
 
-    def __init__(self, q_event: QEvent | None = None, *offsets: abjad.typings.Offset):
+    def __init__(
+        self,
+        q_event: _qevents.QEvent | None = None,
+        *offsets: abjad.Offset,
+    ) -> None:
+        assert all(isinstance(_, abjad.Offset) for _ in offsets), repr(offsets)
         if len(offsets) == 1:
             offset = abjad.Offset(offsets[0])
-            assert isinstance(q_event, QEvent)
+            assert isinstance(q_event, _qevents.QEvent)
             assert 0 <= offset <= 1
         elif len(offsets) == 2:
             minimum, maximum = (
                 abjad.Offset(offsets[0]),
                 abjad.Offset(offsets[1]),
             )
-            assert isinstance(q_event, QEvent)
+            assert isinstance(q_event, _qevents.QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
         elif len(offsets) == 0:
             assert q_event is None
             offset = abjad.Offset(0)
         else:
-            message = "can not initialize {}: {!r}."
-            message = message.format(type(self).__name__, offsets)
+            message = f"can not initialize {type(self).__name__}: {offsets!r}."
             raise ValueError(message)
         self._q_event = q_event
         self._offset = abjad.Offset(offset)
@@ -72,20 +76,20 @@ class QEventProxy:
         """
         return super(QEventProxy, self).__hash__()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return (
-            f"{type(self).__name__}(q_event={self.q_event!r}, offset={self.offset!r})"
-        )
+        class_name = type(self).__name__
+        string = f"{class_name}(q_event={self.q_event!r}, offset={self.offset!r})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def index(self) -> typing.Optional[int]:
         """
-        Index of q-event proxy.
+        Gets index of q-event proxy.
         """
         assert self._q_event is not None, "There is no QEvent is this proxy."
         return self._q_event.index
@@ -93,13 +97,13 @@ class QEventProxy:
     @property
     def offset(self) -> abjad.Offset:
         """
-        Offset of q-event proxy.
+        Gets offset of q-event proxy.
         """
         return self._offset
 
     @property
-    def q_event(self) -> typing.Optional[QEvent]:
+    def q_event(self) -> typing.Optional[_qevents.QEvent]:
         """
-        Q-event of q-event proxy.
+        Gets q-event of q-event proxy.
         """
         return self._q_event

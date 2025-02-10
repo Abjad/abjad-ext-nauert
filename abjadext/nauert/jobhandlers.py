@@ -3,7 +3,7 @@ import multiprocessing
 import pickle
 import typing
 
-from .quantizationjob import QuantizationJob
+from . import quantizationjob as _quantizationjob
 
 
 class JobHandler(abc.ABC):
@@ -46,7 +46,7 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
 
     ### INITIALIZER ###
 
-    def __init__(self, job_queue=None, result_queue=None):
+    def __init__(self, job_queue=None, result_queue=None) -> None:
         multiprocessing.Process.__init__(self)
         job_queue = job_queue or ()
         result_queue = result_queue or ()
@@ -55,11 +55,9 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
 
     ### PUBLIC METHODS ###
 
-    def run(self):
+    def run(self) -> None:
         """
         Runs parallel job handler worker.
-
-        Returns none.
         """
         while True:
             job = None
@@ -133,12 +131,10 @@ class SerialJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, jobs: typing.Sequence[QuantizationJob]
-    ) -> typing.Sequence[QuantizationJob]:
+        self, jobs: typing.Sequence[_quantizationjob.QuantizationJob]
+    ) -> typing.Sequence[_quantizationjob.QuantizationJob]:
         """
         Calls serial job handler.
-
-        Returns ``jobs``.
         """
         for job in jobs:
             job()

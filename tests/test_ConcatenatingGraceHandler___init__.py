@@ -16,7 +16,8 @@ def test_ConcatenatingGraceHandler___init___02():
 
 
 def test_ConcatenatingGraceHandler___init___03():
-    grace_handler = nauert.ConcatenatingGraceHandler(grace_duration=(1, 32))
+    duration = abjad.Duration(1, 32)
+    grace_handler = nauert.ConcatenatingGraceHandler(grace_duration=duration)
     assert grace_handler.grace_duration == abjad.Duration(1, 32)
     assert grace_handler.discard_grace_rest is True
     assert grace_handler.replace_rest_with_final_grace_note is True

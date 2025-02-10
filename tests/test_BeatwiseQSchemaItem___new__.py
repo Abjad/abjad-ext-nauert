@@ -11,24 +11,28 @@ def test_BeatwiseQSchemaItem___new___01():
 
 
 def test_BeatwiseQSchemaItem___new___02():
-    item = abjadext.nauert.BeatwiseQSchemaItem(tempo=((1, 4), 60))
+    metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+    item = abjadext.nauert.BeatwiseQSchemaItem(tempo=metronome_mark)
     assert item.beatspan is None
     assert item.search_tree is None
-    assert item.tempo == abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+    assert item.tempo == metronome_mark
 
 
 def test_BeatwiseQSchemaItem___new___03():
-    item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8))
+    item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=abjad.Duration(1, 8))
     assert item.beatspan == abjad.Duration(1, 8)
     assert item.search_tree is None
     assert item.tempo is None
 
 
 def test_BeatwiseQSchemaItem___new___04():
-    item = abjadext.nauert.BeatwiseQSchemaItem(beatspan=(1, 8), tempo=((1, 4), 57))
+    metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 57)
+    item = abjadext.nauert.BeatwiseQSchemaItem(
+        beatspan=abjad.Duration(1, 8), tempo=metronome_mark
+    )
     assert item.beatspan == abjad.Duration(1, 8)
     assert item.search_tree is None
-    assert item.tempo == abjad.MetronomeMark(abjad.Duration(1, 4), 57)
+    assert item.tempo == metronome_mark
 
 
 def test_BeatwiseQSchemaItem___new___05():

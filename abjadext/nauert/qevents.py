@@ -26,14 +26,15 @@ class QEvent(abc.ABC):
     @abc.abstractmethod
     def __init__(
         self,
-        offset: abjad.typings.Offset = 0,
+        offset: abjad.Offset = abjad.Offset(0),
         index: int | None = None,
-        attachments: typing.Iterable | None = None,
-    ):
-        offset = abjad.Offset(offset)
+        attachments: typing.Iterable = (),
+    ) -> None:
+        assert isinstance(offset, abjad.Offset), repr(offset)
+        assert isinstance(attachments, collections.abc.Iterable), repr(attachments)
         self._offset = offset
         self._index = index
-        self._attachments = tuple(attachments or ())
+        self._attachments = tuple(attachments)
 
     ### SPECIAL METHODS ###
 
@@ -47,11 +48,14 @@ class QEvent(abc.ABC):
                 return True
         return False
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(offset={self.offset!r}, index={self.index!r}, attachments={self.attachments!r})"
+        class_name = type(self).__name__
+        string = f"{class_name}(offset={self.offset!r}, index={self.index!r}"
+        string += f", attachments={self.attachments!r})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
@@ -80,9 +84,10 @@ class QEvent(abc.ABC):
     def from_offset_pitches_attachments(
         class_, offset, pitches, attachments
     ) -> "QEvent":
+        assert isinstance(attachments, collections.abc.Iterable), repr(attachments)
         match pitches:
             case collections.abc.Iterable():
-                assert all(isinstance(x, numbers.Number) for x in pitches)
+                assert all(isinstance(_, numbers.Number) for _ in pitches)
                 return PitchedQEvent(offset, pitches, attachments)
             case None:
                 return SilentQEvent(offset, attachments)
@@ -101,7 +106,7 @@ class PitchedQEvent(QEvent):
     ..  container:: example
 
         >>> pitches = [0, 1, 4]
-        >>> nauert.PitchedQEvent(1000, pitches)
+        >>> nauert.PitchedQEvent(abjad.Offset(1000), pitches)
         PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")), index=None, attachments=())
 
     """
@@ -114,19 +119,15 @@ class PitchedQEvent(QEvent):
 
     def __init__(
         self,
-        offset: abjad.typings.Offset = 0,
-        pitches: typing.Iterable[int | float] | None = None,
-        attachments: typing.Iterable | None = None,
+        offset: abjad.Offset = abjad.Offset(0),
+        pitches: typing.Iterable[int | float] = (),
+        attachments: typing.Iterable = (),
         index: int | None = None,
     ):
+        assert isinstance(offset, abjad.Offset), repr(offset)
         QEvent.__init__(self, offset=offset, index=index)
-        if attachments is None:
-            attachments = ()
-        else:
-            attachments = tuple(attachments)
-        pitches = pitches or []
         self._pitches = tuple([abjad.NamedPitch(x) for x in pitches])
-        self._attachments = attachments
+        self._attachments = tuple(attachments)
 
     ### SPECIAL METHODS ###
 
@@ -154,25 +155,28 @@ class PitchedQEvent(QEvent):
         """
         return super(PitchedQEvent, self).__hash__()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(offset={self.offset!r}, pitches={self.pitches!r}, index={self.index!r}, attachments={self.attachments!r})"
+        string = f"{type(self).__name__}(offset={self.offset!r},"
+        string += f" pitches={self.pitches!r}, index={self.index!r},"
+        string += f" attachments={self.attachments!r})"
+        return string
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def attachments(self) -> tuple:
         """
-        Attachments of pitched q-event.
+        Gets attachments of pitched q-event.
         """
         return self._attachments
 
     @property
     def pitches(self) -> tuple[abjad.NamedPitch, ...]:
         """
-        Pitches of pitched q-event.
+        Gets pitches of pitched q-event.
         """
         return self._pitches
 
@@ -183,7 +187,7 @@ class SilentQEvent(QEvent):
 
     ..  container:: example
 
-        >>> q_event = nauert.SilentQEvent(1000)
+        >>> q_event = nauert.SilentQEvent(abjad.Offset(1000))
         >>> q_event
         SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())
 
@@ -197,10 +201,11 @@ class SilentQEvent(QEvent):
 
     def __init__(
         self,
-        offset: abjad.typings.Offset = 0,
-        attachments: typing.Iterable | None = None,
+        offset: abjad.Offset = abjad.Offset(0),
+        attachments: typing.Iterable = (),
         index: int | None = None,
     ):
+        assert isinstance(offset, abjad.Offset), repr(offset)
         QEvent.__init__(self, offset=offset, index=index)
         if attachments is None:
             attachments = ()
@@ -225,7 +230,8 @@ class SilentQEvent(QEvent):
         return False
 
     def __hash__(self) -> int:
-        """Hashes silent q-event.
+        """
+        Hashes silent q-event.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
@@ -247,7 +253,7 @@ class TerminalQEvent(QEvent):
 
     ..  container:: example
 
-        >>> nauert.TerminalQEvent(1000)
+        >>> nauert.TerminalQEvent(abjad.Offset(1000))
         TerminalQEvent(offset=Offset((1000, 1)), index=None, attachments=())
 
     Carries no significance outside the context of a ``QEventSequence``.
@@ -259,7 +265,8 @@ class TerminalQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset: abjad.typings.Offset = 0):
+    def __init__(self, offset: abjad.Offset = abjad.Offset(0)) -> None:
+        assert isinstance(offset, abjad.Offset), repr(offset)
         QEvent.__init__(self, offset=offset)
 
     ### SPECIAL METHODS ###

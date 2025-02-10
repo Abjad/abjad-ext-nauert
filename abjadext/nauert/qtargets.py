@@ -231,14 +231,14 @@ class QTarget(abc.ABC):
     @abc.abstractproperty
     def beats(self) -> tuple[QTargetBeat, ...]:
         """
-        Beats of q-target.
+        Gets beats of q-target.
         """
         raise NotImplementedError
 
     @property
     def duration_in_ms(self) -> abjad.Duration:
         """
-        Duration of q-target in milliseconds.
+        Gets duration of q-target in milliseconds.
         """
         last_item = self._items[-1]
         return last_item.offset_in_ms + last_item.duration_in_ms
@@ -246,14 +246,14 @@ class QTarget(abc.ABC):
     @abc.abstractproperty
     def item_class(self):
         """
-        Item class of q-target.
+        Gets item class of q-target.
         """
         raise NotImplementedError
 
     @property
     def items(self):
         """
-        Items of q-target.
+        Gets items of q-target.
         """
         return self._items
 
@@ -321,14 +321,14 @@ class BeatwiseQTarget(QTarget):
     @property
     def beats(self) -> tuple[QTargetBeat, ...]:
         """
-        Beats of beatwise q-target.
+        Gets beats of beatwise q-target.
         """
         return tuple(self._items)
 
     @property
     def item_class(self) -> type[QTargetBeat]:
         """
-        Item class of beatwise q-target.
+        Gets item class of beatwise q-target.
         """
         return QTargetBeat
 
@@ -410,13 +410,13 @@ class MeasurewiseQTarget(QTarget):
     @property
     def beats(self) -> tuple[QTargetBeat, ...]:
         """
-        Beats of measurewise q-target.
+        Gets beats of measurewise q-target.
         """
         return tuple([beat for item in self.items for beat in item.beats])
 
     @property
     def item_class(self) -> type[QTargetMeasure]:
         """
-        Item class of measurewise q-target.
+        Gets item class of measurewise q-target.
         """
         return QTargetMeasure
