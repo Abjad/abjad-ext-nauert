@@ -276,6 +276,7 @@ def quantize(
     function's output, and to the reference on ``SearchTree`` for information
     on controlling the rhythmic complexity of that same output.
     """
+    # TODO: assert isinstance(q_event_sequence, QEventSequence)
     q_event_sequence = QEventSequence(q_event_sequence)
     if q_schema is None:
         q_schema = MeasurewiseQSchema()

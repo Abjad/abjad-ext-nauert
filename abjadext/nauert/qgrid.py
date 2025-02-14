@@ -226,18 +226,23 @@ class QGrid:
 
     ### SPECIAL METHODS ###
 
-    def __call__(
-        self, beatspan: abjad.Duration
-    ) -> list[abjad.Note | abjad.Tuplet] | list[abjad.Leaf | abjad.Tuplet]:
+    def __call__(self, beatspan: abjad.Duration) -> list[abjad.Leaf | abjad.Tuplet]:
         """
         Calls q-grid.
         """
         assert isinstance(beatspan, abjad.Duration), repr(beatspan)
-        result = self.root_node(beatspan)
-        result_logical_ties = [
-            logical_tie for logical_tie in abjad.iterate.logical_ties(result)
-        ]
-        assert len(result_logical_ties) == len(self.leaves[:-1])
+        result = []
+        components = self.root_node(beatspan)
+        voice = abjad.Voice(components)
+        for tuplet in abjad.select.components(voice, abjad.Tuplet):
+            assert isinstance(tuplet, abjad.Tuplet)
+            if tuplet.trivial():
+                abjad.mutate.extract(tuplet)
+        components_ = abjad.mutate.eject_contents(voice)
+        for component in components_:
+            assert isinstance(component, abjad.Leaf | abjad.Tuplet)
+            result.append(component)
+        result_logical_ties = list(abjad.iterate.logical_ties(result))
         for logical_tie, q_grid_leaf in zip(result_logical_ties, self.leaves[:-1]):
             if q_grid_leaf.q_event_proxies:
                 q_events = [

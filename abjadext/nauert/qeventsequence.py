@@ -182,18 +182,18 @@ class QEventSequence:
             ]
         else:
             durations = milliseconds
-        offsets = abjad.math.cumulative_sums([abs(_) for _ in durations])
+        sums = abjad.math.cumulative_sums([abs(_) for _ in durations])
+        offsets = [abjad.Offset(_) for _ in sums]
         q_events: list[QEvent] = []
         for offset, duration in zip(offsets, durations):
-            offset = abjad.Offset(offset)
             q_event: QEvent
-            # negative duration indicates silence
             if duration < 0:
                 q_event = SilentQEvent(offset)
             else:
                 q_event = PitchedQEvent(offset, [0])
             q_events.append(q_event)
-        q_events.append(TerminalQEvent(abjad.Offset(offsets[-1])))
+        q_event = TerminalQEvent(offsets[-1])
+        q_events.append(q_event)
         return class_(q_events)
 
     @classmethod

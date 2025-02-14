@@ -21,11 +21,13 @@ from .qtargetitems import QTargetBeat, QTargetItem, QTargetMeasure
 
 class QTarget(abc.ABC):
     """
-    Abstract q-target.
+    Q-target.
 
-    ``QTarget`` is created by a concrete ``QSchema`` instance, and represents
-    the mold into which the timepoints contained by a ``QSequence`` instance
-    will be poured, as structured by that ``QSchema`` instance.
+    ``QTarget`` is created by a concrete ``QSchema`` instance.
+
+    ``QTarget`` represents the mold into which the timepoints contained by a
+    ``QSequence`` instance will be poured, as structured by that ``QSchema``
+    instance.
 
     Not composer-safe.
 
@@ -47,6 +49,7 @@ class QTarget(abc.ABC):
 
     ### SPECIAL METHODS ###
 
+    # TODO: typehint
     def __call__(
         self,
         q_event_sequence: QEventSequence,
@@ -60,19 +63,15 @@ class QTarget(abc.ABC):
         Calls q-target.
         """
         assert isinstance(q_event_sequence, QEventSequence)
-
         if grace_handler is None:
             grace_handler = ConcatenatingGraceHandler()
         assert isinstance(grace_handler, GraceHandler)
-
         if heuristic is None:
             heuristic = DistanceHeuristic()
         assert isinstance(heuristic, Heuristic)
-
         if job_handler is None:
             job_handler = SerialJobHandler()
         assert isinstance(job_handler, JobHandler)
-
         if attack_point_optimizer is None:
             attack_point_optimizer = NaiveAttackPointOptimizer()
         assert isinstance(attack_point_optimizer, AttackPointOptimizer)
@@ -83,15 +82,6 @@ class QTarget(abc.ABC):
                 self.__class__.__name__, attack_point_optimizer.__class__.__name__
             )
             raise TypeError(message)
-
-        # TODO: this step seems unnecessary now (23/09/2021), (maybe) write more tests to verify
-
-        # if next-to-last QEvent is silent, pop the TerminalQEvent,
-        # in order to prevent rest-tuplets
-        # q_events = q_event_sequence
-        # if isinstance(q_event_sequence[-2], SilentQEvent):
-        #     q_events = q_event_sequence[:-1]
-
         # parcel QEvents out to each beat
         beats = self.beats
         offsets = sorted([beat.offset_in_ms for beat in beats])
@@ -99,7 +89,6 @@ class QTarget(abc.ABC):
             index = bisect.bisect(offsets, q_event.offset) - 1
             beat = beats[index]
             beat.q_events.append(q_event)
-
         # generate QuantizationJobs and process with the JobHandler
         jobs = [beat(i) for i, beat in enumerate(beats)]
         jobs = [job for job in jobs if job]
@@ -107,25 +96,14 @@ class QTarget(abc.ABC):
         for job in jobs:
             assert job is not None
             beats[job.job_id]._q_grids = job.q_grids
-
-        # for i, beat in enumerate(beats):
-        #    print i, len(beat.q_grids)
-        #    for q_event in beat.q_events:
-        #        print '\t{}'.format(q_event.offset)
-
         # select the best QGrid for each beat, according to the Heuristic
         beats = heuristic(beats)
-
         # shift QEvents attached to each QGrid's "next downbeat"
         # over to the next QGrid's first leaf - the real downbeat
         orphaned_q_events_proxies = self._shift_downbeat_q_events_to_next_q_grid()
-
-        #  TODO: handle a final QGrid with QEvents attached to its
-        #        next_downbeat.
-        #  TODO: remove a final QGrid with no QEvents
-
+        # TODO: handle a final QGrid with QEvents attached to its next_downbeat
+        # TODO: remove a final QGrid with no QEvents
         self._regroup_q_grid_with_unnecessary_divisions()
-
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
         notation = self._notate(
@@ -133,14 +111,12 @@ class QTarget(abc.ABC):
             attack_point_optimizer=attack_point_optimizer,
             grace_handler=grace_handler,
         )
-
         handle_orphaned_q_events = getattr(
             grace_handler, "handle_orphaned_q_event_proxies", None
         )
         if callable(handle_orphaned_q_events) and orphaned_q_events_proxies:
             last_leaf = abjad.get.leaf(notation, -1)
             handle_orphaned_q_events(last_leaf, orphaned_q_events_proxies)
-
         return notation
 
     ### PRIVATE METHODS ###
@@ -366,7 +342,8 @@ class MeasurewiseQTarget(QTarget):
         time_signature = q_target_measure.time_signature
         measure = abjad.Container()
         for beat in q_target_measure.beats:
-            measure.extend(beat.q_grid(beat.beatspan))
+            components = beat.q_grid(beat.beatspan)
+            measure.extend(components)
         voice.append(measure)
         leaf = abjad.get.leaf(measure, 0)
         abjad.attach(time_signature, leaf)
