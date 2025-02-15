@@ -96,7 +96,7 @@ class SearchTree(abc.ABC):
                     # proxies align perfectly with this leaf
                     pass
                 elif preceding_proxies or succeeding_proxies:
-                    parentage_ratios = leaf_one.parentage_ratios
+                    parentage_ratios = leaf_one._get_parentage_ratios()
                     leaf_subdivisions = self._find_leaf_subdivisions(parentage_ratios)
                     if leaf_subdivisions:
                         indices.append(i)
