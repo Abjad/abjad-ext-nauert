@@ -219,7 +219,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         all_annotations = self._get_attachment_annotations_of_logical_ties(argument[:])
         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
         meter = abjad.Meter(rtc)
-        abjad.Meter.rewrite_meter(argument[:], meter, boundary_depth=1)
+        meter.rewrite(argument[:], boundary_depth=1)
         plts = list(abjad.iterate.logical_ties(argument[:], pitched=True))
         assert len(all_annotations) == len(plts)
         self._reannotate_logical_ties(argument[:], all_annotations)
