@@ -3,12 +3,9 @@ from abjadext import nauert
 
 
 class Job(nauert.QuantizationJob):
-    ### INITIALIZER ###
 
     def __init__(self, number):
         self.number = number
-
-    ### SPECIAL METHODS ###
 
     def __call__(self):
         self.result = [

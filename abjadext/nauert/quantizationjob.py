@@ -1,8 +1,8 @@
 import typing
 
-from .qeventproxy import QEventProxy
-from .qgrid import QGrid
-from .searchtrees import SearchTree, UnweightedSearchTree
+from . import qeventproxy as _qeventproxy
+from . import qgrid as _qgrid
+from . import searchtrees as _searchtrees
 
 
 class QuantizationJob:
@@ -55,22 +55,22 @@ class QuantizationJob:
     def __init__(
         self,
         job_id: int = 1,
-        search_tree: SearchTree | None = None,
-        q_event_proxies: typing.Sequence[QEventProxy] | None = None,
-        q_grids: typing.Sequence[QGrid] | None = None,
+        search_tree: _searchtrees.SearchTree | None = None,
+        q_event_proxies: typing.Sequence[_qeventproxy.QEventProxy] | None = None,
+        q_grids: typing.Sequence[_qgrid.QGrid] | None = None,
     ):
-        search_tree = search_tree or UnweightedSearchTree()
+        search_tree = search_tree or _searchtrees.UnweightedSearchTree()
         q_event_proxies = q_event_proxies or []
-        assert isinstance(search_tree, SearchTree)
-        assert all(isinstance(x, QEventProxy) for x in q_event_proxies)
+        assert isinstance(search_tree, _searchtrees.SearchTree)
+        assert all(isinstance(x, _qeventproxy.QEventProxy) for x in q_event_proxies)
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
-        self._q_grids: tuple[QGrid, ...]
+        self._q_grids: tuple[_qgrid.QGrid, ...]
         if q_grids is None:
             self._q_grids = ()
         else:
-            assert all(isinstance(x, QGrid) for x in q_grids)
+            assert all(isinstance(x, _qgrid.QGrid) for x in q_grids)
             self._q_grids = tuple(q_grids)
 
     ### SPECIAL METHODS ###
@@ -81,7 +81,7 @@ class QuantizationJob:
         """
         # print('XXX')
         # print(format(self.q_event_proxies[0]))
-        q_grid = QGrid()
+        q_grid = _qgrid.QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
         # print(format(q_grid))
         old_q_grids = []
@@ -144,7 +144,7 @@ class QuantizationJob:
         return self._job_id
 
     @property
-    def q_event_proxies(self) -> tuple[QEventProxy, ...]:
+    def q_event_proxies(self) -> tuple[_qeventproxy.QEventProxy, ...]:
         r"""
         Gets the ``QEventProxies`` the ``QuantizationJob`` was instantiated with.
 
@@ -163,17 +163,17 @@ class QuantizationJob:
         >>> job()
 
         >>> for q_event_proxy in job.q_event_proxies:
-        ...     q_event_proxy
+        ...     print(type(q_event_proxy.q_event).__name__)
         ...
-        QEventProxy(q_event=PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'")), index=None, attachments=()), offset=Offset((1, 4)))
-        QEventProxy(q_event=SilentQEvent(offset=Offset((500, 1)), index=None, attachments=()), offset=Offset((1, 2)))
-        QEventProxy(q_event=PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("ef'"), NamedPitch("g'")), index=None, attachments=()), offset=Offset((3, 4)))
+        PitchedQEvent
+        SilentQEvent
+        PitchedQEvent
 
         """
         return self._q_event_proxies
 
     @property
-    def q_grids(self) -> tuple[QGrid, ...]:
+    def q_grids(self) -> tuple[_qgrid.QGrid, ...]:
         r"""
         Gets generated ``QGrids``.
 
@@ -200,7 +200,7 @@ class QuantizationJob:
         return self._q_grids
 
     @property
-    def search_tree(self) -> SearchTree:
+    def search_tree(self) -> _searchtrees.SearchTree:
         """
         Gets search tree ``QuantizationJob`` was instantiated with.
         """

@@ -1,20 +1,20 @@
 import abjad
 
-from .attackpointoptimizers import AttackPointOptimizer
-from .gracehandlers import GraceHandler
-from .heuristics import Heuristic
-from .jobhandlers import JobHandler
-from .qeventsequence import QEventSequence
-from .qschemas import MeasurewiseQSchema, QSchema
+from . import attackpointoptimizers as _attackpointoptimizers
+from . import gracehandlers as _gracehandlers
+from . import heuristics as _heuristics
+from . import jobhandlers as _jobhandlers
+from . import qeventsequence as _qeventsequence
+from . import qschemas as _qschemas
 
 
 def quantize(
-    q_event_sequence: QEventSequence,
-    q_schema: QSchema | None = None,
-    grace_handler: GraceHandler | None = None,
-    heuristic: Heuristic | None = None,
-    job_handler: JobHandler | None = None,
-    attack_point_optimizer: AttackPointOptimizer | None = None,
+    q_event_sequence: _qeventsequence.QEventSequence,
+    q_schema: _qschemas.QSchema | None = None,
+    grace_handler: _gracehandlers.GraceHandler | None = None,
+    heuristic: _heuristics.Heuristic | None = None,
+    job_handler: _jobhandlers.JobHandler | None = None,
+    attack_point_optimizer: _attackpointoptimizers.AttackPointOptimizer | None = None,
     attach_tempos: bool = True,
 ) -> abjad.Voice:
     r"""
@@ -248,7 +248,7 @@ def quantize(
         ... )
         Traceback (most recent call last):
             ...
-        TypeError: BeatwiseQTarget is not supposed to be used together with MeasurewiseAttackPointOptimizer.
+        TypeError: BeatwiseQTarget is not ... with MeasurewiseAttackPointOptimizer.
 
     Other keyword arguments are:
 
@@ -277,10 +277,10 @@ def quantize(
     on controlling the rhythmic complexity of that same output.
     """
     # TODO: assert isinstance(q_event_sequence, QEventSequence)
-    q_event_sequence = QEventSequence(q_event_sequence)
+    q_event_sequence = _qeventsequence.QEventSequence(q_event_sequence)
     if q_schema is None:
-        q_schema = MeasurewiseQSchema()
-    assert isinstance(q_schema, QSchema)
+        q_schema = _qschemas.MeasurewiseQSchema()
+    assert isinstance(q_schema, _qschemas.QSchema)
     q_target = q_schema(q_event_sequence.duration_in_ms)
     notation = q_target(
         q_event_sequence,

@@ -107,7 +107,7 @@ class PitchedQEvent(QEvent):
 
         >>> pitches = [0, 1, 4]
         >>> nauert.PitchedQEvent(abjad.Offset(1000), pitches)
-        PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")), index=None, attachments=())
+        PitchedQEvent(offset=Offset((1000, 1)), pitches=...)
 
     """
 

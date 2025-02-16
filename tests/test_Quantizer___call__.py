@@ -410,10 +410,9 @@ def test_Quantize_09():
         )
         assert False
     except TypeError as error:
-        assert (
-            str(error)
-            == "BeatwiseQTarget is not supposed to be used together with MeasurewiseAttackPointOptimizer."
-        )
+        string = "BeatwiseQTarget is not supposed to be used together"
+        string += " with MeasurewiseAttackPointOptimizer."
+        assert str(error) == string
 
 
 def test_Quantize_10():
