@@ -1,7 +1,7 @@
 import abjad
-import abjadext.nauert
+from abjadext import nauert
 
 
 def test_BeatwiseQSchema___call___01():
-    schema = abjadext.nauert.BeatwiseQSchema()
+    schema = nauert.BeatwiseQSchema()
     schema(abjad.Duration(5000))

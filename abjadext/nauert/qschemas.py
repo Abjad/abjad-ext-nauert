@@ -174,12 +174,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> q_schema = nauert.BeatwiseQSchema()
 
-    ..  container:: example
-
         Without arguments, it uses smart defaults:
-
-        >>> q_schema
-        BeatwiseQSchema(beatspan=Duration(1, 4), search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
 
     ..  container:: example
 
@@ -212,7 +207,7 @@ class BeatwiseQSchema(QSchema):
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        tempo: MetronomeMark(...)
 
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()):
@@ -220,7 +215,7 @@ class BeatwiseQSchema(QSchema):
         ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        tempo: MetronomeMark(...)
 
     ..  container:: example
 
@@ -266,11 +261,24 @@ class BeatwiseQSchema(QSchema):
 
         >>> q_schema = nauert.BeatwiseQSchema(settings)
 
-        >>> q_schema[0]["search_tree"]
-        UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None})
+        >>> import pprint
+        >>> ust = q_schema[0]["search_tree"]
+        >>> pprint.pprint(ust.definition)
+        {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
+        3: {2: {2: None}, 3: None, 5: None},
+        5: {2: None, 3: None},
+        7: {2: None},
+        11: None,
+        13: None}
 
-        >>> q_schema[1]["search_tree"]
-        UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None})
+        >>> ust = q_schema[1]["search_tree"]
+        >>> pprint.pprint(ust.definition)
+        {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
+        3: {2: {2: None}, 3: None, 5: None},
+        5: {2: None, 3: None},
+        7: {2: None},
+        11: None,
+        13: None}
 
         >>> q_schema[2]["search_tree"]
         UnweightedSearchTree(definition={2: None})
@@ -365,8 +373,14 @@ class MeasurewiseQSchema(QSchema):
 
         Without arguments, it uses smart defaults:
 
-        >>> q_schema
-        MeasurewiseQSchema(search_tree=UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None}), tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), time_signature=TimeSignature(pair=(4, 4), hide=False, partial=None), use_full_measure=False)
+        >>> import pprint
+        >>> pprint.pprint(q_schema.search_tree.definition)
+        {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
+        3: {2: {2: None}, 3: None, 5: None},
+        5: {2: None, 3: None},
+        7: {2: None},
+        11: None,
+        13: None}
 
     ..  container:: example
 
@@ -414,7 +428,7 @@ class MeasurewiseQSchema(QSchema):
         ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        tempo: MetronomeMark(...)
         time_signature: TimeSignature(pair=(3, 4), hide=False, partial=None)
         use_full_measure: True
 
@@ -423,7 +437,7 @@ class MeasurewiseQSchema(QSchema):
         ...     print("{}:".format(key), value)
         ...
         search_tree: UnweightedSearchTree(definition={7: None})
-        tempo: MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=54, textual_indication=None, custom_markup=None, decimal=False, hide=False)
+        tempo: MetronomeMark(...)
         time_signature: TimeSignature(pair=(3, 4), hide=False, partial=None)
         use_full_measure: True
 

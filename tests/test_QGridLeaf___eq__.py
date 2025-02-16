@@ -1,25 +1,25 @@
 import abjad
-import abjadext.nauert
+from abjadext import nauert
 
 
 def test_QGridLeaf___eq___01():
-    a = abjadext.nauert.QGridLeaf(abjad.Duration(1), [])
-    b = abjadext.nauert.QGridLeaf(abjad.Duration(1), [])
+    a = nauert.QGridLeaf(abjad.Duration(1), [])
+    b = nauert.QGridLeaf(abjad.Duration(1), [])
     assert format(a) == format(b)
     assert a != b
 
 
 def test_QGridLeaf___eq___02():
-    a = abjadext.nauert.QGridLeaf(abjad.Duration(1), [])
-    sqe = abjadext.nauert.SilentQEvent(abjad.Offset(1000))
-    b = abjadext.nauert.QGridLeaf(
+    a = nauert.QGridLeaf(abjad.Duration(1), [])
+    sqe = nauert.SilentQEvent(abjad.Offset(1000))
+    b = nauert.QGridLeaf(
         abjad.Duration(1),
-        [abjadext.nauert.QEventProxy(sqe, abjad.Offset(0.5))],
+        [nauert.QEventProxy(sqe, abjad.Offset(0.5))],
     )
-    c = abjadext.nauert.QGridLeaf(abjad.Duration(2), [])
-    d = abjadext.nauert.QGridLeaf(
+    c = nauert.QGridLeaf(abjad.Duration(2), [])
+    d = nauert.QGridLeaf(
         abjad.Duration(2),
-        [abjadext.nauert.QEventProxy(sqe, abjad.Offset(0.5))],
+        [nauert.QEventProxy(sqe, abjad.Offset(0.5))],
     )
     assert a != b
     assert a != c

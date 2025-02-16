@@ -3,7 +3,7 @@ import typing
 
 import abjad
 
-from .searchtrees import SearchTree
+from . import searchtrees as _searchtrees
 
 
 class QSchemaItem(abc.ABC):
@@ -22,11 +22,11 @@ class QSchemaItem(abc.ABC):
     @abc.abstractmethod
     def __init__(
         self,
-        search_tree: SearchTree | None = None,
+        search_tree: _searchtrees.SearchTree | None = None,
         tempo: abjad.MetronomeMark | None = None,
     ) -> None:
         if search_tree is not None:
-            assert isinstance(search_tree, SearchTree)
+            assert isinstance(search_tree, _searchtrees.SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
             assert isinstance(tempo, abjad.MetronomeMark), repr(tempo)
@@ -36,7 +36,7 @@ class QSchemaItem(abc.ABC):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def search_tree(self) -> typing.Optional[SearchTree]:
+    def search_tree(self) -> typing.Optional[_searchtrees.SearchTree]:
         """
         The optionally defined search tree.
         """
@@ -54,11 +54,13 @@ class BeatwiseQSchemaItem(QSchemaItem):
     """
     Beatwise q-schema item.
 
-    Represents a change of state in the timeline of an unmetered quantization
-    process.
+    ..  container:: example
 
-    >>> nauert.BeatwiseQSchemaItem()
-    BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=None)
+        Represents a change of state in the timeline of an unmetered
+        quantization process:
+
+        >>> nauert.BeatwiseQSchemaItem()
+        BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=None)
 
     ..  container:: example
 
@@ -66,7 +68,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> nauert.BeatwiseQSchemaItem(tempo=metronome_mark)
-        BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))
+        BeatwiseQSchemaItem(...)
 
     ..  container:: example
 
@@ -86,7 +88,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
     def __init__(
         self,
         beatspan: abjad.Duration | None = None,
-        search_tree: SearchTree | None = None,
+        search_tree: _searchtrees.SearchTree | None = None,
         tempo: abjad.MetronomeMark | None = None,
     ) -> None:
         if beatspan is not None:
@@ -116,7 +118,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
-    """
+    r"""
     Measurewise q-schema item.
 
     Represents a change of state in the timeline of a metered quantization process.
@@ -128,16 +130,17 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         Defines a change in tempo:
 
         >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
-        >>> nauert.MeasurewiseQSchemaItem(tempo=metronome_mark)
-        MeasurewiseQSchemaItem(search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False), time_signature=None, use_full_measure=None)
+        >>> mark = nauert.MeasurewiseQSchemaItem(tempo=metronome_mark).tempo
+        >>> abjad.lilypond(mark)
+        '\\tempo 4=60'
 
     ..  container:: example
 
         Defines a change in time signature:
 
         >>> time_signature = abjad.TimeSignature((6, 8))
-        >>> nauert.MeasurewiseQSchemaItem(time_signature=time_signature)
-        MeasurewiseQSchemaItem(search_tree=None, tempo=None, time_signature=TimeSignature(pair=(6, 8), hide=False, partial=None), use_full_measure=None)
+        >>> nauert.MeasurewiseQSchemaItem(time_signature=time_signature).time_signature
+        TimeSignature(pair=(6, 8), hide=False, partial=None)
 
     ..  container:: example
 
@@ -157,7 +160,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     def __init__(
         self,
-        search_tree: SearchTree | None = None,
+        search_tree: _searchtrees.SearchTree | None = None,
         tempo: abjad.MetronomeMark | None = None,
         time_signature: abjad.TimeSignature | None = None,
         use_full_measure: bool | None = None,

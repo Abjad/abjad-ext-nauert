@@ -6,7 +6,7 @@ import typing
 
 import abjad
 
-from .qevents import PitchedQEvent, QEvent, SilentQEvent, TerminalQEvent
+from . import qevents as _qevents
 
 
 class QEventSequence:
@@ -28,12 +28,12 @@ class QEventSequence:
         >>> for q_event in sequence:
         ...     q_event
         ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((1500, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((2750, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((3250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        TerminalQEvent(...)
 
     """
 
@@ -44,7 +44,7 @@ class QEventSequence:
     ### INITIALIZER ###
 
     def __init__(self, sequence):
-        q_event_classes = (PitchedQEvent, SilentQEvent)
+        q_event_classes = (_qevents.PitchedQEvent, _qevents.SilentQEvent)
         if sequence is None:
             self._sequence = ()
             return
@@ -53,7 +53,7 @@ class QEventSequence:
             assert all(
                 isinstance(q_event, q_event_classes) for q_event in sequence[:-1]
             )
-            assert isinstance(sequence[-1], TerminalQEvent)
+            assert isinstance(sequence[-1], _qevents.TerminalQEvent)
             offsets = [x.offset for x in sequence]
             offset_sequence = list(offsets)
             assert abjad.sequence.is_increasing(offset_sequence, strict=False)
@@ -78,14 +78,16 @@ class QEventSequence:
         return False
 
     @typing.overload
-    def __getitem__(self, argument: int) -> QEvent:
+    def __getitem__(self, argument: int) -> _qevents.QEvent:
         pass
 
     @typing.overload
-    def __getitem__(self, argument: slice) -> tuple[QEvent, ...]:
+    def __getitem__(self, argument: slice) -> tuple[_qevents.QEvent, ...]:
         pass
 
-    def __getitem__(self, argument: int | slice) -> QEvent | tuple[QEvent, ...]:
+    def __getitem__(
+        self, argument: int | slice
+    ) -> _qevents.QEvent | tuple[_qevents.QEvent, ...]:
         """
         Gets item or slice identified by `argument`.
 
@@ -101,7 +103,7 @@ class QEventSequence:
         """
         return super(QEventSequence, self).__hash__()
 
-    def __iter__(self) -> typing.Iterator[QEvent]:
+    def __iter__(self) -> typing.Iterator[_qevents.QEvent]:
         """
         Iterates q-event sequence.
         """
@@ -135,18 +137,16 @@ class QEventSequence:
         Gets sequence of q-events.
 
         >>> durations = (1000, -500, 1250, -500, 750)
-        >>> sequence = nauert.QEventSequence.from_millisecond_durations(
-        ...     durations)
-
+        >>> sequence = nauert.QEventSequence.from_millisecond_durations(durations)
         >>> for q_event in sequence.sequence:
         ...     q_event
         ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((1500, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((2750, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((3250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        TerminalQEvent(...)
 
         """
         return self._sequence
@@ -167,12 +167,12 @@ class QEventSequence:
         >>> for q_event in sequence:
         ...     q_event
         ...
-        SilentQEvent(offset=Offset((0, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((750, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((1750, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((3000, 1)), index=None, attachments=())
-        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        TerminalQEvent(...)
 
         """
         durations: typing.Sequence[int | float]
@@ -184,15 +184,15 @@ class QEventSequence:
             durations = milliseconds
         sums = abjad.math.cumulative_sums([abs(_) for _ in durations])
         offsets = [abjad.Offset(_) for _ in sums]
-        q_events: list[QEvent] = []
+        q_events: list[_qevents.QEvent] = []
         for offset, duration in zip(offsets, durations):
-            q_event: QEvent
+            q_event: _qevents.QEvent
             if duration < 0:
-                q_event = SilentQEvent(offset)
+                q_event = _qevents.SilentQEvent(offset)
             else:
-                q_event = PitchedQEvent(offset, [0])
+                q_event = _qevents.PitchedQEvent(offset, [0])
             q_events.append(q_event)
-        q_event = TerminalQEvent(offsets[-1])
+        q_event = _qevents.TerminalQEvent(offsets[-1])
         q_events.append(q_event)
         return class_(q_events)
 
@@ -209,18 +209,18 @@ class QEventSequence:
         >>> for q_event in sequence:
         ...     q_event
         ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        PitchedQEvent(offset=Offset((1750, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
+        PitchedQEvent(...)
+        PitchedQEvent(...)
+        PitchedQEvent(...)
+        PitchedQEvent(...)
+        PitchedQEvent(...)
+        TerminalQEvent(...)
 
         """
         assert all(isinstance(_, abjad.Offset) for _ in offsets), repr(offsets)
-        q_events: list[QEvent] = []
-        q_events.extend([PitchedQEvent(_, [0]) for _ in offsets[:-1]])
-        q_events.append(TerminalQEvent(offsets[-1]))
+        q_events: list[_qevents.QEvent] = []
+        q_events.extend([_qevents.PitchedQEvent(_, [0]) for _ in offsets[:-1]])
+        q_events.append(_qevents.TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
     @classmethod
@@ -240,12 +240,12 @@ class QEventSequence:
         >>> for q_event in sequence:
         ...     q_event
         ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=('foo',))
-        SilentQEvent(offset=Offset((250, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("d'"), NamedPitch("ef'")), index=None, attachments=())
-        SilentQEvent(offset=Offset((1750, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch("cs'"),), index=None, attachments=('foobar', 'foo'))
-        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        TerminalQEvent(...)
 
         """
         assert isinstance(tuples, collections.abc.Iterable)
@@ -276,10 +276,12 @@ class QEventSequence:
         offsets = [abjad.Offset(_) for _ in offsets]
         # build QEvents
         q_events = [
-            QEvent.from_offset_pitches_attachments(offset, pitches, attachments)
+            _qevents.QEvent.from_offset_pitches_attachments(
+                offset, pitches, attachments
+            )
             for offset, (_, pitches, attachments) in zip(offsets, groups)
         ]
-        q_events.append(TerminalQEvent(offsets[-1]))
+        q_events.append(_qevents.TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
     @classmethod
@@ -296,12 +298,12 @@ class QEventSequence:
         >>> for q_event in sequence:
         ...     q_event
         ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        SilentQEvent(offset=Offset((250, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch("d'"), NamedPitch("ef'")), index=None, attachments=())
-        SilentQEvent(offset=Offset((1750, 1)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch("cs'"),), index=None, attachments=())
-        TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        TerminalQEvent(...)
 
         """
         assert isinstance(pairs, collections.abc.Iterable)
@@ -337,11 +339,11 @@ class QEventSequence:
             >>> for q_event in sequence:
             ...     q_event
             ...
-            PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-            SilentQEvent(offset=Offset((10000, 29)), index=None, attachments=())
-            PitchedQEvent(offset=Offset((17500, 29)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-            SilentQEvent(offset=Offset((20000, 29)), index=None, attachments=())
-            TerminalQEvent(offset=Offset((40000, 29)), index=None, attachments=())
+            PitchedQEvent(...)
+            SilentQEvent(...)
+            PitchedQEvent(...)
+            SilentQEvent(...)
+            TerminalQEvent(...)
 
         """
         assert all(isinstance(_, abjad.Duration) for _ in durations), repr(durations)
@@ -354,16 +356,16 @@ class QEventSequence:
         for offset, duration in zip(offsets, durations):
             offset = abjad.Offset(offset)
             assert isinstance(duration, abjad.Duration)
-            q_event: QEvent
+            q_event: _qevents.QEvent
             # negative duration indicates silence
             if duration < 0:
-                q_event = SilentQEvent(offset)
+                q_event = _qevents.SilentQEvent(offset)
             # otherwise use middle C
             else:
-                q_event = PitchedQEvent(offset, [0])
+                q_event = _qevents.PitchedQEvent(offset, [0])
             q_events.append(q_event)
-        # insert terminating silence QEvent
-        q_events.append(TerminalQEvent(offsets[-1]))
+        # insert terminating silence _qevents.QEvent
+        q_events.append(_qevents.TerminalQEvent(offsets[-1]))
         return class_(q_events)
 
     @classmethod
@@ -377,11 +379,11 @@ class QEventSequence:
         >>> for q_event in sequence:
         ...     q_event
         ...
-        PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch("c'"),), index=None, attachments=())
-        PitchedQEvent(offset=Offset((2500, 3)), pitches=(NamedPitch("d'"), NamedPitch("fs'")), index=None, attachments=())
-        SilentQEvent(offset=Offset((4375, 3)), index=None, attachments=())
-        PitchedQEvent(offset=Offset((5000, 3)), pitches=(NamedPitch("gqs'"),), index=None, attachments=())
-        TerminalQEvent(offset=Offset((10000, 3)), index=None, attachments=())
+        PitchedQEvent(...)
+        PitchedQEvent(...)
+        SilentQEvent(...)
+        PitchedQEvent(...)
+        TerminalQEvent(...)
 
         If ``tempo`` is ``None``, all leaves in ``leaves`` must have an
         effective, non-imprecise tempo. The millisecond-duration of each leaf

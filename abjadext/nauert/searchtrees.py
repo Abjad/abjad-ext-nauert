@@ -3,7 +3,7 @@ import copy
 
 import abjad
 
-from .qgrid import QGrid
+from . import qgrid as _qgrid
 
 
 class SearchTree(abc.ABC):
@@ -34,11 +34,11 @@ class SearchTree(abc.ABC):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_grid: QGrid) -> list[QGrid]:
+    def __call__(self, q_grid: _qgrid.QGrid) -> list[_qgrid.QGrid]:
         """
         Calls search tree.
         """
-        assert isinstance(q_grid, QGrid)
+        assert isinstance(q_grid, _qgrid.QGrid)
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)
         for command in commands:
@@ -75,7 +75,7 @@ class SearchTree(abc.ABC):
     ### PRIVATE METHODS ###
 
     def _find_divisible_leaf_indices_and_subdivisions(
-        self, q_grid: QGrid
+        self, q_grid: _qgrid.QGrid
     ) -> tuple[list[int], list[tuple[tuple[int, ...], ...]]]:
         # TODO: This should actually check for all QEvents which fall
         # within the leaf's duration,
@@ -111,7 +111,7 @@ class SearchTree(abc.ABC):
         raise NotImplementedError
 
     def _generate_all_subdivision_commands(
-        self, q_grid: QGrid
+        self, q_grid: _qgrid.QGrid
     ) -> tuple[tuple[tuple[int, tuple[int, int]], ...], ...]:
         indices, subdivisions = self._find_divisible_leaf_indices_and_subdivisions(
             q_grid
@@ -149,9 +149,15 @@ class UnweightedSearchTree(SearchTree):
 
     ..  container:: example
 
+        >>> import pprint
         >>> search_tree = nauert.UnweightedSearchTree()
-        >>> search_tree
-        UnweightedSearchTree(definition={2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None}, 3: {2: {2: None}, 3: None, 5: None}, 5: {2: None, 3: None}, 7: {2: None}, 11: None, 13: None})
+        >>> pprint.pprint(search_tree.definition)
+        {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
+            3: {2: {2: None}, 3: None, 5: None},
+            5: {2: None, 3: None},
+            7: {2: None},
+            11: None,
+            13: None}
 
     ..  container:: example
 
@@ -295,8 +301,8 @@ class WeightedSearchTree(SearchTree):
         Allows for dividing nodes in a q-grid into parts with unequal weights.
 
         >>> search_tree = nauert.WeightedSearchTree()
-        >>> search_tree
-        WeightedSearchTree(definition={'divisors': (2, 3, 5, 7), 'max_depth': 3, 'max_divisions': 2})
+        >>> search_tree.definition
+        {'divisors': (2, 3, 5, 7), 'max_depth': 3, 'max_divisions': 2}
 
     ..  container:: example
 

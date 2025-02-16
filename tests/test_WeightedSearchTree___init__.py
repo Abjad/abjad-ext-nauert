@@ -1,5 +1,5 @@
-import abjadext.nauert
+from abjadext import nauert
 
 
 def test_WeightedSearchTree___init___01():
-    abjadext.nauert.WeightedSearchTree()
+    nauert.WeightedSearchTree()

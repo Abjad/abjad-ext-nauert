@@ -1,30 +1,30 @@
 import pickle
 
 import abjad
-import abjadext.nauert
+from abjadext import nauert
 
 
 def test_QGrid_pickle_01():
-    q_grid = abjadext.nauert.QGrid(
-        root_node=abjadext.nauert.QGridContainer(
+    q_grid = nauert.QGrid(
+        root_node=nauert.QGridContainer(
             (1, 1),
             children=[
-                abjadext.nauert.QGridLeaf(
+                nauert.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
                     q_event_proxies=[
-                        abjadext.nauert.QEventProxy(
-                            abjadext.nauert.SilentQEvent(abjad.Offset(100)),
+                        nauert.QEventProxy(
+                            nauert.SilentQEvent(abjad.Offset(100)),
                             abjad.Offset(0.5),
                         )
                     ],
                 )
             ],
         ),
-        next_downbeat=abjadext.nauert.QGridLeaf(
+        next_downbeat=nauert.QGridLeaf(
             preprolated_duration=abjad.Duration(1, 1),
             q_event_proxies=[
-                abjadext.nauert.QEventProxy(
-                    abjadext.nauert.TerminalQEvent(abjad.Offset(200)), abjad.Offset(0.9)
+                nauert.QEventProxy(
+                    nauert.TerminalQEvent(abjad.Offset(200)), abjad.Offset(0.9)
                 )
             ],
         ),

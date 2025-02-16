@@ -1,10 +1,10 @@
 import copy
 
-import abjadext.nauert
+from abjadext import nauert
 
 
 def test_QGrid___copy___01():
-    q_grid = abjadext.nauert.QGrid()
+    q_grid = nauert.QGrid()
     copied = copy.deepcopy(q_grid)
     assert format(q_grid) == format(copied)
     assert q_grid != copied
