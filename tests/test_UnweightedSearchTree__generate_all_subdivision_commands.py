@@ -1,7 +1,8 @@
 import copy
 
 import abjad
-from abjadext import nauert
+
+import nauert
 
 
 def test_UnweightedSearchTree__generate_all_subdivision_commands_01():

@@ -1,4 +1,4 @@
-from abjadext import nauert
+import nauert
 
 
 def test_UnweightedSearchTree___init___01():

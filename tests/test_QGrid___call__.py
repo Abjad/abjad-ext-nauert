@@ -1,5 +1,6 @@
 import abjad
-from abjadext import nauert
+
+import nauert
 
 
 def test_QGrid___call___01():

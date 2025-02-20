@@ -1,6 +1,7 @@
 import abjad
 import pytest
-from abjadext import nauert
+
+import nauert
 
 
 def test_BeatwiseQSchemaItem___new___01():

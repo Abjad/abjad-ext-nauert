@@ -1,5 +1,6 @@
 import abjad
-from abjadext import nauert
+
+import nauert
 
 
 def test_QGrid_fit_q_events_01():

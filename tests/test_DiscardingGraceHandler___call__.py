@@ -1,5 +1,6 @@
 import abjad
-from abjadext import nauert
+
+import nauert
 
 
 def test_DiscardingGraceHandler___call___01():

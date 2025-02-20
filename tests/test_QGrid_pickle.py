@@ -1,7 +1,8 @@
 import pickle
 
 import abjad
-from abjadext import nauert
+
+import nauert
 
 
 def test_QGrid_pickle_01():

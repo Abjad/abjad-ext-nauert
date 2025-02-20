@@ -1,4 +1,4 @@
-from abjadext import nauert
+import nauert
 
 
 def test_UnweightedSearchTree__find_leaf_subdivisions_01():

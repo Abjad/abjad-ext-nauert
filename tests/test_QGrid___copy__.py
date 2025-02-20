@@ -1,6 +1,6 @@
 import copy
 
-from abjadext import nauert
+import nauert
 
 
 def test_QGrid___copy___01():
