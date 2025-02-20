@@ -1,5 +1,6 @@
 import abjad
-from abjadext import nauert
+
+import nauert
 
 
 def test_UnweightedSearchTree__find_divisible_leaf_indices_and_subdivisions_01():

@@ -1,4 +1,4 @@
-name: abjad-ext-nauert
+name: ci
 
 on:
   push:

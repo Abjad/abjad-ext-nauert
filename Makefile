@@ -21,14 +21,14 @@ flake8:
 	flake8 ${flake_ignore} ${flake_options}
 
 isort-check:
-	isort --case-sensitive --check-only --line-width=88 --multi-line=3 \
-	      --thirdparty=abjad --thirdparty=abjadext --thirdparty=baca \
-	      --thirdparty=ply --thirdparty=uqbar --trailing-comma --use-parentheses .
+	isort --case-sensitive --check-only --diff --line-width=88 --multi-line=3 \
+		  --project=nauert --thirdparty=abjad --thirdparty=ply --thirdparty=uqbar \
+		  --trailing-comma --use-parentheses .
 
 isort-reformat:
 	isort --case-sensitive --line-width=88 --multi-line=3 \
-	      --thirdparty=abjad --thirdparty=abjadext --thirdparty=baca \
-	      --thirdparty=ply --thirdparty=uqbar --trailing-comma --use-parentheses .
+		  --project=nauert --thirdparty=abjad --thirdparty=ply --thirdparty=uqbar \
+		  --trailing-comma --use-parentheses .
 
 mypy:
 	mypy source
@@ -41,7 +41,7 @@ pytest-coverage:
 	pytest \
 	--cov-config=.coveragerc \
 	--cov-report=html \
-	--cov=abjadext \
+	--cov=source/nauert \
 	.
 
 reformat: black-reformat isort-reformat
