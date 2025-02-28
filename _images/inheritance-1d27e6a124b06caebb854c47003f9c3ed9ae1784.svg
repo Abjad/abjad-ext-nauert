@@ -1,0 +1,91 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="372pt" height="142pt" viewBox="0.00 0.00 372.42 142.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 138)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-39C98.25,-39 127.25,-39 127.25,-39 133.25,-39 139.25,-45 139.25,-51 139.25,-51 139.25,-83 139.25,-83 139.25,-89 133.25,-95 127.25,-95 127.25,-95 98.25,-95 98.25,-95 92.25,-95 86.25,-89 86.25,-83 86.25,-83 86.25,-51 86.25,-51 86.25,-45 92.25,-39 98.25,-39" />
+<ns0:text text-anchor="middle" x="112.75" y="-81.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-39C20,-39 54.25,-39 54.25,-39 60.25,-39 66.25,-45 66.25,-51 66.25,-51 66.25,-83 66.25,-83 66.25,-89 60.25,-95 54.25,-95 54.25,-95 20,-95 20,-95 14,-95 8,-89 8,-83 8,-83 8,-51 8,-51 8,-45 14,-39 20,-39" />
+<ns0:text text-anchor="middle" x="37.12" y="-81.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.qtargets</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 344.42,-8 344.42,-8 350.42,-8 356.42,-14 356.42,-20 356.42,-20 356.42,-114 356.42,-114 356.42,-120 350.42,-126 344.42,-126 344.42,-126 171.25,-126 171.25,-126 165.25,-126 159.25,-120 159.25,-114 159.25,-114 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="257.83" y="-112.5" font-family="Arial" font-size="10.00">nauert.qtargets</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qtargets.QTarget</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M132.03,-57C138.9,-57 147.06,-57 155.33,-57" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="155.07,-60.5 165.07,-57 155.07,-53.5 155.07,-60.5" />
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-57C66.25,-57 74.49,-57 82.28,-57" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-60.5 92.04,-57 82.04,-53.5 82.04,-60.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.qtargets.QTarget-&gt;nauert.qtargets.BeatwiseQTarget</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M235.07,-49.7C246.44,-47.04 259.43,-43.99 271.4,-41.18" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="272.07,-44.62 281.01,-38.93 270.47,-37.8 272.07,-44.62" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.qtargets.QTarget-&gt;nauert.qtargets.MeasurewiseQTarget</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M235.07,-64.3C243.82,-66.35 253.53,-68.63 263,-70.85" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="261.92,-74.19 272.46,-73.07 263.52,-67.38 261.92,-74.19" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-67C124.58,-67 100.92,-67 100.92,-67 97.58,-67 94.25,-63.67 94.25,-60.33 94.25,-60.33 94.25,-53.67 94.25,-53.67 94.25,-50.33 97.58,-47 100.92,-47 100.92,-47 124.58,-47 124.58,-47 127.92,-47 131.25,-50.33 131.25,-53.67 131.25,-53.67 131.25,-60.33 131.25,-60.33 131.25,-63.67 127.92,-67 124.58,-67" />
+<ns0:text text-anchor="middle" x="112.75" y="-53.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-67C51.58,-67 22.67,-67 22.67,-67 19.33,-67 16,-63.67 16,-60.33 16,-60.33 16,-53.67 16,-53.67 16,-50.33 19.33,-47 22.67,-47 22.67,-47 51.58,-47 51.58,-47 54.92,-47 58.25,-50.33 58.25,-53.67 58.25,-53.67 58.25,-60.33 58.25,-60.33 58.25,-63.67 54.92,-67 51.58,-67" />
+<ns0:text text-anchor="middle" x="37.12" y="-53.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.qtargets.BeatwiseQTarget</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/qtargets.html#nauert.qtargets.BeatwiseQTarget" ns1:title="Beatwise\nQTarget" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M329.13,-48C329.13,-48 293.96,-48 293.96,-48 288.63,-48 283.29,-42.67 283.29,-37.33 283.29,-37.33 283.29,-26.67 283.29,-26.67 283.29,-21.33 288.63,-16 293.96,-16 293.96,-16 329.13,-16 329.13,-16 334.46,-16 339.79,-21.33 339.79,-26.67 339.79,-26.67 339.79,-37.33 339.79,-37.33 339.79,-42.67 334.46,-48 329.13,-48" />
+<ns0:text text-anchor="middle" x="311.54" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Beatwise</ns0:text>
+<ns0:text text-anchor="middle" x="311.54" y="-22.5" font-family="Arial" font-size="10.00" fill="white">QTarget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.qtargets.MeasurewiseQTarget</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/qtargets.html#nauert.qtargets.MeasurewiseQTarget" ns1:title="Measurewise\nQTarget" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M337.75,-98C337.75,-98 285.33,-98 285.33,-98 280,-98 274.67,-92.67 274.67,-87.33 274.67,-87.33 274.67,-76.67 274.67,-76.67 274.67,-71.33 280,-66 285.33,-66 285.33,-66 337.75,-66 337.75,-66 343.08,-66 348.42,-71.33 348.42,-76.67 348.42,-76.67 348.42,-87.33 348.42,-87.33 348.42,-92.67 343.08,-98 337.75,-98" />
+<ns0:text text-anchor="middle" x="311.54" y="-84.5" font-family="Arial" font-size="10.00" fill="white">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="311.54" y="-72.5" font-family="Arial" font-size="10.00" fill="white">QTarget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.qtargets.QTarget</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/qtargets.html#nauert.qtargets.QTarget" ns1:title="QTarget" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="202.96" cy="-57" rx="35.71" ry="14.14" />
+<ns0:text text-anchor="middle" x="202.96" y="-53.5" font-family="Arial" font-size="10.00" fill="white">QTarget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

@@ -1,0 +1,283 @@
+.. _nauert--qevents:
+
+qevents
+=======
+
+.. automodule:: nauert.qevents
+
+.. currentmodule:: nauert.qevents
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.qevents
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QEvent
+
+.. autoclass:: QEvent
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __lt__
+      __repr__
+      attachments
+      from_offset_pitches_attachments
+      index
+      offset
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QEvent.__lt__
+
+   .. automethod:: QEvent.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: QEvent.from_offset_pitches_attachments
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QEvent.attachments
+
+   .. autoattribute:: QEvent.index
+
+   .. autoattribute:: QEvent.offset
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~PitchedQEvent
+   ~SilentQEvent
+   ~TerminalQEvent
+
+.. autoclass:: PitchedQEvent
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      __repr__
+      attachments
+      pitches
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: PitchedQEvent.__eq__
+
+   .. automethod:: PitchedQEvent.__hash__
+
+   .. container:: inherited
+
+      .. automethod:: PitchedQEvent.__lt__
+
+   .. automethod:: PitchedQEvent.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: PitchedQEvent.from_offset_pitches_attachments
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: PitchedQEvent.attachments
+
+   .. container:: inherited
+
+      .. autoattribute:: PitchedQEvent.index
+
+   .. container:: inherited
+
+      .. autoattribute:: PitchedQEvent.offset
+
+   .. autoattribute:: PitchedQEvent.pitches
+
+.. autoclass:: SilentQEvent
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      attachments
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: SilentQEvent.__eq__
+
+   .. automethod:: SilentQEvent.__hash__
+
+   .. container:: inherited
+
+      .. automethod:: SilentQEvent.__lt__
+
+   .. container:: inherited
+
+      .. automethod:: SilentQEvent.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: SilentQEvent.from_offset_pitches_attachments
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: SilentQEvent.attachments
+
+   .. container:: inherited
+
+      .. autoattribute:: SilentQEvent.index
+
+   .. container:: inherited
+
+      .. autoattribute:: SilentQEvent.offset
+
+.. autoclass:: TerminalQEvent
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: TerminalQEvent.__eq__
+
+   .. automethod:: TerminalQEvent.__hash__
+
+   .. container:: inherited
+
+      .. automethod:: TerminalQEvent.__lt__
+
+   .. container:: inherited
+
+      .. automethod:: TerminalQEvent.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: TerminalQEvent.from_offset_pitches_attachments
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. container:: inherited
+
+      .. autoattribute:: TerminalQEvent.attachments
+
+   .. container:: inherited
+
+      .. autoattribute:: TerminalQEvent.index
+
+   .. container:: inherited
+
+      .. autoattribute:: TerminalQEvent.offset

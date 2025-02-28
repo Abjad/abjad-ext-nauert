@@ -1,0 +1,115 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="383pt" height="264pt" viewBox="0.00 0.00 383.02 264.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 260)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-100C98.25,-100 127.25,-100 127.25,-100 133.25,-100 139.25,-106 139.25,-112 139.25,-112 139.25,-144 139.25,-144 139.25,-150 133.25,-156 127.25,-156 127.25,-156 98.25,-156 98.25,-156 92.25,-156 86.25,-150 86.25,-144 86.25,-144 86.25,-112 86.25,-112 86.25,-106 92.25,-100 98.25,-100" />
+<ns0:text text-anchor="middle" x="112.75" y="-142.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-100C20,-100 54.25,-100 54.25,-100 60.25,-100 66.25,-106 66.25,-112 66.25,-112 66.25,-144 66.25,-144 66.25,-150 60.25,-156 54.25,-156 54.25,-156 20,-156 20,-156 14,-156 8,-150 8,-144 8,-144 8,-112 8,-112 8,-106 14,-100 20,-100" />
+<ns0:text text-anchor="middle" x="37.12" y="-142.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.attackpointoptimizers</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 355.02,-8 355.02,-8 361.02,-8 367.02,-14 367.02,-20 367.02,-20 367.02,-236 367.02,-236 367.02,-242 361.02,-248 355.02,-248 355.02,-248 171.25,-248 171.25,-248 165.25,-248 159.25,-242 159.25,-236 159.25,-236 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="263.14" y="-234.5" font-family="Arial" font-size="10.00">nauert.attackpointoptimizers</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.attackpointoptimizers.AttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M132.23,-118C138.96,-118 146.94,-118 155.15,-118" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="154.88,-121.5 164.88,-118 154.88,-114.5 154.88,-121.5" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-118C66.25,-118 74.49,-118 82.28,-118" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-121.5 92.04,-118 82.04,-114.5 82.04,-121.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer-&gt;nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M240.43,-97.39C251.14,-90.3 263.37,-82.22 275.01,-74.52" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="276.93,-77.44 283.34,-69 273.07,-71.6 276.93,-77.44" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer-&gt;nauert.attackpointoptimizers.NaiveAttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M249.97,-118C260.03,-118 270.8,-118 280.84,-118" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="280.69,-121.5 290.69,-118 280.69,-114.5 280.69,-121.5" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer-&gt;nauert.attackpointoptimizers.NullAttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M240.43,-138.61C253.67,-147.37 269.23,-157.66 283.13,-166.86" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="280.92,-169.59 291.19,-172.18 284.78,-163.75 280.92,-169.59" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-128C124.58,-128 100.92,-128 100.92,-128 97.58,-128 94.25,-124.67 94.25,-121.33 94.25,-121.33 94.25,-114.67 94.25,-114.67 94.25,-111.33 97.58,-108 100.92,-108 100.92,-108 124.58,-108 124.58,-108 127.92,-108 131.25,-111.33 131.25,-114.67 131.25,-114.67 131.25,-121.33 131.25,-121.33 131.25,-124.67 127.92,-128 124.58,-128" />
+<ns0:text text-anchor="middle" x="112.75" y="-114.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-128C51.58,-128 22.67,-128 22.67,-128 19.33,-128 16,-124.67 16,-121.33 16,-121.33 16,-114.67 16,-114.67 16,-111.33 19.33,-108 22.67,-108 22.67,-108 51.58,-108 51.58,-108 54.92,-108 58.25,-111.33 58.25,-114.67 58.25,-114.67 58.25,-121.33 58.25,-121.33 58.25,-124.67 54.92,-128 51.58,-128" />
+<ns0:text text-anchor="middle" x="37.12" y="-114.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.AttackPointOptimizer" ns1:title="Attack\nPoint\nOptimizer" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="208.26" cy="-118" rx="41.01" ry="31.11" />
+<ns0:text text-anchor="middle" x="208.26" y="-126.5" font-family="Arial" font-size="10.00" fill="white">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="208.26" y="-114.5" font-family="Arial" font-size="10.00" fill="white">Point</ns0:text>
+<ns0:text text-anchor="middle" x="208.26" y="-102.5" font-family="Arial" font-size="10.00" fill="white">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer" ns1:title="Measurewise\nAttack\nPoint\nOptimizer" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M347.02,-72C347.02,-72 297.27,-72 297.27,-72 291.27,-72 285.27,-66 285.27,-60 285.27,-60 285.27,-28 285.27,-28 285.27,-22 291.27,-16 297.27,-16 297.27,-16 347.02,-16 347.02,-16 353.02,-16 359.02,-22 359.02,-28 359.02,-28 359.02,-60 359.02,-60 359.02,-66 353.02,-72 347.02,-72" />
+<ns0:text text-anchor="middle" x="322.15" y="-58.5" font-family="Arial" font-size="10.00" fill="white">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-46.5" font-family="Arial" font-size="10.00" fill="white">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Point</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.attackpointoptimizers.NaiveAttackPointOptimizer</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NaiveAttackPointOptimizer" ns1:title="Naive\nAttack\nPoint\nOptimizer" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M339.15,-146C339.15,-146 305.15,-146 305.15,-146 299.15,-146 293.15,-140 293.15,-134 293.15,-134 293.15,-102 293.15,-102 293.15,-96 299.15,-90 305.15,-90 305.15,-90 339.15,-90 339.15,-90 345.15,-90 351.15,-96 351.15,-102 351.15,-102 351.15,-134 351.15,-134 351.15,-140 345.15,-146 339.15,-146" />
+<ns0:text text-anchor="middle" x="322.15" y="-132.5" font-family="Arial" font-size="10.00" fill="white">Naive</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-120.5" font-family="Arial" font-size="10.00" fill="white">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-108.5" font-family="Arial" font-size="10.00" fill="white">Point</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-96.5" font-family="Arial" font-size="10.00" fill="white">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>nauert.attackpointoptimizers.NullAttackPointOptimizer</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NullAttackPointOptimizer" ns1:title="Null\nAttack\nPoint\nOptimizer" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M339.15,-220C339.15,-220 305.15,-220 305.15,-220 299.15,-220 293.15,-214 293.15,-208 293.15,-208 293.15,-176 293.15,-176 293.15,-170 299.15,-164 305.15,-164 305.15,-164 339.15,-164 339.15,-164 345.15,-164 351.15,-170 351.15,-176 351.15,-176 351.15,-208 351.15,-208 351.15,-214 345.15,-220 339.15,-220" />
+<ns0:text text-anchor="middle" x="322.15" y="-206.5" font-family="Arial" font-size="10.00" fill="white">Null</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-194.5" font-family="Arial" font-size="10.00" fill="white">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-182.5" font-family="Arial" font-size="10.00" fill="white">Point</ns0:text>
+<ns0:text text-anchor="middle" x="322.15" y="-170.5" font-family="Arial" font-size="10.00" fill="white">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

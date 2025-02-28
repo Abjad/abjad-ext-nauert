@@ -1,0 +1,107 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="349pt" height="192pt" viewBox="0.00 0.00 349.30 192.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 188)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-64C98.25,-64 127.25,-64 127.25,-64 133.25,-64 139.25,-70 139.25,-76 139.25,-76 139.25,-108 139.25,-108 139.25,-114 133.25,-120 127.25,-120 127.25,-120 98.25,-120 98.25,-120 92.25,-120 86.25,-114 86.25,-108 86.25,-108 86.25,-76 86.25,-76 86.25,-70 92.25,-64 98.25,-64" />
+<ns0:text text-anchor="middle" x="112.75" y="-106.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-64C20,-64 54.25,-64 54.25,-64 60.25,-64 66.25,-70 66.25,-76 66.25,-76 66.25,-108 66.25,-108 66.25,-114 60.25,-120 54.25,-120 54.25,-120 20,-120 20,-120 14,-120 8,-114 8,-108 8,-108 8,-76 8,-76 8,-70 14,-64 20,-64" />
+<ns0:text text-anchor="middle" x="37.12" y="-106.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.qevents</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 321.3,-8 321.3,-8 327.3,-8 333.3,-14 333.3,-20 333.3,-20 333.3,-164 333.3,-164 333.3,-170 327.3,-176 321.3,-176 321.3,-176 171.25,-176 171.25,-176 165.25,-176 159.25,-170 159.25,-164 159.25,-164 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="246.27" y="-162.5" font-family="Arial" font-size="10.00">nauert.qevents</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qevents.QEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M132.23,-82C138.96,-82 146.89,-82 154.93,-82" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="154.75,-85.5 164.75,-82 154.75,-78.5 154.75,-85.5" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-82C66.25,-82 74.49,-82 82.28,-82" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-85.5 92.04,-82 82.04,-78.5 82.04,-85.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.qevents.QEvent-&gt;nauert.qevents.PitchedQEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M224.46,-70.65C235.95,-64.61 250.37,-57.02 263.38,-50.18" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="264.87,-53.35 272.09,-45.59 261.61,-47.15 264.87,-53.35" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.qevents.QEvent-&gt;nauert.qevents.SilentQEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M237.47,-82C245.53,-82 254.13,-82 262.23,-82" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="262.12,-85.5 272.12,-82 262.12,-78.5 262.12,-85.5" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>nauert.qevents.QEvent-&gt;nauert.qevents.TerminalQEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M224.46,-93.35C235.41,-99.11 249.02,-106.27 261.53,-112.85" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="259.89,-115.94 270.36,-117.5 263.15,-109.75 259.89,-115.94" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-92C124.58,-92 100.92,-92 100.92,-92 97.58,-92 94.25,-88.67 94.25,-85.33 94.25,-85.33 94.25,-78.67 94.25,-78.67 94.25,-75.33 97.58,-72 100.92,-72 100.92,-72 124.58,-72 124.58,-72 127.92,-72 131.25,-75.33 131.25,-78.67 131.25,-78.67 131.25,-85.33 131.25,-85.33 131.25,-88.67 127.92,-92 124.58,-92" />
+<ns0:text text-anchor="middle" x="112.75" y="-78.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-92C51.58,-92 22.67,-92 22.67,-92 19.33,-92 16,-88.67 16,-85.33 16,-85.33 16,-78.67 16,-78.67 16,-75.33 19.33,-72 22.67,-72 22.67,-72 51.58,-72 51.58,-72 54.92,-72 58.25,-75.33 58.25,-78.67 58.25,-78.67 58.25,-85.33 58.25,-85.33 58.25,-88.67 54.92,-92 51.58,-92" />
+<ns0:text text-anchor="middle" x="37.12" y="-78.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.qevents.PitchedQEvent</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.PitchedQEvent" ns1:title="Pitched\nQEvent" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M312.75,-48C312.75,-48 285.09,-48 285.09,-48 279.75,-48 274.42,-42.67 274.42,-37.33 274.42,-37.33 274.42,-26.67 274.42,-26.67 274.42,-21.33 279.75,-16 285.09,-16 285.09,-16 312.75,-16 312.75,-16 318.09,-16 323.42,-21.33 323.42,-26.67 323.42,-26.67 323.42,-37.33 323.42,-37.33 323.42,-42.67 318.09,-48 312.75,-48" />
+<ns0:text text-anchor="middle" x="298.92" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Pitched</ns0:text>
+<ns0:text text-anchor="middle" x="298.92" y="-22.5" font-family="Arial" font-size="10.00" fill="white">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.qevents.QEvent</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.QEvent" ns1:title="QEvent" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="201.9" cy="-82" rx="34.65" ry="14.14" />
+<ns0:text text-anchor="middle" x="201.9" y="-78.5" font-family="Arial" font-size="10.00" fill="white">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.qevents.SilentQEvent</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.SilentQEvent" ns1:title="Silent\nQEvent" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M312.75,-98C312.75,-98 285.09,-98 285.09,-98 279.75,-98 274.42,-92.67 274.42,-87.33 274.42,-87.33 274.42,-76.67 274.42,-76.67 274.42,-71.33 279.75,-66 285.09,-66 285.09,-66 312.75,-66 312.75,-66 318.09,-66 323.42,-71.33 323.42,-76.67 323.42,-76.67 323.42,-87.33 323.42,-87.33 323.42,-92.67 318.09,-98 312.75,-98" />
+<ns0:text text-anchor="middle" x="298.92" y="-84.5" font-family="Arial" font-size="10.00" fill="white">Silent</ns0:text>
+<ns0:text text-anchor="middle" x="298.92" y="-72.5" font-family="Arial" font-size="10.00" fill="white">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>nauert.qevents.TerminalQEvent</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.TerminalQEvent" ns1:title="Terminal\nQEvent" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M314.63,-148C314.63,-148 283.21,-148 283.21,-148 277.88,-148 272.55,-142.67 272.55,-137.33 272.55,-137.33 272.55,-126.67 272.55,-126.67 272.55,-121.33 277.88,-116 283.21,-116 283.21,-116 314.63,-116 314.63,-116 319.96,-116 325.3,-121.33 325.3,-126.67 325.3,-126.67 325.3,-137.33 325.3,-137.33 325.3,-142.67 319.96,-148 314.63,-148" />
+<ns0:text text-anchor="middle" x="298.92" y="-134.5" font-family="Arial" font-size="10.00" fill="white">Terminal</ns0:text>
+<ns0:text text-anchor="middle" x="298.92" y="-122.5" font-family="Arial" font-size="10.00" fill="white">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

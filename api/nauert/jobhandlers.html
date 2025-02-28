@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jobhandlers &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/jobhandlers.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="qeventproxy" href="qeventproxy.html" />
+    <link rel="prev" title="heuristics" href="heuristics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">nauert</a></li>
+      <li class="breadcrumb-item active">jobhandlers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/jobhandlers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nauert.jobhandlers">
+<span id="jobhandlers"></span><span id="nauert-jobhandlers"></span><h1>jobhandlers<a class="headerlink" href="#module-nauert.jobhandlers" title="Link to this heading"></a></h1>
+<div class="svg-container docutils container">
+<div class="graphviz"><object data="../../_images/inheritance-95f77468688806949a651d53764d023007ba3e01.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">digraph InheritanceGraph {
+    graph [bgcolor=transparent,
+        color=lightsteelblue2,
+        fontname=Arial,
+        fontsize=10,
+        outputorder=edgesfirst,
+        overlap=prism,
+        penwidth=2,
+        rankdir=LR,
+        splines=spline,
+        style=&quot;dashed, rounded&quot;,
+        truecolor=true];
+    node [colorscheme=pastel19,
+        fontname=Arial,
+        fontsize=10,
+        height=0,
+        penwidth=2,
+        shape=box,
+        style=&quot;filled, rounded&quot;,
+        width=0];
+    edge [color=lightslategrey,
+        penwidth=1];
+    subgraph cluster_abc {
+        graph [label=abc];
+        node [color=1];
+        &quot;abc.ABC&quot; [URL=&quot;https://docs.python.org/3/library/abc.html#abc.ABC&quot;,
+            label=ABC,
+            target=_top];
+    }
+    subgraph cluster_builtins {
+        graph [label=builtins];
+        node [color=2];
+        &quot;builtins.object&quot; [URL=&quot;https://docs.python.org/3/library/functions.html#object&quot;,
+            label=object,
+            target=_top];
+    }
+    subgraph &quot;cluster_multiprocessing.context&quot; {
+        graph [label=&quot;multiprocessing.context&quot;];
+        node [color=3];
+        &quot;multiprocessing.context.Process&quot; [label=Process];
+    }
+    subgraph &quot;cluster_multiprocessing.process&quot; {
+        graph [label=&quot;multiprocessing.process&quot;];
+        node [color=4];
+        &quot;multiprocessing.process.BaseProcess&quot; [label=&quot;Base\nProcess&quot;];
+    }
+    subgraph &quot;cluster_nauert.jobhandlers&quot; {
+        graph [label=&quot;nauert.jobhandlers&quot;];
+        node [color=5];
+        &quot;nauert.jobhandlers.JobHandler&quot; [URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.JobHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Job\nHandler&quot;,
+            shape=oval,
+            style=&quot;bold, filled&quot;,
+            target=_top];
+        &quot;nauert.jobhandlers.ParallelJobHandler&quot; [URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Parallel\nJob\nHandler&quot;,
+            target=_top];
+        &quot;nauert.jobhandlers.ParallelJobHandlerWorker&quot; [URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Parallel\nJob\nHandler\nWorker&quot;,
+            target=_top];
+        &quot;nauert.jobhandlers.SerialJobHandler&quot; [URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Serial\nJob\nHandler&quot;,
+            target=_top];
+        &quot;nauert.jobhandlers.JobHandler&quot; -&gt; &quot;nauert.jobhandlers.ParallelJobHandler&quot;;
+        &quot;nauert.jobhandlers.JobHandler&quot; -&gt; &quot;nauert.jobhandlers.SerialJobHandler&quot;;
+    }
+    &quot;abc.ABC&quot; -&gt; &quot;nauert.jobhandlers.JobHandler&quot;;
+    &quot;builtins.object&quot; -&gt; &quot;abc.ABC&quot;;
+    &quot;builtins.object&quot; -&gt; &quot;multiprocessing.process.BaseProcess&quot;;
+    &quot;multiprocessing.context.Process&quot; -&gt; &quot;nauert.jobhandlers.ParallelJobHandlerWorker&quot;;
+    &quot;multiprocessing.process.BaseProcess&quot; -&gt; &quot;multiprocessing.context.Process&quot;;
+}</p></object></div>
+</div>
+<hr/><p class="section-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.JobHandler" title="nauert.jobhandlers.JobHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JobHandler</span></code></a></p></td>
+<td><p>Abstact job-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.jobhandlers.JobHandler">
+<em class="property"><span class="pre">abstract</span> </em><em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.jobhandlers.</span></span><span class="sig-name descname"><span class="pre">JobHandler</span></span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#JobHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.JobHandler" title="Link to this definition"></a></dt>
+<dd><p>Abstact job-handler.</p>
+<p><code class="docutils literal notranslate"><span class="pre">JobHandlers</span></code> control how <code class="docutils literal notranslate"><span class="pre">QuantizationJob</span></code> instances are processed by
+the <code class="docutils literal notranslate"><span class="pre">quantize</span></code> function, either serially or in parallel.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.JobHandler.__call__" title="nauert.jobhandlers.JobHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls job handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.JobHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#JobHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.JobHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls job handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr/><p class="section-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.ParallelJobHandler" title="nauert.jobhandlers.ParallelJobHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelJobHandler</span></code></a></p></td>
+<td><p>Parallel job-handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.jobhandlers.ParallelJobHandlerWorker" title="nauert.jobhandlers.ParallelJobHandlerWorker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelJobHandlerWorker</span></code></a></p></td>
+<td><p>Parallel job-handler worker.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.SerialJobHandler" title="nauert.jobhandlers.SerialJobHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SerialJobHandler</span></code></a></p></td>
+<td><p>Serial job-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.jobhandlers.</span></span><span class="sig-name descname"><span class="pre">ParallelJobHandler</span></span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#ParallelJobHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandler" title="Link to this definition"></a></dt>
+<dd><p>Parallel job-handler.</p>
+<p>Processes <code class="docutils literal notranslate"><span class="pre">QuantizationJob</span></code> instances in parallel, based on the number of
+CPUs available.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.ParallelJobHandler.__call__" title="nauert.jobhandlers.ParallelJobHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls parallel job handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#ParallelJobHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls parallel job handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.jobhandlers.</span></span><span class="sig-name descname"><span class="pre">ParallelJobHandlerWorker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_queue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_queue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#ParallelJobHandlerWorker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker" title="Link to this definition"></a></dt>
+<dd><p>Parallel job-handler worker.</p>
+<p>Worker process which runs <code class="docutils literal notranslate"><span class="pre">QuantizationJobs</span></code>.</p>
+<p>Not composer-safe.</p>
+<p>Used internally by <code class="docutils literal notranslate"><span class="pre">ParallelJobHandler</span></code>.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.ParallelJobHandlerWorker.run" title="nauert.jobhandlers.ParallelJobHandlerWorker.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a></p></td>
+<td><p>Runs parallel job handler worker.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.__repr__">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.close">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.close" title="Link to this definition"></a></dt>
+<dd><p>Close the Process object.</p>
+<p>This method releases resources held by the Process object.  It is
+an error to call this method if the child process is still running.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.is_alive">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">is_alive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.is_alive" title="Link to this definition"></a></dt>
+<dd><p>Return whether process is alive</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.join">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.join" title="Link to this definition"></a></dt>
+<dd><p>Wait until child process terminates</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.kill">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.kill" title="Link to this definition"></a></dt>
+<dd><p>Terminate process; sends SIGKILL signal or uses TerminateProcess()</p>
+</dd></dl>
+
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.run">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#ParallelJobHandlerWorker.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.run" title="Link to this definition"></a></dt>
+<dd><p>Runs parallel job handler worker.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.start">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.start" title="Link to this definition"></a></dt>
+<dd><p>Start child process</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.terminate">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">terminate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.terminate" title="Link to this definition"></a></dt>
+<dd><p>Terminate process; sends SIGTERM signal or uses TerminateProcess()</p>
+</dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Read/write properties</p>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.authkey">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">authkey</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.authkey" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.daemon">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">daemon</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.daemon" title="Link to this definition"></a></dt>
+<dd><p>Return whether process is a daemon</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.name">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.exitcode">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">exitcode</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.exitcode" title="Link to this definition"></a></dt>
+<dd><p>Return exit code of process or <cite>None</cite> if it has yet to stop</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.ident">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">ident</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.ident" title="Link to this definition"></a></dt>
+<dd><p>Return identifier (PID) of process or <cite>None</cite> if it has yet to start</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.pid">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">pid</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.pid" title="Link to this definition"></a></dt>
+<dd><p>Return identifier (PID) of process or <cite>None</cite> if it has yet to start</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.jobhandlers.ParallelJobHandlerWorker.sentinel">
+<span class="sig-prename descclassname"><span class="pre">(</span><code class="descclassname docutils literal notranslate"><span class="pre">BaseProcess</span></code><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">sentinel</span></span><a class="headerlink" href="#nauert.jobhandlers.ParallelJobHandlerWorker.sentinel" title="Link to this definition"></a></dt>
+<dd><p>Return a file descriptor (Unix) or handle (Windows) suitable for
+waiting for process termination.</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.jobhandlers.SerialJobHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.jobhandlers.</span></span><span class="sig-name descname"><span class="pre">SerialJobHandler</span></span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#SerialJobHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.SerialJobHandler" title="Link to this definition"></a></dt>
+<dd><p>Serial job-handler.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.jobhandlers.SerialJobHandler.__call__" title="nauert.jobhandlers.SerialJobHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls serial job handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.jobhandlers.SerialJobHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quantizationjob.html#nauert.quantizationjob.QuantizationJob" title="nauert.quantizationjob.QuantizationJob"><span class="pre">QuantizationJob</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quantizationjob.html#nauert.quantizationjob.QuantizationJob" title="nauert.quantizationjob.QuantizationJob"><span class="pre">QuantizationJob</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nauert/jobhandlers.html#SerialJobHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.jobhandlers.SerialJobHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls serial job handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="heuristics.html" class="btn btn-neutral float-left" title="heuristics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qeventproxy.html" class="btn btn-neutral float-right" title="qeventproxy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

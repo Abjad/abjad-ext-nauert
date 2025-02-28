@@ -1,0 +1,111 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="377pt" height="228pt" viewBox="0.00 0.00 376.61 228.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 224)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-82C98.25,-82 127.25,-82 127.25,-82 133.25,-82 139.25,-88 139.25,-94 139.25,-94 139.25,-126 139.25,-126 139.25,-132 133.25,-138 127.25,-138 127.25,-138 98.25,-138 98.25,-138 92.25,-138 86.25,-132 86.25,-126 86.25,-126 86.25,-94 86.25,-94 86.25,-88 92.25,-82 98.25,-82" />
+<ns0:text text-anchor="middle" x="112.75" y="-124.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-82C20,-82 54.25,-82 54.25,-82 60.25,-82 66.25,-88 66.25,-94 66.25,-94 66.25,-126 66.25,-126 66.25,-132 60.25,-138 54.25,-138 54.25,-138 20,-138 20,-138 14,-138 8,-132 8,-126 8,-126 8,-94 8,-94 8,-88 14,-82 20,-82" />
+<ns0:text text-anchor="middle" x="37.12" y="-124.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.gracehandlers</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 348.61,-8 348.61,-8 354.61,-8 360.61,-14 360.61,-20 360.61,-20 360.61,-200 360.61,-200 360.61,-206 354.61,-212 348.61,-212 348.61,-212 171.25,-212 171.25,-212 165.25,-212 159.25,-206 159.25,-200 159.25,-200 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="259.93" y="-198.5" font-family="Arial" font-size="10.00">nauert.gracehandlers</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.gracehandlers.GraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M131.92,-100C138.67,-100 146.67,-100 154.8,-100" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="154.76,-103.5 164.76,-100 154.76,-96.5 154.76,-103.5" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-100C66.25,-100 74.49,-100 82.28,-100" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-103.5 92.04,-100 82.04,-96.5 82.04,-103.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.gracehandlers.GraceHandler-&gt;nauert.gracehandlers.CollapsingGraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M230.01,-84.83C242.55,-77.68 257.79,-68.99 271.72,-61.04" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="273.3,-64.17 280.25,-56.17 269.83,-58.09 273.3,-64.17" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.gracehandlers.GraceHandler-&gt;nauert.gracehandlers.ConcatenatingGraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M238.41,-100C245.75,-100 253.63,-100 261.41,-100" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="261.15,-103.5 271.15,-100 261.15,-96.5 261.15,-103.5" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>nauert.gracehandlers.GraceHandler-&gt;nauert.gracehandlers.DiscardingGraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M230.01,-115.17C242.45,-122.26 257.55,-130.87 271.38,-138.77" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="269.44,-141.69 279.86,-143.6 272.91,-135.61 269.44,-141.69" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-110C124.58,-110 100.92,-110 100.92,-110 97.58,-110 94.25,-106.67 94.25,-103.33 94.25,-103.33 94.25,-96.67 94.25,-96.67 94.25,-93.33 97.58,-90 100.92,-90 100.92,-90 124.58,-90 124.58,-90 127.92,-90 131.25,-93.33 131.25,-96.67 131.25,-96.67 131.25,-103.33 131.25,-103.33 131.25,-106.67 127.92,-110 124.58,-110" />
+<ns0:text text-anchor="middle" x="112.75" y="-96.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-110C51.58,-110 22.67,-110 22.67,-110 19.33,-110 16,-106.67 16,-103.33 16,-103.33 16,-96.67 16,-96.67 16,-93.33 19.33,-90 22.67,-90 22.67,-90 51.58,-90 51.58,-90 54.92,-90 58.25,-93.33 58.25,-96.67 58.25,-96.67 58.25,-103.33 58.25,-103.33 58.25,-106.67 54.92,-110 51.58,-110" />
+<ns0:text text-anchor="middle" x="37.12" y="-96.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.gracehandlers.CollapsingGraceHandler</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.CollapsingGraceHandler" ns1:title="Collapsing\nGrace\nHandler" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M331.98,-60C331.98,-60 294.23,-60 294.23,-60 288.23,-60 282.23,-54 282.23,-48 282.23,-48 282.23,-28 282.23,-28 282.23,-22 288.23,-16 294.23,-16 294.23,-16 331.98,-16 331.98,-16 337.98,-16 343.98,-22 343.98,-28 343.98,-28 343.98,-48 343.98,-48 343.98,-54 337.98,-60 331.98,-60" />
+<ns0:text text-anchor="middle" x="313.11" y="-46.5" font-family="Arial" font-size="10.00" fill="white">Collapsing</ns0:text>
+<ns0:text text-anchor="middle" x="313.11" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="313.11" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.gracehandlers.ConcatenatingGraceHandler</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.ConcatenatingGraceHandler" ns1:title="Concatenating\nGrace\nHandler" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M340.61,-122C340.61,-122 285.61,-122 285.61,-122 279.61,-122 273.61,-116 273.61,-110 273.61,-110 273.61,-90 273.61,-90 273.61,-84 279.61,-78 285.61,-78 285.61,-78 340.61,-78 340.61,-78 346.61,-78 352.61,-84 352.61,-90 352.61,-90 352.61,-110 352.61,-110 352.61,-116 346.61,-122 340.61,-122" />
+<ns0:text text-anchor="middle" x="313.11" y="-108.5" font-family="Arial" font-size="10.00" fill="white">Concatenating</ns0:text>
+<ns0:text text-anchor="middle" x="313.11" y="-96.5" font-family="Arial" font-size="10.00" fill="white">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="313.11" y="-84.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.gracehandlers.DiscardingGraceHandler</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.DiscardingGraceHandler" ns1:title="Discarding\nGrace\nHandler" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M332.36,-184C332.36,-184 293.86,-184 293.86,-184 287.86,-184 281.86,-178 281.86,-172 281.86,-172 281.86,-152 281.86,-152 281.86,-146 287.86,-140 293.86,-140 293.86,-140 332.36,-140 332.36,-140 338.36,-140 344.36,-146 344.36,-152 344.36,-152 344.36,-172 344.36,-172 344.36,-178 338.36,-184 332.36,-184" />
+<ns0:text text-anchor="middle" x="313.11" y="-170.5" font-family="Arial" font-size="10.00" fill="white">Discarding</ns0:text>
+<ns0:text text-anchor="middle" x="313.11" y="-158.5" font-family="Arial" font-size="10.00" fill="white">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="313.11" y="-146.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>nauert.gracehandlers.GraceHandler</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.GraceHandler" ns1:title="Grace\nHandler" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="202.43" cy="-100" rx="35.18" ry="22.63" />
+<ns0:text text-anchor="middle" x="202.43" y="-102.5" font-family="Arial" font-size="10.00" fill="white">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="202.43" y="-90.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

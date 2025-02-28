@@ -1,0 +1,94 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="385pt" height="166pt" viewBox="0.00 0.00 385.15 166.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-51C98.25,-51 127.25,-51 127.25,-51 133.25,-51 139.25,-57 139.25,-63 139.25,-63 139.25,-95 139.25,-95 139.25,-101 133.25,-107 127.25,-107 127.25,-107 98.25,-107 98.25,-107 92.25,-107 86.25,-101 86.25,-95 86.25,-95 86.25,-63 86.25,-63 86.25,-57 92.25,-51 98.25,-51" />
+<ns0:text text-anchor="middle" x="112.75" y="-93.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-51C20,-51 54.25,-51 54.25,-51 60.25,-51 66.25,-57 66.25,-63 66.25,-63 66.25,-95 66.25,-95 66.25,-101 60.25,-107 54.25,-107 54.25,-107 20,-107 20,-107 14,-107 8,-101 8,-95 8,-95 8,-63 8,-63 8,-57 14,-51 20,-51" />
+<ns0:text text-anchor="middle" x="37.12" y="-93.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.qschemaitems</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 357.15,-8 357.15,-8 363.15,-8 369.15,-14 369.15,-20 369.15,-20 369.15,-138 369.15,-138 369.15,-144 363.15,-150 357.15,-150 357.15,-150 171.25,-150 171.25,-150 165.25,-150 159.25,-144 159.25,-138 159.25,-138 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="264.2" y="-136.5" font-family="Arial" font-size="10.00">nauert.qschemaitems</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qschemaitems.QSchemaItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M131.98,-69C138.77,-69 146.87,-69 155.21,-69" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="155.12,-72.5 165.12,-69 155.12,-65.5 155.12,-72.5" />
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-69C66.25,-69 74.49,-69 82.28,-69" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-72.5 92.04,-69 82.04,-65.5 82.04,-72.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.qschemaitems.QSchemaItem-&gt;nauert.qschemaitems.BeatwiseQSchemaItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M247.93,-58.68C259.1,-55.61 271.38,-52.24 282.72,-49.13" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="283.5,-52.54 292.22,-46.52 281.65,-45.79 283.5,-52.54" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.qschemaitems.QSchemaItem-&gt;nauert.qschemaitems.MeasurewiseQSchemaItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M247.93,-79.32C256.78,-81.75 266.33,-84.37 275.56,-86.91" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="274.56,-90.26 285.13,-89.53 276.42,-83.51 274.56,-90.26" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-79C124.58,-79 100.92,-79 100.92,-79 97.58,-79 94.25,-75.67 94.25,-72.33 94.25,-72.33 94.25,-65.67 94.25,-65.67 94.25,-62.33 97.58,-59 100.92,-59 100.92,-59 124.58,-59 124.58,-59 127.92,-59 131.25,-62.33 131.25,-65.67 131.25,-65.67 131.25,-72.33 131.25,-72.33 131.25,-75.67 127.92,-79 124.58,-79" />
+<ns0:text text-anchor="middle" x="112.75" y="-65.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-79C51.58,-79 22.67,-79 22.67,-79 19.33,-79 16,-75.67 16,-72.33 16,-72.33 16,-65.67 16,-65.67 16,-62.33 19.33,-59 22.67,-59 22.67,-59 51.58,-59 51.58,-59 54.92,-59 58.25,-62.33 58.25,-65.67 58.25,-65.67 58.25,-72.33 58.25,-72.33 58.25,-75.67 54.92,-79 51.58,-79" />
+<ns0:text text-anchor="middle" x="37.12" y="-65.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.qschemaitems.BeatwiseQSchemaItem</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/qschemaitems.html#nauert.qschemaitems.BeatwiseQSchemaItem" ns1:title="Beatwise\nQSchema\nItem" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M342.02,-60C342.02,-60 306.52,-60 306.52,-60 300.52,-60 294.52,-54 294.52,-48 294.52,-48 294.52,-28 294.52,-28 294.52,-22 300.52,-16 306.52,-16 306.52,-16 342.02,-16 342.02,-16 348.02,-16 354.02,-22 354.02,-28 354.02,-28 354.02,-48 354.02,-48 354.02,-54 348.02,-60 342.02,-60" />
+<ns0:text text-anchor="middle" x="324.27" y="-46.5" font-family="Arial" font-size="10.00" fill="white">Beatwise</ns0:text>
+<ns0:text text-anchor="middle" x="324.27" y="-34.5" font-family="Arial" font-size="10.00" fill="white">QSchema</ns0:text>
+<ns0:text text-anchor="middle" x="324.27" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.qschemaitems.MeasurewiseQSchemaItem</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/qschemaitems.html#nauert.qschemaitems.MeasurewiseQSchemaItem" ns1:title="Measurewise\nQSchema\nItem" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M349.15,-122C349.15,-122 299.4,-122 299.4,-122 293.4,-122 287.4,-116 287.4,-110 287.4,-110 287.4,-90 287.4,-90 287.4,-84 293.4,-78 299.4,-78 299.4,-78 349.15,-78 349.15,-78 355.15,-78 361.15,-84 361.15,-90 361.15,-90 361.15,-110 361.15,-110 361.15,-116 355.15,-122 349.15,-122" />
+<ns0:text text-anchor="middle" x="324.27" y="-108.5" font-family="Arial" font-size="10.00" fill="white">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="324.27" y="-96.5" font-family="Arial" font-size="10.00" fill="white">QSchema</ns0:text>
+<ns0:text text-anchor="middle" x="324.27" y="-84.5" font-family="Arial" font-size="10.00" fill="white">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.qschemaitems.QSchemaItem</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/qschemaitems.html#nauert.qschemaitems.QSchemaItem" ns1:title="QSchema\nItem" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="209.32" cy="-69" rx="42.07" ry="22.63" />
+<ns0:text text-anchor="middle" x="209.32" y="-71.5" font-family="Arial" font-size="10.00" fill="white">QSchema</ns0:text>
+<ns0:text text-anchor="middle" x="209.32" y="-59.5" font-family="Arial" font-size="10.00" fill="white">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

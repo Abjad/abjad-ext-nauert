@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qschemaitems &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/qschemaitems.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="qschemas" href="qschemas.html" />
+    <link rel="prev" title="qgrid" href="qgrid.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">nauert</a></li>
+      <li class="breadcrumb-item active">qschemaitems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/qschemaitems.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nauert.qschemaitems">
+<span id="qschemaitems"></span><span id="nauert-qschemaitems"></span><h1>qschemaitems<a class="headerlink" href="#module-nauert.qschemaitems" title="Link to this heading"></a></h1>
+<div class="svg-container docutils container">
+<div class="graphviz"><object data="../../_images/inheritance-d6f3b7686749d288fc1c18b05d5b295291050fdd.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">digraph InheritanceGraph {
+    graph [bgcolor=transparent,
+        color=lightsteelblue2,
+        fontname=Arial,
+        fontsize=10,
+        outputorder=edgesfirst,
+        overlap=prism,
+        penwidth=2,
+        rankdir=LR,
+        splines=spline,
+        style=&quot;dashed, rounded&quot;,
+        truecolor=true];
+    node [colorscheme=pastel19,
+        fontname=Arial,
+        fontsize=10,
+        height=0,
+        penwidth=2,
+        shape=box,
+        style=&quot;filled, rounded&quot;,
+        width=0];
+    edge [color=lightslategrey,
+        penwidth=1];
+    subgraph cluster_abc {
+        graph [label=abc];
+        node [color=1];
+        &quot;abc.ABC&quot; [URL=&quot;https://docs.python.org/3/library/abc.html#abc.ABC&quot;,
+            label=ABC,
+            target=_top];
+    }
+    subgraph cluster_builtins {
+        graph [label=builtins];
+        node [color=2];
+        &quot;builtins.object&quot; [URL=&quot;https://docs.python.org/3/library/functions.html#object&quot;,
+            label=object,
+            target=_top];
+    }
+    subgraph &quot;cluster_nauert.qschemaitems&quot; {
+        graph [label=&quot;nauert.qschemaitems&quot;];
+        node [color=3];
+        &quot;nauert.qschemaitems.BeatwiseQSchemaItem&quot; [URL=&quot;../api/nauert/qschemaitems.html#nauert.qschemaitems.BeatwiseQSchemaItem&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Beatwise\nQSchema\nItem&quot;,
+            target=_top];
+        &quot;nauert.qschemaitems.MeasurewiseQSchemaItem&quot; [URL=&quot;../api/nauert/qschemaitems.html#nauert.qschemaitems.MeasurewiseQSchemaItem&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Measurewise\nQSchema\nItem&quot;,
+            target=_top];
+        &quot;nauert.qschemaitems.QSchemaItem&quot; [URL=&quot;../api/nauert/qschemaitems.html#nauert.qschemaitems.QSchemaItem&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;QSchema\nItem&quot;,
+            shape=oval,
+            style=&quot;bold, filled&quot;,
+            target=_top];
+        &quot;nauert.qschemaitems.QSchemaItem&quot; -&gt; &quot;nauert.qschemaitems.BeatwiseQSchemaItem&quot;;
+        &quot;nauert.qschemaitems.QSchemaItem&quot; -&gt; &quot;nauert.qschemaitems.MeasurewiseQSchemaItem&quot;;
+    }
+    &quot;abc.ABC&quot; -&gt; &quot;nauert.qschemaitems.QSchemaItem&quot;;
+    &quot;builtins.object&quot; -&gt; &quot;abc.ABC&quot;;
+}</p></object></div>
+</div>
+<hr/><p class="section-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem" title="nauert.qschemaitems.QSchemaItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSchemaItem</span></code></a></p></td>
+<td><p>Abstract q-schema item.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qschemaitems.QSchemaItem">
+<em class="property"><span class="pre">abstract</span> </em><em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qschemaitems.</span></span><span class="sig-name descname"><span class="pre">QSchemaItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="searchtrees.html#nauert.searchtrees.SearchTree" title="nauert.searchtrees.SearchTree"><span class="pre">SearchTree</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MetronomeMark</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qschemaitems.html#QSchemaItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qschemaitems.QSchemaItem" title="Link to this definition"></a></dt>
+<dd><p>Abstract q-schema item.</p>
+<p>Represents a change of state in the timeline of a quantization process.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem.search_tree" title="nauert.qschemaitems.QSchemaItem.search_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_tree</span></code></a></p></td>
+<td><p>The optionally defined search tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem.tempo" title="nauert.qschemaitems.QSchemaItem.tempo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tempo</span></code></a></p></td>
+<td><p>The optionally defined tempo.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.QSchemaItem.search_tree">
+<span class="sig-name descname"><span class="pre">search_tree</span></span><a class="headerlink" href="#nauert.qschemaitems.QSchemaItem.search_tree" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined search tree.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.QSchemaItem.tempo">
+<span class="sig-name descname"><span class="pre">tempo</span></span><a class="headerlink" href="#nauert.qschemaitems.QSchemaItem.tempo" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined tempo.</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr/><p class="section-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qschemaitems.BeatwiseQSchemaItem" title="nauert.qschemaitems.BeatwiseQSchemaItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BeatwiseQSchemaItem</span></code></a></p></td>
+<td><p>Beatwise q-schema item.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qschemaitems.MeasurewiseQSchemaItem" title="nauert.qschemaitems.MeasurewiseQSchemaItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasurewiseQSchemaItem</span></code></a></p></td>
+<td><p>Measurewise q-schema item.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qschemaitems.BeatwiseQSchemaItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qschemaitems.</span></span><span class="sig-name descname"><span class="pre">BeatwiseQSchemaItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beatspan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="searchtrees.html#nauert.searchtrees.SearchTree" title="nauert.searchtrees.SearchTree"><span class="pre">SearchTree</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MetronomeMark</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qschemaitems.html#BeatwiseQSchemaItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qschemaitems.BeatwiseQSchemaItem" title="Link to this definition"></a></dt>
+<dd><p>Beatwise q-schema item.</p>
+<div class="example docutils container">
+<p>Represents a change of state in the timeline of an unmetered
+quantization process:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">BeatwiseQSchemaItem</span><span class="p">()</span>
+<span class="go">BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=None)</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Defines a change in tempo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">metronome_mark</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">BeatwiseQSchemaItem</span><span class="p">(</span><span class="n">tempo</span><span class="o">=</span><span class="n">metronome_mark</span><span class="p">)</span>
+<span class="go">BeatwiseQSchemaItem(beatspan=None, search_tree=None, tempo=MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60, textual_indication=None, custom_markup=None, decimal=False, hide=False))</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Defines a change in beatspan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">BeatwiseQSchemaItem</span><span class="p">(</span><span class="n">beatspan</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="go">BeatwiseQSchemaItem(beatspan=Duration(1, 8), search_tree=None, tempo=None)</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qschemaitems.BeatwiseQSchemaItem.__repr__" title="nauert.qschemaitems.BeatwiseQSchemaItem.__repr__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__repr__</span></code></a></p></td>
+<td><p>Gets repr.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qschemaitems.BeatwiseQSchemaItem.beatspan" title="nauert.qschemaitems.BeatwiseQSchemaItem.beatspan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">beatspan</span></code></a></p></td>
+<td><p>The optionally defined beatspan duration.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qschemaitems.BeatwiseQSchemaItem.__repr__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qschemaitems.html#BeatwiseQSchemaItem.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qschemaitems.BeatwiseQSchemaItem.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Gets repr.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.BeatwiseQSchemaItem.beatspan">
+<span class="sig-name descname"><span class="pre">beatspan</span></span><a class="headerlink" href="#nauert.qschemaitems.BeatwiseQSchemaItem.beatspan" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined beatspan duration.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.BeatwiseQSchemaItem.search_tree">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem" title="nauert.qschemaitems.QSchemaItem"><code class="descclassname docutils literal notranslate"><span class="pre">QSchemaItem</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">search_tree</span></span><a class="headerlink" href="#nauert.qschemaitems.BeatwiseQSchemaItem.search_tree" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined search tree.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.BeatwiseQSchemaItem.tempo">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem" title="nauert.qschemaitems.QSchemaItem"><code class="descclassname docutils literal notranslate"><span class="pre">QSchemaItem</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">tempo</span></span><a class="headerlink" href="#nauert.qschemaitems.BeatwiseQSchemaItem.tempo" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined tempo.</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qschemaitems.</span></span><span class="sig-name descname"><span class="pre">MeasurewiseQSchemaItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="searchtrees.html#nauert.searchtrees.SearchTree" title="nauert.searchtrees.SearchTree"><span class="pre">SearchTree</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MetronomeMark</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_signature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TimeSignature</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_full_measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qschemaitems.html#MeasurewiseQSchemaItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem" title="Link to this definition"></a></dt>
+<dd><p>Measurewise q-schema item.</p>
+<p>Represents a change of state in the timeline of a metered quantization process.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q_schema_item</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseQSchemaItem</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="example docutils container">
+<p>Defines a change in tempo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">metronome_mark</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mark</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseQSchemaItem</span><span class="p">(</span><span class="n">tempo</span><span class="o">=</span><span class="n">metronome_mark</span><span class="p">)</span><span class="o">.</span><span class="n">tempo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
+<span class="go">&#39;\\tempo 4=60&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Defines a change in time signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">time_signature</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseQSchemaItem</span><span class="p">(</span><span class="n">time_signature</span><span class="o">=</span><span class="n">time_signature</span><span class="p">)</span><span class="o">.</span><span class="n">time_signature</span>
+<span class="go">TimeSignature(pair=(6, 8), hide=False, partial=None)</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Tests for beatspan given a defined time signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">time_signature</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseQSchemaItem</span><span class="p">(</span><span class="n">time_signature</span><span class="o">=</span><span class="n">time_signature</span><span class="p">)</span><span class="o">.</span><span class="n">beatspan</span>
+<span class="go">Duration(1, 8)</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.__repr__" title="nauert.qschemaitems.MeasurewiseQSchemaItem.__repr__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__repr__</span></code></a></p></td>
+<td><p>Gets repr.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.beatspan" title="nauert.qschemaitems.MeasurewiseQSchemaItem.beatspan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">beatspan</span></code></a></p></td>
+<td><p>The beatspan duration, if a time signature was defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.time_signature" title="nauert.qschemaitems.MeasurewiseQSchemaItem.time_signature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_signature</span></code></a></p></td>
+<td><p>The optionally defined time signature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.use_full_measure" title="nauert.qschemaitems.MeasurewiseQSchemaItem.use_full_measure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_full_measure</span></code></a></p></td>
+<td><p>If true, use the full measure as the beatspan.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem.__repr__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qschemaitems.html#MeasurewiseQSchemaItem.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Gets repr.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem.beatspan">
+<span class="sig-name descname"><span class="pre">beatspan</span></span><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.beatspan" title="Link to this definition"></a></dt>
+<dd><p>The beatspan duration, if a time signature was defined.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem.search_tree">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem" title="nauert.qschemaitems.QSchemaItem"><code class="descclassname docutils literal notranslate"><span class="pre">QSchemaItem</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">search_tree</span></span><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.search_tree" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined search tree.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem.tempo">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qschemaitems.QSchemaItem" title="nauert.qschemaitems.QSchemaItem"><code class="descclassname docutils literal notranslate"><span class="pre">QSchemaItem</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">tempo</span></span><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.tempo" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined tempo.</p>
+</dd></dl>
+
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem.time_signature">
+<span class="sig-name descname"><span class="pre">time_signature</span></span><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.time_signature" title="Link to this definition"></a></dt>
+<dd><p>The optionally defined time signature.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qschemaitems.MeasurewiseQSchemaItem.use_full_measure">
+<span class="sig-name descname"><span class="pre">use_full_measure</span></span><a class="headerlink" href="#nauert.qschemaitems.MeasurewiseQSchemaItem.use_full_measure" title="Link to this definition"></a></dt>
+<dd><p>If true, use the full measure as the beatspan.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="qgrid.html" class="btn btn-neutral float-left" title="qgrid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qschemas.html" class="btn btn-neutral float-right" title="qschemas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

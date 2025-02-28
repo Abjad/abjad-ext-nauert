@@ -1,0 +1,186 @@
+.. _nauert--searchtrees:
+
+searchtrees
+===========
+
+.. automodule:: nauert.searchtrees
+
+.. currentmodule:: nauert.searchtrees
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.searchtrees
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~SearchTree
+
+.. autoclass:: SearchTree
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      __eq__
+      __hash__
+      __repr__
+      default_definition
+      definition
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: SearchTree.__call__
+
+   .. automethod:: SearchTree.__eq__
+
+   .. automethod:: SearchTree.__hash__
+
+   .. automethod:: SearchTree.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: SearchTree.default_definition
+
+   .. autoattribute:: SearchTree.definition
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~UnweightedSearchTree
+   ~WeightedSearchTree
+
+.. autoclass:: UnweightedSearchTree
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      default_definition
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: UnweightedSearchTree.__call__
+
+   .. container:: inherited
+
+      .. automethod:: UnweightedSearchTree.__eq__
+
+   .. container:: inherited
+
+      .. automethod:: UnweightedSearchTree.__hash__
+
+   .. container:: inherited
+
+      .. automethod:: UnweightedSearchTree.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: UnweightedSearchTree.default_definition
+
+   .. container:: inherited
+
+      .. autoattribute:: UnweightedSearchTree.definition
+
+.. autoclass:: WeightedSearchTree
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      all_compositions
+      default_definition
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: WeightedSearchTree.__call__
+
+   .. container:: inherited
+
+      .. automethod:: WeightedSearchTree.__eq__
+
+   .. container:: inherited
+
+      .. automethod:: WeightedSearchTree.__hash__
+
+   .. container:: inherited
+
+      .. automethod:: WeightedSearchTree.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: WeightedSearchTree.all_compositions
+
+   .. autoattribute:: WeightedSearchTree.default_definition
+
+   .. container:: inherited
+
+      .. autoattribute:: WeightedSearchTree.definition

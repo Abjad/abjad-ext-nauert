@@ -1,0 +1,40 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="212pt" height="92pt" viewBox="0.00 0.00 211.50 92.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 88)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-14C20,-14 54.25,-14 54.25,-14 60.25,-14 66.25,-20 66.25,-26 66.25,-26 66.25,-58 66.25,-58 66.25,-64 60.25,-70 54.25,-70 54.25,-70 20,-70 20,-70 14,-70 8,-64 8,-58 8,-58 8,-26 8,-26 8,-20 14,-14 20,-14" />
+<ns0:text text-anchor="middle" x="37.12" y="-56.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_nauert.qeventsequence</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-8C98.25,-8 191.5,-8 191.5,-8 197.5,-8 203.5,-14 203.5,-20 203.5,-20 203.5,-64 203.5,-64 203.5,-70 197.5,-76 191.5,-76 191.5,-76 98.25,-76 98.25,-76 92.25,-76 86.25,-70 86.25,-64 86.25,-64 86.25,-20 86.25,-20 86.25,-14 92.25,-8 98.25,-8" />
+<ns0:text text-anchor="middle" x="144.88" y="-62.5" font-family="Arial" font-size="10.00">nauert.qeventsequence</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>builtins.object-&gt;nauert.qeventsequence.QEventSequence</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.17,-32C71.57,-32 87.69,-32 102.5,-32" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="102.48,-35.5 112.48,-32 102.48,-28.5 102.48,-35.5" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M51.58,-42C51.58,-42 22.67,-42 22.67,-42 19.33,-42 16,-38.67 16,-35.33 16,-35.33 16,-28.67 16,-28.67 16,-25.33 19.33,-22 22.67,-22 22.67,-22 51.58,-22 51.58,-22 54.92,-22 58.25,-25.33 58.25,-28.67 58.25,-28.67 58.25,-35.33 58.25,-35.33 58.25,-38.67 54.92,-42 51.58,-42" />
+<ns0:text text-anchor="middle" x="37.12" y="-28.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>nauert.qeventsequence.QEventSequence</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../api/api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence" ns1:title="QEvent\nSequence" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M163.46,-48C163.46,-48 125.29,-48 125.29,-48 119.96,-48 114.62,-42.67 114.62,-37.33 114.62,-37.33 114.62,-26.67 114.62,-26.67 114.62,-21.33 119.96,-16 125.29,-16 125.29,-16 163.46,-16 163.46,-16 168.79,-16 174.12,-21.33 174.12,-26.67 174.12,-26.67 174.12,-37.33 174.12,-37.33 174.12,-42.67 168.79,-48 163.46,-48" />
+<ns0:text text-anchor="middle" x="144.38" y="-34.5" font-family="Arial" font-size="10.00" fill="white">QEvent</ns0:text>
+<ns0:text text-anchor="middle" x="144.38" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Sequence</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

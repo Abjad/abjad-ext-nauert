@@ -1,0 +1,76 @@
+.. _nauert--quantizationjob:
+
+quantizationjob
+===============
+
+.. automodule:: nauert.quantizationjob
+
+.. currentmodule:: nauert.quantizationjob
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.quantizationjob
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QuantizationJob
+
+.. autoclass:: QuantizationJob
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      __eq__
+      __hash__
+      __repr__
+      job_id
+      q_event_proxies
+      q_grids
+      search_tree
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QuantizationJob.__call__
+
+   .. automethod:: QuantizationJob.__eq__
+
+   .. automethod:: QuantizationJob.__hash__
+
+   .. automethod:: QuantizationJob.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QuantizationJob.job_id
+
+   .. autoattribute:: QuantizationJob.q_event_proxies
+
+   .. autoattribute:: QuantizationJob.q_grids
+
+   .. autoattribute:: QuantizationJob.search_tree

@@ -1,0 +1,58 @@
+.. _nauert:
+
+nauert
+======
+
+.. automodule:: nauert
+
+.. currentmodule:: nauert
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Subpackages
+   :class: section-header
+
+.. toctree::
+   :hidden:
+
+   attackpointoptimizers
+   gracehandlers
+   heuristics
+   jobhandlers
+   qeventproxy
+   qevents
+   qeventsequence
+   qgrid
+   qschemaitems
+   qschemas
+   qtargetitems
+   qtargets
+   quantizationjob
+   quantizer
+   searchtrees
+
+.. autosummary::
+   :nosignatures:
+
+   attackpointoptimizers
+   gracehandlers
+   heuristics
+   jobhandlers
+   qeventproxy
+   qevents
+   qeventsequence
+   qgrid
+   qschemaitems
+   qschemas
+   qtargetitems
+   qtargets
+   quantizationjob
+   quantizer
+   searchtrees

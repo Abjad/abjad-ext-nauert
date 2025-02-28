@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nauert.quantizer &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauert_modules/nauert/quantizer.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nauert.quantizer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nauert.quantizer</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">abjad</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">attackpointoptimizers</span> <span class="k">as</span> <span class="n">_attackpointoptimizers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">gracehandlers</span> <span class="k">as</span> <span class="n">_gracehandlers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">heuristics</span> <span class="k">as</span> <span class="n">_heuristics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">jobhandlers</span> <span class="k">as</span> <span class="n">_jobhandlers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">qeventsequence</span> <span class="k">as</span> <span class="n">_qeventsequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">qschemas</span> <span class="k">as</span> <span class="n">_qschemas</span>
+
+
+<div class="viewcode-block" id="quantize">
+<a class="viewcode-back" href="../../api/nauert/quantizer.html#nauert.quantizer.quantize">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize</span><span class="p">(</span>
+    <span class="n">q_event_sequence</span><span class="p">:</span> <span class="n">_qeventsequence</span><span class="o">.</span><span class="n">QEventSequence</span><span class="p">,</span>
+    <span class="n">q_schema</span><span class="p">:</span> <span class="n">_qschemas</span><span class="o">.</span><span class="n">QSchema</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">grace_handler</span><span class="p">:</span> <span class="n">_gracehandlers</span><span class="o">.</span><span class="n">GraceHandler</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">heuristic</span><span class="p">:</span> <span class="n">_heuristics</span><span class="o">.</span><span class="n">Heuristic</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">job_handler</span><span class="p">:</span> <span class="n">_jobhandlers</span><span class="o">.</span><span class="n">JobHandler</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">attack_point_optimizer</span><span class="p">:</span> <span class="n">_attackpointoptimizers</span><span class="o">.</span><span class="n">AttackPointOptimizer</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">attach_tempos</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quantizer function.</span>
+
+<span class="sd">    Quantizes sequences of attack-points, encapsulated by ``QEventSequences``,</span>
+<span class="sd">    into score trees.</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = [1000] * 8</span>
+<span class="sd">        &gt;&gt;&gt; pitches = range(8)</span>
+<span class="sd">        &gt;&gt;&gt; pairs = tuple(zip(durations, pitches, strict=True))</span>
+<span class="sd">        &gt;&gt;&gt; method = nauert.QEventSequence.from_millisecond_pitch_pairs</span>
+<span class="sd">        &gt;&gt;&gt; q_event_sequence = method(pairs)</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        Quantization defaults to outputting into a 4/4, quarter=60 musical structure:</span>
+
+<span class="sd">        &gt;&gt;&gt; result = nauert.quantize(q_event_sequence)</span>
+<span class="sd">        &gt;&gt;&gt; staff = abjad.Staff([result])</span>
+<span class="sd">        &gt;&gt;&gt; score = abjad.Score([staff])</span>
+<span class="sd">        &gt;&gt;&gt; abjad.show(score) # doctest: +SKIP</span>
+
+<span class="sd">        ..  docs::</span>
+
+<span class="sd">            &gt;&gt;&gt; string = abjad.lilypond(score)</span>
+<span class="sd">            &gt;&gt;&gt; print(string)</span>
+<span class="sd">            \new Score</span>
+<span class="sd">            &lt;&lt;</span>
+<span class="sd">                \new Staff</span>
+<span class="sd">                {</span>
+<span class="sd">                    \new Voice</span>
+<span class="sd">                    {</span>
+<span class="sd">                        {</span>
+<span class="sd">                            \tempo 4=60</span>
+<span class="sd">                            \time 4/4</span>
+<span class="sd">                            c&#39;4</span>
+<span class="sd">                            cs&#39;4</span>
+<span class="sd">                            d&#39;4</span>
+<span class="sd">                            ef&#39;4</span>
+<span class="sd">                        }</span>
+<span class="sd">                        {</span>
+<span class="sd">                            e&#39;4</span>
+<span class="sd">                            f&#39;4</span>
+<span class="sd">                            fs&#39;4</span>
+<span class="sd">                            g&#39;4</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            &gt;&gt;</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        However, the behavior of the ``quantize`` function can be modified at</span>
+<span class="sd">        call-time. Passing a ``QSchema`` instance will alter the</span>
+<span class="sd">        macro-structure of the output.</span>
+
+<span class="sd">        Here, we quantize using settings specified by a ``MeasurewiseQSchema``,</span>
+<span class="sd">        which will cause the ``quantize`` function to group the output into</span>
+<span class="sd">        measures with different tempi and time signatures:</span>
+
+<span class="sd">        &gt;&gt;&gt; measurewise_q_schema = nauert.MeasurewiseQSchema(</span>
+<span class="sd">        ...     {</span>
+<span class="sd">        ...         &quot;tempo&quot;: abjad.MetronomeMark(abjad.Duration(1, 4), 78),</span>
+<span class="sd">        ...         &quot;time_signature&quot;: abjad.TimeSignature((2, 4)),</span>
+<span class="sd">        ...     },</span>
+<span class="sd">        ...     {</span>
+<span class="sd">        ...         &quot;tempo&quot;: abjad.MetronomeMark(abjad.Duration(1, 8), 57),</span>
+<span class="sd">        ...         &quot;time_signature&quot;: abjad.TimeSignature((5, 4)),</span>
+<span class="sd">        ...     },</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; result = nauert.quantize(</span>
+<span class="sd">        ...     q_event_sequence,</span>
+<span class="sd">        ...     q_schema=measurewise_q_schema,</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; staff = abjad.Staff([result])</span>
+<span class="sd">        &gt;&gt;&gt; score = abjad.Score([staff])</span>
+<span class="sd">        &gt;&gt;&gt; abjad.show(score) # doctest: +SKIP</span>
+
+<span class="sd">        ..  docs::</span>
+
+<span class="sd">            &gt;&gt;&gt; string = abjad.lilypond(score)</span>
+<span class="sd">            &gt;&gt;&gt; print(string)</span>
+<span class="sd">            \new Score</span>
+<span class="sd">            &lt;&lt;</span>
+<span class="sd">                \new Staff</span>
+<span class="sd">                {</span>
+<span class="sd">                    \new Voice</span>
+<span class="sd">                    {</span>
+<span class="sd">                        {</span>
+<span class="sd">                            \tempo 4=78</span>
+<span class="sd">                            \time 2/4</span>
+<span class="sd">                            c&#39;4</span>
+<span class="sd">                            ~</span>
+<span class="sd">                            \tuplet 5/4 {</span>
+<span class="sd">                                c&#39;16.</span>
+<span class="sd">                                cs&#39;8..</span>
+<span class="sd">                                ~</span>
+<span class="sd">                            }</span>
+<span class="sd">                        }</span>
+<span class="sd">                        {</span>
+<span class="sd">                            \tuplet 7/4 {</span>
+<span class="sd">                                \tempo 8=57</span>
+<span class="sd">                                \time 5/4</span>
+<span class="sd">                                cs&#39;16.</span>
+<span class="sd">                                d&#39;8</span>
+<span class="sd">                                ~</span>
+<span class="sd">                            }</span>
+<span class="sd">                            \tuplet 5/4 {</span>
+<span class="sd">                                d&#39;16</span>
+<span class="sd">                                ef&#39;16.</span>
+<span class="sd">                                ~</span>
+<span class="sd">                            }</span>
+<span class="sd">                            \tuplet 3/2 {</span>
+<span class="sd">                                ef&#39;16</span>
+<span class="sd">                                e&#39;8</span>
+<span class="sd">                                ~</span>
+<span class="sd">                            }</span>
+<span class="sd">                            \tuplet 7/4 {</span>
+<span class="sd">                                e&#39;16</span>
+<span class="sd">                                f&#39;8</span>
+<span class="sd">                                ~</span>
+<span class="sd">                                f&#39;32</span>
+<span class="sd">                                ~</span>
+<span class="sd">                            }</span>
+<span class="sd">                            f&#39;32</span>
+<span class="sd">                            fs&#39;16.</span>
+<span class="sd">                            ~</span>
+<span class="sd">                            \tuplet 5/4 {</span>
+<span class="sd">                                fs&#39;32</span>
+<span class="sd">                                g&#39;8</span>
+<span class="sd">                                ~</span>
+<span class="sd">                            }</span>
+<span class="sd">                            \tuplet 7/4 {</span>
+<span class="sd">                                g&#39;32</span>
+<span class="sd">                                r32</span>
+<span class="sd">                                r16</span>
+<span class="sd">                                r16</span>
+<span class="sd">                                r16</span>
+<span class="sd">                                r16</span>
+<span class="sd">                                r16</span>
+<span class="sd">                                r16</span>
+<span class="sd">                            }</span>
+<span class="sd">                            r4</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            &gt;&gt;</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        Here we quantize using settings specified by a ``BeatwiseQSchema``,</span>
+<span class="sd">        which keeps the output of the ``quantize`` function &quot;flattened&quot;,</span>
+<span class="sd">        without measures or explicit time signatures.  The default beat-wise</span>
+<span class="sd">        settings of quarter=60 persists until the third &quot;beatspan&quot;:</span>
+
+<span class="sd">        &gt;&gt;&gt; beatwise_q_schema = nauert.BeatwiseQSchema(</span>
+<span class="sd">        ... {</span>
+<span class="sd">        ...     2: {&quot;tempo&quot;: abjad.MetronomeMark(abjad.Duration(1, 4), 120)},</span>
+<span class="sd">        ...     5: {&quot;tempo&quot;: abjad.MetronomeMark(abjad.Duration(1, 4), 90)},</span>
+<span class="sd">        ...     7: {&quot;tempo&quot;: abjad.MetronomeMark(abjad.Duration(1, 4), 30)},</span>
+<span class="sd">        ... })</span>
+
+<span class="sd">        &gt;&gt;&gt; result = nauert.quantize(</span>
+<span class="sd">        ...     q_event_sequence,</span>
+<span class="sd">        ...     q_schema=beatwise_q_schema,</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; staff = abjad.Staff([result])</span>
+<span class="sd">        &gt;&gt;&gt; score = abjad.Score([staff])</span>
+<span class="sd">        &gt;&gt;&gt; abjad.show(score) # doctest: +SKIP</span>
+
+<span class="sd">        ..  docs::</span>
+
+<span class="sd">            &gt;&gt;&gt; string = abjad.lilypond(score)</span>
+<span class="sd">            &gt;&gt;&gt; print(string)</span>
+<span class="sd">            \new Score</span>
+<span class="sd">            &lt;&lt;</span>
+<span class="sd">                \new Staff</span>
+<span class="sd">                {</span>
+<span class="sd">                    \new Voice</span>
+<span class="sd">                    {</span>
+<span class="sd">                        \tempo 4=60</span>
+<span class="sd">                        c&#39;4</span>
+<span class="sd">                        cs&#39;4</span>
+<span class="sd">                        \tempo 4=120</span>
+<span class="sd">                        d&#39;2</span>
+<span class="sd">                        ef&#39;4</span>
+<span class="sd">                        ~</span>
+<span class="sd">                        \tempo 4=90</span>
+<span class="sd">                        ef&#39;8.</span>
+<span class="sd">                        e&#39;4</span>
+<span class="sd">                        ~</span>
+<span class="sd">                        e&#39;16</span>
+<span class="sd">                        ~</span>
+<span class="sd">                        \tuplet 3/2 {</span>
+<span class="sd">                            \tempo 4=30</span>
+<span class="sd">                            e&#39;32</span>
+<span class="sd">                            f&#39;8.</span>
+<span class="sd">                            fs&#39;8</span>
+<span class="sd">                            ~</span>
+<span class="sd">                            fs&#39;32</span>
+<span class="sd">                            ~</span>
+<span class="sd">                        }</span>
+<span class="sd">                        \tuplet 3/2 {</span>
+<span class="sd">                            fs&#39;32</span>
+<span class="sd">                            g&#39;8.</span>
+<span class="sd">                            r32</span>
+<span class="sd">                            r8</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            &gt;&gt;</span>
+
+<span class="sd">        Note that ``TieChains`` are generally fused together in the above</span>
+<span class="sd">        example, but break at tempo changes.</span>
+
+<span class="sd">    ..  container::</span>
+
+<span class="sd">        The use of `BeatwiseQSchema` and `MeasurewiseAttackPointOptimizer` is</span>
+<span class="sd">        not supported. Please raise an issue if you would like this to be</span>
+<span class="sd">        supported in the future.</span>
+
+<span class="sd">        &gt;&gt;&gt; q_schema = nauert.BeatwiseQSchema()</span>
+<span class="sd">        &gt;&gt;&gt; attack_point_optimizer = nauert.MeasurewiseAttackPointOptimizer()</span>
+<span class="sd">        &gt;&gt;&gt; result = nauert.quantize(</span>
+<span class="sd">        ...     q_event_sequence,</span>
+<span class="sd">        ...     attack_point_optimizer=attack_point_optimizer,</span>
+<span class="sd">        ...     q_schema=q_schema,</span>
+<span class="sd">        ... )</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">            ...</span>
+<span class="sd">        TypeError: BeatwiseQTarget is not ... with MeasurewiseAttackPointOptimizer.</span>
+
+<span class="sd">    Other keyword arguments are:</span>
+
+<span class="sd">        * ``grace_handler``: a ``GraceHandler`` instance controls whether and</span>
+<span class="sd">          how grace notes are used in the output.  Options currently include</span>
+<span class="sd">          ``CollapsingGraceHandler``, ``ConcatenatingGraceHandler`` and</span>
+<span class="sd">          ``DiscardingGraceHandler``.</span>
+
+<span class="sd">        * ``heuristic``: a ``Heuristic`` instance controls how output rhythms</span>
+<span class="sd">          are selected from a pool of candidates.  Options currently include</span>
+<span class="sd">          the ``DistanceHeuristic`` class.</span>
+
+<span class="sd">        * ``job_handler``: a ``JobHandler`` instance controls whether or not</span>
+<span class="sd">          parallel processing is used during the quantization process.</span>
+<span class="sd">          Options include the ``SerialJobHandler`` and ``ParallelJobHandler``</span>
+<span class="sd">          classes.</span>
+
+<span class="sd">        * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance</span>
+<span class="sd">          controls whether and how logical ties are re-notated.</span>
+<span class="sd">          Options currently include ``MeasurewiseAttackPointOptimizer``,</span>
+<span class="sd">          ``NaiveAttackPointOptimizer`` and ``NullAttackPointOptimizer``.</span>
+
+<span class="sd">    Refer to the reference pages for ``BeatwiseQSchema`` and</span>
+<span class="sd">    ``MeasurewiseQSchema`` for more information on controlling the ``quantize``</span>
+<span class="sd">    function&#39;s output, and to the reference on ``SearchTree`` for information</span>
+<span class="sd">    on controlling the rhythmic complexity of that same output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: assert isinstance(q_event_sequence, QEventSequence)</span>
+    <span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">_qeventsequence</span><span class="o">.</span><span class="n">QEventSequence</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">q_schema</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">q_schema</span> <span class="o">=</span> <span class="n">_qschemas</span><span class="o">.</span><span class="n">MeasurewiseQSchema</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">q_schema</span><span class="p">,</span> <span class="n">_qschemas</span><span class="o">.</span><span class="n">QSchema</span><span class="p">)</span>
+    <span class="n">q_target</span> <span class="o">=</span> <span class="n">q_schema</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="o">.</span><span class="n">duration_in_ms</span><span class="p">)</span>
+    <span class="n">notation</span> <span class="o">=</span> <span class="n">q_target</span><span class="p">(</span>
+        <span class="n">q_event_sequence</span><span class="p">,</span>
+        <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">,</span>
+        <span class="n">heuristic</span><span class="o">=</span><span class="n">heuristic</span><span class="p">,</span>
+        <span class="n">job_handler</span><span class="o">=</span><span class="n">job_handler</span><span class="p">,</span>
+        <span class="n">attack_point_optimizer</span><span class="o">=</span><span class="n">attack_point_optimizer</span><span class="p">,</span>
+        <span class="n">attach_tempos</span><span class="o">=</span><span class="n">attach_tempos</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">notation</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,873 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="832pt" height="1506pt" viewBox="0.00 0.00 832.00 1506.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1502)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M272.75,-764C272.75,-764 301.75,-764 301.75,-764 307.75,-764 313.75,-770 313.75,-776 313.75,-776 313.75,-808 313.75,-808 313.75,-814 307.75,-820 301.75,-820 301.75,-820 272.75,-820 272.75,-820 266.75,-820 260.75,-814 260.75,-808 260.75,-808 260.75,-776 260.75,-776 260.75,-770 266.75,-764 272.75,-764" />
+<ns0:text text-anchor="middle" x="287.25" y="-806.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_abjad.rhythmtrees</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M404.38,-1330C404.38,-1330 582.62,-1330 582.62,-1330 588.62,-1330 594.62,-1336 594.62,-1342 594.62,-1342 594.62,-1398 594.62,-1398 594.62,-1404 588.62,-1410 582.62,-1410 582.62,-1410 404.38,-1410 404.38,-1410 398.38,-1410 392.38,-1404 392.38,-1398 392.38,-1398 392.38,-1342 392.38,-1342 392.38,-1336 398.38,-1330 404.38,-1330" />
+<ns0:text text-anchor="middle" x="493.5" y="-1396.5" font-family="Arial" font-size="10.00">abjad.rhythmtrees</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-870C20,-870 54.25,-870 54.25,-870 60.25,-870 66.25,-876 66.25,-882 66.25,-882 66.25,-914 66.25,-914 66.25,-920 60.25,-926 54.25,-926 54.25,-926 20,-926 20,-926 14,-926 8,-920 8,-914 8,-914 8,-882 8,-882 8,-876 14,-870 20,-870" />
+<ns0:text text-anchor="middle" x="37.12" y="-912.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust4" class="cluster">
+<ns0:title>cluster_multiprocessing.context</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M240,-978C240,-978 335.5,-978 335.5,-978 341.5,-978 347.5,-984 347.5,-990 347.5,-990 347.5,-1022 347.5,-1022 347.5,-1028 341.5,-1034 335.5,-1034 335.5,-1034 240,-1034 240,-1034 234,-1034 228,-1028 228,-1022 228,-1022 228,-990 228,-990 228,-984 234,-978 240,-978" />
+<ns0:text text-anchor="middle" x="287.75" y="-1020.5" font-family="Arial" font-size="10.00">multiprocessing.context</ns0:text>
+</ns0:g>
+<ns0:g id="clust5" class="cluster">
+<ns0:title>cluster_multiprocessing.process</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-929C98.25,-929 196,-929 196,-929 202,-929 208,-935 208,-941 208,-941 208,-985 208,-985 208,-991 202,-997 196,-997 196,-997 98.25,-997 98.25,-997 92.25,-997 86.25,-991 86.25,-985 86.25,-985 86.25,-941 86.25,-941 86.25,-935 92.25,-929 98.25,-929" />
+<ns0:text text-anchor="middle" x="147.12" y="-983.5" font-family="Arial" font-size="10.00">multiprocessing.process</ns0:text>
+</ns0:g>
+<ns0:g id="clust6" class="cluster">
+<ns0:title>cluster_nauert.attackpointoptimizers</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M388.61,-512C388.61,-512 801.75,-512 801.75,-512 807.75,-512 813.75,-518 813.75,-524 813.75,-524 813.75,-632 813.75,-632 813.75,-638 807.75,-644 801.75,-644 801.75,-644 388.61,-644 388.61,-644 382.61,-644 376.61,-638 376.61,-632 376.61,-632 376.61,-524 376.61,-524 376.61,-518 382.61,-512 388.61,-512" />
+<ns0:text text-anchor="middle" x="595.18" y="-630.5" font-family="Arial" font-size="10.00">nauert.attackpointoptimizers</ns0:text>
+</ns0:g>
+<ns0:g id="clust7" class="cluster">
+<ns0:title>cluster_nauert.gracehandlers</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M394.45,-384C394.45,-384 804,-384 804,-384 810,-384 816,-390 816,-396 816,-396 816,-492 816,-492 816,-498 810,-504 804,-504 804,-504 394.45,-504 394.45,-504 388.45,-504 382.45,-498 382.45,-492 382.45,-492 382.45,-396 382.45,-396 382.45,-390 388.45,-384 394.45,-384" />
+<ns0:text text-anchor="middle" x="599.22" y="-490.5" font-family="Arial" font-size="10.00">nauert.gracehandlers</ns0:text>
+</ns0:g>
+<ns0:g id="clust8" class="cluster">
+<ns0:title>cluster_nauert.heuristics</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M390.73,-308C390.73,-308 581.12,-308 581.12,-308 587.12,-308 593.12,-314 593.12,-320 593.12,-320 593.12,-364 593.12,-364 593.12,-370 587.12,-376 581.12,-376 581.12,-376 390.73,-376 390.73,-376 384.73,-376 378.73,-370 378.73,-364 378.73,-364 378.73,-320 378.73,-320 378.73,-314 384.73,-308 390.73,-308" />
+<ns0:text text-anchor="middle" x="485.93" y="-362.5" font-family="Arial" font-size="10.00">nauert.heuristics</ns0:text>
+</ns0:g>
+<ns0:g id="clust9" class="cluster">
+<ns0:title>cluster_nauert.jobhandlers</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M394.45,-1048C394.45,-1048 690.88,-1048 690.88,-1048 696.88,-1048 702.88,-1054 702.88,-1060 702.88,-1060 702.88,-1192 702.88,-1192 702.88,-1198 696.88,-1204 690.88,-1204 690.88,-1204 394.45,-1204 394.45,-1204 388.45,-1204 382.45,-1198 382.45,-1192 382.45,-1192 382.45,-1060 382.45,-1060 382.45,-1054 388.45,-1048 394.45,-1048" />
+<ns0:text text-anchor="middle" x="542.66" y="-1190.5" font-family="Arial" font-size="10.00">nauert.jobhandlers</ns0:text>
+</ns0:g>
+<ns0:g id="clust10" class="cluster">
+<ns0:title>cluster_nauert.qeventproxy</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M250.12,-688C250.12,-688 325.38,-688 325.38,-688 331.38,-688 337.38,-694 337.38,-700 337.38,-700 337.38,-744 337.38,-744 337.38,-750 331.38,-756 325.38,-756 325.38,-756 250.12,-756 250.12,-756 244.12,-756 238.12,-750 238.12,-744 238.12,-744 238.12,-700 238.12,-700 238.12,-694 244.12,-688 250.12,-688" />
+<ns0:text text-anchor="middle" x="287.75" y="-742.5" font-family="Arial" font-size="10.00">nauert.qeventproxy</ns0:text>
+</ns0:g>
+<ns0:g id="clust11" class="cluster">
+<ns0:title>cluster_nauert.qevents</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M394.98,-84C394.98,-84 799.12,-84 799.12,-84 805.12,-84 811.12,-90 811.12,-96 811.12,-96 811.12,-180 811.12,-180 811.12,-186 805.12,-192 799.12,-192 799.12,-192 394.98,-192 394.98,-192 388.98,-192 382.98,-186 382.98,-180 382.98,-180 382.98,-96 382.98,-96 382.98,-90 388.98,-84 394.98,-84" />
+<ns0:text text-anchor="middle" x="597.05" y="-178.5" font-family="Arial" font-size="10.00">nauert.qevents</ns0:text>
+</ns0:g>
+<ns0:g id="clust12" class="cluster">
+<ns0:title>cluster_nauert.qeventsequence</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M379.5,-8C379.5,-8 472.75,-8 472.75,-8 478.75,-8 484.75,-14 484.75,-20 484.75,-20 484.75,-64 484.75,-64 484.75,-70 478.75,-76 472.75,-76 472.75,-76 379.5,-76 379.5,-76 373.5,-76 367.5,-70 367.5,-64 367.5,-64 367.5,-20 367.5,-20 367.5,-14 373.5,-8 379.5,-8" />
+<ns0:text text-anchor="middle" x="426.12" y="-62.5" font-family="Arial" font-size="10.00">nauert.qeventsequence</ns0:text>
+</ns0:g>
+<ns0:g id="clust13" class="cluster">
+<ns0:title>cluster_nauert.qgrid</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M645,-1334C645,-1334 695,-1334 695,-1334 701,-1334 707,-1340 707,-1346 707,-1346 707,-1478 707,-1478 707,-1484 701,-1490 695,-1490 695,-1490 645,-1490 645,-1490 639,-1490 633,-1484 633,-1478 633,-1478 633,-1346 633,-1346 633,-1340 639,-1334 645,-1334" />
+<ns0:text text-anchor="middle" x="670" y="-1476.5" font-family="Arial" font-size="10.00">nauert.qgrid</ns0:text>
+</ns0:g>
+<ns0:g id="clust14" class="cluster">
+<ns0:title>cluster_nauert.qschemaitems</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M387.55,-940C387.55,-940 702.88,-940 702.88,-940 708.88,-940 714.88,-946 714.88,-952 714.88,-952 714.88,-1028 714.88,-1028 714.88,-1034 708.88,-1040 702.88,-1040 702.88,-1040 387.55,-1040 387.55,-1040 381.55,-1040 375.55,-1034 375.55,-1028 375.55,-1028 375.55,-952 375.55,-952 375.55,-946 381.55,-940 387.55,-940" />
+<ns0:text text-anchor="middle" x="545.21" y="-1026.5" font-family="Arial" font-size="10.00">nauert.qschemaitems</ns0:text>
+</ns0:g>
+<ns0:g id="clust15" class="cluster">
+<ns0:title>cluster_nauert.qschemas</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M387.55,-844C387.55,-844 702.88,-844 702.88,-844 708.88,-844 714.88,-850 714.88,-856 714.88,-856 714.88,-920 714.88,-920 714.88,-926 708.88,-932 702.88,-932 702.88,-932 387.55,-932 387.55,-932 381.55,-932 375.55,-926 375.55,-920 375.55,-920 375.55,-856 375.55,-856 375.55,-850 381.55,-844 387.55,-844" />
+<ns0:text text-anchor="middle" x="545.21" y="-918.5" font-family="Arial" font-size="10.00">nauert.qschemas</ns0:text>
+</ns0:g>
+<ns0:g id="clust16" class="cluster">
+<ns0:title>cluster_nauert.qtargetitems</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M393.92,-748C393.92,-748 692.75,-748 692.75,-748 698.75,-748 704.75,-754 704.75,-760 704.75,-760 704.75,-824 704.75,-824 704.75,-830 698.75,-836 692.75,-836 692.75,-836 393.92,-836 393.92,-836 387.92,-836 381.92,-830 381.92,-824 381.92,-824 381.92,-760 381.92,-760 381.92,-754 387.92,-748 393.92,-748" />
+<ns0:text text-anchor="middle" x="543.33" y="-822.5" font-family="Arial" font-size="10.00">nauert.qtargetitems</ns0:text>
+</ns0:g>
+<ns0:g id="clust17" class="cluster">
+<ns0:title>cluster_nauert.qtargets</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M393.92,-652C393.92,-652 702.88,-652 702.88,-652 708.88,-652 714.88,-658 714.88,-664 714.88,-664 714.88,-728 714.88,-728 714.88,-734 708.88,-740 702.88,-740 702.88,-740 393.92,-740 393.92,-740 387.92,-740 381.92,-734 381.92,-728 381.92,-728 381.92,-664 381.92,-664 381.92,-658 387.92,-652 393.92,-652" />
+<ns0:text text-anchor="middle" x="548.4" y="-726.5" font-family="Arial" font-size="10.00">nauert.qtargets</ns0:text>
+</ns0:g>
+<ns0:g id="clust18" class="cluster">
+<ns0:title>cluster_nauert.quantizationjob</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M244.12,-582C244.12,-582 331.38,-582 331.38,-582 337.38,-582 343.38,-588 343.38,-594 343.38,-594 343.38,-638 343.38,-638 343.38,-644 337.38,-650 331.38,-650 331.38,-650 244.12,-650 244.12,-650 238.12,-650 232.12,-644 232.12,-638 232.12,-638 232.12,-594 232.12,-594 232.12,-588 238.12,-582 244.12,-582" />
+<ns0:text text-anchor="middle" x="287.75" y="-636.5" font-family="Arial" font-size="10.00">nauert.quantizationjob</ns0:text>
+</ns0:g>
+<ns0:g id="clust19" class="cluster">
+<ns0:title>cluster_nauert.searchtrees</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M396.57,-200C396.57,-200 694.25,-200 694.25,-200 700.25,-200 706.25,-206 706.25,-212 706.25,-212 706.25,-288 706.25,-288 706.25,-294 700.25,-300 694.25,-300 694.25,-300 396.57,-300 396.57,-300 390.57,-300 384.57,-294 384.57,-288 384.57,-288 384.57,-212 384.57,-212 384.57,-206 390.57,-200 396.57,-200" />
+<ns0:text text-anchor="middle" x="545.41" y="-286.5" font-family="Arial" font-size="10.00">nauert.searchtrees</ns0:text>
+</ns0:g>
+<ns0:g id="clust20" class="cluster">
+<ns0:title>cluster_uqbar.containers.unique_tree</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M127.25,-1242C127.25,-1242 445,-1242 445,-1242 451,-1242 457,-1248 457,-1254 457,-1254 457,-1310 457,-1310 457,-1316 451,-1322 445,-1322 445,-1322 127.25,-1322 127.25,-1322 121.25,-1322 115.25,-1316 115.25,-1310 115.25,-1310 115.25,-1254 115.25,-1254 115.25,-1248 121.25,-1242 127.25,-1242" />
+<ns0:text text-anchor="middle" x="286.12" y="-1308.5" font-family="Arial" font-size="10.00">uqbar.containers.unique_tree</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge26" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.attackpointoptimizers.AttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.53,-780.01C319.89,-777.57 337.37,-772.13 347.5,-760 379.92,-721.2 347.88,-694.6 367.5,-648 374.22,-632.02 384.6,-616.13 394.68,-602.77" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="397.24,-605.19 400.63,-595.15 391.72,-600.88 397.24,-605.19" />
+</ns0:g>
+
+<ns0:g id="edge27" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.gracehandlers.GraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.6,-780.34C320.17,-778.06 337.91,-772.69 347.5,-760 381.37,-715.19 347.27,-560.41 367.5,-508 374.1,-490.9 385.99,-474.49 397.23,-461.48" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="399.71,-463.95 403.81,-454.18 394.52,-459.26 399.71,-463.95" />
+</ns0:g>
+
+<ns0:g id="edge28" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.heuristics.Heuristic</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.69,-780.41C320.32,-778.17 338.08,-772.82 347.5,-760 397.59,-691.87 329.4,-455.49 367.5,-380 373.2,-368.71 382.97,-359.14 392.84,-351.65" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="394.76,-354.58 400.96,-345.98 390.76,-348.84 394.76,-354.58" />
+</ns0:g>
+
+<ns0:g id="edge29" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.jobhandlers.JobHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M291.67,-792.8C300.89,-821.97 326.93,-904.78 347.5,-974 356.72,-1005.02 347.93,-1018.24 367.5,-1044 372.43,-1050.49 378.95,-1056.06 385.81,-1060.71" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="383.62,-1063.47 393.98,-1065.71 387.28,-1057.5 383.62,-1063.47" />
+</ns0:g>
+
+<ns0:g id="edge30" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qevents.QEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.47,-780.5C320.17,-778.32 338.12,-772.99 347.5,-760 384.21,-709.16 344.56,-254.36 367.5,-196 374.39,-178.47 388.06,-162.4 400.3,-150.51" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="402.37,-153.36 407.33,-144 397.61,-148.22 402.37,-153.36" />
+</ns0:g>
+
+<ns0:g id="edge31" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qschemaitems.QSchemaItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M291.57,-792.92C300.22,-819.94 325.77,-891.04 367.5,-936 372.23,-941.09 377.85,-945.71 383.71,-949.8" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="381.42,-952.49 391.72,-954.97 385.22,-946.61 381.42,-952.49" />
+</ns0:g>
+
+<ns0:g id="edge32" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qschemas.QSchema</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M301.49,-792.81C316.83,-805.08 343.13,-825.27 367.5,-840 374.1,-843.99 381.36,-847.89 388.42,-851.45" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="386.64,-854.48 397.16,-855.73 389.72,-848.19 386.64,-854.48" />
+</ns0:g>
+
+<ns0:g id="edge33" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qtargetitems.QTargetItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.64,-782C324.78,-782 353.26,-782 377.69,-782" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="377.42,-785.5 387.42,-782 377.42,-778.5 377.42,-785.5" />
+</ns0:g>
+
+<ns0:g id="edge34" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.qtargets.QTarget</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.55,-776.89C318.61,-773.12 334.52,-767.37 347.5,-760 347.87,-759.79 377.24,-736.16 399.62,-718.14" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="401.61,-721.03 407.2,-712.03 397.22,-715.58 401.61,-721.03" />
+</ns0:g>
+
+<ns0:g id="edge35" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.searchtrees.SearchTree</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.72,-780.43C320.37,-778.21 338.13,-772.86 347.5,-760 377.36,-719.01 346.63,-350.22 367.5,-304 373.02,-291.77 382.62,-280.88 392.38,-272.09" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="394.36,-275 399.76,-265.89 389.85,-269.64 394.36,-275" />
+</ns0:g>
+
+<ns0:g id="edge36" class="edge">
+<ns0:title>abjad.rhythmtrees.RhythmTreeContainer-&gt;nauert.qgrid.QGridContainer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M587.62,-1359.47C600.3,-1359.24 615.37,-1358.97 629.08,-1358.72" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="628.75,-1362.23 638.68,-1358.55 628.62,-1355.23 628.75,-1362.23" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>abjad.rhythmtrees.RhythmTreeNode-&gt;abjad.rhythmtrees.RhythmTreeContainer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M451.69,-1360C470.12,-1360 495.54,-1360 516.74,-1360" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="516.5,-1363.5 526.5,-1360 516.5,-1356.5 516.5,-1363.5" />
+</ns0:g>
+
+<ns0:g id="edge37" class="edge">
+<ns0:title>abjad.rhythmtrees.RhythmTreeNode-&gt;nauert.qgrid.QGridLeaf</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M451.8,-1369.85C470.54,-1376.8 496.89,-1385.76 520.75,-1391 560.51,-1399.73 607.32,-1404.15 637.54,-1406.26" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="636.93,-1409.73 647.13,-1406.88 637.38,-1402.74 636.93,-1409.73" />
+</ns0:g>
+
+<ns0:g id="edge38" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M58.85,-879.14C103.03,-860.27 206.56,-816.04 257.25,-794.39" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="258.58,-797.63 266.4,-790.48 255.83,-791.19 258.58,-797.63" />
+</ns0:g>
+
+<ns0:g id="edge39" class="edge">
+<ns0:title>builtins.object-&gt;abjad.rhythmtrees.RhythmTreeNode</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M38.51,-898.83C40.94,-963.3 54.87,-1294.91 86.25,-1326 167.33,-1406.33 318.91,-1384.73 388.28,-1369.33" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="389.04,-1372.75 397.99,-1367.08 387.46,-1365.93 389.04,-1372.75" />
+</ns0:g>
+
+<ns0:g id="edge40" class="edge">
+<ns0:title>builtins.object-&gt;multiprocessing.process.BaseProcess</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M55.88,-898.73C70.57,-907.62 91.9,-920.52 110.08,-931.51" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="108.14,-934.42 118.5,-936.6 111.76,-928.43 108.14,-934.42" />
+</ns0:g>
+
+<ns0:g id="edge41" class="edge">
+<ns0:title>builtins.object-&gt;nauert.qeventproxy.QEventProxy</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M42.7,-877.13C49.91,-861.1 65.28,-830.96 86.25,-812 135.55,-767.43 208.36,-737.75 251.18,-722.98" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="252.11,-726.36 260.47,-719.86 249.88,-719.72 252.11,-726.36" />
+</ns0:g>
+
+<ns0:g id="edge42" class="edge">
+<ns0:title>builtins.object-&gt;nauert.qeventsequence.QEventSequence</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M38.46,-877.27C39.89,-850.11 47.36,-777.85 86.25,-737 132.62,-688.28 163.78,-704 228,-684 280.28,-667.72 313.07,-696.59 347.5,-654 387.62,-604.37 339.55,-137.37 367.5,-80 372,-70.76 379.2,-62.64 386.98,-55.83" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="388.76,-58.89 394.39,-49.91 384.39,-53.43 388.76,-58.89" />
+</ns0:g>
+
+<ns0:g id="edge43" class="edge">
+<ns0:title>builtins.object-&gt;nauert.qgrid.QGrid</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M38.55,-898.81C41.32,-966.29 57.43,-1328.02 86.25,-1367 143.57,-1444.52 189.84,-1451 286.25,-1451 286.25,-1451 286.25,-1451 426.62,-1451 501.95,-1451 590.44,-1451.49 636.85,-1451.78" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="636.71,-1455.28 646.74,-1451.85 636.76,-1448.28 636.71,-1455.28" />
+</ns0:g>
+
+<ns0:g id="edge44" class="edge">
+<ns0:title>builtins.object-&gt;nauert.quantizationjob.QuantizationJob</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M38.85,-877.08C41.84,-835.36 54.59,-686.71 86.25,-654 126,-612.93 194.23,-604.45 239.79,-603.87" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="239.62,-607.37 249.62,-603.88 239.63,-600.37 239.62,-607.37" />
+</ns0:g>
+
+<ns0:g id="edge45" class="edge">
+<ns0:title>builtins.object-&gt;uqbar.containers.unique_tree.UniqueTreeNode</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M41.11,-898.67C54.94,-948.08 113.06,-1155.69 136.13,-1238.09" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="132.73,-1238.94 138.8,-1247.62 139.48,-1237.05 132.73,-1238.94" />
+</ns0:g>
+
+<ns0:g id="edge46" class="edge">
+<ns0:title>multiprocessing.context.Process-&gt;nauert.jobhandlers.ParallelJobHandlerWorker</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M293.83,-1006.86C305.36,-1028.57 333.59,-1078.05 367.5,-1111 374.31,-1117.62 382.47,-1123.72 390.46,-1128.99" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="388.41,-1131.83 398.75,-1134.17 392.12,-1125.9 388.41,-1131.83" />
+</ns0:g>
+
+<ns0:g id="edge47" class="edge">
+<ns0:title>multiprocessing.process.BaseProcess-&gt;multiprocessing.context.Process</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M173.37,-960.99C194.87,-967.65 225.76,-977.24 249.8,-984.69" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="248.6,-987.99 259.19,-987.61 250.68,-981.3 248.6,-987.99" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer-&gt;nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M466.69,-574.16C479.98,-576.21 494.91,-578.5 508.72,-580.63" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="508.1,-584.08 518.51,-582.14 509.16,-577.16 508.1,-584.08" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer-&gt;nauert.attackpointoptimizers.NaiveAttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M462.12,-552.86C479.45,-546.26 500.83,-539.29 520.75,-536 553.14,-530.64 561.9,-533.38 594.62,-536 605.85,-536.9 617.94,-538.55 629.04,-540.35" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="628.23,-543.76 638.68,-541.99 629.41,-536.86 628.23,-543.76" />
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer-&gt;nauert.attackpointoptimizers.NullAttackPointOptimizer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M465.8,-559.31C482.62,-556 502.56,-552.63 520.75,-551 553.45,-548.07 564.13,-538.84 594.62,-551 615.03,-559.13 610.18,-576.66 630.5,-585 663.97,-598.74 705.54,-598.03 735.62,-594.74" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="735.96,-598.22 745.45,-593.51 735.09,-591.28 735.96,-598.22" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>nauert.gracehandlers.GraceHandler-&gt;nauert.gracehandlers.CollapsingGraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M460.78,-439.25C477.32,-441.8 497.33,-444.88 514.77,-447.56" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="513.89,-450.97 524.31,-449.03 514.96,-444.05 513.89,-450.97" />
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>nauert.gracehandlers.GraceHandler-&gt;nauert.gracehandlers.ConcatenatingGraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M457.56,-423.19C475.72,-417.42 499.25,-410.92 520.75,-408 553.29,-403.59 561.82,-406.68 594.62,-408 602.28,-408.31 610.36,-408.79 618.27,-409.36" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="617.92,-412.84 628.16,-410.12 618.45,-405.86 617.92,-412.84" />
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>nauert.gracehandlers.GraceHandler-&gt;nauert.gracehandlers.DiscardingGraceHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M460.96,-429.01C478.76,-426.68 500.88,-424.16 520.75,-423 553.53,-421.09 563.03,-414.08 594.62,-423 612.63,-428.08 612.67,-439.37 630.5,-445 664,-455.58 703.96,-457.32 733.48,-456.71" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="733.24,-460.22 743.13,-456.4 733.02,-453.22 733.24,-460.22" />
+</ns0:g>
+
+<ns0:g id="edge8" class="edge">
+<ns0:title>nauert.heuristics.Heuristic-&gt;nauert.heuristics.DistanceHeuristic</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M465.28,-332.7C482.06,-332.57 501.67,-332.42 518.4,-332.29" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="517.97,-335.8 527.95,-332.22 517.92,-328.8 517.97,-335.8" />
+</ns0:g>
+
+<ns0:g id="edge9" class="edge">
+<ns0:title>nauert.jobhandlers.JobHandler-&gt;nauert.jobhandlers.ParallelJobHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M461.46,-1078.73C479.72,-1078.59 502.07,-1078.42 520.51,-1078.28" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="520.51,-1081.78 530.48,-1078.2 520.45,-1074.78 520.51,-1081.78" />
+</ns0:g>
+
+<ns0:g id="edge10" class="edge">
+<ns0:title>nauert.jobhandlers.JobHandler-&gt;nauert.jobhandlers.SerialJobHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M456.67,-1090.62C474.92,-1097.16 498.85,-1104.83 520.75,-1109 558.67,-1116.21 602.91,-1118.41 633.13,-1118.99" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="632.81,-1122.49 642.86,-1119.12 632.91,-1115.49 632.81,-1122.49" />
+</ns0:g>
+
+<ns0:g id="edge11" class="edge">
+<ns0:title>nauert.qevents.QEvent-&gt;nauert.qevents.PitchedQEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M459.43,-134.54C478.24,-137.15 501.87,-140.42 521.11,-143.08" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="520.56,-146.54 530.95,-144.44 521.52,-139.61 520.56,-146.54" />
+</ns0:g>
+
+<ns0:g id="edge12" class="edge">
+<ns0:title>nauert.qevents.QEvent-&gt;nauert.qevents.SilentQEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M455.16,-121.53C473.67,-116.48 498.41,-110.58 520.75,-108 559.01,-103.59 603.19,-104.33 633.3,-105.72" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="632.83,-109.2 642.99,-106.21 633.19,-102.2 632.83,-109.2" />
+</ns0:g>
+
+<ns0:g id="edge13" class="edge">
+<ns0:title>nauert.qevents.QEvent-&gt;nauert.qevents.TerminalQEvent</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M460.13,-126.9C478.09,-125.39 500.61,-123.75 520.75,-123 553.56,-121.78 562.09,-118.55 594.62,-123 611.02,-125.24 614.19,-130.19 630.5,-133 666.74,-139.23 708.69,-141.61 738.16,-142.5" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="737.99,-146 748.07,-142.75 738.16,-139 737.99,-146" />
+</ns0:g>
+
+<ns0:g id="edge14" class="edge">
+<ns0:title>nauert.qschemaitems.QSchemaItem-&gt;nauert.qschemaitems.BeatwiseQSchemaItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M468.47,-970.68C483.73,-970.56 500.95,-970.43 516.1,-970.31" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="515.72,-973.81 525.69,-970.24 515.66,-966.82 515.72,-973.81" />
+</ns0:g>
+
+<ns0:g id="edge15" class="edge">
+<ns0:title>nauert.qschemaitems.QSchemaItem-&gt;nauert.qschemaitems.MeasurewiseQSchemaItem</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M460.44,-984.57C478.09,-990.93 500.24,-997.81 520.75,-1001 553.19,-1006.05 561.88,-1003.41 594.62,-1001 603.22,-1000.37 612.34,-999.33 621.13,-998.14" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="621.53,-1001.61 630.93,-996.72 620.53,-994.69 621.53,-1001.61" />
+</ns0:g>
+
+<ns0:g id="edge16" class="edge">
+<ns0:title>nauert.qschemas.QSchema-&gt;nauert.qschemas.BeatwiseQSchema</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M468.47,-868C483.73,-868 500.95,-868 516.1,-868" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="515.69,-871.5 525.69,-868 515.69,-864.5 515.69,-871.5" />
+</ns0:g>
+
+<ns0:g id="edge17" class="edge">
+<ns0:title>nauert.qschemas.QSchema-&gt;nauert.qschemas.MeasurewiseQSchema</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M457.17,-878.27C475.39,-883.85 499.12,-890.18 520.75,-893 553.31,-897.25 561.81,-894.1 594.62,-893 603.17,-892.71 612.26,-892.24 621.04,-891.7" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="621.07,-895.2 630.82,-891.06 620.61,-888.22 621.07,-895.2" />
+</ns0:g>
+
+<ns0:g id="edge18" class="edge">
+<ns0:title>nauert.qtargetitems.QTargetItem-&gt;nauert.qtargetitems.QTargetBeat</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M461.8,-779.29C479.94,-777.9 502.03,-776.2 520.32,-774.79" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="520.51,-778.29 530.21,-774.03 519.97,-771.31 520.51,-778.29" />
+</ns0:g>
+
+<ns0:g id="edge19" class="edge">
+<ns0:title>nauert.qtargetitems.QTargetItem-&gt;nauert.qtargetitems.QTargetMeasure</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M460.45,-788.72C478.3,-791.93 500.63,-795.41 520.75,-797 553.48,-799.59 561.81,-798.1 594.62,-797 606.56,-796.6 619.55,-795.84 631.28,-795.03" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="631.29,-798.54 641.01,-794.32 630.78,-791.56 631.29,-798.54" />
+</ns0:g>
+
+<ns0:g id="edge20" class="edge">
+<ns0:title>nauert.qtargets.QTarget-&gt;nauert.qtargets.BeatwiseQTarget</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M459.43,-692.45C477.04,-689.47 498.86,-685.78 517.36,-682.64" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="517.91,-686.1 527.18,-680.98 516.74,-679.2 517.91,-686.1" />
+</ns0:g>
+
+<ns0:g id="edge21" class="edge">
+<ns0:title>nauert.qtargets.QTarget-&gt;nauert.qtargets.MeasurewiseQTarget</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M462.03,-699.69C496.04,-701.06 548.85,-702.54 594.62,-701 603.17,-700.71 612.26,-700.24 621.04,-699.7" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="621.07,-703.2 630.82,-699.06 620.61,-696.22 621.07,-703.2" />
+</ns0:g>
+
+<ns0:g id="edge22" class="edge">
+<ns0:title>nauert.searchtrees.SearchTree-&gt;nauert.searchtrees.UnweightedSearchTree</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M458.76,-244.3C474.8,-241.96 494.45,-239.09 511.93,-236.53" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="512.16,-240.04 521.55,-235.13 511.15,-233.11 512.16,-240.04" />
+</ns0:g>
+
+<ns0:g id="edge23" class="edge">
+<ns0:title>nauert.searchtrees.SearchTree-&gt;nauert.searchtrees.WeightedSearchTree</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M458.77,-254.12C476.91,-256.76 500.04,-259.68 520.75,-261 553.52,-263.08 561.88,-263.41 594.62,-261 606.03,-260.16 618.33,-258.61 629.59,-256.93" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="630.02,-260.4 639.36,-255.39 628.94,-253.49 630.02,-260.4" />
+</ns0:g>
+
+<ns0:g id="edge24" class="edge">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeContainer-&gt;uqbar.containers.unique_tree.UniqueTreeList</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M317.17,-1272C338.51,-1272 367.64,-1272 390.18,-1272" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="390.1,-1275.5 400.1,-1272 390.1,-1268.5 390.1,-1275.5" />
+</ns0:g>
+
+<ns0:g id="edge48" class="edge">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeList-&gt;abjad.rhythmtrees.RhythmTreeContainer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M449.87,-1287.73C468.82,-1300.57 496,-1318.96 518.19,-1333.98" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="516.17,-1336.84 526.42,-1339.55 520.1,-1331.05 516.17,-1336.84" />
+</ns0:g>
+
+<ns0:g id="edge49" class="edge">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeNode-&gt;nauert.qgrid.QGridLeaf</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M170.87,-1260.41C186.57,-1253.24 208,-1244.72 228,-1241 340.18,-1220.12 376.77,-1204.11 484.75,-1241 543.17,-1260.96 553.13,-1280.28 594.62,-1326 614.74,-1348.16 609.48,-1361.68 630.5,-1383 633.13,-1385.67 636.09,-1388.2 639.18,-1390.55" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="637.12,-1393.38 647.33,-1396.19 641.09,-1387.62 637.12,-1393.38" />
+</ns0:g>
+
+<ns0:g id="edge25" class="edge">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeNode-&gt;uqbar.containers.unique_tree.UniqueTreeContainer</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M170.83,-1272C191.36,-1272 221.78,-1272 246.23,-1272" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="246.17,-1275.5 256.17,-1272 246.17,-1268.5 246.17,-1275.5" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M299.08,-792C299.08,-792 275.42,-792 275.42,-792 272.08,-792 268.75,-788.67 268.75,-785.33 268.75,-785.33 268.75,-778.67 268.75,-778.67 268.75,-775.33 272.08,-772 275.42,-772 275.42,-772 299.08,-772 299.08,-772 302.42,-772 305.75,-775.33 305.75,-778.67 305.75,-778.67 305.75,-785.33 305.75,-785.33 305.75,-788.67 302.42,-792 299.08,-792" />
+<ns0:text text-anchor="middle" x="287.25" y="-778.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>abjad.rhythmtrees.RhythmTreeContainer</ns0:title>
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M574.62,-1382C574.62,-1382 540.62,-1382 540.62,-1382 534.62,-1382 528.62,-1376 528.62,-1370 528.62,-1370 528.62,-1350 528.62,-1350 528.62,-1344 534.62,-1338 540.62,-1338 540.62,-1338 574.62,-1338 574.62,-1338 580.62,-1338 586.62,-1344 586.62,-1350 586.62,-1350 586.62,-1370 586.62,-1370 586.62,-1376 580.62,-1382 574.62,-1382" />
+<ns0:text text-anchor="middle" x="557.62" y="-1368.5" font-family="Arial" font-size="10.00">Rhythm</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-1356.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-1344.5" font-family="Arial" font-size="10.00">Container</ns0:text>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>abjad.rhythmtrees.RhythmTreeNode</ns0:title>
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M438.88,-1382C438.88,-1382 412.38,-1382 412.38,-1382 406.38,-1382 400.38,-1376 400.38,-1370 400.38,-1370 400.38,-1350 400.38,-1350 400.38,-1344 406.38,-1338 412.38,-1338 412.38,-1338 438.88,-1338 438.88,-1338 444.88,-1338 450.88,-1344 450.88,-1350 450.88,-1350 450.88,-1370 450.88,-1370 450.88,-1376 444.88,-1382 438.88,-1382" />
+<ns0:text text-anchor="middle" x="425.62" y="-1368.5" font-family="Arial" font-size="10.00">Rhythm</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1356.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1344.5" font-family="Arial" font-size="10.00">Node</ns0:text>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#ccebc5" stroke="#ccebc5" stroke-width="2" d="M51.58,-898C51.58,-898 22.67,-898 22.67,-898 19.33,-898 16,-894.67 16,-891.33 16,-891.33 16,-884.67 16,-884.67 16,-881.33 19.33,-878 22.67,-878 22.67,-878 51.58,-878 51.58,-878 54.92,-878 58.25,-881.33 58.25,-884.67 58.25,-884.67 58.25,-891.33 58.25,-891.33 58.25,-894.67 54.92,-898 51.58,-898" />
+<ns0:text text-anchor="middle" x="37.12" y="-884.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>multiprocessing.context.Process</ns0:title>
+<ns0:path fill="#decbe4" stroke="#decbe4" stroke-width="2" d="M306.58,-1006C306.58,-1006 267.92,-1006 267.92,-1006 264.58,-1006 261.25,-1002.67 261.25,-999.33 261.25,-999.33 261.25,-992.67 261.25,-992.67 261.25,-989.33 264.58,-986 267.92,-986 267.92,-986 306.58,-986 306.58,-986 309.92,-986 313.25,-989.33 313.25,-992.67 313.25,-992.67 313.25,-999.33 313.25,-999.33 313.25,-1002.67 309.92,-1006 306.58,-1006" />
+<ns0:text text-anchor="middle" x="287.25" y="-992.5" font-family="Arial" font-size="10.00">Process</ns0:text>
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>multiprocessing.process.BaseProcess</ns0:title>
+<ns0:path fill="#fed9a6" stroke="#fed9a6" stroke-width="2" d="M161.96,-969C161.96,-969 131.29,-969 131.29,-969 125.96,-969 120.62,-963.67 120.62,-958.33 120.62,-958.33 120.62,-947.67 120.62,-947.67 120.62,-942.33 125.96,-937 131.29,-937 131.29,-937 161.96,-937 161.96,-937 167.29,-937 172.62,-942.33 172.62,-947.67 172.62,-947.67 172.62,-958.33 172.62,-958.33 172.62,-963.67 167.29,-969 161.96,-969" />
+<ns0:text text-anchor="middle" x="146.62" y="-955.5" font-family="Arial" font-size="10.00">Base</ns0:text>
+<ns0:text text-anchor="middle" x="146.62" y="-943.5" font-family="Arial" font-size="10.00">Process</ns0:text>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>nauert.attackpointoptimizers.AttackPointOptimizer</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.AttackPointOptimizer" ns1:title="Attack\nPoint\nOptimizer" target="_top">
+<ns0:ellipse fill="none" stroke="#ffffcc" stroke-width="2" cx="425.62" cy="-568" rx="41.01" ry="31.11" />
+<ns0:text text-anchor="middle" x="425.62" y="-576.5" font-family="Arial" font-size="10.00">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-564.5" font-family="Arial" font-size="10.00">Point</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-552.5" font-family="Arial" font-size="10.00">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer" ns1:title="Measurewise\nAttack\nPoint\nOptimizer" target="_top">
+<ns0:path fill="#ffffcc" stroke="#ffffcc" stroke-width="2" d="M582.5,-616C582.5,-616 532.75,-616 532.75,-616 526.75,-616 520.75,-610 520.75,-604 520.75,-604 520.75,-572 520.75,-572 520.75,-566 526.75,-560 532.75,-560 532.75,-560 582.5,-560 582.5,-560 588.5,-560 594.5,-566 594.5,-572 594.5,-572 594.5,-604 594.5,-604 594.5,-610 588.5,-616 582.5,-616" />
+<ns0:text text-anchor="middle" x="557.62" y="-602.5" font-family="Arial" font-size="10.00">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-590.5" font-family="Arial" font-size="10.00">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-578.5" font-family="Arial" font-size="10.00">Point</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-566.5" font-family="Arial" font-size="10.00">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node9" class="node">
+<ns0:title>nauert.attackpointoptimizers.NaiveAttackPointOptimizer</ns0:title>
+<ns0:g id="a_node9"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NaiveAttackPointOptimizer" ns1:title="Naive\nAttack\nPoint\nOptimizer" target="_top">
+<ns0:path fill="#ffffcc" stroke="#ffffcc" stroke-width="2" d="M687,-576C687,-576 653,-576 653,-576 647,-576 641,-570 641,-564 641,-564 641,-532 641,-532 641,-526 647,-520 653,-520 653,-520 687,-520 687,-520 693,-520 699,-526 699,-532 699,-532 699,-564 699,-564 699,-570 693,-576 687,-576" />
+<ns0:text text-anchor="middle" x="670" y="-562.5" font-family="Arial" font-size="10.00">Naive</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-550.5" font-family="Arial" font-size="10.00">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-538.5" font-family="Arial" font-size="10.00">Point</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-526.5" font-family="Arial" font-size="10.00">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node10" class="node">
+<ns0:title>nauert.attackpointoptimizers.NullAttackPointOptimizer</ns0:title>
+<ns0:g id="a_node10"><ns0:a ns1:href="../api/api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NullAttackPointOptimizer" ns1:title="Null\nAttack\nPoint\nOptimizer" target="_top">
+<ns0:path fill="#ffffcc" stroke="#ffffcc" stroke-width="2" d="M793.75,-616C793.75,-616 759.75,-616 759.75,-616 753.75,-616 747.75,-610 747.75,-604 747.75,-604 747.75,-572 747.75,-572 747.75,-566 753.75,-560 759.75,-560 759.75,-560 793.75,-560 793.75,-560 799.75,-560 805.75,-566 805.75,-572 805.75,-572 805.75,-604 805.75,-604 805.75,-610 799.75,-616 793.75,-616" />
+<ns0:text text-anchor="middle" x="776.75" y="-602.5" font-family="Arial" font-size="10.00">Null</ns0:text>
+<ns0:text text-anchor="middle" x="776.75" y="-590.5" font-family="Arial" font-size="10.00">Attack</ns0:text>
+<ns0:text text-anchor="middle" x="776.75" y="-578.5" font-family="Arial" font-size="10.00">Point</ns0:text>
+<ns0:text text-anchor="middle" x="776.75" y="-566.5" font-family="Arial" font-size="10.00">Optimizer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node11" class="node">
+<ns0:title>nauert.gracehandlers.CollapsingGraceHandler</ns0:title>
+<ns0:g id="a_node11"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.CollapsingGraceHandler" ns1:title="Collapsing\nGrace\nHandler" target="_top">
+<ns0:path fill="#e5d8bd" stroke="#e5d8bd" stroke-width="2" d="M576.5,-476C576.5,-476 538.75,-476 538.75,-476 532.75,-476 526.75,-470 526.75,-464 526.75,-464 526.75,-444 526.75,-444 526.75,-438 532.75,-432 538.75,-432 538.75,-432 576.5,-432 576.5,-432 582.5,-432 588.5,-438 588.5,-444 588.5,-444 588.5,-464 588.5,-464 588.5,-470 582.5,-476 576.5,-476" />
+<ns0:text text-anchor="middle" x="557.62" y="-462.5" font-family="Arial" font-size="10.00">Collapsing</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-450.5" font-family="Arial" font-size="10.00">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-438.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node12" class="node">
+<ns0:title>nauert.gracehandlers.ConcatenatingGraceHandler</ns0:title>
+<ns0:g id="a_node12"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.ConcatenatingGraceHandler" ns1:title="Concatenating\nGrace\nHandler" target="_top">
+<ns0:path fill="#e5d8bd" stroke="#e5d8bd" stroke-width="2" d="M697.5,-436C697.5,-436 642.5,-436 642.5,-436 636.5,-436 630.5,-430 630.5,-424 630.5,-424 630.5,-404 630.5,-404 630.5,-398 636.5,-392 642.5,-392 642.5,-392 697.5,-392 697.5,-392 703.5,-392 709.5,-398 709.5,-404 709.5,-404 709.5,-424 709.5,-424 709.5,-430 703.5,-436 697.5,-436" />
+<ns0:text text-anchor="middle" x="670" y="-422.5" font-family="Arial" font-size="10.00">Concatenating</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-410.5" font-family="Arial" font-size="10.00">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-398.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node13" class="node">
+<ns0:title>nauert.gracehandlers.DiscardingGraceHandler</ns0:title>
+<ns0:g id="a_node13"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.DiscardingGraceHandler" ns1:title="Discarding\nGrace\nHandler" target="_top">
+<ns0:path fill="#e5d8bd" stroke="#e5d8bd" stroke-width="2" d="M796,-476C796,-476 757.5,-476 757.5,-476 751.5,-476 745.5,-470 745.5,-464 745.5,-464 745.5,-444 745.5,-444 745.5,-438 751.5,-432 757.5,-432 757.5,-432 796,-432 796,-432 802,-432 808,-438 808,-444 808,-444 808,-464 808,-464 808,-470 802,-476 796,-476" />
+<ns0:text text-anchor="middle" x="776.75" y="-462.5" font-family="Arial" font-size="10.00">Discarding</ns0:text>
+<ns0:text text-anchor="middle" x="776.75" y="-450.5" font-family="Arial" font-size="10.00">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="776.75" y="-438.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node14" class="node">
+<ns0:title>nauert.gracehandlers.GraceHandler</ns0:title>
+<ns0:g id="a_node14"><ns0:a ns1:href="../api/api/nauert/gracehandlers.html#nauert.gracehandlers.GraceHandler" ns1:title="Grace\nHandler" target="_top">
+<ns0:ellipse fill="none" stroke="#e5d8bd" stroke-width="2" cx="425.62" cy="-434" rx="35.18" ry="22.63" />
+<ns0:text text-anchor="middle" x="425.62" y="-436.5" font-family="Arial" font-size="10.00">Grace</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-424.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node15" class="node">
+<ns0:title>nauert.heuristics.DistanceHeuristic</ns0:title>
+<ns0:g id="a_node15"><ns0:a ns1:href="../api/api/nauert/heuristics.html#nauert.heuristics.DistanceHeuristic" ns1:title="Distance\nHeuristic" target="_top">
+<ns0:path fill="#fddaec" stroke="#fddaec" stroke-width="2" d="M574.46,-348C574.46,-348 540.79,-348 540.79,-348 535.46,-348 530.12,-342.67 530.12,-337.33 530.12,-337.33 530.12,-326.67 530.12,-326.67 530.12,-321.33 535.46,-316 540.79,-316 540.79,-316 574.46,-316 574.46,-316 579.79,-316 585.12,-321.33 585.12,-326.67 585.12,-326.67 585.12,-337.33 585.12,-337.33 585.12,-342.67 579.79,-348 574.46,-348" />
+<ns0:text text-anchor="middle" x="557.62" y="-334.5" font-family="Arial" font-size="10.00">Distance</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-322.5" font-family="Arial" font-size="10.00">Heuristic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node16" class="node">
+<ns0:title>nauert.heuristics.Heuristic</ns0:title>
+<ns0:g id="a_node16"><ns0:a ns1:href="../api/api/nauert/heuristics.html#nauert.heuristics.Heuristic" ns1:title="Heuristic" target="_top">
+<ns0:ellipse fill="none" stroke="#fddaec" stroke-width="2" cx="425.62" cy="-333" rx="38.89" ry="14.14" />
+<ns0:text text-anchor="middle" x="425.62" y="-329.5" font-family="Arial" font-size="10.00">Heuristic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node17" class="node">
+<ns0:title>nauert.jobhandlers.JobHandler</ns0:title>
+<ns0:g id="a_node17"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.JobHandler" ns1:title="Job\nHandler" target="_top">
+<ns0:ellipse fill="none" stroke="#f2f2f2" stroke-width="2" cx="425.62" cy="-1079" rx="35.18" ry="22.63" />
+<ns0:text text-anchor="middle" x="425.62" y="-1081.5" font-family="Arial" font-size="10.00">Job</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1069.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node18" class="node">
+<ns0:title>nauert.jobhandlers.ParallelJobHandler</ns0:title>
+<ns0:g id="a_node18"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler" ns1:title="Parallel\nJob\nHandler" target="_top">
+<ns0:path fill="#f2f2f2" stroke="#f2f2f2" stroke-width="2" d="M570.5,-1100C570.5,-1100 544.75,-1100 544.75,-1100 538.75,-1100 532.75,-1094 532.75,-1088 532.75,-1088 532.75,-1068 532.75,-1068 532.75,-1062 538.75,-1056 544.75,-1056 544.75,-1056 570.5,-1056 570.5,-1056 576.5,-1056 582.5,-1062 582.5,-1068 582.5,-1068 582.5,-1088 582.5,-1088 582.5,-1094 576.5,-1100 570.5,-1100" />
+<ns0:text text-anchor="middle" x="557.62" y="-1086.5" font-family="Arial" font-size="10.00">Parallel</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-1074.5" font-family="Arial" font-size="10.00">Job</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-1062.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node19" class="node">
+<ns0:title>nauert.jobhandlers.SerialJobHandler</ns0:title>
+<ns0:g id="a_node19"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler" ns1:title="Serial\nJob\nHandler" target="_top">
+<ns0:path fill="#f2f2f2" stroke="#f2f2f2" stroke-width="2" d="M682.88,-1141C682.88,-1141 657.12,-1141 657.12,-1141 651.12,-1141 645.12,-1135 645.12,-1129 645.12,-1129 645.12,-1109 645.12,-1109 645.12,-1103 651.12,-1097 657.12,-1097 657.12,-1097 682.88,-1097 682.88,-1097 688.88,-1097 694.88,-1103 694.88,-1109 694.88,-1109 694.88,-1129 694.88,-1129 694.88,-1135 688.88,-1141 682.88,-1141" />
+<ns0:text text-anchor="middle" x="670" y="-1127.5" font-family="Arial" font-size="10.00">Serial</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-1115.5" font-family="Arial" font-size="10.00">Job</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-1103.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node20" class="node">
+<ns0:title>nauert.jobhandlers.ParallelJobHandlerWorker</ns0:title>
+<ns0:g id="a_node20"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker" ns1:title="Parallel\nJob\nHandler\nWorker" target="_top">
+<ns0:path fill="#f2f2f2" stroke="#f2f2f2" stroke-width="2" d="M438.5,-1176C438.5,-1176 412.75,-1176 412.75,-1176 406.75,-1176 400.75,-1170 400.75,-1164 400.75,-1164 400.75,-1132 400.75,-1132 400.75,-1126 406.75,-1120 412.75,-1120 412.75,-1120 438.5,-1120 438.5,-1120 444.5,-1120 450.5,-1126 450.5,-1132 450.5,-1132 450.5,-1164 450.5,-1164 450.5,-1170 444.5,-1176 438.5,-1176" />
+<ns0:text text-anchor="middle" x="425.62" y="-1162.5" font-family="Arial" font-size="10.00">Parallel</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1150.5" font-family="Arial" font-size="10.00">Job</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1138.5" font-family="Arial" font-size="10.00">Handler</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1126.5" font-family="Arial" font-size="10.00">Worker</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node21" class="node">
+<ns0:title>nauert.qeventproxy.QEventProxy</ns0:title>
+<ns0:g id="a_node21"><ns0:a ns1:href="../api/api/nauert/qeventproxy.html#nauert.qeventproxy.QEventProxy" ns1:title="QEvent\nProxy" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M301.08,-728C301.08,-728 273.42,-728 273.42,-728 268.08,-728 262.75,-722.67 262.75,-717.33 262.75,-717.33 262.75,-706.67 262.75,-706.67 262.75,-701.33 268.08,-696 273.42,-696 273.42,-696 301.08,-696 301.08,-696 306.42,-696 311.75,-701.33 311.75,-706.67 311.75,-706.67 311.75,-717.33 311.75,-717.33 311.75,-722.67 306.42,-728 301.08,-728" />
+<ns0:text text-anchor="middle" x="287.25" y="-714.5" font-family="Arial" font-size="10.00">QEvent</ns0:text>
+<ns0:text text-anchor="middle" x="287.25" y="-702.5" font-family="Arial" font-size="10.00">Proxy</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node22" class="node">
+<ns0:title>nauert.qevents.PitchedQEvent</ns0:title>
+<ns0:g id="a_node22"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.PitchedQEvent" ns1:title="Pitched\nQEvent" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M571.46,-164C571.46,-164 543.79,-164 543.79,-164 538.46,-164 533.12,-158.67 533.12,-153.33 533.12,-153.33 533.12,-142.67 533.12,-142.67 533.12,-137.33 538.46,-132 543.79,-132 543.79,-132 571.46,-132 571.46,-132 576.79,-132 582.12,-137.33 582.12,-142.67 582.12,-142.67 582.12,-153.33 582.12,-153.33 582.12,-158.67 576.79,-164 571.46,-164" />
+<ns0:text text-anchor="middle" x="557.62" y="-150.5" font-family="Arial" font-size="10.00">Pitched</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-138.5" font-family="Arial" font-size="10.00">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node23" class="node">
+<ns0:title>nauert.qevents.QEvent</ns0:title>
+<ns0:g id="a_node23"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.QEvent" ns1:title="QEvent" target="_top">
+<ns0:ellipse fill="none" stroke="#b3cde3" stroke-width="2" cx="425.62" cy="-130" rx="34.65" ry="14.14" />
+<ns0:text text-anchor="middle" x="425.62" y="-126.5" font-family="Arial" font-size="10.00">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node24" class="node">
+<ns0:title>nauert.qevents.SilentQEvent</ns0:title>
+<ns0:g id="a_node24"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.SilentQEvent" ns1:title="Silent\nQEvent" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M683.83,-124C683.83,-124 656.17,-124 656.17,-124 650.83,-124 645.5,-118.67 645.5,-113.33 645.5,-113.33 645.5,-102.67 645.5,-102.67 645.5,-97.33 650.83,-92 656.17,-92 656.17,-92 683.83,-92 683.83,-92 689.17,-92 694.5,-97.33 694.5,-102.67 694.5,-102.67 694.5,-113.33 694.5,-113.33 694.5,-118.67 689.17,-124 683.83,-124" />
+<ns0:text text-anchor="middle" x="670" y="-110.5" font-family="Arial" font-size="10.00">Silent</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-98.5" font-family="Arial" font-size="10.00">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node25" class="node">
+<ns0:title>nauert.qevents.TerminalQEvent</ns0:title>
+<ns0:g id="a_node25"><ns0:a ns1:href="../api/api/nauert/qevents.html#nauert.qevents.TerminalQEvent" ns1:title="Terminal\nQEvent" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M792.46,-159C792.46,-159 761.04,-159 761.04,-159 755.71,-159 750.38,-153.67 750.38,-148.33 750.38,-148.33 750.38,-137.67 750.38,-137.67 750.38,-132.33 755.71,-127 761.04,-127 761.04,-127 792.46,-127 792.46,-127 797.79,-127 803.12,-132.33 803.12,-137.67 803.12,-137.67 803.12,-148.33 803.12,-148.33 803.12,-153.67 797.79,-159 792.46,-159" />
+<ns0:text text-anchor="middle" x="776.75" y="-145.5" font-family="Arial" font-size="10.00">Terminal</ns0:text>
+<ns0:text text-anchor="middle" x="776.75" y="-133.5" font-family="Arial" font-size="10.00">QEvent</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node26" class="node">
+<ns0:title>nauert.qeventsequence.QEventSequence</ns0:title>
+<ns0:g id="a_node26"><ns0:a ns1:href="../api/api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence" ns1:title="QEvent\nSequence" target="_top">
+<ns0:path fill="#ccebc5" stroke="#ccebc5" stroke-width="2" d="M444.71,-48C444.71,-48 406.54,-48 406.54,-48 401.21,-48 395.88,-42.67 395.88,-37.33 395.88,-37.33 395.88,-26.67 395.88,-26.67 395.88,-21.33 401.21,-16 406.54,-16 406.54,-16 444.71,-16 444.71,-16 450.04,-16 455.38,-21.33 455.38,-26.67 455.38,-26.67 455.38,-37.33 455.38,-37.33 455.38,-42.67 450.04,-48 444.71,-48" />
+<ns0:text text-anchor="middle" x="425.62" y="-34.5" font-family="Arial" font-size="10.00">QEvent</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-22.5" font-family="Arial" font-size="10.00">Sequence</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node27" class="node">
+<ns0:title>nauert.qgrid.QGrid</ns0:title>
+<ns0:g id="a_node27"><ns0:a ns1:href="../api/api/nauert/qgrid.html#nauert.qgrid.QGrid" ns1:title="QGrid" target="_top">
+<ns0:path fill="#decbe4" stroke="#decbe4" stroke-width="2" d="M684.08,-1462C684.08,-1462 655.92,-1462 655.92,-1462 652.58,-1462 649.25,-1458.67 649.25,-1455.33 649.25,-1455.33 649.25,-1448.67 649.25,-1448.67 649.25,-1445.33 652.58,-1442 655.92,-1442 655.92,-1442 684.08,-1442 684.08,-1442 687.42,-1442 690.75,-1445.33 690.75,-1448.67 690.75,-1448.67 690.75,-1455.33 690.75,-1455.33 690.75,-1458.67 687.42,-1462 684.08,-1462" />
+<ns0:text text-anchor="middle" x="670" y="-1448.5" font-family="Arial" font-size="10.00">QGrid</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node28" class="node">
+<ns0:title>nauert.qgrid.QGridContainer</ns0:title>
+<ns0:g id="a_node28"><ns0:a ns1:href="../api/api/nauert/qgrid.html#nauert.qgrid.QGridContainer" ns1:title="QGrid\nContainer" target="_top">
+<ns0:path fill="#decbe4" stroke="#decbe4" stroke-width="2" d="M688.33,-1374C688.33,-1374 651.67,-1374 651.67,-1374 646.33,-1374 641,-1368.67 641,-1363.33 641,-1363.33 641,-1352.67 641,-1352.67 641,-1347.33 646.33,-1342 651.67,-1342 651.67,-1342 688.33,-1342 688.33,-1342 693.67,-1342 699,-1347.33 699,-1352.67 699,-1352.67 699,-1363.33 699,-1363.33 699,-1368.67 693.67,-1374 688.33,-1374" />
+<ns0:text text-anchor="middle" x="670" y="-1360.5" font-family="Arial" font-size="10.00">QGrid</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-1348.5" font-family="Arial" font-size="10.00">Container</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node29" class="node">
+<ns0:title>nauert.qgrid.QGridLeaf</ns0:title>
+<ns0:g id="a_node29"><ns0:a ns1:href="../api/api/nauert/qgrid.html#nauert.qgrid.QGridLeaf" ns1:title="QGrid\nLeaf" target="_top">
+<ns0:path fill="#decbe4" stroke="#decbe4" stroke-width="2" d="M680.08,-1424C680.08,-1424 659.92,-1424 659.92,-1424 654.58,-1424 649.25,-1418.67 649.25,-1413.33 649.25,-1413.33 649.25,-1402.67 649.25,-1402.67 649.25,-1397.33 654.58,-1392 659.92,-1392 659.92,-1392 680.08,-1392 680.08,-1392 685.42,-1392 690.75,-1397.33 690.75,-1402.67 690.75,-1402.67 690.75,-1413.33 690.75,-1413.33 690.75,-1418.67 685.42,-1424 680.08,-1424" />
+<ns0:text text-anchor="middle" x="670" y="-1410.5" font-family="Arial" font-size="10.00">QGrid</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-1398.5" font-family="Arial" font-size="10.00">Leaf</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node30" class="node">
+<ns0:title>nauert.qschemaitems.BeatwiseQSchemaItem</ns0:title>
+<ns0:g id="a_node30"><ns0:a ns1:href="../api/api/nauert/qschemaitems.html#nauert.qschemaitems.BeatwiseQSchemaItem" ns1:title="Beatwise\nQSchema\nItem" target="_top">
+<ns0:path fill="#fed9a6" stroke="#fed9a6" stroke-width="2" d="M575.38,-992C575.38,-992 539.88,-992 539.88,-992 533.88,-992 527.88,-986 527.88,-980 527.88,-980 527.88,-960 527.88,-960 527.88,-954 533.88,-948 539.88,-948 539.88,-948 575.38,-948 575.38,-948 581.38,-948 587.38,-954 587.38,-960 587.38,-960 587.38,-980 587.38,-980 587.38,-986 581.38,-992 575.38,-992" />
+<ns0:text text-anchor="middle" x="557.62" y="-978.5" font-family="Arial" font-size="10.00">Beatwise</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-966.5" font-family="Arial" font-size="10.00">QSchema</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-954.5" font-family="Arial" font-size="10.00">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node31" class="node">
+<ns0:title>nauert.qschemaitems.MeasurewiseQSchemaItem</ns0:title>
+<ns0:g id="a_node31"><ns0:a ns1:href="../api/api/nauert/qschemaitems.html#nauert.qschemaitems.MeasurewiseQSchemaItem" ns1:title="Measurewise\nQSchema\nItem" target="_top">
+<ns0:path fill="#fed9a6" stroke="#fed9a6" stroke-width="2" d="M694.88,-1012C694.88,-1012 645.12,-1012 645.12,-1012 639.12,-1012 633.12,-1006 633.12,-1000 633.12,-1000 633.12,-980 633.12,-980 633.12,-974 639.12,-968 645.12,-968 645.12,-968 694.88,-968 694.88,-968 700.88,-968 706.88,-974 706.88,-980 706.88,-980 706.88,-1000 706.88,-1000 706.88,-1006 700.88,-1012 694.88,-1012" />
+<ns0:text text-anchor="middle" x="670" y="-998.5" font-family="Arial" font-size="10.00">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-986.5" font-family="Arial" font-size="10.00">QSchema</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-974.5" font-family="Arial" font-size="10.00">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node32" class="node">
+<ns0:title>nauert.qschemaitems.QSchemaItem</ns0:title>
+<ns0:g id="a_node32"><ns0:a ns1:href="../api/api/nauert/qschemaitems.html#nauert.qschemaitems.QSchemaItem" ns1:title="QSchema\nItem" target="_top">
+<ns0:ellipse fill="none" stroke="#fed9a6" stroke-width="2" cx="425.62" cy="-971" rx="42.07" ry="22.63" />
+<ns0:text text-anchor="middle" x="425.62" y="-973.5" font-family="Arial" font-size="10.00">QSchema</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-961.5" font-family="Arial" font-size="10.00">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node33" class="node">
+<ns0:title>nauert.qschemas.BeatwiseQSchema</ns0:title>
+<ns0:g id="a_node33"><ns0:a ns1:href="../api/api/nauert/qschemas.html#nauert.qschemas.BeatwiseQSchema" ns1:title="Beatwise\nQSchema" target="_top">
+<ns0:path fill="#ffffcc" stroke="#ffffcc" stroke-width="2" d="M576.71,-884C576.71,-884 538.54,-884 538.54,-884 533.21,-884 527.88,-878.67 527.88,-873.33 527.88,-873.33 527.88,-862.67 527.88,-862.67 527.88,-857.33 533.21,-852 538.54,-852 538.54,-852 576.71,-852 576.71,-852 582.04,-852 587.38,-857.33 587.38,-862.67 587.38,-862.67 587.38,-873.33 587.38,-873.33 587.38,-878.67 582.04,-884 576.71,-884" />
+<ns0:text text-anchor="middle" x="557.62" y="-870.5" font-family="Arial" font-size="10.00">Beatwise</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-858.5" font-family="Arial" font-size="10.00">QSchema</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node34" class="node">
+<ns0:title>nauert.qschemas.MeasurewiseQSchema</ns0:title>
+<ns0:g id="a_node34"><ns0:a ns1:href="../api/api/nauert/qschemas.html#nauert.qschemas.MeasurewiseQSchema" ns1:title="Measurewise\nQSchema" target="_top">
+<ns0:path fill="#ffffcc" stroke="#ffffcc" stroke-width="2" d="M696.21,-904C696.21,-904 643.79,-904 643.79,-904 638.46,-904 633.12,-898.67 633.12,-893.33 633.12,-893.33 633.12,-882.67 633.12,-882.67 633.12,-877.33 638.46,-872 643.79,-872 643.79,-872 696.21,-872 696.21,-872 701.54,-872 706.88,-877.33 706.88,-882.67 706.88,-882.67 706.88,-893.33 706.88,-893.33 706.88,-898.67 701.54,-904 696.21,-904" />
+<ns0:text text-anchor="middle" x="670" y="-890.5" font-family="Arial" font-size="10.00">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-878.5" font-family="Arial" font-size="10.00">QSchema</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node35" class="node">
+<ns0:title>nauert.qschemas.QSchema</ns0:title>
+<ns0:g id="a_node35"><ns0:a ns1:href="../api/api/nauert/qschemas.html#nauert.qschemas.QSchema" ns1:title="QSchema" target="_top">
+<ns0:ellipse fill="none" stroke="#ffffcc" stroke-width="2" cx="425.62" cy="-868" rx="42.07" ry="14.14" />
+<ns0:text text-anchor="middle" x="425.62" y="-864.5" font-family="Arial" font-size="10.00">QSchema</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node36" class="node">
+<ns0:title>nauert.qtargetitems.QTargetBeat</ns0:title>
+<ns0:g id="a_node36"><ns0:a ns1:href="../api/api/nauert/qtargetitems.html#nauert.qtargetitems.QTargetBeat" ns1:title="QTarget\nBeat" target="_top">
+<ns0:path fill="#e5d8bd" stroke="#e5d8bd" stroke-width="2" d="M572.21,-788C572.21,-788 543.04,-788 543.04,-788 537.71,-788 532.38,-782.67 532.38,-777.33 532.38,-777.33 532.38,-766.67 532.38,-766.67 532.38,-761.33 537.71,-756 543.04,-756 543.04,-756 572.21,-756 572.21,-756 577.54,-756 582.88,-761.33 582.88,-766.67 582.88,-766.67 582.88,-777.33 582.88,-777.33 582.88,-782.67 577.54,-788 572.21,-788" />
+<ns0:text text-anchor="middle" x="557.62" y="-774.5" font-family="Arial" font-size="10.00">QTarget</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-762.5" font-family="Arial" font-size="10.00">Beat</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node37" class="node">
+<ns0:title>nauert.qtargetitems.QTargetItem</ns0:title>
+<ns0:g id="a_node37"><ns0:a ns1:href="../api/api/nauert/qtargetitems.html#nauert.qtargetitems.QTargetItem" ns1:title="QTarget\nItem" target="_top">
+<ns0:ellipse fill="none" stroke="#e5d8bd" stroke-width="2" cx="425.62" cy="-782" rx="35.71" ry="22.63" />
+<ns0:text text-anchor="middle" x="425.62" y="-784.5" font-family="Arial" font-size="10.00">QTarget</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-772.5" font-family="Arial" font-size="10.00">Item</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node38" class="node">
+<ns0:title>nauert.qtargetitems.QTargetMeasure</ns0:title>
+<ns0:g id="a_node38"><ns0:a ns1:href="../api/api/nauert/qtargetitems.html#nauert.qtargetitems.QTargetMeasure" ns1:title="QTarget\nMeasure" target="_top">
+<ns0:path fill="#e5d8bd" stroke="#e5d8bd" stroke-width="2" d="M686.08,-808C686.08,-808 653.92,-808 653.92,-808 648.58,-808 643.25,-802.67 643.25,-797.33 643.25,-797.33 643.25,-786.67 643.25,-786.67 643.25,-781.33 648.58,-776 653.92,-776 653.92,-776 686.08,-776 686.08,-776 691.42,-776 696.75,-781.33 696.75,-786.67 696.75,-786.67 696.75,-797.33 696.75,-797.33 696.75,-802.67 691.42,-808 686.08,-808" />
+<ns0:text text-anchor="middle" x="670" y="-794.5" font-family="Arial" font-size="10.00">QTarget</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-782.5" font-family="Arial" font-size="10.00">Measure</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node39" class="node">
+<ns0:title>nauert.qtargets.BeatwiseQTarget</ns0:title>
+<ns0:g id="a_node39"><ns0:a ns1:href="../api/api/nauert/qtargets.html#nauert.qtargets.BeatwiseQTarget" ns1:title="Beatwise\nQTarget" target="_top">
+<ns0:path fill="#fddaec" stroke="#fddaec" stroke-width="2" d="M575.21,-692C575.21,-692 540.04,-692 540.04,-692 534.71,-692 529.38,-686.67 529.38,-681.33 529.38,-681.33 529.38,-670.67 529.38,-670.67 529.38,-665.33 534.71,-660 540.04,-660 540.04,-660 575.21,-660 575.21,-660 580.54,-660 585.88,-665.33 585.88,-670.67 585.88,-670.67 585.88,-681.33 585.88,-681.33 585.88,-686.67 580.54,-692 575.21,-692" />
+<ns0:text text-anchor="middle" x="557.62" y="-678.5" font-family="Arial" font-size="10.00">Beatwise</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-666.5" font-family="Arial" font-size="10.00">QTarget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node40" class="node">
+<ns0:title>nauert.qtargets.MeasurewiseQTarget</ns0:title>
+<ns0:g id="a_node40"><ns0:a ns1:href="../api/api/nauert/qtargets.html#nauert.qtargets.MeasurewiseQTarget" ns1:title="Measurewise\nQTarget" target="_top">
+<ns0:path fill="#fddaec" stroke="#fddaec" stroke-width="2" d="M696.21,-712C696.21,-712 643.79,-712 643.79,-712 638.46,-712 633.12,-706.67 633.12,-701.33 633.12,-701.33 633.12,-690.67 633.12,-690.67 633.12,-685.33 638.46,-680 643.79,-680 643.79,-680 696.21,-680 696.21,-680 701.54,-680 706.88,-685.33 706.88,-690.67 706.88,-690.67 706.88,-701.33 706.88,-701.33 706.88,-706.67 701.54,-712 696.21,-712" />
+<ns0:text text-anchor="middle" x="670" y="-698.5" font-family="Arial" font-size="10.00">Measurewise</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-686.5" font-family="Arial" font-size="10.00">QTarget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node41" class="node">
+<ns0:title>nauert.qtargets.QTarget</ns0:title>
+<ns0:g id="a_node41"><ns0:a ns1:href="../api/api/nauert/qtargets.html#nauert.qtargets.QTarget" ns1:title="QTarget" target="_top">
+<ns0:ellipse fill="none" stroke="#fddaec" stroke-width="2" cx="425.62" cy="-698" rx="35.71" ry="14.14" />
+<ns0:text text-anchor="middle" x="425.62" y="-694.5" font-family="Arial" font-size="10.00">QTarget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node42" class="node">
+<ns0:title>nauert.quantizationjob.QuantizationJob</ns0:title>
+<ns0:g id="a_node42"><ns0:a ns1:href="../api/api/nauert/quantizationjob.html#nauert.quantizationjob.QuantizationJob" ns1:title="Quantization\nJob" target="_top">
+<ns0:path fill="#f2f2f2" stroke="#f2f2f2" stroke-width="2" d="M311.96,-622C311.96,-622 262.54,-622 262.54,-622 257.21,-622 251.88,-616.67 251.88,-611.33 251.88,-611.33 251.88,-600.67 251.88,-600.67 251.88,-595.33 257.21,-590 262.54,-590 262.54,-590 311.96,-590 311.96,-590 317.29,-590 322.62,-595.33 322.62,-600.67 322.62,-600.67 322.62,-611.33 322.62,-611.33 322.62,-616.67 317.29,-622 311.96,-622" />
+<ns0:text text-anchor="middle" x="287.25" y="-608.5" font-family="Arial" font-size="10.00">Quantization</ns0:text>
+<ns0:text text-anchor="middle" x="287.25" y="-596.5" font-family="Arial" font-size="10.00">Job</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node43" class="node">
+<ns0:title>nauert.searchtrees.SearchTree</ns0:title>
+<ns0:g id="a_node43"><ns0:a ns1:href="../api/api/nauert/searchtrees.html#nauert.searchtrees.SearchTree" ns1:title="Search\nTree" target="_top">
+<ns0:ellipse fill="none" stroke="#fbb4ae" stroke-width="2" cx="425.62" cy="-249" rx="33.06" ry="22.63" />
+<ns0:text text-anchor="middle" x="425.62" y="-251.5" font-family="Arial" font-size="10.00">Search</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-239.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node44" class="node">
+<ns0:title>nauert.searchtrees.UnweightedSearchTree</ns0:title>
+<ns0:g id="a_node44"><ns0:a ns1:href="../api/api/nauert/searchtrees.html#nauert.searchtrees.UnweightedSearchTree" ns1:title="Unweighted\nSearch\nTree" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M579.5,-252C579.5,-252 535.75,-252 535.75,-252 529.75,-252 523.75,-246 523.75,-240 523.75,-240 523.75,-220 523.75,-220 523.75,-214 529.75,-208 535.75,-208 535.75,-208 579.5,-208 579.5,-208 585.5,-208 591.5,-214 591.5,-220 591.5,-220 591.5,-240 591.5,-240 591.5,-246 585.5,-252 579.5,-252" />
+<ns0:text text-anchor="middle" x="557.62" y="-238.5" font-family="Arial" font-size="10.00">Unweighted</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-226.5" font-family="Arial" font-size="10.00">Search</ns0:text>
+<ns0:text text-anchor="middle" x="557.62" y="-214.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node45" class="node">
+<ns0:title>nauert.searchtrees.WeightedSearchTree</ns0:title>
+<ns0:g id="a_node45"><ns0:a ns1:href="../api/api/nauert/searchtrees.html#nauert.searchtrees.WeightedSearchTree" ns1:title="Weighted\nSearch\nTree" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M686.25,-272C686.25,-272 653.75,-272 653.75,-272 647.75,-272 641.75,-266 641.75,-260 641.75,-260 641.75,-240 641.75,-240 641.75,-234 647.75,-228 653.75,-228 653.75,-228 686.25,-228 686.25,-228 692.25,-228 698.25,-234 698.25,-240 698.25,-240 698.25,-260 698.25,-260 698.25,-266 692.25,-272 686.25,-272" />
+<ns0:text text-anchor="middle" x="670" y="-258.5" font-family="Arial" font-size="10.00">Weighted</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-246.5" font-family="Arial" font-size="10.00">Search</ns0:text>
+<ns0:text text-anchor="middle" x="670" y="-234.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node46" class="node">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeContainer</ns0:title>
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M304.25,-1294C304.25,-1294 270.25,-1294 270.25,-1294 264.25,-1294 258.25,-1288 258.25,-1282 258.25,-1282 258.25,-1262 258.25,-1262 258.25,-1256 264.25,-1250 270.25,-1250 270.25,-1250 304.25,-1250 304.25,-1250 310.25,-1250 316.25,-1256 316.25,-1262 316.25,-1262 316.25,-1282 316.25,-1282 316.25,-1288 310.25,-1294 304.25,-1294" />
+<ns0:text text-anchor="middle" x="287.25" y="-1280.5" font-family="Arial" font-size="10.00">Unique</ns0:text>
+<ns0:text text-anchor="middle" x="287.25" y="-1268.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+<ns0:text text-anchor="middle" x="287.25" y="-1256.5" font-family="Arial" font-size="10.00">Container</ns0:text>
+</ns0:g>
+
+<ns0:g id="node47" class="node">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeList</ns0:title>
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M437,-1294C437,-1294 414.25,-1294 414.25,-1294 408.25,-1294 402.25,-1288 402.25,-1282 402.25,-1282 402.25,-1262 402.25,-1262 402.25,-1256 408.25,-1250 414.25,-1250 414.25,-1250 437,-1250 437,-1250 443,-1250 449,-1256 449,-1262 449,-1262 449,-1282 449,-1282 449,-1288 443,-1294 437,-1294" />
+<ns0:text text-anchor="middle" x="425.62" y="-1280.5" font-family="Arial" font-size="10.00">Unique</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1268.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+<ns0:text text-anchor="middle" x="425.62" y="-1256.5" font-family="Arial" font-size="10.00">List</ns0:text>
+</ns0:g>
+
+<ns0:g id="node48" class="node">
+<ns0:title>uqbar.containers.unique_tree.UniqueTreeNode</ns0:title>
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M158,-1294C158,-1294 135.25,-1294 135.25,-1294 129.25,-1294 123.25,-1288 123.25,-1282 123.25,-1282 123.25,-1262 123.25,-1262 123.25,-1256 129.25,-1250 135.25,-1250 135.25,-1250 158,-1250 158,-1250 164,-1250 170,-1256 170,-1262 170,-1262 170,-1282 170,-1282 170,-1288 164,-1294 158,-1294" />
+<ns0:text text-anchor="middle" x="146.62" y="-1280.5" font-family="Arial" font-size="10.00">Unique</ns0:text>
+<ns0:text text-anchor="middle" x="146.62" y="-1268.5" font-family="Arial" font-size="10.00">Tree</ns0:text>
+<ns0:text text-anchor="middle" x="146.62" y="-1256.5" font-family="Arial" font-size="10.00">Node</ns0:text>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

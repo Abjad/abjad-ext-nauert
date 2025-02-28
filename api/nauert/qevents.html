@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qevents &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/qevents.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="qeventsequence" href="qeventsequence.html" />
+    <link rel="prev" title="qeventproxy" href="qeventproxy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">nauert</a></li>
+      <li class="breadcrumb-item active">qevents</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/qevents.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nauert.qevents">
+<span id="qevents"></span><span id="nauert-qevents"></span><h1>qevents<a class="headerlink" href="#module-nauert.qevents" title="Link to this heading"></a></h1>
+<div class="svg-container docutils container">
+<div class="graphviz"><object data="../../_images/inheritance-683a2f79161ce5e049c94dd38470ce0ad9043cac.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">digraph InheritanceGraph {
+    graph [bgcolor=transparent,
+        color=lightsteelblue2,
+        fontname=Arial,
+        fontsize=10,
+        outputorder=edgesfirst,
+        overlap=prism,
+        penwidth=2,
+        rankdir=LR,
+        splines=spline,
+        style=&quot;dashed, rounded&quot;,
+        truecolor=true];
+    node [colorscheme=pastel19,
+        fontname=Arial,
+        fontsize=10,
+        height=0,
+        penwidth=2,
+        shape=box,
+        style=&quot;filled, rounded&quot;,
+        width=0];
+    edge [color=lightslategrey,
+        penwidth=1];
+    subgraph cluster_abc {
+        graph [label=abc];
+        node [color=1];
+        &quot;abc.ABC&quot; [URL=&quot;https://docs.python.org/3/library/abc.html#abc.ABC&quot;,
+            label=ABC,
+            target=_top];
+    }
+    subgraph cluster_builtins {
+        graph [label=builtins];
+        node [color=2];
+        &quot;builtins.object&quot; [URL=&quot;https://docs.python.org/3/library/functions.html#object&quot;,
+            label=object,
+            target=_top];
+    }
+    subgraph &quot;cluster_nauert.qevents&quot; {
+        graph [label=&quot;nauert.qevents&quot;];
+        node [color=3];
+        &quot;nauert.qevents.PitchedQEvent&quot; [URL=&quot;../api/nauert/qevents.html#nauert.qevents.PitchedQEvent&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Pitched\nQEvent&quot;,
+            target=_top];
+        &quot;nauert.qevents.QEvent&quot; [URL=&quot;../api/nauert/qevents.html#nauert.qevents.QEvent&quot;,
+            color=black,
+            fontcolor=white,
+            label=QEvent,
+            shape=oval,
+            style=&quot;bold, filled&quot;,
+            target=_top];
+        &quot;nauert.qevents.SilentQEvent&quot; [URL=&quot;../api/nauert/qevents.html#nauert.qevents.SilentQEvent&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Silent\nQEvent&quot;,
+            target=_top];
+        &quot;nauert.qevents.TerminalQEvent&quot; [URL=&quot;../api/nauert/qevents.html#nauert.qevents.TerminalQEvent&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Terminal\nQEvent&quot;,
+            target=_top];
+        &quot;nauert.qevents.QEvent&quot; -&gt; &quot;nauert.qevents.PitchedQEvent&quot;;
+        &quot;nauert.qevents.QEvent&quot; -&gt; &quot;nauert.qevents.SilentQEvent&quot;;
+        &quot;nauert.qevents.QEvent&quot; -&gt; &quot;nauert.qevents.TerminalQEvent&quot;;
+    }
+    &quot;abc.ABC&quot; -&gt; &quot;nauert.qevents.QEvent&quot;;
+    &quot;builtins.object&quot; -&gt; &quot;abc.ABC&quot;;
+}</p></object></div>
+</div>
+<hr/><p class="section-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QEvent</span></code></a></p></td>
+<td><p>Abstract Q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent">
+<em class="property"><span class="pre">abstract</span> </em><em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qevents.</span></span><span class="sig-name descname"><span class="pre">QEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Offset</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Offset((0,</span> <span class="pre">1))</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qevents.html#QEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.QEvent" title="Link to this definition"></a></dt>
+<dd><p>Abstract Q-event.</p>
+<p>Represents an attack point to be quantized.</p>
+<p>All <code class="docutils literal notranslate"><span class="pre">QEvents</span></code> possess a rational offset in milliseconds, and an optional
+index for disambiguating events which fall on the same offset in a
+<code class="docutils literal notranslate"><span class="pre">QGrid</span></code>.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.QEvent.__lt__" title="nauert.qevents.QEvent.__lt__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__lt__</span></code></a></p></td>
+<td><p>Is true when <cite>epxr</cite> is a q-event with offset greater than that of this q-event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.QEvent.__repr__" title="nauert.qevents.QEvent.__repr__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__repr__</span></code></a></p></td>
+<td><p>Gets repr.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.QEvent.attachments" title="nauert.qevents.QEvent.attachments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attachments</span></code></a></p></td>
+<td><p>The attachments of the QEvent.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.QEvent.from_offset_pitches_attachments" title="nauert.qevents.QEvent.from_offset_pitches_attachments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_offset_pitches_attachments</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.QEvent.index" title="nauert.qevents.QEvent.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></a></p></td>
+<td><p>The optional index, for sorting QEvents with identical offsets.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.QEvent.offset" title="nauert.qevents.QEvent.offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">offset</span></code></a></p></td>
+<td><p>The offset in milliseconds of the event.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent.__lt__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#QEvent.__lt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.QEvent.__lt__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>epxr</cite> is a q-event with offset greater than that of this
+q-event. Otherwise false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent.__repr__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#QEvent.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.QEvent.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Gets repr.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent.from_offset_pitches_attachments">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_offset_pitches_attachments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#QEvent.from_offset_pitches_attachments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.QEvent.from_offset_pitches_attachments" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent.attachments">
+<span class="sig-name descname"><span class="pre">attachments</span></span><a class="headerlink" href="#nauert.qevents.QEvent.attachments" title="Link to this definition"></a></dt>
+<dd><p>The attachments of the QEvent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent.index">
+<span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#nauert.qevents.QEvent.index" title="Link to this definition"></a></dt>
+<dd><p>The optional index, for sorting QEvents with identical offsets.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.QEvent.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#nauert.qevents.QEvent.offset" title="Link to this definition"></a></dt>
+<dd><p>The offset in milliseconds of the event.</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr/><p class="section-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.PitchedQEvent" title="nauert.qevents.PitchedQEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PitchedQEvent</span></code></a></p></td>
+<td><p>Pitched q-event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.SilentQEvent" title="nauert.qevents.SilentQEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SilentQEvent</span></code></a></p></td>
+<td><p>Silent q-event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.TerminalQEvent" title="nauert.qevents.TerminalQEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TerminalQEvent</span></code></a></p></td>
+<td><p>Terminal q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qevents.</span></span><span class="sig-name descname"><span class="pre">PitchedQEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Offset</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Offset((0,</span> <span class="pre">1))</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qevents.html#PitchedQEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.PitchedQEvent" title="Link to this definition"></a></dt>
+<dd><p>Pitched q-event.</p>
+<p>Indicates the onset of a period of pitched material in a q-event sequence.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">PitchedQEvent</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">pitches</span><span class="p">)</span>
+<span class="go">PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;), NamedPitch(&quot;cs&#39;&quot;), NamedPitch(&quot;e&#39;&quot;)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.PitchedQEvent.__eq__" title="nauert.qevents.PitchedQEvent.__eq__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code></a></p></td>
+<td><p>Is true when <cite>argument</cite> is a pitched q-event with offset, pitches, attachments and index equal to those of this pitched q-event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.PitchedQEvent.__hash__" title="nauert.qevents.PitchedQEvent.__hash__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__hash__</span></code></a></p></td>
+<td><p>Hashes pitched q-event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.PitchedQEvent.__repr__" title="nauert.qevents.PitchedQEvent.__repr__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__repr__</span></code></a></p></td>
+<td><p>Gets repr.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.PitchedQEvent.attachments" title="nauert.qevents.PitchedQEvent.attachments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attachments</span></code></a></p></td>
+<td><p>Gets attachments of pitched q-event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.PitchedQEvent.pitches" title="nauert.qevents.PitchedQEvent.pitches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pitches</span></code></a></p></td>
+<td><p>Gets pitches of pitched q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.__eq__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#PitchedQEvent.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.PitchedQEvent.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>argument</cite> is a pitched q-event with offset, pitches,
+attachments and index equal to those of this pitched q-event. Otherwise
+false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.__hash__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#PitchedQEvent.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.PitchedQEvent.__hash__" title="Link to this definition"></a></dt>
+<dd><p>Hashes pitched q-event.</p>
+<p>Required to be explicitly redefined on Python 3 if __eq__ changes.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.__lt__">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#nauert.qevents.PitchedQEvent.__lt__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>epxr</cite> is a q-event with offset greater than that of this
+q-event. Otherwise false.</p>
+</dd></dl>
+
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.__repr__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#PitchedQEvent.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.PitchedQEvent.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Gets repr.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.from_offset_pitches_attachments">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">from_offset_pitches_attachments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a></span></span><a class="headerlink" href="#nauert.qevents.PitchedQEvent.from_offset_pitches_attachments" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.attachments">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">attachments</span></span><a class="headerlink" href="#nauert.qevents.PitchedQEvent.attachments" title="Link to this definition"></a></dt>
+<dd><p>Gets attachments of pitched q-event.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.index">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#nauert.qevents.PitchedQEvent.index" title="Link to this definition"></a></dt>
+<dd><p>The optional index, for sorting QEvents with identical offsets.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.offset">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#nauert.qevents.PitchedQEvent.offset" title="Link to this definition"></a></dt>
+<dd><p>The offset in milliseconds of the event.</p>
+</dd></dl>
+
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.PitchedQEvent.pitches">
+<span class="sig-name descname"><span class="pre">pitches</span></span><a class="headerlink" href="#nauert.qevents.PitchedQEvent.pitches" title="Link to this definition"></a></dt>
+<dd><p>Gets pitches of pitched q-event.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qevents.</span></span><span class="sig-name descname"><span class="pre">SilentQEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Offset</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Offset((0,</span> <span class="pre">1))</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qevents.html#SilentQEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.SilentQEvent" title="Link to this definition"></a></dt>
+<dd><p>Silent q-event.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q_event</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">SilentQEvent</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event</span>
+<span class="go">SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.SilentQEvent.__eq__" title="nauert.qevents.SilentQEvent.__eq__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code></a></p></td>
+<td><p>Is true when <cite>argument</cite> is a silent q-event with offset, attachments and index equal to those of this silent q-event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.SilentQEvent.__hash__" title="nauert.qevents.SilentQEvent.__hash__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__hash__</span></code></a></p></td>
+<td><p>Hashes silent q-event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.SilentQEvent.attachments" title="nauert.qevents.SilentQEvent.attachments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attachments</span></code></a></p></td>
+<td><p>Gets attachments of silent q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.__eq__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#SilentQEvent.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.SilentQEvent.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>argument</cite> is a silent q-event with offset, attachments
+and index equal to those of this silent q-event. Otherwise false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.__hash__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#SilentQEvent.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.SilentQEvent.__hash__" title="Link to this definition"></a></dt>
+<dd><p>Hashes silent q-event.</p>
+<p>Required to be explicitly redefined on Python 3 if __eq__ changes.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.__lt__">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#nauert.qevents.SilentQEvent.__lt__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>epxr</cite> is a q-event with offset greater than that of this
+q-event. Otherwise false.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.__repr__">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#nauert.qevents.SilentQEvent.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Gets repr.</p>
+</dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.from_offset_pitches_attachments">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">from_offset_pitches_attachments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a></span></span><a class="headerlink" href="#nauert.qevents.SilentQEvent.from_offset_pitches_attachments" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.attachments">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">attachments</span></span><a class="headerlink" href="#nauert.qevents.SilentQEvent.attachments" title="Link to this definition"></a></dt>
+<dd><p>Gets attachments of silent q-event.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.index">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#nauert.qevents.SilentQEvent.index" title="Link to this definition"></a></dt>
+<dd><p>The optional index, for sorting QEvents with identical offsets.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.SilentQEvent.offset">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#nauert.qevents.SilentQEvent.offset" title="Link to this definition"></a></dt>
+<dd><p>The offset in milliseconds of the event.</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qevents.</span></span><span class="sig-name descname"><span class="pre">TerminalQEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Offset</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Offset((0,</span> <span class="pre">1))</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qevents.html#TerminalQEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.TerminalQEvent" title="Link to this definition"></a></dt>
+<dd><p>Terminal q-event.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nauert</span><span class="o">.</span><span class="n">TerminalQEvent</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="go">TerminalQEvent(offset=Offset((1000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</div>
+<p>Carries no significance outside the context of a <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qevents.TerminalQEvent.__eq__" title="nauert.qevents.TerminalQEvent.__eq__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code></a></p></td>
+<td><p>Is true when <cite>argument</cite> is a terminal q-event with offset equal to that of this terminal q-event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qevents.TerminalQEvent.__hash__" title="nauert.qevents.TerminalQEvent.__hash__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__hash__</span></code></a></p></td>
+<td><p>Hashes terminal q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.__eq__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#TerminalQEvent.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.TerminalQEvent.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>argument</cite> is a terminal q-event with offset equal to that
+of this terminal q-event. Otherwise false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.__hash__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qevents.html#TerminalQEvent.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qevents.TerminalQEvent.__hash__" title="Link to this definition"></a></dt>
+<dd><p>Hashes terminal q-event.</p>
+<p>Required to be explicitly redefined on Python 3 if __eq__ changes.</p>
+</dd></dl>
+
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.__lt__">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#nauert.qevents.TerminalQEvent.__lt__" title="Link to this definition"></a></dt>
+<dd><p>Is true when <cite>epxr</cite> is a q-event with offset greater than that of this
+q-event. Otherwise false.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.__repr__">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#nauert.qevents.TerminalQEvent.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Gets repr.</p>
+</dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.from_offset_pitches_attachments">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">from_offset_pitches_attachments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a></span></span><a class="headerlink" href="#nauert.qevents.TerminalQEvent.from_offset_pitches_attachments" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</div>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.attachments">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">attachments</span></span><a class="headerlink" href="#nauert.qevents.TerminalQEvent.attachments" title="Link to this definition"></a></dt>
+<dd><p>The attachments of the QEvent.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.index">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#nauert.qevents.TerminalQEvent.index" title="Link to this definition"></a></dt>
+<dd><p>The optional index, for sorting QEvents with identical offsets.</p>
+</dd></dl>
+
+</div>
+<div class="inherited docutils container">
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qevents.TerminalQEvent.offset">
+<span class="sig-prename descclassname"><span class="pre">(</span><a class="reference internal" href="#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="descclassname docutils literal notranslate"><span class="pre">QEvent</span></code></a><span class="pre">).</span></span><span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#nauert.qevents.TerminalQEvent.offset" title="Link to this definition"></a></dt>
+<dd><p>The offset in milliseconds of the event.</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="qeventproxy.html" class="btn btn-neutral float-left" title="qeventproxy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qeventsequence.html" class="btn btn-neutral float-right" title="qeventsequence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

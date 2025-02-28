@@ -1,0 +1,101 @@
+.. _nauert--qeventsequence:
+
+qeventsequence
+==============
+
+.. automodule:: nauert.qeventsequence
+
+.. currentmodule:: nauert.qeventsequence
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.qeventsequence
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QEventSequence
+
+.. autoclass:: QEventSequence
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __contains__
+      __eq__
+      __getitem__
+      __hash__
+      __iter__
+      __len__
+      duration_in_ms
+      from_millisecond_durations
+      from_millisecond_offsets
+      from_millisecond_pitch_attachment_tuples
+      from_millisecond_pitch_pairs
+      from_tempo_scaled_durations
+      from_tempo_scaled_leaves
+      sequence
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QEventSequence.__contains__
+
+   .. automethod:: QEventSequence.__eq__
+
+   .. automethod:: QEventSequence.__getitem__
+
+   .. automethod:: QEventSequence.__hash__
+
+   .. automethod:: QEventSequence.__iter__
+
+   .. automethod:: QEventSequence.__len__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: QEventSequence.from_millisecond_durations
+
+   .. automethod:: QEventSequence.from_millisecond_offsets
+
+   .. automethod:: QEventSequence.from_millisecond_pitch_attachment_tuples
+
+   .. automethod:: QEventSequence.from_millisecond_pitch_pairs
+
+   .. automethod:: QEventSequence.from_tempo_scaled_durations
+
+   .. automethod:: QEventSequence.from_tempo_scaled_leaves
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QEventSequence.duration_in_ms
+
+   .. autoattribute:: QEventSequence.sequence

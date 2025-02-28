@@ -1,0 +1,436 @@
+Nauert API
+==========
+
+.. toctree::
+   :hidden:
+
+   nauert/index
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert <nauert>`
+   :class: section-header
+
+Extension for quantizing rhythm, based on Paul Nauert's Q-Grid technique.
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.attackpointoptimizers <nauert--attackpointoptimizers>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.attackpointoptimizers.AttackPointOptimizer
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer
+   ~nauert.attackpointoptimizers.NaiveAttackPointOptimizer
+   ~nauert.attackpointoptimizers.NullAttackPointOptimizer
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.gracehandlers <nauert--gracehandlers>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.gracehandlers.GraceHandler
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.gracehandlers.CollapsingGraceHandler
+   ~nauert.gracehandlers.ConcatenatingGraceHandler
+   ~nauert.gracehandlers.DiscardingGraceHandler
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.heuristics <nauert--heuristics>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.heuristics.Heuristic
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.heuristics.DistanceHeuristic
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.jobhandlers <nauert--jobhandlers>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.jobhandlers.JobHandler
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.jobhandlers.ParallelJobHandler
+   ~nauert.jobhandlers.ParallelJobHandlerWorker
+   ~nauert.jobhandlers.SerialJobHandler
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qeventproxy <nauert--qeventproxy>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qeventproxy.QEventProxy
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qevents <nauert--qevents>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qevents.QEvent
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qevents.PitchedQEvent
+   ~nauert.qevents.SilentQEvent
+   ~nauert.qevents.TerminalQEvent
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qeventsequence <nauert--qeventsequence>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qeventsequence.QEventSequence
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qgrid <nauert--qgrid>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qgrid.QGrid
+   ~nauert.qgrid.QGridContainer
+   ~nauert.qgrid.QGridLeaf
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qschemaitems <nauert--qschemaitems>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qschemaitems.QSchemaItem
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qschemaitems.BeatwiseQSchemaItem
+   ~nauert.qschemaitems.MeasurewiseQSchemaItem
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qschemas <nauert--qschemas>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qschemas.QSchema
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qschemas.BeatwiseQSchema
+   ~nauert.qschemas.MeasurewiseQSchema
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qtargetitems <nauert--qtargetitems>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qtargetitems.QTargetItem
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qtargetitems.QTargetBeat
+   ~nauert.qtargetitems.QTargetMeasure
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.qtargets <nauert--qtargets>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qtargets.QTarget
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.qtargets.BeatwiseQTarget
+   ~nauert.qtargets.MeasurewiseQTarget
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.quantizationjob <nauert--quantizationjob>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.quantizationjob.QuantizationJob
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.quantizer <nauert--quantizer>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.quantizer.quantize
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: :ref:`nauert.searchtrees <nauert--searchtrees>`
+   :class: section-header
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.searchtrees.SearchTree
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: subsection-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~nauert.searchtrees.UnweightedSearchTree
+   ~nauert.searchtrees.WeightedSearchTree

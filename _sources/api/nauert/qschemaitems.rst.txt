@@ -1,0 +1,152 @@
+.. _nauert--qschemaitems:
+
+qschemaitems
+============
+
+.. automodule:: nauert.qschemaitems
+
+.. currentmodule:: nauert.qschemaitems
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.qschemaitems
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QSchemaItem
+
+.. autoclass:: QSchemaItem
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      search_tree
+      tempo
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QSchemaItem.search_tree
+
+   .. autoattribute:: QSchemaItem.tempo
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~BeatwiseQSchemaItem
+   ~MeasurewiseQSchemaItem
+
+.. autoclass:: BeatwiseQSchemaItem
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      beatspan
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: BeatwiseQSchemaItem.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: BeatwiseQSchemaItem.beatspan
+
+   .. container:: inherited
+
+      .. autoattribute:: BeatwiseQSchemaItem.search_tree
+
+   .. container:: inherited
+
+      .. autoattribute:: BeatwiseQSchemaItem.tempo
+
+.. autoclass:: MeasurewiseQSchemaItem
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      beatspan
+      time_signature
+      use_full_measure
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: MeasurewiseQSchemaItem.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: MeasurewiseQSchemaItem.beatspan
+
+   .. container:: inherited
+
+      .. autoattribute:: MeasurewiseQSchemaItem.search_tree
+
+   .. container:: inherited
+
+      .. autoattribute:: MeasurewiseQSchemaItem.tempo
+
+   .. autoattribute:: MeasurewiseQSchemaItem.time_signature
+
+   .. autoattribute:: MeasurewiseQSchemaItem.use_full_measure

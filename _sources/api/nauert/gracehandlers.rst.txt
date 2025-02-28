@@ -1,0 +1,167 @@
+.. _nauert--gracehandlers:
+
+gracehandlers
+=============
+
+.. automodule:: nauert.gracehandlers
+
+.. currentmodule:: nauert.gracehandlers
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.gracehandlers
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~GraceHandler
+
+.. autoclass:: GraceHandler
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: GraceHandler.__call__
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~CollapsingGraceHandler
+   ~ConcatenatingGraceHandler
+   ~DiscardingGraceHandler
+
+.. autoclass:: CollapsingGraceHandler
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: CollapsingGraceHandler.__call__
+
+.. autoclass:: ConcatenatingGraceHandler
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      discard_grace_rest
+      grace_duration
+      handle_orphaned_q_event_proxies
+      replace_rest_with_final_grace_note
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: ConcatenatingGraceHandler.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: ConcatenatingGraceHandler.handle_orphaned_q_event_proxies
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: ConcatenatingGraceHandler.discard_grace_rest
+
+   .. autoattribute:: ConcatenatingGraceHandler.grace_duration
+
+   .. autoattribute:: ConcatenatingGraceHandler.replace_rest_with_final_grace_note
+
+.. autoclass:: DiscardingGraceHandler
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      discarded_q_events
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: DiscardingGraceHandler.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: DiscardingGraceHandler.discarded_q_events

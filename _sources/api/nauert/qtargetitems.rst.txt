@@ -1,0 +1,172 @@
+.. _nauert--qtargetitems:
+
+qtargetitems
+============
+
+.. automodule:: nauert.qtargetitems
+
+.. currentmodule:: nauert.qtargetitems
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.qtargetitems
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Abstract Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QTargetItem
+
+.. autoclass:: QTargetItem
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      duration_in_ms
+      offset_in_ms
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QTargetItem.duration_in_ms
+
+   .. autoattribute:: QTargetItem.offset_in_ms
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QTargetBeat
+   ~QTargetMeasure
+
+.. autoclass:: QTargetBeat
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      __repr__
+      beatspan
+      duration_in_ms
+      offset_in_ms
+      q_events
+      q_grid
+      q_grids
+      search_tree
+      tempo
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QTargetBeat.__call__
+
+   .. automethod:: QTargetBeat.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QTargetBeat.beatspan
+
+   .. autoattribute:: QTargetBeat.duration_in_ms
+
+   .. autoattribute:: QTargetBeat.offset_in_ms
+
+   .. autoattribute:: QTargetBeat.q_events
+
+   .. autoattribute:: QTargetBeat.q_grid
+
+   .. autoattribute:: QTargetBeat.q_grids
+
+   .. autoattribute:: QTargetBeat.search_tree
+
+   .. autoattribute:: QTargetBeat.tempo
+
+.. autoclass:: QTargetMeasure
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      beats
+      duration_in_ms
+      offset_in_ms
+      search_tree
+      tempo
+      time_signature
+      use_full_measure
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QTargetMeasure.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QTargetMeasure.beats
+
+   .. autoattribute:: QTargetMeasure.duration_in_ms
+
+   .. autoattribute:: QTargetMeasure.offset_in_ms
+
+   .. autoattribute:: QTargetMeasure.search_tree
+
+   .. autoattribute:: QTargetMeasure.tempo
+
+   .. autoattribute:: QTargetMeasure.time_signature
+
+   .. autoattribute:: QTargetMeasure.use_full_measure

@@ -1,0 +1,40 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="194pt" height="92pt" viewBox="0.00 0.00 193.50 92.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 88)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-14C20,-14 54.25,-14 54.25,-14 60.25,-14 66.25,-20 66.25,-26 66.25,-26 66.25,-58 66.25,-58 66.25,-64 60.25,-70 54.25,-70 54.25,-70 20,-70 20,-70 14,-70 8,-64 8,-58 8,-58 8,-26 8,-26 8,-20 14,-14 20,-14" />
+<ns0:text text-anchor="middle" x="37.12" y="-56.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_nauert.qeventproxy</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-8C98.25,-8 173.5,-8 173.5,-8 179.5,-8 185.5,-14 185.5,-20 185.5,-20 185.5,-64 185.5,-64 185.5,-70 179.5,-76 173.5,-76 173.5,-76 98.25,-76 98.25,-76 92.25,-76 86.25,-70 86.25,-64 86.25,-64 86.25,-20 86.25,-20 86.25,-14 92.25,-8 98.25,-8" />
+<ns0:text text-anchor="middle" x="135.88" y="-62.5" font-family="Arial" font-size="10.00">nauert.qeventproxy</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>builtins.object-&gt;nauert.qeventproxy.QEventProxy</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.01,-32C70.64,-32 85.44,-32 98.84,-32" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="98.62,-35.5 108.62,-32 98.62,-28.5 98.62,-35.5" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M51.58,-42C51.58,-42 22.67,-42 22.67,-42 19.33,-42 16,-38.67 16,-35.33 16,-35.33 16,-28.67 16,-28.67 16,-25.33 19.33,-22 22.67,-22 22.67,-22 51.58,-22 51.58,-22 54.92,-22 58.25,-25.33 58.25,-28.67 58.25,-28.67 58.25,-35.33 58.25,-35.33 58.25,-38.67 54.92,-42 51.58,-42" />
+<ns0:text text-anchor="middle" x="37.12" y="-28.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>nauert.qeventproxy.QEventProxy</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../api/api/nauert/qeventproxy.html#nauert.qeventproxy.QEventProxy" ns1:title="QEvent\nProxy" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M149.21,-48C149.21,-48 121.54,-48 121.54,-48 116.21,-48 110.88,-42.67 110.88,-37.33 110.88,-37.33 110.88,-26.67 110.88,-26.67 110.88,-21.33 116.21,-16 121.54,-16 121.54,-16 149.21,-16 149.21,-16 154.54,-16 159.88,-21.33 159.88,-26.67 159.88,-26.67 159.88,-37.33 159.88,-37.33 159.88,-42.67 154.54,-48 149.21,-48" />
+<ns0:text text-anchor="middle" x="135.38" y="-34.5" font-family="Arial" font-size="10.00" fill="white">QEvent</ns0:text>
+<ns0:text text-anchor="middle" x="135.38" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Proxy</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

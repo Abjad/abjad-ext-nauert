@@ -1,0 +1,402 @@
+.. _nauert--qgrid:
+
+qgrid
+=====
+
+.. automodule:: nauert.qgrid
+
+.. currentmodule:: nauert.qgrid
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.qgrid
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QGrid
+   ~QGridContainer
+   ~QGridLeaf
+
+.. autoclass:: QGrid
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      __copy__
+      __eq__
+      __hash__
+      __repr__
+      distance
+      fit_q_events
+      leaves
+      next_downbeat
+      offsets
+      pretty_rtm_format
+      regroup_leaves_with_unencessary_divisions
+      root_node
+      rtm_format
+      sort_q_events_by_index
+      subdivide_leaf
+      subdivide_leaves
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QGrid.__call__
+
+   .. automethod:: QGrid.__copy__
+
+   .. automethod:: QGrid.__eq__
+
+   .. automethod:: QGrid.__hash__
+
+   .. automethod:: QGrid.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: QGrid.fit_q_events
+
+   .. automethod:: QGrid.regroup_leaves_with_unencessary_divisions
+
+   .. automethod:: QGrid.sort_q_events_by_index
+
+   .. automethod:: QGrid.subdivide_leaf
+
+   .. automethod:: QGrid.subdivide_leaves
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QGrid.distance
+
+   .. autoattribute:: QGrid.leaves
+
+   .. autoattribute:: QGrid.next_downbeat
+
+   .. autoattribute:: QGrid.offsets
+
+   .. autoattribute:: QGrid.pretty_rtm_format
+
+   .. autoattribute:: QGrid.root_node
+
+   .. autoattribute:: QGrid.rtm_format
+
+.. autoclass:: QGridContainer
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      leaves
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__add__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__call__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__contains__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__delitem__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__getitem__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__graph__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__iter__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__len__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__radd__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__repr__
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.__setitem__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.append
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.depth_first
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.extend
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.index
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.insert
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.pop
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.recurse
+
+   .. container:: inherited
+
+      .. automethod:: QGridContainer.remove
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read/write properties
+      :class: class-header
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.name
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.pair
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.children
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.depth
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.duration
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.graph_order
+
+   .. autoattribute:: QGridContainer.leaves
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.parent
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.parentage
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.pretty_rtm_format
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.prolation
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.prolations
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.root
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.rtm_format
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.start_offset
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridContainer.stop_offset
+
+.. autoclass:: QGridLeaf
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      __graph__
+      __repr__
+      is_divisible
+      preceding_q_event_proxies
+      q_event_proxies
+      rtm_format
+      succeeding_q_event_proxies
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QGridLeaf.__call__
+
+   .. automethod:: QGridLeaf.__graph__
+
+   .. automethod:: QGridLeaf.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read/write properties
+      :class: class-header
+
+   .. autoattribute:: QGridLeaf.is_divisible
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.name
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.pair
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.depth
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.duration
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.graph_order
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.parent
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.parentage
+
+   .. autoattribute:: QGridLeaf.preceding_q_event_proxies
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.pretty_rtm_format
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.prolation
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.prolations
+
+   .. autoattribute:: QGridLeaf.q_event_proxies
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.root
+
+   .. autoattribute:: QGridLeaf.rtm_format
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.start_offset
+
+   .. container:: inherited
+
+      .. autoattribute:: QGridLeaf.stop_offset
+
+   .. autoattribute:: QGridLeaf.succeeding_q_event_proxies

@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qeventsequence &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/qeventsequence.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="qgrid" href="qgrid.html" />
+    <link rel="prev" title="qevents" href="qevents.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">nauert</a></li>
+      <li class="breadcrumb-item active">qeventsequence</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/qeventsequence.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nauert.qeventsequence">
+<span id="qeventsequence"></span><span id="nauert-qeventsequence"></span><h1>qeventsequence<a class="headerlink" href="#module-nauert.qeventsequence" title="Link to this heading"></a></h1>
+<div class="svg-container docutils container">
+<div class="graphviz"><object data="../../_images/inheritance-442784e9e5ab5ccb577d118f0d2b04c34016a12f.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">digraph InheritanceGraph {
+    graph [bgcolor=transparent,
+        color=lightsteelblue2,
+        fontname=Arial,
+        fontsize=10,
+        outputorder=edgesfirst,
+        overlap=prism,
+        penwidth=2,
+        rankdir=LR,
+        splines=spline,
+        style=&quot;dashed, rounded&quot;,
+        truecolor=true];
+    node [colorscheme=pastel19,
+        fontname=Arial,
+        fontsize=10,
+        height=0,
+        penwidth=2,
+        shape=box,
+        style=&quot;filled, rounded&quot;,
+        width=0];
+    edge [color=lightslategrey,
+        penwidth=1];
+    subgraph cluster_builtins {
+        graph [label=builtins];
+        node [color=1];
+        &quot;builtins.object&quot; [URL=&quot;https://docs.python.org/3/library/functions.html#object&quot;,
+            label=object,
+            target=_top];
+    }
+    subgraph &quot;cluster_nauert.qeventsequence&quot; {
+        graph [label=&quot;nauert.qeventsequence&quot;];
+        node [color=2];
+        &quot;nauert.qeventsequence.QEventSequence&quot; [URL=&quot;../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;QEvent\nSequence&quot;,
+            target=_top];
+    }
+    &quot;builtins.object&quot; -&gt; &quot;nauert.qeventsequence.QEventSequence&quot;;
+}</p></object></div>
+</div>
+<hr/><p class="section-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QEventSequence</span></code></a></p></td>
+<td><p>Q-event sequence.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.qeventsequence.</span></span><span class="sig-name descname"><span class="pre">QEventSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence" title="Link to this definition"></a></dt>
+<dd><p>Q-event sequence.</p>
+<p>Contains only pitched q-events and silent q-events, and terminates with a
+single terminal q-event.</p>
+<p>A q-event sequence is the primary input to the quantizer.</p>
+<div class="example docutils container">
+<p>A q-event sequence provides a number of convenience functions to assist
+with instantiating new sequences:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">750</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_durations</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((1500, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((2750, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((3250, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.__contains__" title="nauert.qeventsequence.QEventSequence.__contains__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__contains__</span></code></a></p></td>
+<td><p>Is true when q-event sequence contains <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.__eq__" title="nauert.qeventsequence.QEventSequence.__eq__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code></a></p></td>
+<td><p>Is true when q-event sequence equals <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.__getitem__" title="nauert.qeventsequence.QEventSequence.__getitem__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code></a></p></td>
+<td><p>Gets item or slice identified by <cite>argument</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.__hash__" title="nauert.qeventsequence.QEventSequence.__hash__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__hash__</span></code></a></p></td>
+<td><p>Hashes q-event sequence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.__iter__" title="nauert.qeventsequence.QEventSequence.__iter__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__iter__</span></code></a></p></td>
+<td><p>Iterates q-event sequence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.__len__" title="nauert.qeventsequence.QEventSequence.__len__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__len__</span></code></a></p></td>
+<td><p>Gets length of q-event sequence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.duration_in_ms" title="nauert.qeventsequence.QEventSequence.duration_in_ms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">duration_in_ms</span></code></a></p></td>
+<td><p>Get duration <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code> in milliseconds:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.from_millisecond_durations" title="nauert.qeventsequence.QEventSequence.from_millisecond_durations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_millisecond_durations</span></code></a></p></td>
+<td><p>Changes sequence of millisecond <code class="docutils literal notranslate"><span class="pre">durations</span></code> to <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.from_millisecond_offsets" title="nauert.qeventsequence.QEventSequence.from_millisecond_offsets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_millisecond_offsets</span></code></a></p></td>
+<td><p>Changes millisecond <code class="docutils literal notranslate"><span class="pre">offsets</span></code> to <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.from_millisecond_pitch_attachment_tuples" title="nauert.qeventsequence.QEventSequence.from_millisecond_pitch_attachment_tuples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_millisecond_pitch_attachment_tuples</span></code></a></p></td>
+<td><p>Changes (millisecond-duration, pitch, attachment) <code class="docutils literal notranslate"><span class="pre">tuples</span></code> into <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.from_millisecond_pitch_pairs" title="nauert.qeventsequence.QEventSequence.from_millisecond_pitch_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_millisecond_pitch_pairs</span></code></a></p></td>
+<td><p>Changes (millisecond-duration, pitch) <code class="docutils literal notranslate"><span class="pre">pairs</span></code> into <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.from_tempo_scaled_durations" title="nauert.qeventsequence.QEventSequence.from_tempo_scaled_durations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tempo_scaled_durations</span></code></a></p></td>
+<td><p>Changes <code class="docutils literal notranslate"><span class="pre">durations</span></code>, scaled by <code class="docutils literal notranslate"><span class="pre">tempo</span></code> into a <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.from_tempo_scaled_leaves" title="nauert.qeventsequence.QEventSequence.from_tempo_scaled_leaves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tempo_scaled_leaves</span></code></a></p></td>
+<td><p>Changes <code class="docutils literal notranslate"><span class="pre">leaves</span></code>, optionally with <code class="docutils literal notranslate"><span class="pre">tempo</span></code> into a <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.qeventsequence.QEventSequence.sequence" title="nauert.qeventsequence.QEventSequence.sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sequence</span></code></a></p></td>
+<td><p>Gets sequence of q-events.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.__contains__" title="Link to this definition"></a></dt>
+<dd><p>Is true when q-event sequence contains <code class="docutils literal notranslate"><span class="pre">argument</span></code>. Otherwise false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.__eq__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Is true when q-event sequence equals <code class="docutils literal notranslate"><span class="pre">argument</span></code>. Otherwise false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.__getitem__" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#slice" title="(in Python v3.13)"><span class="pre">slice</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Gets item or slice identified by <cite>argument</cite>.</p>
+<p>Returns item or slice.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.__hash__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.__hash__" title="Link to this definition"></a></dt>
+<dd><p>Hashes q-event sequence.</p>
+<p>Required to be explicitly redefined on Python 3 if __eq__ changes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><span class="pre">Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.__iter__" title="Link to this definition"></a></dt>
+<dd><p>Iterates q-event sequence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.__len__" title="Link to this definition"></a></dt>
+<dd><p>Gets length of q-event sequence.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.from_millisecond_durations">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_millisecond_durations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">milliseconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuse_silences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.from_millisecond_durations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.from_millisecond_durations" title="Link to this definition"></a></dt>
+<dd><p>Changes sequence of millisecond <code class="docutils literal notranslate"><span class="pre">durations</span></code> to <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_durations</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">SilentQEvent(offset=Offset((0, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((750, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((1750, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((3000, 1)), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.from_millisecond_offsets">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_millisecond_offsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offsets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Offset</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.from_millisecond_offsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.from_millisecond_offsets" title="Link to this definition"></a></dt>
+<dd><p>Changes millisecond <code class="docutils literal notranslate"><span class="pre">offsets</span></code> to <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">1750</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_offsets</span><span class="p">(</span><span class="n">offsets</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((250, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((1750, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.from_millisecond_pitch_attachment_tuples">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_millisecond_pitch_attachment_tuples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tuples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.from_millisecond_pitch_attachment_tuples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.from_millisecond_pitch_attachment_tuples" title="Link to this definition"></a></dt>
+<dd><p>Changes (millisecond-duration, pitch, attachment) <code class="docutils literal notranslate"><span class="pre">tuples</span></code> into
+<code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,),</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">attachments</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;foo&quot;</span><span class="p">,),</span> <span class="p">(),</span> <span class="p">(),</span> <span class="p">(),</span> <span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tuples</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">attachments</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_attachment_tuples</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">tuples</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=(&#39;foo&#39;,))</span>
+<span class="go">SilentQEvent(offset=Offset((250, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch(&quot;d&#39;&quot;), NamedPitch(&quot;ef&#39;&quot;)), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((1750, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch(&quot;cs&#39;&quot;),), index=None, attachments=(&#39;foobar&#39;, &#39;foo&#39;))</span>
+<span class="go">TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.from_millisecond_pitch_pairs">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_millisecond_pitch_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pairs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.from_millisecond_pitch_pairs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.from_millisecond_pitch_pairs" title="Link to this definition"></a></dt>
+<dd><p>Changes (millisecond-duration, pitch) <code class="docutils literal notranslate"><span class="pre">pairs</span></code> into <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,),</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((250, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((750, 1)), pitches=(NamedPitch(&quot;d&#39;&quot;), NamedPitch(&quot;ef&#39;&quot;)), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((1750, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((3000, 1)), pitches=(NamedPitch(&quot;cs&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.from_tempo_scaled_durations">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tempo_scaled_durations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">durations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MetronomeMark</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.from_tempo_scaled_durations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.from_tempo_scaled_durations" title="Link to this definition"></a></dt>
+<dd><p>Changes <code class="docutils literal notranslate"><span class="pre">durations</span></code>, scaled by <code class="docutils literal notranslate"><span class="pre">tempo</span></code> into a <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tempo</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">174</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_tempo_scaled_durations</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">tempo</span><span class="o">=</span><span class="n">tempo</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((10000, 29)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((17500, 29)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((20000, 29)), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((40000, 29)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.from_tempo_scaled_leaves">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tempo_scaled_leaves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leaves</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></span><a class="reference internal" href="../../_modules/nauert/qeventsequence.html#QEventSequence.from_tempo_scaled_leaves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.from_tempo_scaled_leaves" title="Link to this definition"></a></dt>
+<dd><p>Changes <code class="docutils literal notranslate"><span class="pre">leaves</span></code>, optionally with <code class="docutils literal notranslate"><span class="pre">tempo</span></code> into a <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">&quot;c&#39;4 &lt;d&#39; fs&#39;&gt;8. r16 gqs&#39;2&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempo</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">72</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_tempo_scaled_leaves</span><span class="p">(</span><span class="n">staff</span><span class="p">[:],</span> <span class="n">tempo</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((2500, 3)), pitches=(NamedPitch(&quot;d&#39;&quot;), NamedPitch(&quot;fs&#39;&quot;)), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((4375, 3)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((5000, 3)), pitches=(NamedPitch(&quot;gqs&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((10000, 3)), index=None, attachments=())</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">tempo</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, all leaves in <code class="docutils literal notranslate"><span class="pre">leaves</span></code> must have an
+effective, non-imprecise tempo. The millisecond-duration of each leaf
+will be determined by its effective tempo.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.duration_in_ms">
+<span class="sig-name descname"><span class="pre">duration_in_ms</span></span><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.duration_in_ms" title="Link to this definition"></a></dt>
+<dd><p>Get duration <code class="docutils literal notranslate"><span class="pre">QEventSequence</span></code> in milliseconds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">750</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_durations</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span><span class="o">.</span><span class="n">duration_in_ms</span>
+<span class="go">Duration(4000, 1)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.qeventsequence.QEventSequence.sequence">
+<span class="sig-name descname"><span class="pre">sequence</span></span><a class="headerlink" href="#nauert.qeventsequence.QEventSequence.sequence" title="Link to this definition"></a></dt>
+<dd><p>Gets sequence of q-events.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">750</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_durations</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="o">.</span><span class="n">sequence</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">q_event</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((0, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((1000, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((1500, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">SilentQEvent(offset=Offset((2750, 1)), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((3250, 1)), pitches=(NamedPitch(&quot;c&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">TerminalQEvent(offset=Offset((4000, 1)), index=None, attachments=())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="qevents.html" class="btn btn-neutral float-left" title="qevents" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qgrid.html" class="btn btn-neutral float-right" title="qgrid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

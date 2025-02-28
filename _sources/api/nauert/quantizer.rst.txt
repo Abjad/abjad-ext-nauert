@@ -1,0 +1,27 @@
+.. _nauert--quantizer:
+
+quantizer
+=========
+
+.. automodule:: nauert.quantizer
+
+.. currentmodule:: nauert.quantizer
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.quantizer
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~quantize
+
+.. autofunction:: quantize

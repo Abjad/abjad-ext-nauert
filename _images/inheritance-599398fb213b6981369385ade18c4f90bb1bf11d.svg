@@ -1,0 +1,94 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="361pt" height="166pt" viewBox="0.00 0.00 361.11 166.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-51C98.25,-51 127.25,-51 127.25,-51 133.25,-51 139.25,-57 139.25,-63 139.25,-63 139.25,-95 139.25,-95 139.25,-101 133.25,-107 127.25,-107 127.25,-107 98.25,-107 98.25,-107 92.25,-107 86.25,-101 86.25,-95 86.25,-95 86.25,-63 86.25,-63 86.25,-57 92.25,-51 98.25,-51" />
+<ns0:text text-anchor="middle" x="112.75" y="-93.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-51C20,-51 54.25,-51 54.25,-51 60.25,-51 66.25,-57 66.25,-63 66.25,-63 66.25,-95 66.25,-95 66.25,-101 60.25,-107 54.25,-107 54.25,-107 20,-107 20,-107 14,-107 8,-101 8,-95 8,-95 8,-63 8,-63 8,-57 14,-51 20,-51" />
+<ns0:text text-anchor="middle" x="37.12" y="-93.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.searchtrees</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 333.11,-8 333.11,-8 339.11,-8 345.11,-14 345.11,-20 345.11,-20 345.11,-138 345.11,-138 345.11,-144 339.11,-150 333.11,-150 333.11,-150 171.25,-150 171.25,-150 165.25,-150 159.25,-144 159.25,-138 159.25,-138 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="252.18" y="-136.5" font-family="Arial" font-size="10.00">nauert.searchtrees</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.searchtrees.SearchTree</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M131.89,-69C138.7,-69 146.76,-69 154.9,-69" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="154.82,-72.5 164.82,-69 154.82,-65.5 154.82,-72.5" />
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-69C66.25,-69 74.49,-69 82.28,-69" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-72.5 92.04,-69 82.04,-65.5 82.04,-72.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.searchtrees.SearchTree-&gt;nauert.searchtrees.UnweightedSearchTree</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M231.59,-59.7C239.76,-57.19 248.77,-54.42 257.54,-51.73" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="258.47,-55.11 267,-48.82 256.41,-48.41 258.47,-55.11" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.searchtrees.SearchTree-&gt;nauert.searchtrees.WeightedSearchTree</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M231.59,-78.3C241.48,-81.34 252.62,-84.76 263.07,-87.97" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="262.02,-91.31 272.6,-90.9 264.07,-84.62 262.02,-91.31" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-79C124.58,-79 100.92,-79 100.92,-79 97.58,-79 94.25,-75.67 94.25,-72.33 94.25,-72.33 94.25,-65.67 94.25,-65.67 94.25,-62.33 97.58,-59 100.92,-59 100.92,-59 124.58,-59 124.58,-59 127.92,-59 131.25,-62.33 131.25,-65.67 131.25,-65.67 131.25,-72.33 131.25,-72.33 131.25,-75.67 127.92,-79 124.58,-79" />
+<ns0:text text-anchor="middle" x="112.75" y="-65.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-79C51.58,-79 22.67,-79 22.67,-79 19.33,-79 16,-75.67 16,-72.33 16,-72.33 16,-65.67 16,-65.67 16,-62.33 19.33,-59 22.67,-59 22.67,-59 51.58,-59 51.58,-59 54.92,-59 58.25,-62.33 58.25,-65.67 58.25,-65.67 58.25,-72.33 58.25,-72.33 58.25,-75.67 54.92,-79 51.58,-79" />
+<ns0:text text-anchor="middle" x="37.12" y="-65.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.searchtrees.SearchTree</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/searchtrees.html#nauert.searchtrees.SearchTree" ns1:title="Search\nTree" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="200.31" cy="-69" rx="33.06" ry="22.63" />
+<ns0:text text-anchor="middle" x="200.31" y="-71.5" font-family="Arial" font-size="10.00" fill="white">Search</ns0:text>
+<ns0:text text-anchor="middle" x="200.31" y="-59.5" font-family="Arial" font-size="10.00" fill="white">Tree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.searchtrees.UnweightedSearchTree</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/searchtrees.html#nauert.searchtrees.UnweightedSearchTree" ns1:title="Unweighted\nSearch\nTree" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M325.11,-60C325.11,-60 281.36,-60 281.36,-60 275.36,-60 269.36,-54 269.36,-48 269.36,-48 269.36,-28 269.36,-28 269.36,-22 275.36,-16 281.36,-16 281.36,-16 325.11,-16 325.11,-16 331.11,-16 337.11,-22 337.11,-28 337.11,-28 337.11,-48 337.11,-48 337.11,-54 331.11,-60 325.11,-60" />
+<ns0:text text-anchor="middle" x="303.24" y="-46.5" font-family="Arial" font-size="10.00" fill="white">Unweighted</ns0:text>
+<ns0:text text-anchor="middle" x="303.24" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Search</ns0:text>
+<ns0:text text-anchor="middle" x="303.24" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Tree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.searchtrees.WeightedSearchTree</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/searchtrees.html#nauert.searchtrees.WeightedSearchTree" ns1:title="Weighted\nSearch\nTree" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M319.49,-122C319.49,-122 286.99,-122 286.99,-122 280.99,-122 274.99,-116 274.99,-110 274.99,-110 274.99,-90 274.99,-90 274.99,-84 280.99,-78 286.99,-78 286.99,-78 319.49,-78 319.49,-78 325.49,-78 331.49,-84 331.49,-90 331.49,-90 331.49,-110 331.49,-110 331.49,-116 325.49,-122 319.49,-122" />
+<ns0:text text-anchor="middle" x="303.24" y="-108.5" font-family="Arial" font-size="10.00" fill="white">Weighted</ns0:text>
+<ns0:text text-anchor="middle" x="303.24" y="-96.5" font-family="Arial" font-size="10.00" fill="white">Search</ns0:text>
+<ns0:text text-anchor="middle" x="303.24" y="-84.5" font-family="Arial" font-size="10.00" fill="white">Tree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

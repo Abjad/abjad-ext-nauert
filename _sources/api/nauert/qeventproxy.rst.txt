@@ -1,0 +1,70 @@
+.. _nauert--qeventproxy:
+
+qeventproxy
+===========
+
+.. automodule:: nauert.qeventproxy
+
+.. currentmodule:: nauert.qeventproxy
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: nauert
+      :lineage: nauert.qeventproxy
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~QEventProxy
+
+.. autoclass:: QEventProxy
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      __repr__
+      index
+      offset
+      q_event
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: QEventProxy.__eq__
+
+   .. automethod:: QEventProxy.__hash__
+
+   .. automethod:: QEventProxy.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: QEventProxy.index
+
+   .. autoattribute:: QEventProxy.offset
+
+   .. autoattribute:: QEventProxy.q_event

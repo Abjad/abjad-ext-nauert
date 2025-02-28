@@ -1,0 +1,147 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="556pt" height="180pt" viewBox="0.00 0.00 555.61 180.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 176)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M272.75,-93C272.75,-93 301.75,-93 301.75,-93 307.75,-93 313.75,-99 313.75,-105 313.75,-105 313.75,-137 313.75,-137 313.75,-143 307.75,-149 301.75,-149 301.75,-149 272.75,-149 272.75,-149 266.75,-149 260.75,-143 260.75,-137 260.75,-137 260.75,-105 260.75,-105 260.75,-99 266.75,-93 272.75,-93" />
+<ns0:text text-anchor="middle" x="287.25" y="-135.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-60C20,-60 54.25,-60 54.25,-60 60.25,-60 66.25,-66 66.25,-72 66.25,-72 66.25,-104 66.25,-104 66.25,-110 60.25,-116 54.25,-116 54.25,-116 20,-116 20,-116 14,-116 8,-110 8,-104 8,-104 8,-72 8,-72 8,-66 14,-60 20,-60" />
+<ns0:text text-anchor="middle" x="37.12" y="-102.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_multiprocessing.context</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M240,-27C240,-27 335.5,-27 335.5,-27 341.5,-27 347.5,-33 347.5,-39 347.5,-39 347.5,-71 347.5,-71 347.5,-77 341.5,-83 335.5,-83 335.5,-83 240,-83 240,-83 234,-83 228,-77 228,-71 228,-71 228,-39 228,-39 228,-33 234,-27 240,-27" />
+<ns0:text text-anchor="middle" x="287.75" y="-69.5" font-family="Arial" font-size="10.00">multiprocessing.context</ns0:text>
+</ns0:g>
+<ns0:g id="clust4" class="cluster">
+<ns0:title>cluster_multiprocessing.process</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-22C98.25,-22 196,-22 196,-22 202,-22 208,-28 208,-34 208,-34 208,-78 208,-78 208,-84 202,-90 196,-90 196,-90 98.25,-90 98.25,-90 92.25,-90 86.25,-84 86.25,-78 86.25,-78 86.25,-34 86.25,-34 86.25,-28 92.25,-22 98.25,-22" />
+<ns0:text text-anchor="middle" x="147.13" y="-76.5" font-family="Arial" font-size="10.00">multiprocessing.process</ns0:text>
+</ns0:g>
+<ns0:g id="clust5" class="cluster">
+<ns0:title>cluster_nauert.jobhandlers</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M379.5,-8C379.5,-8 527.61,-8 527.61,-8 533.61,-8 539.61,-14 539.61,-20 539.61,-20 539.61,-152 539.61,-152 539.61,-158 533.61,-164 527.61,-164 527.61,-164 379.5,-164 379.5,-164 373.5,-164 367.5,-158 367.5,-152 367.5,-152 367.5,-20 367.5,-20 367.5,-14 373.5,-8 379.5,-8" />
+<ns0:text text-anchor="middle" x="453.55" y="-150.5" font-family="Arial" font-size="10.00">nauert.jobhandlers</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.jobhandlers.JobHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M306.69,-111.3C321.78,-111.55 343.78,-111.91 363.57,-112.24" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="363.33,-115.74 373.39,-112.4 363.45,-108.74 363.33,-115.74" />
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M58.91,-86.11C67.29,-89.05 77.11,-92.12 86.25,-94 145.82,-106.25 217.12,-109.7 256.48,-110.65" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="256.26,-114.15 266.33,-110.85 256.4,-107.15 256.26,-114.15" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>builtins.object-&gt;multiprocessing.process.BaseProcess</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.11,-71.75C73.21,-67.56 92.17,-61.91 108.75,-56.98" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="109.72,-60.34 118.31,-54.13 107.72,-53.63 109.72,-60.34" />
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>multiprocessing.context.Process-&gt;nauert.jobhandlers.ParallelJobHandlerWorker</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M314,-44.79C331.41,-44.64 354.64,-44.45 373.85,-44.3" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="373.72,-47.8 383.69,-44.21 373.66,-40.8 373.72,-47.8" />
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>multiprocessing.process.BaseProcess-&gt;multiprocessing.context.Process</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M173.37,-45.81C194.67,-45.66 225.21,-45.44 249.15,-45.27" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="249.15,-48.77 259.12,-45.2 249.1,-41.77 249.15,-48.77" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.jobhandlers.JobHandler-&gt;nauert.jobhandlers.ParallelJobHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M436.39,-96.71C447.11,-89.65 459.83,-81.26 471.44,-73.6" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="473.17,-76.66 479.6,-68.23 469.32,-70.81 473.17,-76.66" />
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>nauert.jobhandlers.JobHandler-&gt;nauert.jobhandlers.SerialJobHandler</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M446.7,-113C454.17,-113 462.08,-113 469.59,-113" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="469.44,-116.5 479.44,-113 469.44,-109.5 469.44,-116.5" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M299.08,-121C299.08,-121 275.42,-121 275.42,-121 272.08,-121 268.75,-117.67 268.75,-114.33 268.75,-114.33 268.75,-107.67 268.75,-107.67 268.75,-104.33 272.08,-101 275.42,-101 275.42,-101 299.08,-101 299.08,-101 302.42,-101 305.75,-104.33 305.75,-107.67 305.75,-107.67 305.75,-114.33 305.75,-114.33 305.75,-117.67 302.42,-121 299.08,-121" />
+<ns0:text text-anchor="middle" x="287.25" y="-107.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-88C51.58,-88 22.67,-88 22.67,-88 19.33,-88 16,-84.67 16,-81.33 16,-81.33 16,-74.67 16,-74.67 16,-71.33 19.33,-68 22.67,-68 22.67,-68 51.58,-68 51.58,-68 54.92,-68 58.25,-71.33 58.25,-74.67 58.25,-74.67 58.25,-81.33 58.25,-81.33 58.25,-84.67 54.92,-88 51.58,-88" />
+<ns0:text text-anchor="middle" x="37.13" y="-74.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>multiprocessing.context.Process</ns0:title>
+<ns0:path fill="#ccebc5" stroke="#ccebc5" stroke-width="2" d="M306.58,-55C306.58,-55 267.92,-55 267.92,-55 264.58,-55 261.25,-51.67 261.25,-48.33 261.25,-48.33 261.25,-41.67 261.25,-41.67 261.25,-38.33 264.58,-35 267.92,-35 267.92,-35 306.58,-35 306.58,-35 309.92,-35 313.25,-38.33 313.25,-41.67 313.25,-41.67 313.25,-48.33 313.25,-48.33 313.25,-51.67 309.92,-55 306.58,-55" />
+<ns0:text text-anchor="middle" x="287.25" y="-41.5" font-family="Arial" font-size="10.00">Process</ns0:text>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>multiprocessing.process.BaseProcess</ns0:title>
+<ns0:path fill="#decbe4" stroke="#decbe4" stroke-width="2" d="M161.96,-62C161.96,-62 131.29,-62 131.29,-62 125.96,-62 120.63,-56.67 120.63,-51.33 120.63,-51.33 120.63,-40.67 120.63,-40.67 120.63,-35.33 125.96,-30 131.29,-30 131.29,-30 161.96,-30 161.96,-30 167.29,-30 172.63,-35.33 172.63,-40.67 172.63,-40.67 172.63,-51.33 172.63,-51.33 172.63,-56.67 167.29,-62 161.96,-62" />
+<ns0:text text-anchor="middle" x="146.63" y="-48.5" font-family="Arial" font-size="10.00">Base</ns0:text>
+<ns0:text text-anchor="middle" x="146.63" y="-36.5" font-family="Arial" font-size="10.00">Process</ns0:text>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>nauert.jobhandlers.JobHandler</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.JobHandler" ns1:title="Job\nHandler" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="410.68" cy="-113" rx="35.18" ry="22.63" />
+<ns0:text text-anchor="middle" x="410.68" y="-115.5" font-family="Arial" font-size="10.00" fill="white">Job</ns0:text>
+<ns0:text text-anchor="middle" x="410.68" y="-103.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>nauert.jobhandlers.ParallelJobHandler</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler" ns1:title="Parallel\nJob\nHandler" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M519.61,-73C519.61,-73 493.86,-73 493.86,-73 487.86,-73 481.86,-67 481.86,-61 481.86,-61 481.86,-41 481.86,-41 481.86,-35 487.86,-29 493.86,-29 493.86,-29 519.61,-29 519.61,-29 525.61,-29 531.61,-35 531.61,-41 531.61,-41 531.61,-61 531.61,-61 531.61,-67 525.61,-73 519.61,-73" />
+<ns0:text text-anchor="middle" x="506.73" y="-59.5" font-family="Arial" font-size="10.00" fill="white">Parallel</ns0:text>
+<ns0:text text-anchor="middle" x="506.73" y="-47.5" font-family="Arial" font-size="10.00" fill="white">Job</ns0:text>
+<ns0:text text-anchor="middle" x="506.73" y="-35.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>nauert.jobhandlers.ParallelJobHandlerWorker</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker" ns1:title="Parallel\nJob\nHandler\nWorker" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M423.55,-72C423.55,-72 397.8,-72 397.8,-72 391.8,-72 385.8,-66 385.8,-60 385.8,-60 385.8,-28 385.8,-28 385.8,-22 391.8,-16 397.8,-16 397.8,-16 423.55,-16 423.55,-16 429.55,-16 435.55,-22 435.55,-28 435.55,-28 435.55,-60 435.55,-60 435.55,-66 429.55,-72 423.55,-72" />
+<ns0:text text-anchor="middle" x="410.68" y="-58.5" font-family="Arial" font-size="10.00" fill="white">Parallel</ns0:text>
+<ns0:text text-anchor="middle" x="410.68" y="-46.5" font-family="Arial" font-size="10.00" fill="white">Job</ns0:text>
+<ns0:text text-anchor="middle" x="410.68" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+<ns0:text text-anchor="middle" x="410.68" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Worker</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>nauert.jobhandlers.SerialJobHandler</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="../api/api/nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler" ns1:title="Serial\nJob\nHandler" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M519.61,-135C519.61,-135 493.86,-135 493.86,-135 487.86,-135 481.86,-129 481.86,-123 481.86,-123 481.86,-103 481.86,-103 481.86,-97 487.86,-91 493.86,-91 493.86,-91 519.61,-91 519.61,-91 525.61,-91 531.61,-97 531.61,-103 531.61,-103 531.61,-123 531.61,-123 531.61,-129 525.61,-135 519.61,-135" />
+<ns0:text text-anchor="middle" x="506.73" y="-121.5" font-family="Arial" font-size="10.00" fill="white">Serial</ns0:text>
+<ns0:text text-anchor="middle" x="506.73" y="-109.5" font-family="Arial" font-size="10.00" fill="white">Job</ns0:text>
+<ns0:text text-anchor="middle" x="506.73" y="-97.5" font-family="Arial" font-size="10.00" fill="white">Handler</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

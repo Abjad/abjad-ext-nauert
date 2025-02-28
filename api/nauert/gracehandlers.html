@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gracehandlers &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/gracehandlers.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="heuristics" href="heuristics.html" />
+    <link rel="prev" title="attackpointoptimizers" href="attackpointoptimizers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">nauert</a></li>
+      <li class="breadcrumb-item active">gracehandlers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/gracehandlers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nauert.gracehandlers">
+<span id="gracehandlers"></span><span id="nauert-gracehandlers"></span><h1>gracehandlers<a class="headerlink" href="#module-nauert.gracehandlers" title="Link to this heading"></a></h1>
+<div class="svg-container docutils container">
+<div class="graphviz"><object data="../../_images/inheritance-b0107f74fa0719e07acffb964a12bef3e28d9d5e.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">digraph InheritanceGraph {
+    graph [bgcolor=transparent,
+        color=lightsteelblue2,
+        fontname=Arial,
+        fontsize=10,
+        outputorder=edgesfirst,
+        overlap=prism,
+        penwidth=2,
+        rankdir=LR,
+        splines=spline,
+        style=&quot;dashed, rounded&quot;,
+        truecolor=true];
+    node [colorscheme=pastel19,
+        fontname=Arial,
+        fontsize=10,
+        height=0,
+        penwidth=2,
+        shape=box,
+        style=&quot;filled, rounded&quot;,
+        width=0];
+    edge [color=lightslategrey,
+        penwidth=1];
+    subgraph cluster_abc {
+        graph [label=abc];
+        node [color=1];
+        &quot;abc.ABC&quot; [URL=&quot;https://docs.python.org/3/library/abc.html#abc.ABC&quot;,
+            label=ABC,
+            target=_top];
+    }
+    subgraph cluster_builtins {
+        graph [label=builtins];
+        node [color=2];
+        &quot;builtins.object&quot; [URL=&quot;https://docs.python.org/3/library/functions.html#object&quot;,
+            label=object,
+            target=_top];
+    }
+    subgraph &quot;cluster_nauert.gracehandlers&quot; {
+        graph [label=&quot;nauert.gracehandlers&quot;];
+        node [color=3];
+        &quot;nauert.gracehandlers.CollapsingGraceHandler&quot; [URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.CollapsingGraceHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Collapsing\nGrace\nHandler&quot;,
+            target=_top];
+        &quot;nauert.gracehandlers.ConcatenatingGraceHandler&quot; [URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.ConcatenatingGraceHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Concatenating\nGrace\nHandler&quot;,
+            target=_top];
+        &quot;nauert.gracehandlers.DiscardingGraceHandler&quot; [URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.DiscardingGraceHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Discarding\nGrace\nHandler&quot;,
+            target=_top];
+        &quot;nauert.gracehandlers.GraceHandler&quot; [URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.GraceHandler&quot;,
+            color=black,
+            fontcolor=white,
+            label=&quot;Grace\nHandler&quot;,
+            shape=oval,
+            style=&quot;bold, filled&quot;,
+            target=_top];
+        &quot;nauert.gracehandlers.GraceHandler&quot; -&gt; &quot;nauert.gracehandlers.CollapsingGraceHandler&quot;;
+        &quot;nauert.gracehandlers.GraceHandler&quot; -&gt; &quot;nauert.gracehandlers.ConcatenatingGraceHandler&quot;;
+        &quot;nauert.gracehandlers.GraceHandler&quot; -&gt; &quot;nauert.gracehandlers.DiscardingGraceHandler&quot;;
+    }
+    &quot;abc.ABC&quot; -&gt; &quot;nauert.gracehandlers.GraceHandler&quot;;
+    &quot;builtins.object&quot; -&gt; &quot;abc.ABC&quot;;
+}</p></object></div>
+</div>
+<hr/><p class="section-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.GraceHandler" title="nauert.gracehandlers.GraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GraceHandler</span></code></a></p></td>
+<td><p>Abstract grace-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.gracehandlers.GraceHandler">
+<em class="property"><span class="pre">abstract</span> </em><em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.gracehandlers.</span></span><span class="sig-name descname"><span class="pre">GraceHandler</span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#GraceHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.GraceHandler" title="Link to this definition"></a></dt>
+<dd><p>Abstract grace-handler.</p>
+<p>Determines what pitch, if any, will be selected from a list of <code class="docutils literal notranslate"><span class="pre">QEvents</span></code>
+to be applied to an attack-point generated by a <code class="docutils literal notranslate"><span class="pre">QGrid</span></code>, and whether
+there should be a <code class="docutils literal notranslate"><span class="pre">BeforeGraceContainer</span></code> attached to that attack-point.</p>
+<p>When called on a sequence of <code class="docutils literal notranslate"><span class="pre">QEvents</span></code>, <code class="docutils literal notranslate"><span class="pre">GraceHandler</span></code> subclasses
+should return a pair, where the first item of the pair is a sequence of
+pitch tokens or <code class="docutils literal notranslate"><span class="pre">None</span></code>, and where the second item of the pair is a
+<code class="docutils literal notranslate"><span class="pre">BeforeGraceContainer</span></code> instance or None.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.GraceHandler.__call__" title="nauert.gracehandlers.GraceHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls grace handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.gracehandlers.GraceHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_events</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">NamedPitch</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BeforeGraceContainer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#GraceHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.GraceHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls grace handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr/><p class="section-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.CollapsingGraceHandler" title="nauert.gracehandlers.CollapsingGraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollapsingGraceHandler</span></code></a></p></td>
+<td><p>Collapsing grace-handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.gracehandlers.ConcatenatingGraceHandler" title="nauert.gracehandlers.ConcatenatingGraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcatenatingGraceHandler</span></code></a></p></td>
+<td><p>Concatenating grace-handler.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.DiscardingGraceHandler" title="nauert.gracehandlers.DiscardingGraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscardingGraceHandler</span></code></a></p></td>
+<td><p>Discarding grace-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.gracehandlers.CollapsingGraceHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.gracehandlers.</span></span><span class="sig-name descname"><span class="pre">CollapsingGraceHandler</span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#CollapsingGraceHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.CollapsingGraceHandler" title="Link to this definition"></a></dt>
+<dd><p>Collapsing grace-handler.</p>
+<p>Collapses pitch information into a single chord rather than creating a
+grace container.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">997</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">CollapsingGraceHandler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-fe81b033826d145b35ab8fc0c74cefafc29cea077c308f5b17f691b0bbd01c57.ly"><img src="../../_images/lilypond-fe81b033826d145b35ab8fc0c74cefafc29cea077c308f5b17f691b0bbd01c57.cropped.svg"/></a>
+</div></div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.CollapsingGraceHandler.__call__" title="nauert.gracehandlers.CollapsingGraceHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls collapsing grace handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.gracehandlers.CollapsingGraceHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">NamedPitch</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#CollapsingGraceHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.CollapsingGraceHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls collapsing grace handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.gracehandlers.ConcatenatingGraceHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.gracehandlers.</span></span><span class="sig-name descname"><span class="pre">ConcatenatingGraceHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">discard_grace_rest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grace_duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Duration</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Duration(1,</span> <span class="pre">16)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_rest_with_final_grace_note</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#ConcatenatingGraceHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.ConcatenatingGraceHandler" title="Link to this definition"></a></dt>
+<dd><p>Concatenating grace-handler.</p>
+<p>Concatenates all but the final <code class="docutils literal notranslate"><span class="pre">QEvent</span></code> attached to a <code class="docutils literal notranslate"><span class="pre">QGrid</span></code> offset
+into a <code class="docutils literal notranslate"><span class="pre">BeforeGraceContainer</span></code>, using a fixed leaf duration <code class="docutils literal notranslate"><span class="pre">duration</span></code>.</p>
+<div class="example docutils container">
+<p>When called, it returns pitch information of final <code class="docutils literal notranslate"><span class="pre">QEvent</span></code>, and the
+generated <code class="docutils literal notranslate"><span class="pre">BeforeGraceContainer</span></code>, if any:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">999</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">ConcatenatingGraceHandler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-8fa01ed020b573913acfa9c65068c9a8203dc72e29d5ef0afb0f6eca3da6cf7f.ly"><img src="../../_images/lilypond-8fa01ed020b573913acfa9c65068c9a8203dc72e29d5ef0afb0f6eca3da6cf7f.cropped.svg"/></a>
+</div></div>
+<div class="example docutils container">
+<p>When <code class="docutils literal notranslate"><span class="pre">discard_grace_rest</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), all the
+grace rests are discarded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">999</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">ConcatenatingGraceHandler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-76c3041068d88d65f9735ceb19ef708f0c6d69b978ed947be22fc4e0d252e88d.ly"><img src="../../_images/lilypond-76c3041068d88d65f9735ceb19ef708f0c6d69b978ed947be22fc4e0d252e88d.cropped.svg"/></a>
+</div></div>
+<div class="example docutils container">
+<p>When <code class="docutils literal notranslate"><span class="pre">discard_grace_rest</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, grace rests are not
+discarded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">ConcatenatingGraceHandler</span><span class="p">(</span><span class="n">discard_grace_rest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-b7d43b5ea69a129f4bd880f1fd904cb146b506e51fca5e0434d7574e266d55c8.ly"><img src="../../_images/lilypond-b7d43b5ea69a129f4bd880f1fd904cb146b506e51fca5e0434d7574e266d55c8.cropped.svg"/></a>
+</div></div>
+<div class="example docutils container">
+<p>When <code class="docutils literal notranslate"><span class="pre">replace_rest_with_final_grace_note</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, grace
+notes are allowed to be attached to a rest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">999</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">ConcatenatingGraceHandler</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">replace_rest_with_final_grace_note</span><span class="o">=</span><span class="kc">False</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-300b5649e2bfeb73ccefcb154626e97f7fb6524ac0fbe78ee50087e859de660c.ly"><img src="../../_images/lilypond-300b5649e2bfeb73ccefcb154626e97f7fb6524ac0fbe78ee50087e859de660c.cropped.svg"/></a>
+</div></div>
+<div class="example docutils container">
+<p>When <code class="docutils literal notranslate"><span class="pre">replace_rest_with_final_grace_note</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> (the
+default behavior), any rest with grace notes attached to it is replaced
+by the last pitched grace note in the grace container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">ConcatenatingGraceHandler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-15a33a8f66669393bc7d6d73c422abe652e407d7ffdb60c9bf145a81b66623af.ly"><img src="../../_images/lilypond-15a33a8f66669393bc7d6d73c422abe652e407d7ffdb60c9bf145a81b66623af.cropped.svg"/></a>
+</div></div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.ConcatenatingGraceHandler.__call__" title="nauert.gracehandlers.ConcatenatingGraceHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls concatenating grace handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.gracehandlers.ConcatenatingGraceHandler.discard_grace_rest" title="nauert.gracehandlers.ConcatenatingGraceHandler.discard_grace_rest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discard_grace_rest</span></code></a></p></td>
+<td><p>Boolean of whether to discard grace rests or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.ConcatenatingGraceHandler.grace_duration" title="nauert.gracehandlers.ConcatenatingGraceHandler.grace_duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grace_duration</span></code></a></p></td>
+<td><p>Grace duration of concantenating grace handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.gracehandlers.ConcatenatingGraceHandler.handle_orphaned_q_event_proxies" title="nauert.gracehandlers.ConcatenatingGraceHandler.handle_orphaned_q_event_proxies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">handle_orphaned_q_event_proxies</span></code></a></p></td>
+<td><p>Embeds orphaned <code class="docutils literal notranslate"><span class="pre">QEvents</span></code> into an <code class="docutils literal notranslate"><span class="pre">AfterGraceContainer</span></code> and attaches it to <code class="docutils literal notranslate"><span class="pre">last_leaf</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.ConcatenatingGraceHandler.replace_rest_with_final_grace_note" title="nauert.gracehandlers.ConcatenatingGraceHandler.replace_rest_with_final_grace_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_rest_with_final_grace_note</span></code></a></p></td>
+<td><p>Boolean of whether to replace the rest with the final (pitched) grace note.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.gracehandlers.ConcatenatingGraceHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">NamedPitch</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BeforeGraceContainer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#ConcatenatingGraceHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.ConcatenatingGraceHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls concatenating grace handler.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.gracehandlers.ConcatenatingGraceHandler.handle_orphaned_q_event_proxies">
+<span class="sig-name descname"><span class="pre">handle_orphaned_q_event_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_leaf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_event_proxies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#ConcatenatingGraceHandler.handle_orphaned_q_event_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.ConcatenatingGraceHandler.handle_orphaned_q_event_proxies" title="Link to this definition"></a></dt>
+<dd><p>Embeds orphaned <code class="docutils literal notranslate"><span class="pre">QEvents</span></code> into an <code class="docutils literal notranslate"><span class="pre">AfterGraceContainer</span></code> and
+attaches it to <code class="docutils literal notranslate"><span class="pre">last_leaf</span></code>.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">durations</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">search_tree</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">UnweightedSearchTree</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">attack_point_optimizer</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseAttackPointOptimizer</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_schema</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseQSchema</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">search_tree</span><span class="o">=</span><span class="n">search_tree</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">time_signature</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">use_full_measure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">q_event_sequence</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">q_schema</span><span class="o">=</span><span class="n">q_schema</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">attach_tempos</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">attack_point_optimizer</span><span class="o">=</span><span class="n">attack_point_optimizer</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">result</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Score&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-d3f54c5f8c108d6427aa442f2815f6acd66fd4724dc56060bc61edd09e5d4bb9.ly"><img src="../../_images/lilypond-d3f54c5f8c108d6427aa442f2815f6acd66fd4724dc56060bc61edd09e5d4bb9.cropped.svg"/></a>
+</div></div>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.gracehandlers.ConcatenatingGraceHandler.discard_grace_rest">
+<span class="sig-name descname"><span class="pre">discard_grace_rest</span></span><a class="headerlink" href="#nauert.gracehandlers.ConcatenatingGraceHandler.discard_grace_rest" title="Link to this definition"></a></dt>
+<dd><p>Boolean of whether to discard grace rests or not.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.gracehandlers.ConcatenatingGraceHandler.grace_duration">
+<span class="sig-name descname"><span class="pre">grace_duration</span></span><a class="headerlink" href="#nauert.gracehandlers.ConcatenatingGraceHandler.grace_duration" title="Link to this definition"></a></dt>
+<dd><p>Grace duration of concantenating grace handler.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.gracehandlers.ConcatenatingGraceHandler.replace_rest_with_final_grace_note">
+<span class="sig-name descname"><span class="pre">replace_rest_with_final_grace_note</span></span><a class="headerlink" href="#nauert.gracehandlers.ConcatenatingGraceHandler.replace_rest_with_final_grace_note" title="Link to this definition"></a></dt>
+<dd><p>Boolean of whether to replace the rest with the final (pitched) grace
+note.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nauert.gracehandlers.DiscardingGraceHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nauert.gracehandlers.</span></span><span class="sig-name descname"><span class="pre">DiscardingGraceHandler</span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#DiscardingGraceHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.DiscardingGraceHandler" title="Link to this definition"></a></dt>
+<dd><p>Discarding grace-handler.</p>
+<p>Discards all but final q-event attached to an offset.</p>
+<p>Does not create grace containers.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">998</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grace_handler</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">DiscardingGraceHandler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">,</span> <span class="n">grace_handler</span><span class="o">=</span><span class="n">grace_handler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">voice</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-08378395f9c614a6ec7f44f6d7f650146807e81d77110121b81f049d92d820aa.ly"><img src="../../_images/lilypond-08378395f9c614a6ec7f44f6d7f650146807e81d77110121b81f049d92d820aa.cropped.svg"/></a>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">pqe</span> <span class="ow">in</span> <span class="n">grace_handler</span><span class="o">.</span><span class="n">discarded_q_events</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="n">pqe</span>
+<span class="gp">... </span>
+<span class="go">PitchedQEvent(offset=Offset((1000, 1)), pitches=(NamedPitch(&quot;cs&#39;&quot;),), index=None, attachments=())</span>
+<span class="go">PitchedQEvent(offset=Offset((1001, 1)), pitches=(NamedPitch(&quot;d&#39;&quot;),), index=None, attachments=())</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.gracehandlers.DiscardingGraceHandler.__call__" title="nauert.gracehandlers.DiscardingGraceHandler.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a></p></td>
+<td><p>Calls discarding grace handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nauert.gracehandlers.DiscardingGraceHandler.discarded_q_events" title="nauert.gracehandlers.DiscardingGraceHandler.discarded_q_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discarded_q_events</span></code></a></p></td>
+<td><p>Gets discarded QEvents.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nauert.gracehandlers.DiscardingGraceHandler.__call__">
+<em class="property"><span class="pre">overridden</span> </em><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.13)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><span class="pre">QEvent</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">NamedPitch</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nauert/gracehandlers.html#DiscardingGraceHandler.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.gracehandlers.DiscardingGraceHandler.__call__" title="Link to this definition"></a></dt>
+<dd><p>Calls discarding grace handler.</p>
+</dd></dl>
+
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nauert.gracehandlers.DiscardingGraceHandler.discarded_q_events">
+<span class="sig-name descname"><span class="pre">discarded_q_events</span></span><a class="headerlink" href="#nauert.gracehandlers.DiscardingGraceHandler.discarded_q_events" title="Link to this definition"></a></dt>
+<dd><p>Gets discarded QEvents.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="attackpointoptimizers.html" class="btn btn-neutral float-left" title="attackpointoptimizers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="heuristics.html" class="btn btn-neutral float-right" title="heuristics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="360pt" height="92pt" viewBox="0.00 0.00 360.03 92.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 88)">
+<ns0:title>InheritanceGraph</ns0:title>
+<ns0:g id="clust1" class="cluster">
+<ns0:title>cluster_abc</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M98.25,-14C98.25,-14 127.25,-14 127.25,-14 133.25,-14 139.25,-20 139.25,-26 139.25,-26 139.25,-58 139.25,-58 139.25,-64 133.25,-70 127.25,-70 127.25,-70 98.25,-70 98.25,-70 92.25,-70 86.25,-64 86.25,-58 86.25,-58 86.25,-26 86.25,-26 86.25,-20 92.25,-14 98.25,-14" />
+<ns0:text text-anchor="middle" x="112.75" y="-56.5" font-family="Arial" font-size="10.00">abc</ns0:text>
+</ns0:g>
+<ns0:g id="clust2" class="cluster">
+<ns0:title>cluster_builtins</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M20,-14C20,-14 54.25,-14 54.25,-14 60.25,-14 66.25,-20 66.25,-26 66.25,-26 66.25,-58 66.25,-58 66.25,-64 60.25,-70 54.25,-70 54.25,-70 20,-70 20,-70 14,-70 8,-64 8,-58 8,-58 8,-26 8,-26 8,-20 14,-14 20,-14" />
+<ns0:text text-anchor="middle" x="37.12" y="-56.5" font-family="Arial" font-size="10.00">builtins</ns0:text>
+</ns0:g>
+<ns0:g id="clust3" class="cluster">
+<ns0:title>cluster_nauert.heuristics</ns0:title>
+<ns0:path fill="none" stroke="#bcd2ee" stroke-width="2" stroke-dasharray="5,2" d="M171.25,-8C171.25,-8 332.03,-8 332.03,-8 338.03,-8 344.03,-14 344.03,-20 344.03,-20 344.03,-64 344.03,-64 344.03,-70 338.03,-76 332.03,-76 332.03,-76 171.25,-76 171.25,-76 165.25,-76 159.25,-70 159.25,-64 159.25,-64 159.25,-20 159.25,-20 159.25,-14 165.25,-8 171.25,-8" />
+<ns0:text text-anchor="middle" x="251.64" y="-62.5" font-family="Arial" font-size="10.00">nauert.heuristics</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>abc.ABC-&gt;nauert.heuristics.Heuristic</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M132.24,-32C138.91,-32 146.79,-32 154.86,-32" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="154.78,-35.5 164.78,-32 154.78,-28.5 154.78,-35.5" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>builtins.object-&gt;abc.ABC</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M59.03,-32C66.25,-32 74.49,-32 82.28,-32" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="82.04,-35.5 92.04,-32 82.04,-28.5 82.04,-35.5" />
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>nauert.heuristics.Heuristic-&gt;nauert.heuristics.DistanceHeuristic</ns0:title>
+<ns0:path fill="none" stroke="lightslategrey" d="M245.95,-32C253.49,-32 261.38,-32 268.9,-32" />
+<ns0:polygon fill="lightslategrey" stroke="lightslategrey" points="268.81,-35.5 278.81,-32 268.81,-28.5 268.81,-35.5" />
+</ns0:g>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="ABC" target="_top">
+<ns0:path fill="#fbb4ae" stroke="#fbb4ae" stroke-width="2" d="M124.58,-42C124.58,-42 100.92,-42 100.92,-42 97.58,-42 94.25,-38.67 94.25,-35.33 94.25,-35.33 94.25,-28.67 94.25,-28.67 94.25,-25.33 97.58,-22 100.92,-22 100.92,-22 124.58,-22 124.58,-22 127.92,-22 131.25,-25.33 131.25,-28.67 131.25,-28.67 131.25,-35.33 131.25,-35.33 131.25,-38.67 127.92,-42 124.58,-42" />
+<ns0:text text-anchor="middle" x="112.75" y="-28.5" font-family="Arial" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>builtins.object</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/functions.html#object" ns1:title="object" target="_top">
+<ns0:path fill="#b3cde3" stroke="#b3cde3" stroke-width="2" d="M51.58,-42C51.58,-42 22.67,-42 22.67,-42 19.33,-42 16,-38.67 16,-35.33 16,-35.33 16,-28.67 16,-28.67 16,-25.33 19.33,-22 22.67,-22 22.67,-22 51.58,-22 51.58,-22 54.92,-22 58.25,-25.33 58.25,-28.67 58.25,-28.67 58.25,-35.33 58.25,-35.33 58.25,-38.67 54.92,-42 51.58,-42" />
+<ns0:text text-anchor="middle" x="37.12" y="-28.5" font-family="Arial" font-size="10.00">object</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>nauert.heuristics.DistanceHeuristic</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../api/api/nauert/heuristics.html#nauert.heuristics.DistanceHeuristic" ns1:title="Distance\nHeuristic" target="_top">
+<ns0:path fill="black" stroke="black" stroke-width="2" d="M325.37,-48C325.37,-48 291.7,-48 291.7,-48 286.37,-48 281.03,-42.67 281.03,-37.33 281.03,-37.33 281.03,-26.67 281.03,-26.67 281.03,-21.33 286.37,-16 291.7,-16 291.7,-16 325.37,-16 325.37,-16 330.7,-16 336.03,-21.33 336.03,-26.67 336.03,-26.67 336.03,-37.33 336.03,-37.33 336.03,-42.67 330.7,-48 325.37,-48" />
+<ns0:text text-anchor="middle" x="308.53" y="-34.5" font-family="Arial" font-size="10.00" fill="white">Distance</ns0:text>
+<ns0:text text-anchor="middle" x="308.53" y="-22.5" font-family="Arial" font-size="10.00" fill="white">Heuristic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>nauert.heuristics.Heuristic</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/api/nauert/heuristics.html#nauert.heuristics.Heuristic" ns1:title="Heuristic" target="_top">
+<ns0:ellipse fill="black" stroke="black" stroke-width="2" cx="206.14" cy="-32" rx="38.89" ry="14.14" />
+<ns0:text text-anchor="middle" x="206.14" y="-28.5" font-family="Arial" font-size="10.00" fill="white">Heuristic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

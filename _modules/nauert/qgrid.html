@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nauert.qgrid &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauert_modules/nauert/qgrid.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nauert.qgrid</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nauert.qgrid</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">bisect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">abjad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uqbar.containers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uqbar.graphs</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">qeventproxy</span> <span class="k">as</span> <span class="n">_qeventproxy</span>
+
+
+<div class="viewcode-block" id="QGridLeaf">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGridLeaf">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QGridLeaf</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">rhythmtrees</span><span class="o">.</span><span class="n">RhythmTreeNode</span><span class="p">,</span> <span class="n">uqbar</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">UniqueTreeNode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Q-grid leaf.</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        &gt;&gt;&gt; nauert.QGridLeaf()</span>
+<span class="sd">        QGridLeaf((1, 1), q_event_proxies=[], is_divisible=True)</span>
+
+<span class="sd">    Used internally by ``QGrid``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### INITIALIZER ###</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">preprolated_duration</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">typings</span><span class="o">.</span><span class="n">Duration</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">q_event_proxies</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+        <span class="n">is_divisible</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">preprolated_duration</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span>
+            <span class="n">preprolated_duration</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">q_event_proxies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">q_event_proxies</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">q_event_proxies</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">is_divisible</span><span class="p">,</span> <span class="nb">bool</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">is_divisible</span><span class="p">)</span>
+        <span class="n">uqbar</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">UniqueTreeNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">abjad</span><span class="o">.</span><span class="n">rhythmtrees</span><span class="o">.</span><span class="n">RhythmTreeNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preprolated_duration</span><span class="o">.</span><span class="n">pair</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_q_event_proxies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">q_event_proxies</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_divisible</span> <span class="o">=</span> <span class="n">is_divisible</span>
+
+    <span class="c1">### SPECIAL METHODS ###</span>
+
+<div class="viewcode-block" id="QGridLeaf.__call__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGridLeaf.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">pulse_duration</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Note</span> <span class="o">|</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tuplet</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls q-grid leaf.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pulse_duration</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">pulse_duration</span><span class="p">)</span>
+        <span class="n">total_duration</span> <span class="o">=</span> <span class="n">pulse_duration</span> <span class="o">*</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">abjad</span><span class="o">.</span><span class="n">makers</span><span class="o">.</span><span class="n">make_notes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_duration</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QGridLeaf.__graph__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGridLeaf.__graph__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__graph__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">uqbar</span><span class="o">.</span><span class="n">graphs</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Graphviz graph of q-grid leaf.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">uqbar</span><span class="o">.</span><span class="n">graphs</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;G&quot;</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="p">)</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">uqbar</span><span class="o">.</span><span class="n">graphs</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">})</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">graph</span></div>
+
+
+<div class="viewcode-block" id="QGridLeaf.__repr__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGridLeaf.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets repr.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="si">!r}</span><span class="s2">,&quot;</span>
+        <span class="n">string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; q_event_proxies=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="si">!r}</span><span class="s2">,&quot;</span>
+        <span class="n">string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; is_divisible=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">is_divisible</span><span class="si">!r}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="n">string</span></div>
+
+
+    <span class="c1">### PRIVATE PROPERTIES ###</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pretty_rtm_format_pieces</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span>
+        <span class="k">assert</span> <span class="n">denominator</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">denominator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">numerator</span><span class="p">)]</span>
+
+    <span class="c1">### PUBLIC PROPERTIES ###</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_divisible</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag for whether the node may be further divided</span>
+<span class="sd">        under some search tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_divisible</span>
+
+    <span class="nd">@is_divisible</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_divisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_divisible</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">preceding_q_event_proxies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets preceding q-event proxies of q-grid leaf.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_q_event_proxies</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">offset</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_offset</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">q_event_proxies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets q-event proxies of q-grid leaf.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_q_event_proxies</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rtm_format</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets RTM format of q-grid leaf.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span>
+        <span class="k">assert</span> <span class="n">denominator</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">denominator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">numerator</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">succeeding_q_event_proxies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets succeeding q-event proxies of q-grid leaf.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_q_event_proxies</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_offset</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">.</span><span class="n">offset</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="QGridContainer">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGridContainer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QGridContainer</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">rhythmtrees</span><span class="o">.</span><span class="n">RhythmTreeContainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Q-grid container.</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        &gt;&gt;&gt; nauert.QGridContainer((1, 1))</span>
+<span class="sd">        QGridContainer((1, 1))</span>
+
+<span class="sd">    Used internally by ``QGrid``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### PRIVATE PROPERTIES ###</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_leaf_class</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">QGridLeaf</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_node_class</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">type</span><span class="p">,</span> <span class="nb">type</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">QGridLeaf</span><span class="p">)</span>
+
+    <span class="c1">### PUBLIC PROPERTIES ###</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">leaves</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">QGridLeaf</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets leaves.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_first</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">QGridLeaf</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="QGrid">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QGrid</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Q-grid.</span>
+
+<span class="sd">    Rhythm-tree-based model for how millisecond attack points collapse onto the</span>
+<span class="sd">    offsets generated by a nested rhythmic structure.</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        ``QGrids`` model not only the internal nodes of the nesting structure,</span>
+<span class="sd">        but also the downbeat to the &quot;next&quot; ``QGrid``, allowing events which</span>
+<span class="sd">        occur very late within one structure to collapse virtually onto the</span>
+<span class="sd">        beginning of the next structure.</span>
+
+<span class="sd">        ``QEventProxies`` can be &quot;loaded in&quot; to the node contained by the</span>
+<span class="sd">        ``QGrid`` closest to their virtual offset:</span>
+
+<span class="sd">        &gt;&gt;&gt; q_grid = nauert.QGrid()</span>
+<span class="sd">        &gt;&gt;&gt; q_event_a = nauert.PitchedQEvent(abjad.Offset(250), [0])</span>
+<span class="sd">        &gt;&gt;&gt; q_event_b = nauert.PitchedQEvent(abjad.Offset(750), [1])</span>
+<span class="sd">        &gt;&gt;&gt; proxy_a = nauert.QEventProxy(q_event_a, abjad.Offset(0.25))</span>
+<span class="sd">        &gt;&gt;&gt; proxy_b = nauert.QEventProxy(q_event_b, abjad.Offset(0.75))</span>
+<span class="sd">        &gt;&gt;&gt; q_grid.fit_q_events([proxy_a, proxy_b])</span>
+
+<span class="sd">        &gt;&gt;&gt; for q_event_proxy in q_grid.root_node.q_event_proxies:</span>
+<span class="sd">        ...     q_event_proxy</span>
+<span class="sd">        ...</span>
+<span class="sd">        QEventProxy(...)</span>
+
+<span class="sd">        &gt;&gt;&gt; for q_event_proxy in q_grid.next_downbeat.q_event_proxies:</span>
+<span class="sd">        ...     q_event_proxy</span>
+<span class="sd">        ...</span>
+<span class="sd">        QEventProxy(...)</span>
+
+<span class="sd">    Used internally by the ``quantize`` function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### CLASS VARIABLES ###</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_next_downbeat&quot;</span><span class="p">,</span> <span class="s2">&quot;_root_node&quot;</span><span class="p">)</span>
+
+    <span class="c1">### INITIALIZATION ###</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">root_node</span><span class="p">:</span> <span class="n">QGridLeaf</span> <span class="o">|</span> <span class="n">QGridContainer</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">next_downbeat</span><span class="p">:</span> <span class="n">QGridLeaf</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">root_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">root_node</span> <span class="o">=</span> <span class="n">QGridLeaf</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">root_node</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">QGridLeaf</span><span class="p">,</span> <span class="n">QGridContainer</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">next_downbeat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">next_downbeat</span> <span class="o">=</span> <span class="n">QGridLeaf</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">next_downbeat</span><span class="p">,</span> <span class="n">QGridLeaf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span> <span class="o">=</span> <span class="n">root_node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span> <span class="o">=</span> <span class="n">next_downbeat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span><span class="o">.</span><span class="n">_offsets_are_current</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1">### SPECIAL METHODS ###</span>
+
+<div class="viewcode-block" id="QGrid.__call__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beatspan</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Leaf</span> <span class="o">|</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tuplet</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls q-grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">beatspan</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">beatspan</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_node</span><span class="p">(</span><span class="n">beatspan</span><span class="p">)</span>
+        <span class="n">voice</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">tuplet</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">select</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="n">voice</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tuplet</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tuplet</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tuplet</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">tuplet</span><span class="o">.</span><span class="n">trivial</span><span class="p">():</span>
+                <span class="n">abjad</span><span class="o">.</span><span class="n">mutate</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">tuplet</span><span class="p">)</span>
+        <span class="n">components_</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">mutate</span><span class="o">.</span><span class="n">eject_contents</span><span class="p">(</span><span class="n">voice</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components_</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Leaf</span> <span class="o">|</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tuplet</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+        <span class="n">result_logical_ties</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">iterate</span><span class="o">.</span><span class="n">logical_ties</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">logical_tie</span><span class="p">,</span> <span class="n">q_grid_leaf</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">result_logical_ties</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">q_grid_leaf</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="p">:</span>
+                <span class="n">q_events</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">q_event_proxy</span><span class="o">.</span><span class="n">q_event</span>
+                    <span class="k">for</span> <span class="n">q_event_proxy</span> <span class="ow">in</span> <span class="n">q_grid_leaf</span><span class="o">.</span><span class="n">q_event_proxies</span>
+                <span class="p">]</span>
+                <span class="n">q_events</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
+                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span>
+                <span class="p">)</span>
+                <span class="n">annotation</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;q_events&quot;</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">q_events</span><span class="p">)}</span>
+                <span class="n">leaf</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">leaf</span><span class="p">(</span><span class="n">logical_tie</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">leaf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="QGrid.__copy__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.__copy__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arguments</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QGrid&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copies q-grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">root_node</span><span class="p">,</span> <span class="n">next_downbeat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">root_node</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">next_downbeat</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="QGrid.__eq__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.__eq__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Is true if `argument` is a q-grid with root node and next downbeat</span>
+<span class="sd">        equal to those of this q-grid. Otherwise false.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_node</span> <span class="o">==</span> <span class="n">argument</span><span class="o">.</span><span class="n">root_node</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_downbeat</span> <span class="o">==</span> <span class="n">argument</span><span class="o">.</span><span class="n">next_downbeat</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="QGrid.__hash__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.__hash__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hashes q-grid.</span>
+
+<span class="sd">        Required to be explicitly redefined on Python 3 if __eq__ changes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">QGrid</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="QGrid.__repr__">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets repr.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(root_node=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">root_node</span><span class="si">!r}</span><span class="s2">,&quot;</span>
+        <span class="n">string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; next_downbeat=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">next_downbeat</span><span class="si">!r}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="n">string</span></div>
+
+
+    <span class="c1">### PUBLIC PROPERTIES ###</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The computed total distance (divided by the number of ``QEventProxy``</span>
+<span class="sd">        objects) of the offset of each ``QEventProxy`` contained by the</span>
+<span class="sd">        ``QGrid`` to the offset of the ``QGridLeaf`` to which the</span>
+<span class="sd">        ``QEventProxy`` is attached.</span>
+
+<span class="sd">        ..  container:: example</span>
+
+<span class="sd">            &gt;&gt;&gt; q_grid = nauert.QGrid()</span>
+<span class="sd">            &gt;&gt;&gt; q_event_a = nauert.PitchedQEvent(abjad.Offset(250), [0], [&quot;A&quot;])</span>
+<span class="sd">            &gt;&gt;&gt; q_event_b = nauert.PitchedQEvent(abjad.Offset(750), [1], [&quot;B&quot;])</span>
+<span class="sd">            &gt;&gt;&gt; proxy_a = nauert.QEventProxy(q_event_a, abjad.Offset(0.25))</span>
+<span class="sd">            &gt;&gt;&gt; proxy_b = nauert.QEventProxy(q_event_b, abjad.Offset(0.75))</span>
+<span class="sd">            &gt;&gt;&gt; q_grid.fit_q_events([proxy_a, proxy_b])</span>
+<span class="sd">            &gt;&gt;&gt; print(q_grid.rtm_format)</span>
+<span class="sd">            1</span>
+
+<span class="sd">            &gt;&gt;&gt; pairs = zip(q_grid.leaves, q_grid.offsets, strict=True)</span>
+<span class="sd">            &gt;&gt;&gt; for index, (leaf, offset) in enumerate(pairs):</span>
+<span class="sd">            ...     for q_event_proxy in leaf.q_event_proxies:</span>
+<span class="sd">            ...         q_event = q_event_proxy.q_event</span>
+<span class="sd">            ...         print(</span>
+<span class="sd">            ...             &quot;leaf&#39;s index: {}, leaf&#39;s offset: {}, q_event: {}&quot;.format(</span>
+<span class="sd">            ...                 index, offset, q_event.attachments</span>
+<span class="sd">            ...             )</span>
+<span class="sd">            ...         )</span>
+<span class="sd">            ...</span>
+<span class="sd">            leaf&#39;s index: 0, leaf&#39;s offset: 0, q_event: (&#39;A&#39;,)</span>
+<span class="sd">            leaf&#39;s index: 1, leaf&#39;s offset: 1, q_event: (&#39;B&#39;,)</span>
+
+<span class="sd">            &gt;&gt;&gt; q_grid.distance</span>
+<span class="sd">            Duration(1, 4)</span>
+
+<span class="sd">            &gt;&gt;&gt; q_events = q_grid.subdivide_leaves([(0, (1, 1))])</span>
+<span class="sd">            &gt;&gt;&gt; q_grid.fit_q_events(q_events)</span>
+<span class="sd">            &gt;&gt;&gt; q_events = q_grid.subdivide_leaves([(0, (1, 1))])</span>
+<span class="sd">            &gt;&gt;&gt; q_grid.fit_q_events(q_events)</span>
+<span class="sd">            &gt;&gt;&gt; print(q_grid.rtm_format)</span>
+<span class="sd">            (1 ((1 (1 1)) 1))</span>
+
+<span class="sd">            &gt;&gt;&gt; pairs = zip(q_grid.leaves, q_grid.offsets, strict=True)</span>
+<span class="sd">            &gt;&gt;&gt; for index, (leaf, offset) in enumerate(pairs):</span>
+<span class="sd">            ...     for q_event_proxy in leaf.q_event_proxies:</span>
+<span class="sd">            ...         q_event = q_event_proxy.q_event</span>
+<span class="sd">            ...         print(</span>
+<span class="sd">            ...             &quot;leaf&#39;s index: {}, leaf&#39;s offset: {}, q_event: {}&quot;.format(</span>
+<span class="sd">            ...                 index, offset, q_event.attachments</span>
+<span class="sd">            ...             )</span>
+<span class="sd">            ...         )</span>
+<span class="sd">            ...</span>
+<span class="sd">            leaf&#39;s index: 1, leaf&#39;s offset: 1/4, q_event: (&#39;A&#39;,)</span>
+<span class="sd">            leaf&#39;s index: 2, leaf&#39;s offset: 1/2, q_event: (&#39;B&#39;,)</span>
+
+<span class="sd">            &gt;&gt;&gt; q_grid.distance</span>
+<span class="sd">            Duration(1, 8)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">absolute_distance</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">leaf</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">offsets</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">q_event_proxy</span> <span class="ow">in</span> <span class="n">leaf</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="p">:</span>
+                <span class="n">absolute_distance</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">q_event_proxy</span><span class="o">.</span><span class="n">offset</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">absolute_distance</span> <span class="o">/</span> <span class="n">count</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">leaves</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">QGridLeaf</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets all of the leaf nodes in the QGrid, including the next downbeat&#39;s</span>
+<span class="sd">        node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">,</span> <span class="n">QGridLeaf</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="o">.</span><span class="n">leaves</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span><span class="p">,)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_downbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QGridLeaf</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the node representing the &quot;next&quot; downbeat after the contents of</span>
+<span class="sd">        the QGrid&#39;s tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_downbeat</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">offsets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the offsets between 0 and 1 of all of the leaf nodes in the QGrid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">start_offset</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">1</span><span class="p">)])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pretty_rtm_format</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the pretty RTM-format of the root node of the ``QGrid``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="o">.</span><span class="n">pretty_rtm_format</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">root_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QGridLeaf</span> <span class="o">|</span> <span class="n">QGridContainer</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the root node of the ``QGrid``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rtm_format</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the RTM format of the root node of the ``QGrid``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="o">.</span><span class="n">rtm_format</span>
+
+    <span class="c1">### PUBLIC METHODS ###</span>
+
+<div class="viewcode-block" id="QGrid.fit_q_events">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.fit_q_events">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_q_events</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">q_event_proxies</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fits each ``QEventProxy`` in ``q_event_proxies`` onto the contained</span>
+<span class="sd">        ``QGridLeaf`` whose offset is nearest.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">q_event_proxies</span><span class="p">)</span>
+        <span class="n">leaves</span><span class="p">,</span> <span class="n">offsets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">offsets</span>
+        <span class="k">for</span> <span class="n">q_event_proxy</span> <span class="ow">in</span> <span class="n">q_event_proxies</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span> <span class="n">q_event_proxy</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">q_event_proxy</span><span class="o">.</span><span class="n">offset</span> <span class="o">==</span> <span class="n">offsets</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+                <span class="n">leaves</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_event_proxy</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">offsets</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                <span class="n">left_diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">left</span> <span class="o">-</span> <span class="n">q_event_proxy</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+                <span class="n">right_diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">q_event_proxy</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">right_diff</span> <span class="o">&lt;</span> <span class="n">left_diff</span><span class="p">:</span>
+                    <span class="n">leaves</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_event_proxy</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">leaves</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_event_proxy</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QGrid.regroup_leaves_with_unencessary_divisions">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.regroup_leaves_with_unencessary_divisions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">regroup_leaves_with_unencessary_divisions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Regroups leaves that belong to the same parent in which only the first</span>
+<span class="sd">        leaf contains q_event_prox[y|ies].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">leaf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">leaf</span><span class="o">.</span><span class="n">parent</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">QGridContainer</span><span class="p">):</span>
+                <span class="n">leaves</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">leaves</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leaves</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">_leaf</span><span class="o">.</span><span class="n">q_event_proxies</span> <span class="o">==</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">_leaf</span> <span class="ow">in</span> <span class="n">leaves</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+                <span class="p">):</span>
+                    <span class="n">new_leaf</span> <span class="o">=</span> <span class="n">QGridLeaf</span><span class="p">(</span>
+                        <span class="n">preprolated_duration</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">pair</span><span class="p">),</span>
+                        <span class="n">q_event_proxies</span><span class="o">=</span><span class="n">leaves</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+                    <span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_leaf</span><span class="p">]</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">):</span>
+                <span class="k">break</span></div>
+
+
+<div class="viewcode-block" id="QGrid.sort_q_events_by_index">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.sort_q_events_by_index">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_q_events_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sorts ``QEventProxies`` attached to each ``QGridLeaf`` in a ``QGrid``</span>
+<span class="sd">        by their index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span><span class="p">:</span>
+            <span class="n">leaf</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QGrid.subdivide_leaf">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.subdivide_leaf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">subdivide_leaf</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">leaf</span><span class="p">:</span> <span class="n">QGridLeaf</span><span class="p">,</span>
+        <span class="n">subdivisions</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">typings</span><span class="o">.</span><span class="n">Duration</span> <span class="o">|</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replaces the ``QGridLeaf`` ``leaf`` contained in a ``QGrid`` by a</span>
+<span class="sd">        ``QGridContainer`` containing ``QGridLeaves`` with durations equal to</span>
+<span class="sd">        the ratio described in ``subdivisions``</span>
+
+<span class="sd">        Returns the ``QEventProxies`` attached to ``leaf``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">subdivision</span> <span class="ow">in</span> <span class="n">subdivisions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subdivision</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">subdivision</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">subdivision</span><span class="p">)</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">QGridLeaf</span><span class="p">(</span><span class="n">preprolated_duration</span><span class="o">=</span><span class="n">subdivision</span><span class="p">)</span>
+                <span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="n">QGridContainer</span><span class="p">(</span>
+            <span class="n">leaf</span><span class="o">.</span><span class="n">pair</span><span class="p">,</span>
+            <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">QGridLeaf</span><span class="p">(</span><span class="n">preprolated_duration</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">subdivision</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">subdivision</span> <span class="ow">in</span> <span class="n">subdivisions</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">leaf</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">leaf</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span>
+            <span class="n">leaf</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">container</span><span class="p">]</span>
+        <span class="c1"># otherwise, our root node if just a QGridLeaf</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span> <span class="o">=</span> <span class="n">container</span>
+        <span class="k">return</span> <span class="n">leaf</span><span class="o">.</span><span class="n">q_event_proxies</span></div>
+
+
+<div class="viewcode-block" id="QGrid.subdivide_leaves">
+<a class="viewcode-back" href="../../api/nauert/qgrid.html#nauert.qgrid.QGrid.subdivide_leaves">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">subdivide_leaves</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qeventproxy</span><span class="o">.</span><span class="n">QEventProxy</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a sequence of leaf-index:subdivision-ratio pairs ``pairs``,</span>
+<span class="sd">        subdivide the ``QGridLeaves`` described by the indices into</span>
+<span class="sd">        ``QGridContainers`` containing ``QGridLeaves`` with durations equal to</span>
+<span class="sd">        their respective subdivision-ratios.</span>
+
+<span class="sd">        Returns the ``QEventProxies`` attached to thus subdivided</span>
+<span class="sd">        ``QGridLeaf``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pairs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="n">leaf_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+        <span class="n">subdivisions</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+        <span class="n">all_leaves</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span>
+        <span class="n">leaves_to_subdivide</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_leaves</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">leaf_indices</span><span class="p">]</span>
+        <span class="n">q_event_proxies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leaves_to_subdivide</span><span class="p">):</span>
+            <span class="n">next_leaf</span> <span class="o">=</span> <span class="n">all_leaves</span><span class="p">[</span><span class="n">all_leaves</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">next_leaf</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_downbeat</span><span class="p">:</span>
+                <span class="n">next_leaf_offset</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">next_leaf_offset</span> <span class="o">=</span> <span class="n">next_leaf</span><span class="o">.</span><span class="n">start_offset</span>
+
+            <span class="n">q_event_proxies</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subdivide_leaf</span><span class="p">(</span><span class="n">leaf</span><span class="p">,</span> <span class="n">subdivisions</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="k">for</span> <span class="n">q_event_proxy</span> <span class="ow">in</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">next_leaf</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">q_event_proxy</span><span class="o">.</span><span class="n">offset</span> <span class="o">&lt;</span> <span class="n">next_leaf_offset</span><span class="p">:</span>
+                    <span class="n">idx</span> <span class="o">=</span> <span class="n">next_leaf</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">q_event_proxy</span><span class="p">)</span>
+                    <span class="n">q_event_proxies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_leaf</span><span class="o">.</span><span class="n">q_event_proxies</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">q_event_proxies</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

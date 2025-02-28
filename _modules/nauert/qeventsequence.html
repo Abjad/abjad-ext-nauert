@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nauert.qeventsequence &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauert_modules/nauert/qeventsequence.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nauert.qeventsequence</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nauert.qeventsequence</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">collections</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numbers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">abjad</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">qevents</span> <span class="k">as</span> <span class="n">_qevents</span>
+
+
+<div class="viewcode-block" id="QEventSequence">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QEventSequence</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Q-event sequence.</span>
+
+<span class="sd">    Contains only pitched q-events and silent q-events, and terminates with a</span>
+<span class="sd">    single terminal q-event.</span>
+
+<span class="sd">    A q-event sequence is the primary input to the quantizer.</span>
+
+<span class="sd">    ..  container:: example</span>
+
+<span class="sd">        A q-event sequence provides a number of convenience functions to assist</span>
+<span class="sd">        with instantiating new sequences:</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = (1000, -500, 1250, -500, 750)</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_millisecond_durations(durations)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### CLASS VARIABLES ###</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_sequence&quot;</span><span class="p">,)</span>
+
+    <span class="c1">### INITIALIZER ###</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="n">q_event_classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">_qevents</span><span class="o">.</span><span class="n">PitchedQEvent</span><span class="p">,</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">SilentQEvent</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sequence</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">q_event</span><span class="p">,</span> <span class="n">q_event_classes</span><span class="p">)</span> <span class="k">for</span> <span class="n">q_event</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">TerminalQEvent</span><span class="p">)</span>
+            <span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">offset</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">]</span>
+            <span class="n">offset_sequence</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">offsets</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">abjad</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">is_increasing</span><span class="p">(</span><span class="n">offset_sequence</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">offset</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+
+    <span class="c1">### SPECIAL METHODS ###</span>
+
+<div class="viewcode-block" id="QEventSequence.__contains__">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.__contains__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Is true when q-event sequence contains ``argument``. Otherwise false.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">argument</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.__eq__">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.__eq__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Is true when q-event sequence equals ``argument``. Otherwise false.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">==</span> <span class="n">argument</span><span class="o">.</span><span class="n">sequence</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+    <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="QEventSequence.__getitem__">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.__getitem__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">slice</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets item or slice identified by `argument`.</span>
+
+<span class="sd">        Returns item or slice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.__hash__">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.__hash__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hashes q-event sequence.</span>
+
+<span class="sd">        Required to be explicitly redefined on Python 3 if __eq__ changes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">QEventSequence</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.__iter__">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.__iter__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterates q-event sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.__len__">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.__len__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets length of q-event sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span><span class="p">)</span></div>
+
+
+    <span class="c1">### PUBLIC PROPERTIES ###</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">duration_in_ms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get duration ``QEventSequence`` in milliseconds:</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = (1000, -500, 1250, -500, 750)</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_millisecond_durations(durations)</span>
+<span class="sd">        &gt;&gt;&gt; sequence.duration_in_ms</span>
+<span class="sd">        Duration(4000, 1)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets sequence of q-events.</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = (1000, -500, 1250, -500, 750)</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_millisecond_durations(durations)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence.sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sequence</span>
+
+    <span class="c1">### PUBLIC METHODS ###</span>
+
+<div class="viewcode-block" id="QEventSequence.from_millisecond_durations">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.from_millisecond_durations">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_millisecond_durations</span><span class="p">(</span>
+        <span class="n">class_</span><span class="p">,</span>
+        <span class="n">milliseconds</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">fuse_silences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QEventSequence&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes sequence of millisecond ``durations`` to ``QEventSequence``:</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = [-250, 500, -1000, 1250, -1000]</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_millisecond_durations(durations)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">durations</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">fuse_silences</span><span class="p">:</span>
+            <span class="n">durations</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">sum_by_sign</span><span class="p">(</span><span class="n">milliseconds</span><span class="p">,</span> <span class="n">sign</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">_</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">durations</span> <span class="o">=</span> <span class="n">milliseconds</span>
+        <span class="n">sums</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumulative_sums</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">durations</span><span class="p">])</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sums</span><span class="p">]</span>
+        <span class="n">q_events</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span> <span class="n">durations</span><span class="p">):</span>
+            <span class="n">q_event</span><span class="p">:</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span>
+            <span class="k">if</span> <span class="n">duration</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">q_event</span> <span class="o">=</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">SilentQEvent</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">q_event</span> <span class="o">=</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">PitchedQEvent</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">q_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_event</span><span class="p">)</span>
+        <span class="n">q_event</span> <span class="o">=</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">TerminalQEvent</span><span class="p">(</span><span class="n">offsets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">q_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_event</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">class_</span><span class="p">(</span><span class="n">q_events</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.from_millisecond_offsets">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.from_millisecond_offsets">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_millisecond_offsets</span><span class="p">(</span>
+        <span class="n">class_</span><span class="p">,</span> <span class="n">offsets</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QEventSequence&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes millisecond ``offsets`` to ``QEventSequence``:</span>
+
+<span class="sd">        &gt;&gt;&gt; numbers = [0, 250, 750, 1750, 3000, 4000]</span>
+<span class="sd">        &gt;&gt;&gt; offsets = [abjad.Offset(_) for _ in numbers]</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_millisecond_offsets(offsets)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">offsets</span><span class="p">)</span>
+        <span class="n">q_events</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">q_events</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">_qevents</span><span class="o">.</span><span class="n">PitchedQEvent</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">q_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_qevents</span><span class="o">.</span><span class="n">TerminalQEvent</span><span class="p">(</span><span class="n">offsets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">class_</span><span class="p">(</span><span class="n">q_events</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.from_millisecond_pitch_attachment_tuples">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.from_millisecond_pitch_attachment_tuples">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_millisecond_pitch_attachment_tuples</span><span class="p">(</span>
+        <span class="n">class_</span><span class="p">,</span> <span class="n">tuples</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QEventSequence&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes (millisecond-duration, pitch, attachment) ``tuples`` into</span>
+<span class="sd">        ``QEventSequence``:</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = [250, 500, 1000, 1250, 1000]</span>
+<span class="sd">        &gt;&gt;&gt; pitches = [(0,), None, (2, 3), None, (1,)]</span>
+<span class="sd">        &gt;&gt;&gt; attachments = [(&quot;foo&quot;,), (), (), (), (&quot;foobar&quot;, &quot;foo&quot;)]</span>
+<span class="sd">        &gt;&gt;&gt; tuples = tuple(zip(durations, pitches, attachments))</span>
+<span class="sd">        &gt;&gt;&gt; method = nauert.QEventSequence.from_millisecond_pitch_attachment_tuples</span>
+<span class="sd">        &gt;&gt;&gt; sequence = method(tuples)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tuples</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tuples</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tuples</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">duration</span> <span class="k">for</span> <span class="n">duration</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tuples</span><span class="p">)</span>
+        <span class="n">pitch_prototype</span> <span class="o">=</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">attachments</span> <span class="ow">in</span> <span class="n">tuples</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attachments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">attachments</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pitches</span><span class="p">,</span> <span class="n">pitch_prototype</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pitches</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">pitches</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pitches</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pitches</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="ow">not</span> <span class="n">attachments</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">attachments</span><span class="p">)</span>
+        <span class="c1"># fuse silences</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">tuples</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">groups</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">duration</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">group</span><span class="p">)</span>
+                <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duration</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">()))</span>
+        <span class="c1"># find offsets</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumulative_sums</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">])</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">]</span>
+        <span class="c1"># build QEvents</span>
+        <span class="n">q_events</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span><span class="o">.</span><span class="n">from_offset_pitches_attachments</span><span class="p">(</span>
+                <span class="n">offset</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">attachments</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">offset</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">attachments</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">q_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_qevents</span><span class="o">.</span><span class="n">TerminalQEvent</span><span class="p">(</span><span class="n">offsets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">class_</span><span class="p">(</span><span class="n">q_events</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.from_millisecond_pitch_pairs">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.from_millisecond_pitch_pairs">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_millisecond_pitch_pairs</span><span class="p">(</span>
+        <span class="n">class_</span><span class="p">,</span> <span class="n">pairs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QEventSequence&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes (millisecond-duration, pitch) ``pairs`` into ``QEventSequence``:</span>
+
+<span class="sd">        &gt;&gt;&gt; durations = [250, 500, 1000, 1250, 1000]</span>
+<span class="sd">        &gt;&gt;&gt; pitches = [(0,), None, (2, 3), None, (1,)]</span>
+<span class="sd">        &gt;&gt;&gt; pairs = tuple(zip(durations, pitches))</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_millisecond_pitch_pairs(pairs)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">duration</span> <span class="k">for</span> <span class="n">duration</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">)</span>
+        <span class="n">pitch_prototype</span> <span class="o">=</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">pitches</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pitches</span><span class="p">,</span> <span class="n">pitch_prototype</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pitches</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">pitches</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pitches</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">class_</span><span class="o">.</span><span class="n">from_millisecond_pitch_attachment_tuples</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">duration</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="p">())</span> <span class="k">for</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitches</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.from_tempo_scaled_durations">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.from_tempo_scaled_durations">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_tempo_scaled_durations</span><span class="p">(</span>
+        <span class="n">class_</span><span class="p">,</span>
+        <span class="n">durations</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">typings</span><span class="o">.</span><span class="n">Duration</span><span class="p">],</span>
+        <span class="n">tempo</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QEventSequence&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes ``durations``, scaled by ``tempo`` into a ``QEventSequence``:</span>
+
+<span class="sd">        ..  container:: example</span>
+
+<span class="sd">            &gt;&gt;&gt; tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 174)</span>
+<span class="sd">            &gt;&gt;&gt; pairs = [(1, 4), (-3, 16), (1, 16), (-1, 2)]</span>
+<span class="sd">            &gt;&gt;&gt; durations = [abjad.Duration(_) for _ in pairs]</span>
+<span class="sd">            &gt;&gt;&gt; method = nauert.QEventSequence.from_tempo_scaled_durations</span>
+<span class="sd">            &gt;&gt;&gt; sequence = method(durations, tempo=tempo)</span>
+<span class="sd">            &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">            ...     q_event</span>
+<span class="sd">            ...</span>
+<span class="sd">            PitchedQEvent(...)</span>
+<span class="sd">            SilentQEvent(...)</span>
+<span class="sd">            PitchedQEvent(...)</span>
+<span class="sd">            SilentQEvent(...)</span>
+<span class="sd">            TerminalQEvent(...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">durations</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tempo</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">)</span>
+        <span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">sum_by_sign</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">sign</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">x</span><span class="p">]</span>
+        <span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="n">tempo</span><span class="o">.</span><span class="n">duration_to_milliseconds</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">durations</span><span class="p">]</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumulative_sums</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">durations</span><span class="p">])</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">]</span>
+        <span class="n">q_events</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span> <span class="n">durations</span><span class="p">):</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span>
+            <span class="n">q_event</span><span class="p">:</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">QEvent</span>
+            <span class="c1"># negative duration indicates silence</span>
+            <span class="k">if</span> <span class="n">duration</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">q_event</span> <span class="o">=</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">SilentQEvent</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+            <span class="c1"># otherwise use middle C</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">q_event</span> <span class="o">=</span> <span class="n">_qevents</span><span class="o">.</span><span class="n">PitchedQEvent</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">q_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_event</span><span class="p">)</span>
+        <span class="c1"># insert terminating silence _qevents.QEvent</span>
+        <span class="n">q_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_qevents</span><span class="o">.</span><span class="n">TerminalQEvent</span><span class="p">(</span><span class="n">offsets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">class_</span><span class="p">(</span><span class="n">q_events</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QEventSequence.from_tempo_scaled_leaves">
+<a class="viewcode-back" href="../../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence.from_tempo_scaled_leaves">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_tempo_scaled_leaves</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span> <span class="n">leaves</span><span class="p">,</span> <span class="n">tempo</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QEventSequence&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes ``leaves``, optionally with ``tempo`` into a ``QEventSequence``:</span>
+
+<span class="sd">        &gt;&gt;&gt; staff = abjad.Staff(&quot;c&#39;4 &lt;d&#39; fs&#39;&gt;8. r16 gqs&#39;2&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; tempo = abjad.MetronomeMark(abjad.Duration(1, 4), 72)</span>
+<span class="sd">        &gt;&gt;&gt; sequence = nauert.QEventSequence.from_tempo_scaled_leaves(staff[:], tempo)</span>
+<span class="sd">        &gt;&gt;&gt; for q_event in sequence:</span>
+<span class="sd">        ...     q_event</span>
+<span class="sd">        ...</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        SilentQEvent(...)</span>
+<span class="sd">        PitchedQEvent(...)</span>
+<span class="sd">        TerminalQEvent(...)</span>
+
+<span class="sd">        If ``tempo`` is ``None``, all leaves in ``leaves`` must have an</span>
+<span class="sd">        effective, non-imprecise tempo. The millisecond-duration of each leaf</span>
+<span class="sd">        will be determined by its effective tempo.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">leaves</span><span class="p">)</span>
+        <span class="k">match</span> <span class="n">tempo</span><span class="p">:</span>
+            <span class="k">case</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">prototype</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span>
+                <span class="k">assert</span> <span class="n">abjad</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">effective</span><span class="p">(</span><span class="n">leaves</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">prototype</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">case</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">():</span>
+                <span class="n">tempo</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+            <span class="k">case</span> <span class="nb">tuple</span><span class="p">():</span>
+                <span class="n">tempo</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="o">*</span><span class="n">tempo</span><span class="p">)</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+        <span class="c1"># sort by silence and tied leaves</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rvalue</span><span class="p">,</span> <span class="n">rgroup</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+            <span class="n">leaves</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Rest</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Skip</span><span class="p">))</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">rvalue</span><span class="p">:</span>
+                <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rgroup</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">tvalue</span><span class="p">,</span> <span class="n">tgroup</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+                    <span class="n">rgroup</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">_iterlib</span><span class="o">.</span><span class="n">_get_logical_tie_leaves</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="p">):</span>
+                    <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tgroup</span><span class="p">))</span>
+        <span class="c1"># calculate lists of pitches and durations</span>
+        <span class="n">durations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">pitches</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="c1"># get millisecond cumulative duration</span>
+            <span class="k">if</span> <span class="n">tempo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">duration</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                    <span class="n">tempo</span><span class="o">.</span><span class="n">duration_to_milliseconds</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_get_duration</span><span class="p">())</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">group</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">duration</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                    <span class="n">abjad</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">effective</span><span class="p">(</span>
+                        <span class="n">x</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">duration_to_milliseconds</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_get_duration</span><span class="p">())</span>
+                    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">group</span>
+                <span class="p">)</span>
+            <span class="n">durations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+            <span class="n">pitch</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span>
+            <span class="c1"># get pitch of first leaf in group</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Rest</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Skip</span><span class="p">)):</span>
+                <span class="n">pitch</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Note</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">written_pitch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="n">pitch</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">written_pitch</span><span class="o">.</span><span class="n">number</span>
+            <span class="c1"># chord</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pitch</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">written_pitch</span><span class="o">.</span><span class="n">number</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">note_heads</span><span class="p">]</span>
+            <span class="n">pitches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span>
+        <span class="c1"># convert durations and pitches to QEvents and return</span>
+        <span class="k">return</span> <span class="n">class_</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">)))</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

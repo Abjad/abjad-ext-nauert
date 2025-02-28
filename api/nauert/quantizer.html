@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>quantizer &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/quantizer.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="searchtrees" href="searchtrees.html" />
+    <link rel="prev" title="quantizationjob" href="quantizationjob.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">nauert</a></li>
+      <li class="breadcrumb-item active">quantizer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/quantizer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nauert.quantizer">
+<span id="quantizer"></span><span id="nauert-quantizer"></span><h1>quantizer<a class="headerlink" href="#module-nauert.quantizer" title="Link to this heading"></a></h1>
+<div class="svg-container docutils container">
+</div>
+<hr/><p class="section-header rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nauert.quantizer.quantize" title="nauert.quantizer.quantize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantize</span></code></a></p></td>
+<td><p>Quantizer function.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="nauert.quantizer.quantize">
+<span class="sig-prename descclassname"><span class="pre">nauert.quantizer.</span></span><span class="sig-name descname"><span class="pre">quantize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_event_sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qeventsequence.html#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><span class="pre">QEventSequence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qschemas.html#nauert.qschemas.QSchema" title="nauert.qschemas.QSchema"><span class="pre">QSchema</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grace_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gracehandlers.html#nauert.gracehandlers.GraceHandler" title="nauert.gracehandlers.GraceHandler"><span class="pre">GraceHandler</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heuristic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="heuristics.html#nauert.heuristics.Heuristic" title="nauert.heuristics.Heuristic"><span class="pre">Heuristic</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jobhandlers.html#nauert.jobhandlers.JobHandler" title="nauert.jobhandlers.JobHandler"><span class="pre">JobHandler</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_point_optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="attackpointoptimizers.html#nauert.attackpointoptimizers.AttackPointOptimizer" title="nauert.attackpointoptimizers.AttackPointOptimizer"><span class="pre">AttackPointOptimizer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attach_tempos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Voice</span></span></span><a class="reference internal" href="../../_modules/nauert/quantizer.html#quantize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nauert.quantizer.quantize" title="Link to this definition"></a></dt>
+<dd><p>Quantizer function.</p>
+<p>Quantizes sequences of attack-points, encapsulated by <code class="docutils literal notranslate"><span class="pre">QEventSequences</span></code>,
+into score trees.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pitches</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">QEventSequence</span><span class="o">.</span><span class="n">from_millisecond_pitch_pairs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q_event_sequence</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Quantization defaults to outputting into a 4/4, quarter=60 musical structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">q_event_sequence</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">result</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-92290a8b000fc31cbe93968d789d00d09ed7f72be562b91c9bc0be9226bcf1e9.ly"><img src="../../_images/lilypond-92290a8b000fc31cbe93968d789d00d09ed7f72be562b91c9bc0be9226bcf1e9.cropped.svg"/></a>
+</div></div>
+<div class="example docutils container">
+<p>However, the behavior of the <code class="docutils literal notranslate"><span class="pre">quantize</span></code> function can be modified at
+call-time. Passing a <code class="docutils literal notranslate"><span class="pre">QSchema</span></code> instance will alter the
+macro-structure of the output.</p>
+<p>Here, we quantize using settings specified by a <code class="docutils literal notranslate"><span class="pre">MeasurewiseQSchema</span></code>,
+which will cause the <code class="docutils literal notranslate"><span class="pre">quantize</span></code> function to group the output into
+measures with different tempi and time signatures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">measurewise_q_schema</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseQSchema</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;tempo&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">78</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="s2">&quot;time_signature&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;tempo&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="mi">57</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="s2">&quot;time_signature&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">q_event_sequence</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">q_schema</span><span class="o">=</span><span class="n">measurewise_q_schema</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">result</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-722c4e96c85a68362ab409795617c0901304fef47f3db6f5ab16b1288f50e350.ly"><img src="../../_images/lilypond-722c4e96c85a68362ab409795617c0901304fef47f3db6f5ab16b1288f50e350.cropped.svg"/></a>
+</div></div>
+<div class="example docutils container">
+<p>Here we quantize using settings specified by a <code class="docutils literal notranslate"><span class="pre">BeatwiseQSchema</span></code>,
+which keeps the output of the <code class="docutils literal notranslate"><span class="pre">quantize</span></code> function “flattened”,
+without measures or explicit time signatures.  The default beat-wise
+settings of quarter=60 persists until the third “beatspan”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">beatwise_q_schema</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">BeatwiseQSchema</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tempo&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">120</span><span class="p">)},</span>
+<span class="gp">... </span>        <span class="mi">5</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tempo&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">90</span><span class="p">)},</span>
+<span class="gp">... </span>        <span class="mi">7</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tempo&quot;</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">MetronomeMark</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">30</span><span class="p">)},</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">q_event_sequence</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">q_schema</span><span class="o">=</span><span class="n">beatwise_q_schema</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">([</span><span class="n">result</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="uqbar-book">
+    <a href="../../_images/lilypond-6f415907bf7231f445d9db13b1c0815ad90c9cbcf60d72b661d33e244b1ecb91.ly"><img src="../../_images/lilypond-6f415907bf7231f445d9db13b1c0815ad90c9cbcf60d72b661d33e244b1ecb91.cropped.svg"/></a>
+</div><p>Note that <code class="docutils literal notranslate"><span class="pre">TieChains</span></code> are generally fused together in the above
+example, but break at tempo changes.</p>
+</div>
+<div class="docutils container">
+<p>The use of <cite>BeatwiseQSchema</cite> and <cite>MeasurewiseAttackPointOptimizer</cite> is
+not supported. Please raise an issue if you would like this to be
+supported in the future.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q_schema</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">BeatwiseQSchema</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">attack_point_optimizer</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">MeasurewiseAttackPointOptimizer</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">nauert</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">q_event_sequence</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">attack_point_optimizer</span><span class="o">=</span><span class="n">attack_point_optimizer</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">q_schema</span><span class="o">=</span><span class="n">q_schema</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;/Users/trevor/Repositories/Projects/nauert/source/nauert/quantizer.py&quot;</span>, line <span class="m">285</span>, in <span class="n">quantize</span>
+<span class="w">    </span><span class="n">notation</span> <span class="o">=</span> <span class="n">q_target</span><span class="p">(</span>
+<span class="w">    </span>    <span class="n">q_event_sequence</span><span class="p">,</span>
+<span class="w">    </span><span class="o">...&lt;</span><span class="mi">4</span> <span class="n">lines</span><span class="o">&gt;...</span>
+<span class="w">    </span>    <span class="n">attach_tempos</span><span class="o">=</span><span class="n">attach_tempos</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+  File <span class="nb">&quot;/Users/trevor/Repositories/Projects/nauert/source/nauert/qtargets.py&quot;</span>, line <span class="m">85</span>, in <span class="n">__call__</span>
+<span class="w">    </span><span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="gr">TypeError</span>: <span class="n">BeatwiseQTarget is not supposed to be used together with MeasurewiseAttackPointOptimizer.</span>
+</pre></div>
+</div>
+</div>
+<p>Other keyword arguments are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grace_handler</span></code>: a <code class="docutils literal notranslate"><span class="pre">GraceHandler</span></code> instance controls whether and
+how grace notes are used in the output.  Options currently include
+<code class="docutils literal notranslate"><span class="pre">CollapsingGraceHandler</span></code>, <code class="docutils literal notranslate"><span class="pre">ConcatenatingGraceHandler</span></code> and
+<code class="docutils literal notranslate"><span class="pre">DiscardingGraceHandler</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">heuristic</span></code>: a <code class="docutils literal notranslate"><span class="pre">Heuristic</span></code> instance controls how output rhythms
+are selected from a pool of candidates.  Options currently include
+the <code class="docutils literal notranslate"><span class="pre">DistanceHeuristic</span></code> class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">job_handler</span></code>: a <code class="docutils literal notranslate"><span class="pre">JobHandler</span></code> instance controls whether or not
+parallel processing is used during the quantization process.
+Options include the <code class="docutils literal notranslate"><span class="pre">SerialJobHandler</span></code> and <code class="docutils literal notranslate"><span class="pre">ParallelJobHandler</span></code>
+classes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attack_point_optimizer</span></code>: an <code class="docutils literal notranslate"><span class="pre">AttackPointOptimizer</span></code> instance
+controls whether and how logical ties are re-notated.
+Options currently include <code class="docutils literal notranslate"><span class="pre">MeasurewiseAttackPointOptimizer</span></code>,
+<code class="docutils literal notranslate"><span class="pre">NaiveAttackPointOptimizer</span></code> and <code class="docutils literal notranslate"><span class="pre">NullAttackPointOptimizer</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>Refer to the reference pages for <code class="docutils literal notranslate"><span class="pre">BeatwiseQSchema</span></code> and
+<code class="docutils literal notranslate"><span class="pre">MeasurewiseQSchema</span></code> for more information on controlling the <code class="docutils literal notranslate"><span class="pre">quantize</span></code>
+function’s output, and to the reference on <code class="docutils literal notranslate"><span class="pre">SearchTree</span></code> for information
+on controlling the rhythmic complexity of that same output.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quantizationjob.html" class="btn btn-neutral float-left" title="quantizationjob" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="searchtrees.html" class="btn btn-neutral float-right" title="searchtrees" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

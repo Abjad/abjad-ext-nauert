@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nauert API &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/index.html"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/copybutton.js"></script>
+      <script src="../_static/ga.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nauert" href="nauert/index.html" />
+    <link rel="prev" title="Nauert" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Nauert API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nauert-api">
+<h1>Nauert API<a class="headerlink" href="#nauert-api" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/index.html#nauert"><span class="std std-ref">nauert</span></a></p>
+<p>Extension for quantizing rhythm, based on Paul Nauert’s Q-Grid technique.</p>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/attackpointoptimizers.html#nauert-attackpointoptimizers"><span class="std std-ref">nauert.attackpointoptimizers</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.AttackPointOptimizer" title="nauert.attackpointoptimizers.AttackPointOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AttackPointOptimizer</span></code></a></p></td>
+<td><p>Abstract attack-point optimizer.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer" title="nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasurewiseAttackPointOptimizer</span></code></a></p></td>
+<td><p>Measurewise attack-point optimizer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NaiveAttackPointOptimizer" title="nauert.attackpointoptimizers.NaiveAttackPointOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaiveAttackPointOptimizer</span></code></a></p></td>
+<td><p>Naive attack-point optimizer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NullAttackPointOptimizer" title="nauert.attackpointoptimizers.NullAttackPointOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NullAttackPointOptimizer</span></code></a></p></td>
+<td><p>Null attack-point optimizer.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/gracehandlers.html#nauert-gracehandlers"><span class="std std-ref">nauert.gracehandlers</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/gracehandlers.html#nauert.gracehandlers.GraceHandler" title="nauert.gracehandlers.GraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GraceHandler</span></code></a></p></td>
+<td><p>Abstract grace-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/gracehandlers.html#nauert.gracehandlers.CollapsingGraceHandler" title="nauert.gracehandlers.CollapsingGraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollapsingGraceHandler</span></code></a></p></td>
+<td><p>Collapsing grace-handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/gracehandlers.html#nauert.gracehandlers.ConcatenatingGraceHandler" title="nauert.gracehandlers.ConcatenatingGraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcatenatingGraceHandler</span></code></a></p></td>
+<td><p>Concatenating grace-handler.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/gracehandlers.html#nauert.gracehandlers.DiscardingGraceHandler" title="nauert.gracehandlers.DiscardingGraceHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscardingGraceHandler</span></code></a></p></td>
+<td><p>Discarding grace-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/heuristics.html#nauert-heuristics"><span class="std std-ref">nauert.heuristics</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/heuristics.html#nauert.heuristics.Heuristic" title="nauert.heuristics.Heuristic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Heuristic</span></code></a></p></td>
+<td><p>Abstract heuristic.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/heuristics.html#nauert.heuristics.DistanceHeuristic" title="nauert.heuristics.DistanceHeuristic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistanceHeuristic</span></code></a></p></td>
+<td><p>Distance heuristic.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/jobhandlers.html#nauert-jobhandlers"><span class="std std-ref">nauert.jobhandlers</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/jobhandlers.html#nauert.jobhandlers.JobHandler" title="nauert.jobhandlers.JobHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JobHandler</span></code></a></p></td>
+<td><p>Abstact job-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler" title="nauert.jobhandlers.ParallelJobHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelJobHandler</span></code></a></p></td>
+<td><p>Parallel job-handler.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker" title="nauert.jobhandlers.ParallelJobHandlerWorker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelJobHandlerWorker</span></code></a></p></td>
+<td><p>Parallel job-handler worker.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler" title="nauert.jobhandlers.SerialJobHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SerialJobHandler</span></code></a></p></td>
+<td><p>Serial job-handler.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qeventproxy.html#nauert-qeventproxy"><span class="std std-ref">nauert.qeventproxy</span></a></p>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qeventproxy.html#nauert.qeventproxy.QEventProxy" title="nauert.qeventproxy.QEventProxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QEventProxy</span></code></a></p></td>
+<td><p>Q-event proxy.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qevents.html#nauert-qevents"><span class="std std-ref">nauert.qevents</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qevents.html#nauert.qevents.QEvent" title="nauert.qevents.QEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QEvent</span></code></a></p></td>
+<td><p>Abstract Q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qevents.html#nauert.qevents.PitchedQEvent" title="nauert.qevents.PitchedQEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PitchedQEvent</span></code></a></p></td>
+<td><p>Pitched q-event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/qevents.html#nauert.qevents.SilentQEvent" title="nauert.qevents.SilentQEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SilentQEvent</span></code></a></p></td>
+<td><p>Silent q-event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qevents.html#nauert.qevents.TerminalQEvent" title="nauert.qevents.TerminalQEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TerminalQEvent</span></code></a></p></td>
+<td><p>Terminal q-event.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qeventsequence.html#nauert-qeventsequence"><span class="std std-ref">nauert.qeventsequence</span></a></p>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence" title="nauert.qeventsequence.QEventSequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QEventSequence</span></code></a></p></td>
+<td><p>Q-event sequence.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qgrid.html#nauert-qgrid"><span class="std std-ref">nauert.qgrid</span></a></p>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qgrid.html#nauert.qgrid.QGrid" title="nauert.qgrid.QGrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGrid</span></code></a></p></td>
+<td><p>Q-grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/qgrid.html#nauert.qgrid.QGridContainer" title="nauert.qgrid.QGridContainer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGridContainer</span></code></a></p></td>
+<td><p>Q-grid container.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qgrid.html#nauert.qgrid.QGridLeaf" title="nauert.qgrid.QGridLeaf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGridLeaf</span></code></a></p></td>
+<td><p>Q-grid leaf.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qschemaitems.html#nauert-qschemaitems"><span class="std std-ref">nauert.qschemaitems</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qschemaitems.html#nauert.qschemaitems.QSchemaItem" title="nauert.qschemaitems.QSchemaItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSchemaItem</span></code></a></p></td>
+<td><p>Abstract q-schema item.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qschemaitems.html#nauert.qschemaitems.BeatwiseQSchemaItem" title="nauert.qschemaitems.BeatwiseQSchemaItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BeatwiseQSchemaItem</span></code></a></p></td>
+<td><p>Beatwise q-schema item.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/qschemaitems.html#nauert.qschemaitems.MeasurewiseQSchemaItem" title="nauert.qschemaitems.MeasurewiseQSchemaItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasurewiseQSchemaItem</span></code></a></p></td>
+<td><p>Measurewise q-schema item.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qschemas.html#nauert-qschemas"><span class="std std-ref">nauert.qschemas</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qschemas.html#nauert.qschemas.QSchema" title="nauert.qschemas.QSchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSchema</span></code></a></p></td>
+<td><p>Abstract Q-schema.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qschemas.html#nauert.qschemas.BeatwiseQSchema" title="nauert.qschemas.BeatwiseQSchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BeatwiseQSchema</span></code></a></p></td>
+<td><p>Beatwise q-schema.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/qschemas.html#nauert.qschemas.MeasurewiseQSchema" title="nauert.qschemas.MeasurewiseQSchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasurewiseQSchema</span></code></a></p></td>
+<td><p>Measurewise q-schema.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qtargetitems.html#nauert-qtargetitems"><span class="std std-ref">nauert.qtargetitems</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qtargetitems.html#nauert.qtargetitems.QTargetItem" title="nauert.qtargetitems.QTargetItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QTargetItem</span></code></a></p></td>
+<td><p>Abstract class for QTargetBeat and QTargetMeasure.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qtargetitems.html#nauert.qtargetitems.QTargetBeat" title="nauert.qtargetitems.QTargetBeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QTargetBeat</span></code></a></p></td>
+<td><p>Q-target beat.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/qtargetitems.html#nauert.qtargetitems.QTargetMeasure" title="nauert.qtargetitems.QTargetMeasure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QTargetMeasure</span></code></a></p></td>
+<td><p>Q-target measure.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/qtargets.html#nauert-qtargets"><span class="std std-ref">nauert.qtargets</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qtargets.html#nauert.qtargets.QTarget" title="nauert.qtargets.QTarget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QTarget</span></code></a></p></td>
+<td><p>Q-target.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/qtargets.html#nauert.qtargets.BeatwiseQTarget" title="nauert.qtargets.BeatwiseQTarget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BeatwiseQTarget</span></code></a></p></td>
+<td><p>Beatwise q-target.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/qtargets.html#nauert.qtargets.MeasurewiseQTarget" title="nauert.qtargets.MeasurewiseQTarget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasurewiseQTarget</span></code></a></p></td>
+<td><p>Measurewise quantization target.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/quantizationjob.html#nauert-quantizationjob"><span class="std std-ref">nauert.quantizationjob</span></a></p>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/quantizationjob.html#nauert.quantizationjob.QuantizationJob" title="nauert.quantizationjob.QuantizationJob"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuantizationJob</span></code></a></p></td>
+<td><p>Quantization job.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/quantizer.html#nauert-quantizer"><span class="std std-ref">nauert.quantizer</span></a></p>
+<hr/><p class="subsection-header rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/quantizer.html#nauert.quantizer.quantize" title="nauert.quantizer.quantize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantize</span></code></a></p></td>
+<td><p>Quantizer function.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="section-header rubric"><a class="reference internal" href="nauert/searchtrees.html#nauert-searchtrees"><span class="std std-ref">nauert.searchtrees</span></a></p>
+<hr/><p class="subsection-header rubric">Abstract Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/searchtrees.html#nauert.searchtrees.SearchTree" title="nauert.searchtrees.SearchTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SearchTree</span></code></a></p></td>
+<td><p>Abstract search tree.</p></td>
+</tr>
+</tbody>
+</table>
+<hr/><p class="subsection-header rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nauert/searchtrees.html#nauert.searchtrees.UnweightedSearchTree" title="nauert.searchtrees.UnweightedSearchTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnweightedSearchTree</span></code></a></p></td>
+<td><p>Unweighted search tree based on Paul Nauert's model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nauert/searchtrees.html#nauert.searchtrees.WeightedSearchTree" title="nauert.searchtrees.WeightedSearchTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WeightedSearchTree</span></code></a></p></td>
+<td><p>Weighted search tree.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Nauert" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nauert/index.html" class="btn btn-neutral float-right" title="nauert" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

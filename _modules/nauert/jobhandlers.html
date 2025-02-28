@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nauert.jobhandlers &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauert_modules/nauert/jobhandlers.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nauert.jobhandlers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nauert.jobhandlers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">quantizationjob</span> <span class="k">as</span> <span class="n">_quantizationjob</span>
+
+
+<div class="viewcode-block" id="JobHandler">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.JobHandler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JobHandler</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstact job-handler.</span>
+
+<span class="sd">    ``JobHandlers`` control how ``QuantizationJob`` instances are processed by</span>
+<span class="sd">    the ``quantize`` function, either serially or in parallel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### CLASS VARIABLES ###</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="c1">### INITIALIZER ###</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1">### SPECIAL METHODS ###</span>
+
+<div class="viewcode-block" id="JobHandler.__call__">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.JobHandler.__call__">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls job handler.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ParallelJobHandlerWorker">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParallelJobHandlerWorker</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parallel job-handler worker.</span>
+
+<span class="sd">    Worker process which runs ``QuantizationJobs``.</span>
+
+<span class="sd">    Not composer-safe.</span>
+
+<span class="sd">    Used internally by ``ParallelJobHandler``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### INITIALIZER ###</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_queue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_queue</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">job_queue</span> <span class="o">=</span> <span class="n">job_queue</span> <span class="ow">or</span> <span class="p">()</span>
+        <span class="n">result_queue</span> <span class="o">=</span> <span class="n">result_queue</span> <span class="ow">or</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_queue</span> <span class="o">=</span> <span class="n">job_queue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_queue</span> <span class="o">=</span> <span class="n">result_queue</span>
+
+    <span class="c1">### PUBLIC METHODS ###</span>
+
+<div class="viewcode-block" id="ParallelJobHandlerWorker.run">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs parallel job handler worker.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">job</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">job_queue</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">):</span>
+                <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">job</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># poison pill causes worker shutdown</span>
+                <span class="c1"># print &#39;{}: Exiting&#39;.format(process_name)</span>
+                <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">job_queue</span><span class="p">,</span> <span class="s2">&quot;task_done&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
+                <span class="k">break</span>
+            <span class="c1"># print &#39;{}: {!r}&#39;.format(process_name, job)</span>
+            <span class="n">job</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+            <span class="n">job</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result_queue</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">result_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ParallelJobHandler">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParallelJobHandler</span><span class="p">(</span><span class="n">JobHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parallel job-handler.</span>
+
+<span class="sd">    Processes ``QuantizationJob`` instances in parallel, based on the number of</span>
+<span class="sd">    CPUs available.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### CLASS VARIABLES ###</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="c1">### SPECIAL METHODS ###</span>
+
+<div class="viewcode-block" id="ParallelJobHandler.__call__">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls parallel job handler.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">finished_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">job_queue</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">JoinableQueue</span><span class="p">()</span>
+        <span class="n">result_queue</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        <span class="n">workers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ParallelJobHandlerWorker</span><span class="p">(</span><span class="n">job_queue</span><span class="p">,</span> <span class="n">result_queue</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">worker</span> <span class="ow">in</span> <span class="n">workers</span><span class="p">:</span>
+            <span class="n">worker</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+            <span class="n">job_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">jobs</span><span class="p">)):</span>
+            <span class="n">finished_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">worker</span> <span class="ow">in</span> <span class="n">workers</span><span class="p">:</span>
+            <span class="n">job_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">job_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="n">result_queue</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">job_queue</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">worker</span> <span class="ow">in</span> <span class="n">workers</span><span class="p">:</span>
+            <span class="n">worker</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">finished_jobs</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SerialJobHandler">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SerialJobHandler</span><span class="p">(</span><span class="n">JobHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Serial job-handler.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">### CLASS VARIABLES ###</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="c1">### SPECIAL METHODS ###</span>
+
+<div class="viewcode-block" id="SerialJobHandler.__call__">
+<a class="viewcode-back" href="../../api/nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">jobs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">_quantizationjob</span><span class="o">.</span><span class="n">QuantizationJob</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">_quantizationjob</span><span class="o">.</span><span class="n">QuantizationJob</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls serial job handler.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+            <span class="n">job</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jobs</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

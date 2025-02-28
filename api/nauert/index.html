@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nauert &mdash; nauert 3.21 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/abjad.css?v=582143d1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/uqbar.css?v=e6773f5c" />
+
+  
+    <link rel="canonical" href="https://abjad.github.io/nauertapi/nauert/index.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=927623b5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../../_static/copybutton.js"></script>
+      <script src="../../_static/ga.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="attackpointoptimizers" href="attackpointoptimizers.html" />
+    <link rel="prev" title="Nauert API" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffeedd" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nauert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nauert API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffeedd" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nauert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nauert API</a></li>
+      <li class="breadcrumb-item active">nauert</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/nauert/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nauert">
+<span id="id1"></span><h1>nauert<a class="headerlink" href="#nauert" title="Link to this heading"></a></h1>
+<p id="module-nauert">Extension for quantizing rhythm, based on Paul Nauert’s Q-Grid technique.</p>
+<div class="svg-container docutils container">
+<div class="graphviz"><object data="../../_images/inheritance-fef276f7d9eadf1bb1745aefd5a204ecfc324907.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">digraph InheritanceGraph {
+	graph [bgcolor=transparent,
+		color=lightsteelblue2,
+		fontname=Arial,
+		fontsize=10,
+		outputorder=edgesfirst,
+		overlap=prism,
+		penwidth=2,
+		rankdir=LR,
+		splines=spline,
+		style=&quot;dashed, rounded&quot;,
+		truecolor=true
+	];
+	node [colorscheme=pastel19,
+		fontname=Arial,
+		fontsize=10,
+		height=0,
+		penwidth=2,
+		shape=box,
+		style=&quot;filled, rounded&quot;,
+		width=0
+	];
+	edge [color=lightslategrey,
+		penwidth=1
+	];
+	subgraph cluster_abc {
+		graph [label=abc];
+		node [color=1];
+		&quot;abc.ABC&quot;	[URL=&quot;https://docs.python.org/3/library/abc.html#abc.ABC&quot;,
+			label=ABC,
+			target=_top];
+	}
+	subgraph &quot;cluster_abjad.rhythmtrees&quot; {
+		graph [label=&quot;abjad.rhythmtrees&quot;];
+		node [color=2];
+		&quot;abjad.rhythmtrees.RhythmTreeContainer&quot;	[label=&quot;Rhythm\nTree\nContainer&quot;];
+		&quot;abjad.rhythmtrees.RhythmTreeNode&quot;	[label=&quot;Rhythm\nTree\nNode&quot;];
+		&quot;abjad.rhythmtrees.RhythmTreeNode&quot; -&gt; &quot;abjad.rhythmtrees.RhythmTreeContainer&quot;;
+	}
+	subgraph cluster_builtins {
+		graph [label=builtins];
+		node [color=3];
+		&quot;builtins.object&quot;	[URL=&quot;https://docs.python.org/3/library/functions.html#object&quot;,
+			label=object,
+			target=_top];
+	}
+	subgraph &quot;cluster_multiprocessing.context&quot; {
+		graph [label=&quot;multiprocessing.context&quot;];
+		node [color=4];
+		&quot;multiprocessing.context.Process&quot;	[label=Process];
+	}
+	subgraph &quot;cluster_multiprocessing.process&quot; {
+		graph [label=&quot;multiprocessing.process&quot;];
+		node [color=5];
+		&quot;multiprocessing.process.BaseProcess&quot;	[label=&quot;Base\nProcess&quot;];
+	}
+	subgraph &quot;cluster_nauert.attackpointoptimizers&quot; {
+		graph [label=&quot;nauert.attackpointoptimizers&quot;];
+		node [color=6];
+		&quot;nauert.attackpointoptimizers.AttackPointOptimizer&quot;	[URL=&quot;../api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.AttackPointOptimizer&quot;,
+			label=&quot;Attack\nPoint\nOptimizer&quot;,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer&quot;	[URL=&quot;../api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer&quot;,
+			label=&quot;Measurewise\nAttack\nPoint\nOptimizer&quot;,
+			target=_top];
+		&quot;nauert.attackpointoptimizers.AttackPointOptimizer&quot; -&gt; &quot;nauert.attackpointoptimizers.MeasurewiseAttackPointOptimizer&quot;	[minlen=1];
+		&quot;nauert.attackpointoptimizers.NaiveAttackPointOptimizer&quot;	[URL=&quot;../api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NaiveAttackPointOptimizer&quot;,
+			label=&quot;Naive\nAttack\nPoint\nOptimizer&quot;,
+			target=_top];
+		&quot;nauert.attackpointoptimizers.AttackPointOptimizer&quot; -&gt; &quot;nauert.attackpointoptimizers.NaiveAttackPointOptimizer&quot;	[minlen=2];
+		&quot;nauert.attackpointoptimizers.NullAttackPointOptimizer&quot;	[URL=&quot;../api/nauert/attackpointoptimizers.html#nauert.attackpointoptimizers.NullAttackPointOptimizer&quot;,
+			label=&quot;Null\nAttack\nPoint\nOptimizer&quot;,
+			target=_top];
+		&quot;nauert.attackpointoptimizers.AttackPointOptimizer&quot; -&gt; &quot;nauert.attackpointoptimizers.NullAttackPointOptimizer&quot;	[minlen=3];
+	}
+	subgraph &quot;cluster_nauert.gracehandlers&quot; {
+		graph [label=&quot;nauert.gracehandlers&quot;];
+		node [color=7];
+		&quot;nauert.gracehandlers.CollapsingGraceHandler&quot;	[URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.CollapsingGraceHandler&quot;,
+			label=&quot;Collapsing\nGrace\nHandler&quot;,
+			target=_top];
+		&quot;nauert.gracehandlers.ConcatenatingGraceHandler&quot;	[URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.ConcatenatingGraceHandler&quot;,
+			label=&quot;Concatenating\nGrace\nHandler&quot;,
+			target=_top];
+		&quot;nauert.gracehandlers.DiscardingGraceHandler&quot;	[URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.DiscardingGraceHandler&quot;,
+			label=&quot;Discarding\nGrace\nHandler&quot;,
+			target=_top];
+		&quot;nauert.gracehandlers.GraceHandler&quot;	[URL=&quot;../api/nauert/gracehandlers.html#nauert.gracehandlers.GraceHandler&quot;,
+			label=&quot;Grace\nHandler&quot;,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.gracehandlers.GraceHandler&quot; -&gt; &quot;nauert.gracehandlers.CollapsingGraceHandler&quot;	[minlen=1];
+		&quot;nauert.gracehandlers.GraceHandler&quot; -&gt; &quot;nauert.gracehandlers.ConcatenatingGraceHandler&quot;	[minlen=2];
+		&quot;nauert.gracehandlers.GraceHandler&quot; -&gt; &quot;nauert.gracehandlers.DiscardingGraceHandler&quot;	[minlen=3];
+	}
+	subgraph &quot;cluster_nauert.heuristics&quot; {
+		graph [label=&quot;nauert.heuristics&quot;];
+		node [color=8];
+		&quot;nauert.heuristics.DistanceHeuristic&quot;	[URL=&quot;../api/nauert/heuristics.html#nauert.heuristics.DistanceHeuristic&quot;,
+			label=&quot;Distance\nHeuristic&quot;,
+			target=_top];
+		&quot;nauert.heuristics.Heuristic&quot;	[URL=&quot;../api/nauert/heuristics.html#nauert.heuristics.Heuristic&quot;,
+			label=Heuristic,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.heuristics.Heuristic&quot; -&gt; &quot;nauert.heuristics.DistanceHeuristic&quot;	[minlen=1];
+	}
+	subgraph &quot;cluster_nauert.jobhandlers&quot; {
+		graph [label=&quot;nauert.jobhandlers&quot;];
+		node [color=9];
+		&quot;nauert.jobhandlers.JobHandler&quot;	[URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.JobHandler&quot;,
+			label=&quot;Job\nHandler&quot;,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.jobhandlers.ParallelJobHandler&quot;	[URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandler&quot;,
+			label=&quot;Parallel\nJob\nHandler&quot;,
+			target=_top];
+		&quot;nauert.jobhandlers.JobHandler&quot; -&gt; &quot;nauert.jobhandlers.ParallelJobHandler&quot;	[minlen=1];
+		&quot;nauert.jobhandlers.SerialJobHandler&quot;	[URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.SerialJobHandler&quot;,
+			label=&quot;Serial\nJob\nHandler&quot;,
+			target=_top];
+		&quot;nauert.jobhandlers.JobHandler&quot; -&gt; &quot;nauert.jobhandlers.SerialJobHandler&quot;	[minlen=2];
+		&quot;nauert.jobhandlers.ParallelJobHandlerWorker&quot;	[URL=&quot;../api/nauert/jobhandlers.html#nauert.jobhandlers.ParallelJobHandlerWorker&quot;,
+			label=&quot;Parallel\nJob\nHandler\nWorker&quot;,
+			target=_top];
+	}
+	subgraph &quot;cluster_nauert.qeventproxy&quot; {
+		graph [label=&quot;nauert.qeventproxy&quot;];
+		node [color=1];
+		&quot;nauert.qeventproxy.QEventProxy&quot;	[URL=&quot;../api/nauert/qeventproxy.html#nauert.qeventproxy.QEventProxy&quot;,
+			label=&quot;QEvent\nProxy&quot;,
+			target=_top];
+	}
+	subgraph &quot;cluster_nauert.qevents&quot; {
+		graph [label=&quot;nauert.qevents&quot;];
+		node [color=2];
+		&quot;nauert.qevents.PitchedQEvent&quot;	[URL=&quot;../api/nauert/qevents.html#nauert.qevents.PitchedQEvent&quot;,
+			label=&quot;Pitched\nQEvent&quot;,
+			target=_top];
+		&quot;nauert.qevents.QEvent&quot;	[URL=&quot;../api/nauert/qevents.html#nauert.qevents.QEvent&quot;,
+			label=QEvent,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.qevents.QEvent&quot; -&gt; &quot;nauert.qevents.PitchedQEvent&quot;	[minlen=1];
+		&quot;nauert.qevents.SilentQEvent&quot;	[URL=&quot;../api/nauert/qevents.html#nauert.qevents.SilentQEvent&quot;,
+			label=&quot;Silent\nQEvent&quot;,
+			target=_top];
+		&quot;nauert.qevents.QEvent&quot; -&gt; &quot;nauert.qevents.SilentQEvent&quot;	[minlen=2];
+		&quot;nauert.qevents.TerminalQEvent&quot;	[URL=&quot;../api/nauert/qevents.html#nauert.qevents.TerminalQEvent&quot;,
+			label=&quot;Terminal\nQEvent&quot;,
+			target=_top];
+		&quot;nauert.qevents.QEvent&quot; -&gt; &quot;nauert.qevents.TerminalQEvent&quot;	[minlen=3];
+	}
+	subgraph &quot;cluster_nauert.qeventsequence&quot; {
+		graph [label=&quot;nauert.qeventsequence&quot;];
+		node [color=3];
+		&quot;nauert.qeventsequence.QEventSequence&quot;	[URL=&quot;../api/nauert/qeventsequence.html#nauert.qeventsequence.QEventSequence&quot;,
+			label=&quot;QEvent\nSequence&quot;,
+			target=_top];
+	}
+	subgraph &quot;cluster_nauert.qgrid&quot; {
+		graph [label=&quot;nauert.qgrid&quot;];
+		node [color=4];
+		&quot;nauert.qgrid.QGrid&quot;	[URL=&quot;../api/nauert/qgrid.html#nauert.qgrid.QGrid&quot;,
+			label=QGrid,
+			target=_top];
+		&quot;nauert.qgrid.QGridContainer&quot;	[URL=&quot;../api/nauert/qgrid.html#nauert.qgrid.QGridContainer&quot;,
+			label=&quot;QGrid\nContainer&quot;,
+			target=_top];
+		&quot;nauert.qgrid.QGridLeaf&quot;	[URL=&quot;../api/nauert/qgrid.html#nauert.qgrid.QGridLeaf&quot;,
+			label=&quot;QGrid\nLeaf&quot;,
+			target=_top];
+	}
+	subgraph &quot;cluster_nauert.qschemaitems&quot; {
+		graph [label=&quot;nauert.qschemaitems&quot;];
+		node [color=5];
+		&quot;nauert.qschemaitems.BeatwiseQSchemaItem&quot;	[URL=&quot;../api/nauert/qschemaitems.html#nauert.qschemaitems.BeatwiseQSchemaItem&quot;,
+			label=&quot;Beatwise\nQSchema\nItem&quot;,
+			target=_top];
+		&quot;nauert.qschemaitems.MeasurewiseQSchemaItem&quot;	[URL=&quot;../api/nauert/qschemaitems.html#nauert.qschemaitems.MeasurewiseQSchemaItem&quot;,
+			label=&quot;Measurewise\nQSchema\nItem&quot;,
+			target=_top];
+		&quot;nauert.qschemaitems.QSchemaItem&quot;	[URL=&quot;../api/nauert/qschemaitems.html#nauert.qschemaitems.QSchemaItem&quot;,
+			label=&quot;QSchema\nItem&quot;,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.qschemaitems.QSchemaItem&quot; -&gt; &quot;nauert.qschemaitems.BeatwiseQSchemaItem&quot;	[minlen=1];
+		&quot;nauert.qschemaitems.QSchemaItem&quot; -&gt; &quot;nauert.qschemaitems.MeasurewiseQSchemaItem&quot;	[minlen=2];
+	}
+	subgraph &quot;cluster_nauert.qschemas&quot; {
+		graph [label=&quot;nauert.qschemas&quot;];
+		node [color=6];
+		&quot;nauert.qschemas.BeatwiseQSchema&quot;	[URL=&quot;../api/nauert/qschemas.html#nauert.qschemas.BeatwiseQSchema&quot;,
+			label=&quot;Beatwise\nQSchema&quot;,
+			target=_top];
+		&quot;nauert.qschemas.MeasurewiseQSchema&quot;	[URL=&quot;../api/nauert/qschemas.html#nauert.qschemas.MeasurewiseQSchema&quot;,
+			label=&quot;Measurewise\nQSchema&quot;,
+			target=_top];
+		&quot;nauert.qschemas.QSchema&quot;	[URL=&quot;../api/nauert/qschemas.html#nauert.qschemas.QSchema&quot;,
+			label=QSchema,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.qschemas.QSchema&quot; -&gt; &quot;nauert.qschemas.BeatwiseQSchema&quot;	[minlen=1];
+		&quot;nauert.qschemas.QSchema&quot; -&gt; &quot;nauert.qschemas.MeasurewiseQSchema&quot;	[minlen=2];
+	}
+	subgraph &quot;cluster_nauert.qtargetitems&quot; {
+		graph [label=&quot;nauert.qtargetitems&quot;];
+		node [color=7];
+		&quot;nauert.qtargetitems.QTargetBeat&quot;	[URL=&quot;../api/nauert/qtargetitems.html#nauert.qtargetitems.QTargetBeat&quot;,
+			label=&quot;QTarget\nBeat&quot;,
+			target=_top];
+		&quot;nauert.qtargetitems.QTargetItem&quot;	[URL=&quot;../api/nauert/qtargetitems.html#nauert.qtargetitems.QTargetItem&quot;,
+			label=&quot;QTarget\nItem&quot;,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.qtargetitems.QTargetItem&quot; -&gt; &quot;nauert.qtargetitems.QTargetBeat&quot;	[minlen=1];
+		&quot;nauert.qtargetitems.QTargetMeasure&quot;	[URL=&quot;../api/nauert/qtargetitems.html#nauert.qtargetitems.QTargetMeasure&quot;,
+			label=&quot;QTarget\nMeasure&quot;,
+			target=_top];
+		&quot;nauert.qtargetitems.QTargetItem&quot; -&gt; &quot;nauert.qtargetitems.QTargetMeasure&quot;	[minlen=2];
+	}
+	subgraph &quot;cluster_nauert.qtargets&quot; {
+		graph [label=&quot;nauert.qtargets&quot;];
+		node [color=8];
+		&quot;nauert.qtargets.BeatwiseQTarget&quot;	[URL=&quot;../api/nauert/qtargets.html#nauert.qtargets.BeatwiseQTarget&quot;,
+			label=&quot;Beatwise\nQTarget&quot;,
+			target=_top];
+		&quot;nauert.qtargets.MeasurewiseQTarget&quot;	[URL=&quot;../api/nauert/qtargets.html#nauert.qtargets.MeasurewiseQTarget&quot;,
+			label=&quot;Measurewise\nQTarget&quot;,
+			target=_top];
+		&quot;nauert.qtargets.QTarget&quot;	[URL=&quot;../api/nauert/qtargets.html#nauert.qtargets.QTarget&quot;,
+			label=QTarget,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.qtargets.QTarget&quot; -&gt; &quot;nauert.qtargets.BeatwiseQTarget&quot;	[minlen=1];
+		&quot;nauert.qtargets.QTarget&quot; -&gt; &quot;nauert.qtargets.MeasurewiseQTarget&quot;	[minlen=2];
+	}
+	subgraph &quot;cluster_nauert.quantizationjob&quot; {
+		graph [label=&quot;nauert.quantizationjob&quot;];
+		node [color=9];
+		&quot;nauert.quantizationjob.QuantizationJob&quot;	[URL=&quot;../api/nauert/quantizationjob.html#nauert.quantizationjob.QuantizationJob&quot;,
+			label=&quot;Quantization\nJob&quot;,
+			target=_top];
+	}
+	subgraph &quot;cluster_nauert.searchtrees&quot; {
+		graph [label=&quot;nauert.searchtrees&quot;];
+		node [color=1];
+		&quot;nauert.searchtrees.SearchTree&quot;	[URL=&quot;../api/nauert/searchtrees.html#nauert.searchtrees.SearchTree&quot;,
+			label=&quot;Search\nTree&quot;,
+			shape=oval,
+			style=bold,
+			target=_top];
+		&quot;nauert.searchtrees.UnweightedSearchTree&quot;	[URL=&quot;../api/nauert/searchtrees.html#nauert.searchtrees.UnweightedSearchTree&quot;,
+			label=&quot;Unweighted\nSearch\nTree&quot;,
+			target=_top];
+		&quot;nauert.searchtrees.SearchTree&quot; -&gt; &quot;nauert.searchtrees.UnweightedSearchTree&quot;	[minlen=1];
+		&quot;nauert.searchtrees.WeightedSearchTree&quot;	[URL=&quot;../api/nauert/searchtrees.html#nauert.searchtrees.WeightedSearchTree&quot;,
+			label=&quot;Weighted\nSearch\nTree&quot;,
+			target=_top];
+		&quot;nauert.searchtrees.SearchTree&quot; -&gt; &quot;nauert.searchtrees.WeightedSearchTree&quot;	[minlen=2];
+	}
+	subgraph &quot;cluster_uqbar.containers.unique_tree&quot; {
+		graph [label=&quot;uqbar.containers.unique_tree&quot;];
+		node [color=2];
+		&quot;uqbar.containers.unique_tree.UniqueTreeContainer&quot;	[label=&quot;Unique\nTree\nContainer&quot;];
+		&quot;uqbar.containers.unique_tree.UniqueTreeList&quot;	[label=&quot;Unique\nTree\nList&quot;];
+		&quot;uqbar.containers.unique_tree.UniqueTreeContainer&quot; -&gt; &quot;uqbar.containers.unique_tree.UniqueTreeList&quot;	[minlen=1];
+		&quot;uqbar.containers.unique_tree.UniqueTreeNode&quot;	[label=&quot;Unique\nTree\nNode&quot;];
+		&quot;uqbar.containers.unique_tree.UniqueTreeNode&quot; -&gt; &quot;uqbar.containers.unique_tree.UniqueTreeContainer&quot;	[minlen=1];
+	}
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.attackpointoptimizers.AttackPointOptimizer&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.gracehandlers.GraceHandler&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.heuristics.Heuristic&quot;	[minlen=1];
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.jobhandlers.JobHandler&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.qevents.QEvent&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.qschemaitems.QSchemaItem&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.qschemas.QSchema&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.qtargetitems.QTargetItem&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.qtargets.QTarget&quot;;
+	&quot;abc.ABC&quot; -&gt; &quot;nauert.searchtrees.SearchTree&quot;;
+	&quot;abjad.rhythmtrees.RhythmTreeContainer&quot; -&gt; &quot;nauert.qgrid.QGridContainer&quot;	[minlen=1];
+	&quot;abjad.rhythmtrees.RhythmTreeNode&quot; -&gt; &quot;nauert.qgrid.QGridLeaf&quot;;
+	&quot;builtins.object&quot; -&gt; &quot;abc.ABC&quot;;
+	&quot;builtins.object&quot; -&gt; &quot;abjad.rhythmtrees.RhythmTreeNode&quot;;
+	&quot;builtins.object&quot; -&gt; &quot;multiprocessing.process.BaseProcess&quot;	[minlen=1];
+	&quot;builtins.object&quot; -&gt; &quot;nauert.qeventproxy.QEventProxy&quot;	[minlen=2];
+	&quot;builtins.object&quot; -&gt; &quot;nauert.qeventsequence.QEventSequence&quot;	[minlen=3];
+	&quot;builtins.object&quot; -&gt; &quot;nauert.qgrid.QGrid&quot;	[minlen=1];
+	&quot;builtins.object&quot; -&gt; &quot;nauert.quantizationjob.QuantizationJob&quot;	[minlen=2];
+	&quot;builtins.object&quot; -&gt; &quot;uqbar.containers.unique_tree.UniqueTreeNode&quot;;
+	&quot;multiprocessing.context.Process&quot; -&gt; &quot;nauert.jobhandlers.ParallelJobHandlerWorker&quot;	[minlen=1];
+	&quot;multiprocessing.process.BaseProcess&quot; -&gt; &quot;multiprocessing.context.Process&quot;	[minlen=1];
+	&quot;uqbar.containers.unique_tree.UniqueTreeList&quot; -&gt; &quot;abjad.rhythmtrees.RhythmTreeContainer&quot;;
+	&quot;uqbar.containers.unique_tree.UniqueTreeNode&quot; -&gt; &quot;nauert.qgrid.QGridLeaf&quot;;
+}</p></object></div>
+</div>
+<hr/><p class="section-header rubric">Subpackages</p>
+<div class="toctree-wrapper compound">
+</div>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="attackpointoptimizers.html#module-nauert.attackpointoptimizers" title="nauert.attackpointoptimizers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attackpointoptimizers</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="gracehandlers.html#module-nauert.gracehandlers" title="nauert.gracehandlers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gracehandlers</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="heuristics.html#module-nauert.heuristics" title="nauert.heuristics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">heuristics</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="jobhandlers.html#module-nauert.jobhandlers" title="nauert.jobhandlers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jobhandlers</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="qeventproxy.html#module-nauert.qeventproxy" title="nauert.qeventproxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qeventproxy</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="qevents.html#module-nauert.qevents" title="nauert.qevents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qevents</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="qeventsequence.html#module-nauert.qeventsequence" title="nauert.qeventsequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qeventsequence</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="qgrid.html#module-nauert.qgrid" title="nauert.qgrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qgrid</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="qschemaitems.html#module-nauert.qschemaitems" title="nauert.qschemaitems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qschemaitems</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="qschemas.html#module-nauert.qschemas" title="nauert.qschemas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qschemas</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="qtargetitems.html#module-nauert.qtargetitems" title="nauert.qtargetitems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qtargetitems</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="qtargets.html#module-nauert.qtargets" title="nauert.qtargets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qtargets</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantizationjob.html#module-nauert.quantizationjob" title="nauert.quantizationjob"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantizationjob</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantizer.html#module-nauert.quantizer" title="nauert.quantizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantizer</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="searchtrees.html#module-nauert.searchtrees" title="nauert.searchtrees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">searchtrees</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Nauert API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="attackpointoptimizers.html" class="btn btn-neutral float-right" title="attackpointoptimizers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Joséphine Wolf Oberholtzer &amp; Tsz Kiu Pang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
