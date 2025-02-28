@@ -22,7 +22,7 @@ flake8:
 
 gh-pages:
 	rm -rf gh-pages/
-	git clone --depth=1 https://github.com/Abjad/rmakers.git gh-pages
+	git clone --depth=1 https://github.com/Abjad/nauert.git gh-pages
 	cd gh-pages && \
 	if git checkout gh-pages; then \
 	    echo "Using existing gh-pages branch"; \
