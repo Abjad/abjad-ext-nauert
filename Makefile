@@ -20,6 +20,22 @@ flake_options = --isolated --max-line-length=88
 flake8:
 	flake8 ${flake_ignore} ${flake_options}
 
+gh-pages:
+	rm -rf gh-pages/
+	git clone --depth=1 https://github.com/Abjad/rmakers.git gh-pages
+	cd gh-pages && \
+	if git checkout gh-pages; then \
+	    echo "Using existing gh-pages branch"; \
+	else \
+	    git checkout --orphan gh-pages && git rm -rf .; \
+	fi
+	rsync -rtv --delete --exclude=.git docs/build/html/ gh-pages/
+	cd gh-pages && touch .nojekyll && \
+		git add --all . && \
+		git commit --allow-empty -m "Update docs" && \
+		git push --force origin gh-pages
+	rm -rf gh-pages/
+
 isort-check:
 	isort --case-sensitive --check-only --diff --line-width=88 --multi-line=3 \
 		  --project=nauert --thirdparty=abjad --thirdparty=ply --thirdparty=uqbar \
